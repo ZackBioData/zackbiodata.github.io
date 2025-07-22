@@ -1,0 +1,36 @@
+---
+title: "AI in Life Sciences: What's Changing and What's Holding Us Back"
+date: 2025-05-22
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+##  About
+
+This log summarizes key insights from the webinar *Inside the Minds of Scientists: How AI is Changing Life Science Research*, hosted by **Bioinformatics** in May 2025.  
+🎥 [Watch the webinar on Vimeo](https://vimeo.com/1086878814)  
+
+
+
+##  Key Trends
+
+- AI is moving from discovery to development.
+- AI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.
+- Pharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making).
+
+##  What's Holding AI Back in Biology?
+
+> Current issues with Ai in biosciences:
+
+- **Reproducibility issues** — hard to trust models without transparent workflows.
+- **Learning curve and training** — lack of experience with AI was a significant pain point for many users.
+
+
+💬 *This resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs.*
+
+##  Changes for future adoption
+
+- Transparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.
+- Tools need to be built with their actual users in mind — typically, biologists.

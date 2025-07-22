@@ -1,0 +1,19 @@
+---
+title: ""
+format: html
+---
+
+# This website aims to be way to track progress and reinforce learning as i go
+
+🔗 **[Logbook](log/index.qmd)** — Casual notes, ideas, and progress from daily work and study  
+🔗 **[Blog](blog/index.qmd)** — Occasional deeper dives into tools, projects, or topics I’m exploring  
+🔗 **[Daily Coding](100daysofcode/index.qmd)** — A dedicated journey to improve coding skills every day for 100 consecutive days
+
+---
+
+# What I’m Working On
+
+- Learning Bulk RNA-seq and eventually single-cell RNA-seq
+- Studying machine learning with Python and scikit-learn
+
+Thanks for visiting!

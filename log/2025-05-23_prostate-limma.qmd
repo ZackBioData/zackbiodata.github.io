@@ -1,0 +1,122 @@
+---
+title: "Prostate Cancer DEG Analysis (GSE6919)"
+date: 2025-05-25
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## 🧬 Project Summary
+
+In this analysis, I used **bulk RNA sequencing (microarray data)** from the public GEO dataset **[GSE6919](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE6919)** to investigate differences in gene expression between **cancerous and healthy prostate tissues**.
+
+The aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery.
+
+---
+
+## 🔧 Methods Overview
+
+The analysis was performed in **R** using the following packages:
+
+- `GEOquery` — to load expression and metadata  
+- `limma` — for linear modeling of microarray data  
+- `tidyverse` — for data wrangling and exploration  
+- `clusterProfiler`, `org.Hs.eg.db` — for GO enrichment analysis  
+
+### Key steps:
+
+1. **Downloaded** GSE6919 and extracted the expression matrix  
+2. **Cleaned and labeled** metadata (e.g. tumor vs. normal)  
+3. **Fit** a linear model using `limma` and contrasted tumor vs. normal  
+4. **Extracted** top upregulated and downregulated genes  
+5. **Performed** GO enrichment to interpret biological meaning  
+
+---
+
+## 📊 Differential Expression Results
+
+##### Volcano Plot X axis is change in expression and y value is significance.
+
+![Volcano plot showing DEGs in prostate cancer](https://i.imgur.com/fEv3xc3.jpeg)
+
+
+This volcano plot shows the spread of differentially expressed genes between tumor and normal tissues. Genes with high log fold-change and low p-values are highlighted.
+
+This version of the volcano plot contains unfiltered or duplicated gene symbols and extreme values resulted in alot of messy invalid data scewing graph scale and bad gene labels such as GAPDH.1 and ACTB.1.
+
+---
+
+## 📘 GO Enrichment Analysis
+
+### 🧪 Enriched Biological Processes
+
+| GO ID      | Biological Process                             | Gene Ratio | Adjusted P-value | Gene Count |
+|:----------:|:-----------------------------------------------|:-----------|-----------------:|-----------:|
+| GO:0045765 | Regulation of angiogenesis                     | 11/88      |          0.00111 |         11 |
+| GO:1901342 | Regulation of vasculature development          | 11/88      |          0.00111 |         11 |
+| GO:0002696 | Positive regulation of leukocyte activation    | 10/88      |          0.00572 |         10 |
+| GO:0050867 | Positive regulation of cell activation         | 10/88      |          0.00677 |         10 |
+| GO:0051251 | Positive regulation of lymphocyte activation   | 9/88       |          0.00902 |          9 |
+| GO:0045766 | Positive regulation of angiogenesis            | 7/88       |          0.00902 |          7 |
+| GO:1904018 | Positive regulation of vasculature development | 7/88       |          0.00902 |          7 |
+| GO:0050878 | Regulation of body fluid levels                | 9/88       |          0.01740 |          9 |
+| GO:0045785 | Positive regulation of cell adhesion           | 10/88      |          0.02360 |         10 |
+| GO:0050870 | Positive regulation of T cell activation       | 7/88       |          0.04120 |          7 |
+
+---
+
+
+### 📊 GO Enrichment Bar Chart
+
+![Top GO terms for prostate cancer DEGs](https://i.imgur.com/LI4YfFG.png)
+
+This bar chart shows the top GO Biological Process categories enriched in the DEGs. Angiogenesis, immune activation, and vasculature development were particularly prominent.
+
+---
+
+### 🧬 Genes contributing to enriched biological processes
+
+**Regulation of angiogenesis**  
+`STAB1`, `PAK4`, `NPR1`, `PRKD2`, `SASH1`, `WNK1`
+
+**Regulation of vasculature development**  
+`STAB1`, `PAK4`, `NPR1`, `PRKD2`, `SASH1`, `WNK1`
+
+**Positive regulation of angiogenesis**  
+`PAK4`, `PRKD2`, `SASH1`, `WNK1`, `CD40`, `PDPK1`
+
+**Positive regulation of vasculature development**  
+`PAK4`, `PRKD2`, `SASH1`, `WNK1`, `CD40`, `PDPK1`
+
+---
+
+## 🧾Lessons Learned for myself
+
+
+Plots didn’t save → forgot ggsave(). Used ggsave("figures/Volcanoplot.jpg") and made sure the folder path was right.
+
+Plots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.
+
+enrichplot::barplot() didn’t work →  Just use barplot() without enrichplot:: prefix.
+
+PNG wouldn’t load → renamed .png and re-saved properly. Hosted on Imgur as backup.
+
+Had to clean probe → gene symbol mapping → mapIds() gave NAs. Filtered out before topTable / enrichment.
+
+Saved a bunch of useful code in .Rhistory — rescued a lot from there when I thought it was lost.
+
+---
+
+## 🧾 Notes
+
+Full list of gene contribution
+regulation of angiogenesis
+STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG
+regulation of vasculature development	
+STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG
+positive regulation of angiogenesis	
+PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B
+positive regulation of vasculature development	
+PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B
+

@@ -1,0 +1,107 @@
+---
+title: "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability"
+date: 2025-07-17
+format: html
+---
+## [Github link](https://github.com/ZackBioData/PCP4-Transcriptomics)
+
+### Tools and Data set
+Python (pandas), Enrichr, g:Profiler
+The data set was used from **[here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE293745)**.
+
+The CSV contains the transcriptomic data of 2 groups 
+
+- a control group consisting of baseline C4-2B prostate cancer cell and 
+
+- an experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.
+
+**[Purkinje cell protein 4 (PCP4)](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2025.1616046/full)** 
+is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. 
+Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and 
+mitochondrial damage such as ACP's (anticancer peptides).
+
+Although PCP4 upregulation would enhance ACP's cytotoxicity its a mutation which is typically found within early-stage tumor development and 
+downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular 
+metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur,
+reducing the window for effective combination targeting.
+
+### Steps
+
+- Loaded data using `pandas.read_csv()`
+- Calculated mean expression per group
+- Computed log2 fold change (PCP4 vs. control)
+- Filtered genes with:
+  - `abs(log2FC) > 1`
+  - `raw expression > 3` in either group
+  
+**Key problems**
+
+Errors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to 
+CSV unless hardcoded. 
+ *Fix*: Open entire project in VS code.
+Module Not Found Error.
+Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. 
+ *Fix*: Changed VS Code’s Python interpreter.
+
+### Results
+**Differential Gene Expression Table**
+
+| gene_symbol     | mean_patient | mean_control | log2_fc    |
+|-----------------|--------------|--------------|------------|
+| H2AC19          | 0.000000     | 52.033333    | -35.598717 |
+| TICAM2          | 12.060000    | 0.000000     | 33.489511  |
+| CTAG1B          | 8.500000     | 0.000000     | 32.984816  |
+| FAM47E-STBD1    | 6.650000     | 0.000000     | 32.630707  |
+| CORO7-PAM16     | 3.986667     | 0.000000     | 31.892536  |
+| FSTL4           | 0.000000     | 3.000000     | -31.482315 |
+| FAP             | 0.000000     | 3.000000     | -31.482315 |
+| FUNDC1          | 3.000000     | 0.000000     | 31.482315  |
+| PRAMEF11        | 0.000000     | 2.823333     | -31.394752 |
+| RIMBP3C         | 2.340000     | 0.000000     | 31.123861  |
+
+
+**Top GO terms in upregulated genes:**
+
+| name                             | intersection_size |
+|----------------------------------|--------------------|
+| multicellular organismal process | 340                |
+| molecular transducer activity    | 151                |
+| signaling receptor activity      | 151                |
+| cell periphery                   | 297                |
+| extracellular region             | 219                |
+
+**Top GO terms in downregulated genes:**
+
+| name                             | intersection_size |
+|----------------------------------|--------------------|
+| multicellular organismal process | 424                |
+| cell periphery                   | 381                |
+| developmental process            | 368                |
+| plasma membrane                  | 343                |
+| molecular transducer activity    | 169                |
+
+
+Then i completed a top 200 upregulated [enrichr](https://maayanlab.cloud/Enrichr/enrich?dataset=d191fe2c6d54a8910b99ba6e03371b0b) to better characterize the genes.
+
+I found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated [link](https://aacrjournals.org/clincancerres/article/19/21/5835/78111/Molecular-Pathways-Targeting-MYC-induced-Metabolic), genes which promote metabolic reprogramming towards 
+aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype [link](https://pubmed.ncbi.nlm.nih.gov/20607826/).
+Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane. 
+
+EZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated.
+Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. 
+This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.
+
+Within the Top 200 downregulated genes [enrichr](https://maayanlab.cloud/Enrichr/enrich?dataset=aa81df826a74220c9ba42bfc78ee815d) i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but 
+dont indicate anything of interest in context to MPb.
+
+### Conclusion
+Enrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.
+
+- Upregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.
+
+- PCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.
+
+Although PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions.
+Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B.
+
+

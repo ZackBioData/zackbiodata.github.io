@@ -1,0 +1,36 @@
+---
+title: "Engineering to improve the precision and flexibility of crispr editing"
+date: 2025-06-11
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+##  About
+
+This log summarizes key insights from the webinar *The Future of CRISPR*, hosted by **The Scientist**  in June 2025.  
+ [Watch the webinar](https://www.bigmarker.com/labx-media-group/the-future-of-crispr?bmid=25a878c55316&bmid_type=member&bmid=25a878c55316)  
+In this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me.
+
+##  Background 
+
+- Cas9 is bacteria's adaptive defense against Bacteriophages and cleaves invading DNA strands
+- Cas9 can only bind and cut DNA at sites adjacent to a PAM sequence.
+- Wild-type enzymes are naturally occurring enzymes
+
+
+##  What they created https://pammla.streamlit.app/ 
+
+- PAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence's PAM recognition to minimize off target activation. 
+- They trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS
+- They then Sequenced the specific domains, And expressed its biological activity against each AA sequence.
+- This was the data that PAMmla was trained on.
+
+## Significance
+
+- PAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development.
+
+## Questions
+
+- I wonder if this technology could be used within oncology on multiple gene targets to design **combinatorial editing strategies**.

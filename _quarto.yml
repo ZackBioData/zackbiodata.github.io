@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+
+website:
+  title: "Zack's' Bioinformatics"
+  site-url: https://ZackBioData.github.io
+  description: "Zacks Logbook"
+
+  navbar:
+    left:
+      - text: "Logbook"
+        href: log/index.qmd
+      - text: "Blog"
+        href: blog/index.qmd
+      - text: "100 Days of code"
+        href: 100daysofcode/index.qmd
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true
