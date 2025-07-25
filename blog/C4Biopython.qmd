@@ -1,7 +1,7 @@
 ---
-title: "Reading the Official Biopython Documentation"
+title: "Reading C4 of the Official Biopython Documentation"
 subtitle: "Chapter 4: SeqRecord"
-date: 2025-07-11
+date: 2025-07-25
 image: ../images/blog/biopython.png
 categories: [FASTA, GenBank, biopython, documentation]
 tags: [SeqRecord, Metadata, Description Fields, FASTA, GenBank]
@@ -15,8 +15,62 @@ format:
 ## Introduction
 
 This notebook documents my guided reading of the official [Biopython Tutorial & Cookbook](https://biopython.org/DIST/docs/tutorial/Tutorial.html).  
-Focus: **Chapter 4** — covering the core functionality of working with annotated sequence records using `SeqRecord`.
+Focus: [**Chapter 4**](https://biopython.org/docs/latest/Tutorial/chapter_seq_annot.html) — covering the core functionality of working with annotated sequence records using `SeqRecord`.
 
 ---
 
 ## Chapter 4 – Sequence Records (`SeqRecord`)
+
+you can interact with meta data using 
+```python
+from Bio.SeqRecord import SeqRecord
+
+simple_seq_r.id = "AC12345"
+simple_seq_r.description = "Made up sequence I wish I could write a paper about"
+print(simple_seq_r.description)
+```
+annotations.  is used for any miscellaneous annotations
+
+from Bio import SeqIO
+record = SeqIO.read("NC_005816.fna", "fasta")
+record.description
+'gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+feature positions within biopython have a few options,
+
+- ExactPosition as described
+- BeforePosition a range of bases before a feature
+- WithinPosition between two specified nucleotides
+- OneOfPosition one of 2 exact positions
+- UnknownPosition as described
+
+Location testing for SNPs
+
+
+```python
+from Bio import SeqIO
+my_snp = 4350
+record = SeqIO.read("NC_005816.gb", "genbank")
+for feature in record.features:
+    if my_snp in feature:
+        print("%s %s" % (feature.type, feature.qualifiers.get("db_xref")))
+
+source ['taxon:229193']
+gene ['GeneID:2767712']
+CDS ['GI:45478716', 'GeneID:2767712']
+```
+
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+record = SeqRecord(
+    Seq(
+        "MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD"
+        "GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK"
+        "NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM"
+        "SSAC"
+    ),
+    id="gi|14150838|gb|AAK54648.1|AF376133_1",
+    description="chalcone synthase [Cucumis sativus]",
+)
+print(record.format("fasta"))

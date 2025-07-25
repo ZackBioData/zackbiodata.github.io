@@ -1,0 +1,85 @@
+---
+title: "Day 4: Rosalind Problem – Open Reading Frames"
+subtitle: "Reverse Complements · Transcription · Protein Extraction"
+date: 2025-07-25
+image: ../images/100daysofcode/rosiland.png
+categories: [Biopython, FASTA Parsing, ORFs, Rosalind]
+html:
+  toc: true
+  code-fold: true
+
+---
+## Problem 1: [Open Reading Frames](https://rosalind.info/problems/orf/)
+Open Reading Frames (ORF)
+Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.[my solution](https://github.com/ZackBioData/100days-of-coding/tree/main/Day%204%20-%201%20rosiland%20problem)
+
+
+```python
+from Bio import SeqIO
+from Bio.Seq import Seq
+
+record = SeqIO.read(r"C:\Users\zackd\Coding challenge\Day 4 -\rosalind_orf (2).fasta", "fasta")
+
+dna = record.seq
+# First record is the DNA
+reverse_dna = dna.reverse_complement()
+
+# Transcribe to RNA
+forward_rna = dna.transcribe()
+reverse_rna = reverse_dna.transcribe()
+print(dna)
+
+def get_proteins(rna):
+    proteins = set()
+    for frame in range(3):
+        protein = rna[frame:].translate(to_stop=False)
+        aa_seq = str(protein)
+        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']
+        for start in starts:
+            sub = aa_seq[start:]
+            stop = sub.find("*")
+            if stop != -1:
+                proteins.add(sub[:stop])
+    return proteins
+
+
+
+# Get proteins from all 6 frames
+forward_proteins = get_proteins(forward_rna)
+reverse_proteins = get_proteins(reverse_rna)
+
+# Combine all and print unique
+all_proteins = forward_proteins.union(reverse_proteins)
+print("\n".join(all_proteins))
+```
+
+# What i learned:
+The first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.
+
+I couldnt work out the logic for the 3 reading frames 
+
+```python
+protein = rna[frame:].translate(to_stop=False)
+```
+I found similar problem online and this solution works to generate all protein sequences for all frames.
+
+```python
+starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']
+```
+Loops through my AA string and finds every index where there is a M (start codon)
+
+
+Then i looked for all stop codons within the string generated above. now i have M->*
+```python
+for start in starts:
+    sub = aa_seq[start:]
+```
+Then i removed the stop codon and added it to a protein sequence and returned them 
+```python
+if stop != -1:
+    proteins.add(sub[:stop])
+```
+
+My solution feels abit crude but it works.
+
+

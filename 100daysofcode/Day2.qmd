@@ -5,7 +5,7 @@ image: ../images/100daysofcode/rosiland.png
 categories: [Python logic · 4 Rosiland Problems]
 format: html
 ---
-Link provided [here](https://github.com/ZackBioData/100days-of-coding/tree/main/Day%202%20-%204%20rosiland%20problems) 
+Day 2 is a coding warmup Link provided [here](https://github.com/ZackBioData/100days-of-coding/tree/main/Day%202%20-%204%20rosiland%20problems) 
 
-Day 2 is a coding warmup.
+
 

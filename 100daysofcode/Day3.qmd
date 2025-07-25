@@ -3,13 +3,23 @@ title: "Day 3: 3 Rosiland problems: FASTA and Biopython"
 subtitle: "Reverse Complements, Introns, Transcription"
 date: 2025-07-24
 image: ../images/100daysofcode/rosiland.png
-categories: [Biopython, FASTA Parsing, 3 Rosiland Problems]
+categories: [Biopython, FASTA Parsing, Rosiland Problems]
 html:
   toc: true
   code-fold: true
 
 ---
 ## Problem 1: [Locating restriction enzymes](https://rosalind.info/problems/revp/)
+3 Rosalind Problems – FASTA & Biopython
+A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:
+
+Locating Restriction Enzymes – Identify reverse palindromic sequences using string manipulation and logic.
+
+RNA to Protein Translation – Convert an RNA sequence into its corresponding protein chain using .translate().
+
+RNA Splicing – Parse multi-record FASTA files, remove introns, and translate the resulting exons into protein.
+
+These problems build skill in reading FASTA files, using SeqIO, and applying biological logic to string-based sequence analysis.
 [my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%203%20-%203%20rosiland%20problems/Locating%20Restriction%20Sites.py)
 
 

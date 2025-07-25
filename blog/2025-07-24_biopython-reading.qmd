@@ -1,5 +1,5 @@
 ---
-title: "Reading the official Biopython documentation"
+title: "Reading C3 of the official Biopython documentation"
 subtitle: "Chapters 3: Sequence objects"
 date: 2025-07-24
 image: ../images/blog/biopython.png
