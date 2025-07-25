@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧪 Bioinformatics Logbook – Zack’s’ Bioinformatics</title>
+<title>Blog – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -67,7 +69,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -79,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -89,16 +149,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../log/index.html" aria-current="page"> 
+    <a class="nav-link" href="../log/index.html"> 
 <span class="menu-text">Logbook</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
+    <a class="nav-link active" href="../blog/index.html" aria-current="page"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../100daysofcode/index.html"> 
-<span class="menu-text">100 Days of code</span></a>
+<span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -116,16 +176,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recent-entries" id="toc-recent-entries" class="nav-link active" data-scroll-target="#recent-entries">📝 Recent Entries</a></li>
+  <li><a href="#what-i-will-blog" id="toc-what-i-will-blog" class="nav-link active" data-scroll-target="#what-i-will-blog">What i will blog</a></li>
+  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link" data-scroll-target="#recent-posts">Recent Posts</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QUklMjBpbiUyMEJpb2xvZ3k=">AI in Biology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(3)</span></div><div class="category" data-category="YmlvcHl0aG9u">biopython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RG9jdW1lbnRhdGlvbg==">Documentation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZG9jdW1lbnRhdGlvbg==">documentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkFTVEE=">FASTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VuQmFuaw==">GenBank <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VuZSUyMEVkaXRpbmc=">Gene Editing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VtaW5hcg==">Seminar <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBBbGlnbm1lbnQ=">Sequence Alignment <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">🧪 Bioinformatics Logbook</h1>
+<h1 class="title">Blog</h1>
 </div>
 
 
@@ -142,18 +203,225 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A logbook documenting my journey through bioinformatics.</p>
-<hr>
-<section id="recent-entries" class="level2">
-<h2 class="anchored" data-anchor-id="recent-entries">📝 Recent Entries</h2>
-<ul>
-<li><a href="../log/2025-05-23_prostate-limma.html">2025-05-23 — Prostate Cancer DEG (GSE6919)</a> bulk RNA sequencing <strong>(microarray data)</strong> from the GEO dataset <strong>GSE6919</strong> to identify genes that are differentially expressed between <strong>cancerous and healthy prostate tissues</strong>. The analysis was performed using the <code>limma</code> package in R.</li>
-</ul>
+<section id="what-i-will-blog" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-will-blog">What i will blog</h2>
+<p>A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI.</p>
+</section>
+<section id="recent-posts" class="level2">
+<h2 class="anchored" data-anchor-id="recent-posts">Recent Posts</h2>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="QmlvcHl0aG9uJTJDRG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1753378110877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="184">
+<a href="../blog/2025-07-24_biopython-reading.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Reading the official Biopython documentation
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
+
+</div>
+<div class="card-text listing-description delink">
+This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
+Focus: <strong>Chapters 3</strong> — covering the core functionality of working with sequences using…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 24, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="RkFTVEElMkNHZW5CYW5rJTJDYmlvcHl0aG9uJTJDZG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1753378906793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
+<a href="../blog/C4Biopython.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Reading the Official Biopython Documentation
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEE='); return false;">FASTA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuQmFuaw=='); return false;">GenBank</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmlvcHl0aG9u'); return false;">biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZG9jdW1lbnRhdGlvbg=='); return false;">documentation</div>
+
+</div>
+<div class="card-text listing-description delink">
+This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
+Focus: <strong>Chapter 4</strong> — covering the core functionality of working with annotated…<code></code>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 11, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="RkFTVEElMjBQYXJzaW5nJTJDQmlvcHl0aG9uJTJDRG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1753378918123" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="30">
+<a href="../blog/C5Biopython.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Reading the Official Biopython Documentation
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
+
+</div>
+<div class="card-text listing-description delink">
+This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
+Focus: <strong>Chapter 5</strong> — covering sequence file input/output using <code>SeqIO</code>.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 11, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="U2VxdWVuY2UlMjBBbGlnbm1lbnQlMkNCaW9weXRob24lMkNEb2N1bWVudGF0aW9u" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1753378926990" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
+<a href="../blog/C6Biopython.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Reading the Official Biopython Documentation
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VxdWVuY2UlMjBBbGlnbm1lbnQ='); return false;">Sequence Alignment</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
+
+</div>
+<div class="card-text listing-description delink">
+This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
+Focus: <strong>Chapter 6</strong> — a preview of handling multiple sequence alignments using <code>AlignIO</code>.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 11, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="U2VtaW5hciUyQ0dlbmUlMjBFZGl0aW5nJTJDTWFjaGluZSUyMExlYXJuaW5n" data-listing-date-sort="1749596400000" data-listing-file-modified-sort="1753378857508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="204">
+<a href="../blog/2025-06-11_Crispr.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/seminar.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Engineering to improve the precision and flexibility of crispr editing
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VtaW5hcg=='); return false;">Seminar</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuZSUyMEVkaXRpbmc='); return false;">Gene Editing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+</div>
+<div class="card-text listing-description delink">
+This log summarizes key insights from the webinar <em>The Future of CRISPR</em>, hosted by <strong>The Scientist</strong> in June 2025.<br>
+Watch the webinar<br>
+In this blog im going talk about Ben…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jun 11, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="U2VtaW5hciUyQ0FJJTIwaW4lMjBCaW9sb2d5" data-listing-date-sort="1747868400000" data-listing-file-modified-sort="1753377846421" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
+<a href="../blog/2025-05-23_AI in Life Sciences.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/blog/seminar.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+AI in Life Sciences: What’s Changing and What’s Holding Us Back
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VtaW5hcg=='); return false;">Seminar</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QUklMjBpbiUyMEJpb2xvZ3k='); return false;">AI in Biology</div>
+
+</div>
+<div class="card-text listing-description delink">
+This log summarizes key insights from the webinar <em>Inside the Minds of Scientists: How AI is Changing Life Science Research</em>, hosted by <strong>Bioinformatics</strong> in May 2025.<br>
+🎥 Watch…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+May 22, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

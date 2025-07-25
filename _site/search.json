@@ -1,0 +1,352 @@
+[
+  {
+    "objectID": "log/index.html",
+    "href": "log/index.html",
+    "title": "Bioinformatics Logbook",
+    "section": "",
+    "text": "A logbook documenting my journey through bioinformatics.\n\n\n2025-05-23 — Prostate Cancer DEG (GSE6919) bulk RNA sequencing (microarray data) from the GEO dataset GSE6919 to identify genes that are differentially expressed between cancerous and healthy prostate tissues. The analysis was performed using the limma package in R."
+  },
+  {
+    "objectID": "log/index.html#recent-entries",
+    "href": "log/index.html#recent-entries",
+    "title": "🧪 Bioinformatics Logbook",
+    "section": "📝 Recent Entries",
+    "text": "📝 Recent Entries\n\n2025-05-23 — Prostate Cancer DEG (GSE6919) bulk RNA sequencing (microarray data) from the GEO dataset GSE6919 to identify genes that are differentially expressed between cancerous and healthy prostate tissues. The analysis was performed using the limma package in R."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ZackBioData",
+    "section": "",
+    "text": "This website aims to be way to track progress and reinforce learning as i go\n🔗 Logbook — Casual notes, ideas, and progress from daily work and study\n🔗 Blog — Occasional deeper dives into tools, projects, or topics I’m exploring\n🔗 Daily Coding — A dedicated journey to improve coding skills every day for 100 consecutive days\n\n\n\nRecent posts\n\nLearning Bulk RNA-seq and eventually single-cell RNA-seq\nStudying machine learning with Python and scikit-learn\n\nThanks for visiting!"
+  },
+  {
+    "objectID": "blog/C6Biopython.html",
+    "href": "blog/C6Biopython.html",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
+  },
+  {
+    "objectID": "blog/C6Biopython.html#introduction",
+    "href": "blog/C6Biopython.html#introduction",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
+  },
+  {
+    "objectID": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
+    "href": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
+    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
+  },
+  {
+    "objectID": "blog/C4Biopython.html",
+    "href": "blog/C4Biopython.html",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#introduction",
+    "href": "blog/C4Biopython.html#introduction",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "href": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "Chapter 4 – Sequence Records (SeqRecord)",
+    "text": "Chapter 4 – Sequence Records (SeqRecord)"
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html",
+    "href": "blog/2025-06-11_Crispr.html",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#about",
+    "href": "blog/2025-06-11_Crispr.html#about",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#background",
+    "href": "blog/2025-06-11_Crispr.html#background",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Background",
+    "text": "Background\n\nCas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands\nCas9 can only bind and cut DNA at sites adjacent to a PAM sequence.\nWild-type enzymes are naturally occurring enzymes"
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "href": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "What they created https://pammla.streamlit.app/",
+    "text": "What they created https://pammla.streamlit.app/\n\nPAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.\nThey trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS\nThey then Sequenced the specific domains, And expressed its biological activity against each AA sequence.\nThis was the data that PAMmla was trained on."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#significance",
+    "href": "blog/2025-06-11_Crispr.html#significance",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Significance",
+    "text": "Significance\n\nPAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#questions",
+    "href": "blog/2025-06-11_Crispr.html#questions",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Questions",
+    "text": "Questions\n\nI wonder if this technology could be used within oncology on multiple gene targets to design combinatorial editing strategies."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html",
+    "href": "100daysofcode/Day3.html",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "",
+    "text": "my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
+    "href": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "",
+    "text": "my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-2-protein-translation",
+    "href": "100daysofcode/Day3.html#problem-2-protein-translation",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "Problem 2: Protein Translation",
+    "text": "Problem 2: Protein Translation\nmy solution\nfrom Bio.Seq import Seq\n\n\nrna_string = \"AUGCUGUUAUUAAUGUGUAUGUCUUUCCGGGGAGUAAUAACUCAACACAAUCCCUCGGAAGGUUUGCUCAAUUGGAUUCCGUCACAUUCAAGCGCCCGUCUCUCUGCCCUAGUGAUCCUCUUCACAACUUAUACGACGGAGCACUCUGUUCUUGCUGACUUAAUAGAUACCGGAUUAGAGCGUUCCGGUAAGGCUUCGACUCUCUACAUAACGAAGUGCUCUGUCAACUCCAUUAGGCCAUCGGCCGGAUAUCUAGACGCAGACAGCUUUUUCAACUUUGAGGAUCGCGUGAAGGUAUCGACUGCGAACUCUCAUAGGGACUGCUUCCUCUUCGCGGGCAUUUAUCGGGUGAUUUGUGUGGGUAGGGGCCUAAGGAAAGUCACCGGGUCCAUACAGACGGGGGUAUUGAUGAUCUUGCGGGGUGGGUCGGACACCAACAGACCCACCGCGACGGUUCUUCUGAUAUUUGGGCAUUACUUGGGUAGGAGCCCUGUGCUAGUGAAUUGCGCGGCCUUGCAAAUAGCGGCAUGCAACGACACUCUAGGAUUUGAAAACCCCUUUACUCGAGAUAGAACGUCACUAGGCACCACUUAUAAGAUCGGGCGCCGACUUUACGCCUCAUCACCUUUAGUCCGGGAGGCGUACAGCUCACUCCAGGCCUGCGGGAUGGAAACUGGACGUUUCGCUCGGCUGGGCAGAUGUUACGCACGUAGUAGGCUAACGACUUGCUACAAGCAAUACCUCCCAGUGGAAGGCAUUGUUGGGGAAGGCCGCUACGCUGACCUGGGCCGGUAUGUCGGCACGCACCCCGCUAACAGUGUUGUAAAGUAUACUUACCAGCGCGCGCUAGGGCCUCGCCGGGUUGUUCUCAAGGGCCACCAUAGAAAACCCCUUAAUCACGUUACACUAUCUCUCCAUGUGGUCGGUGCGGAGAGGGCGAAGUUAGCCUUGGGCAGGCCCCUUCUGAAUUUUGGCCUCUCGUGGGGGGGUCUAAGAUCUACCUGUAGCACAAUACGAGUAAGCAUCUACCCGUGUGCUGAGAUCCUUGCUAUGCGUCACCCUGUUGCCAACCGAAAAGGGGUGGCAGUUCGAAGGUCGCUGUCAUUGGUGGCUUCCCACCCUCGACCCCCGGUAUAUGCUUUAGUGUCACAGCAAGUAAACUCGCUCGCACCCUAUGCUACAUGCAUCCGCAGGGCAGGACCAUCGAUCGGUCGGGUACGGCAACACAAACUGUCCGGUUAUUUCAGGGAGACACUUAACGCCAGAGCCAUGCCUACGGUUGAGAUAUAUUCCCUGUUGCCCAUGACAGAGUCCAAUGACGCUCACGAGCUAUUUAACCCACGAUCGUAUAGACAAUUUUGGACACCGCGACGAAAUACAUUAUUACGACAAAAGAGUUCGCAAACAAGAUCUAUUACCCAUCUAGGAGUUGGUAUUACUCUUAGCGAGGAGCAACUCUGCAACUUCCCAAGGCAGUAUGAGAUCUCUCUUGUGUUGUGUAGUCUCUUCGAUUUGGCCCGAGAUUCAUGCCAUUCGUACCUGCUUUUCUCCCCCCGGGGUUCCGAACGCGGUAUAGGUGUGUCCUACGUUAGACGGAGGACGCGUCGACACGCUUGGGCCCUGGGUCUGUGUAGGGUAGUCUCGGAGAACAUGAUGAGUUUUAGUAGGCGUGUGCCAUACAAGUUGCUGGAGUUCAAAAGUCGUACGUGCCCUCUAAGCCUUGAGACGCGUCAAACCGUAUUUUACCUGUUUGAAACUUCACUGAAUAACGCUAGAUUUGUGCCUAAUCAUUGGAUAGGGCAGCCUGAGCUCGGCGGCCGGCCCACCAUAGGGGCGGAGACUGGAUGUUCGCAAAUCUUGCGGAGCGGAUCGAAGAUCUAUUAUUGUUAUGAAUUUAGCAAAAUAGGGGCACAAAGCAUCAGUCUUUCCGCACCAGCGAGGGCCAGGAGGUCCUACCAAGGUUGUACUGCUGCACCAGCCUCGUUUGGGAAACCUGGUCAUAAUGUGGCGCGUGGUAAUUACUGGUCUUAUGGGUUAAAGCGGCUGUGCAUCUUCUGGUGGCAGGUGGGACGGCGUAUGGUCAGUCCCUGCCGGCUACUGGAAAUUAUACAAGCUCUAUCUGCAGUCGACAAUCGAGGAAAUCCCGGGAUUCAGUCAGUCUUCGGAUCACAAAGUCGUUGGCUCACAGAACGCGUAGCCAAUAAGCAAGUAAGCAAUCUCGCUCGUGCGGCAGCUAACACCAACCUCGAACCAAACGAAGCCGGGCGGGCAAAACACCGUAAACGUGCUGAUGUCCGGGUUUGCAGAACUGUAGAAAAGCGGGCGAUUUGGCUACUCUUUGGUUUUCAAGAGCUACACUGUCAGGCUUUGGUACAACAGAUCGAGACCGGUUUGCUGAGUUGUAGUGCAUAUAAUAUCCUUGCAACUCCGGAUGUUUCUCGUUUUAUACUUACUAAAAUCCGAUUUGUGAUAUUUCUUAGGGAACCGAAUGUAAUCCGCAGAGAGCAAGCGGGUUUCCUAAUAGAAUCGAAGCCUUCACAGAGGCAAGUCAGUGUGAGUGCCAGGCUGAUAGCUUAUACCACACGCGCACGGUACUACUGCAACAAGUGUGAACCGCAGCCGUGCGCUUAUUCCGAGAUUUCCGCCUGCAUACGCAUCCUUCACGGUUCAAGCGAUCGGCAAUCCUCAGCCAUUACCAACUGUAGGGUCAUGCCGAUCAACAAGAUGGGAAUGACAGGCGCACUGCAUAUGGACGCCUCGUCUCGGCUCUCUAAAACUUGGGAGAGCAGCGAGCGACUAGUAGUGUUCAAUUGUUUCACACGUGGAAGGCUUCCAGGUUGUGCAACUACAAGAUCACGCGAACUUCAUACGAAAAACUCAGCCGCUCUUGAUAAUCUCUUAAUUGUAGGACAGCUUCCCCGAACACAGAGUGGGUGUUAUACGCUCGGCAUUAUGCUUUUCCAAGUCAAGGCGGGGUUCGAAGUUCGCAGCUUAUUGGUUUGGCAAGUUGGUACCAGAGACAAGUUAUCCUCUUCGAGUCACGCCACGGAGGGACAGCCGCUGUUCGAACCUCACCGCCCCGAGCAGCUACACCGAUUACACUCCCGCGAACGGGUGCAAUUCGAUCACGCUACGUACGAUUUCAGCAUACCCGUGUCAGAAACGCUAGACGAAGAUGUUAGUGACCGAGGUCCACGUGACAACAUCAGCGGUUCUAGACCGGUUUCAGCGAUUGUCUUCCCAGCCCCUGGCCCGCAUCGAUGUCUCAUCCAGAGUACGGGCGUAUUUUUGGCGGAGGCAGUGGAACUGGUAAUCUUGCUCGAACCCGCCAGGAUAGACGACCCACAUGAGUUCUACGGGACAUCACCUGGAUUUGGUGAACGUUGUUCGGGGAAAACGGAGUGCUCCGAUCGGCAAGCAUGGCGCGACAUCGAUUUUGGAAUCGAUAUGCUUCUUAUUAGUACCUCAAUAGCGGUGGUGGGUGUAUUGCGUGGACUCACGAACAUGGUGUUGAUUUGGGUGUGGCGCCCACAAACUUAUCAUCCAGCCUUGCAGCUUACUAUUAAGGAGCUAUUUUUCUUCGAUAUUUCAUUUUGCUGGCGGUGCCGGAUAAAUUACGCCAAUGAUGAUACGCAGGGCCGCCAAUAUCGCAGAGCGAGAAUCGCCGACACAUAUGCUAACGUCGCAAUACUAUGUCGUGGAAGCUUCGGCACGCAAAGAACCAGUAUCUAUUCUGCCUGCCCACCAAGGUUCCGCUCCACACUCGGGACCUGUGUUUUUUUUCGGCUCAUGAAAGCAAGCGUUAGACUAGCAAUUACGCUCCGCUCUGUGGCCGACUUUCCGUAUGACGUCCUAAUGACGCCGCAGUAUGAAAAUCUGAACUACUAUCGACUUAAUUCGUCCACAUGCGACCGAGCUCUAGCGAUAUUGAUUGCGAGUCGGCAUAGGGUAUUAGGGAGAUGGUUGUCUUGUCUUGUUCAAUUAGCAAUUUGGUCGGGACGAGAUGAUCACGCACCCUGCUUGAGCCCCCUUAAAUCAAAUUCUCCAUGGCAGAGUCGGAAGGGCUGUAAAAUCGGCCUCGUUUCGGACCAAUGGAAGUUCGAUUUGAGCGCGUCGCGGUAUGCGGGCUGGGACGUCGGCUUCGGUACCUCGAGUAUGAGUGUCGUGUCCCCGUUAAUCACAGGGGUGUAUAAUGCGGAAGCGGCCCAGGGGUACUAUUAUGGGAGCGCCCACGGCUUGAGGGUUCGAGUACUUCUACUCAUGAAGGCUCGCCCUUAUAUAGAGCUAGGCGGUAUGCACCUGAUUAUUGCACACCCGCGAUCAUGUGAGUACAAACCUGUUUUGUGGAAGGUACGCCUUAGGGUUUUCCACCUUUGUGCCUCCCGCUUUGGUCGCGGUCGCGGACCGGUCUUGUCCGGACUUGGUUGUGAGCAGUACAUUUCCGUUUCGCCACCCUUCUUAAACAUACUUUGCAACGCGUCAUGUCCCAACGCCGUACUUAAUAAGCGAGGGGGCUGGAUAUGGUUAUUGGUUCCGUCAACUGUAUCAACCACUACAGUUCCCUAUUUGAAAGUCUCUCUCUCACCAGAAGCUACAGUUUUGCUUUCGGUUGGAACACUGCCCGUUCGCACUGGGGAAAGAGUUAUAUCUUUCUCGGGAUGUAACAUGCAGGUCCUGCCUGCUAAAAAGCUUCGUGUUCUUCUUCCACAUGCACAAACAUGGCUGUGUUAUGUGGAUAAGCUCGCAACUUCACUACGGAGAUGCUACUUCUUCUGUCGAUGUUCGGUAAACGAAGGGGUGAAAAUACUAGAGGUACUAUGCCAACAAUUCACGAUAUGCUUUACAUCGUGCGACCCUAGGAGAGGUCUAGUAGGUAUGACUAUCUUCGAUAAUUUUAGUCAAAUGGUGUUUGGGAAGUCCCAAGGGUGGCAUACGCGUAGUGCCCGGUGUUUAAGCUUGGAAGUCUUGCCCUCUAUGGCGAAACGACUCGUGCACCAGUUUUGGCCCGUUAUGAGUUUUAUUGAUACGCAGAACCGGAUCUGGAUGGGACCCUUAAGCCCGGGGACACGAGCCAGAUGGCUCGGGUUAGCGAAGGCGGAGUGCGUCUCCAGCCCGCCCGCAGCGCCGGCUGUGAAAAAUAAUGUGUGUGAGGUCAUAACUUACGCUGGGGACAAGAACAGUGAUCCAGAACGUACAUCUAACUUUCACAGUGUAGACGCGCUCUGGACAAUGUUCCUUGAUGGUAAUGAUCUAUGGGUGGACUAUAUUAACUGUACGCAGGGCGGAGUGUUAUCUACCAGCCGGACGCGAAUCCCCUCAAACAGGUACACUCGUACUCUAAAACCUUCCCACACGCUCGCCGAGCUUGGUCGUCUCCUUACGUGUGGUCAGACCCGGGGUCCCUUUAAUGCCGUGUCACUAGGCAUGGUUACAGAUUACAGUUACAGUGUCGGUGGAACUUUGGCUUCGAAGCUUGUGACCCUGAGUAUCGCACGCAAUGAUUGUAGCCCUCGUCUGGCACUUUUGUUGCUUAUCGUCCUAAGUAACAUAAUACGAUGUUAUCUCGCUACAUCGUUUUCCGUAUACGCCUUUACAUCAGUAUACUCUGAGCAUUGUCCUGUAAAGAUAGAAGUGUCCAGAUGGGGAGCCGCUCCCAGCAUAAGUUGCUGGCUUUUCGGCGAUGCGCGGAGUGAAUUGGCCCCGGAGAAGAAAACGUUAAUACUGGCACCAGUACCAUACUCUGUUCCACUAGUGGAGGAAUCACGGAAAGGAGAUGGUGGGCAAGGUAUAAGACAGAUCGUAGGUGGCUUCAACAGAUGUUUCCUAGGCACACCGUUUCCACGGGCUGAUAUUGUCAUAAUAGGCAACCCCCAUAUCAGUGACGAACCCCGAGCAUGUAUUUCUUCGAACUUCGUGAGUGAAAUUGUCGUGCAAUAUCACCUACGGUCUAAGUGUUUGAUCCUUGAUGCGAUGAGCACGCCGGGGAAGGCUGGCAAAACAGCUAUAUUUGAGCUGACUAUGUGGCCCUCUCCACUAUCUCAAAUGAGUUUCGCUGCUGGAGCGAAGCGCCGGGGCACGAUCGAUCAUCGCCAACUUCCCUCAAUGCUGGCAGGUGGUAGCCUACUGCGCCAUGUUGGUGUUCGUAACGCACGAGGCUUAUCUCCAGUCAUCAAUCCGCGCCACUAUGGGGCAGGUUUCUCGGACGCUGACGAACAACAGAAACUGGCCAGGACGGGCACUAAGGCCCAGAAUGCAGUGGAUGUUGACGAGCACGGCCCUUCCGCCUUCGCGUUCCCUCUCAUACAGUCGCAGAUCGAGCCCAGGACUCCCAAAUGCUCCGCCGGCAUAGUCUGCAUGAAUGUGCAUUGGAUUACACGGCAUAAGGGACCGUCUUCGGUUCUGUAUAAAAAACACUUGAUGGCUCUGCGCUUCGCCAGCAUUCACUCAGGCAUUCGCAGGAUCUUAGAUCUCCGCUUCUUUAGCACACACCCAGCAAUAAUCUUGACCCGAAAGCAGAUCGAUUCGUCGGUCAUUUCGGUCGCAUGGGCGGCACCAUUGUACUUGUGCAAGAGCAUGCUCUUCCAUGGGGGAAGCGCAUGCGAGCACCGGAAUUGGCACAGGCCUCUCAUAAUCGCAAACUCUAGUCCGGAAUUUAACUUUACCUAUGUGCGGAAAUCUUUGUACCUUGAUUGGCAAAUCCUGUACGUACCGUCGAUAACCCGCCCACCAACCCGAUUUCAGGCCGACCACUUUGAAAGGCCAUGCGUCAACGAUUCGCCGAGGACAUGGCGGGUGAACUCUGGCUGCGGAACGGUAUCACUAGCAGUUCUAAGGCAGGGGACUCUGAAAGCUUAUGGUCGGGUCAGUAGCCGUUCCUCACUUUUAAGGAAUGGGAUAAGUUACACGCCCGUGCAGAAGCAGAUCUGCUCGUCCUUGGCUCGGCGUCCGUACAUGACCGGACGACACCCUACAAGUAGCGUGCUUGUGGGUAGUCAGAAAGGAGUUUGGCGGGGAAGAAGGUCUACCGCGAUGCUGUCGCGAAUGAAGCUAUACGAAUCUACCUCAACGAGAAAACCCGGCUCGUACGGCAAUCUAACUUUUCCCCGAUACUUCUCGCCAUACGGAAGGGAUGGAAGCUUAUGGCAACGCGUUGGAUACGCUGGGCGACCUUUGGGCCGGUCAUUUAACGCCAUCUUAUUUCAACAGACGUUCGUGAAAUUAAUGUCCGAGAGGCUCAAAGGUGAGCAGAAUCCCAGAUCCGGUCUUUGUAUCCUGAUUAAGUCACCACCUGGGGGUACUUACGGUUCUGGUACCUGGGGUAGCUCGCCGACGUGGCGGGAAGUCGGGUGCGUAGGUCUCUUUGCGGUGCGCAGUGAUCCACAUGAGGGUAAACUCCUUAGACAGGUAACCGCACACGGUUCGCUAUGGGGAAAAUCCUGGCCAGUGACUCAUAGUUACGAUGUUUUAGGUCUGGUGGACCUAUUCUCAACUGCUAGAAAGUAUACCACUUAUGACAAUACAGAGGGGAGAUCCCAUCGACCGUCCAGAGAAUUGCUCCCUGAUACUUUCAGAAAACAAGGUGGGAGGUAUCGCGAGGUAGUAUUAUAUCGCACCGUUCGAAUAUGUCAUCUGCUGCCCGUGUCGCAGAUAGCGUCCAGAGCACUGGAACCAUGGAAACUUGUUCCAAAAACGGACAUUAUGUUUUGCGUUUUGGAGCAGGUGAAGCGCAUUAUGCCUACGCCAAGGGCGGCGCGGACAAUUCUGCAAUGUGCCAGUAGCGCGCGGGCUGUGCAGAUUGAGACCGGAUGGGCGGCUCGGUCUCAAGAUGAAGCGGGGACCUUAUUGGACCCAGAUCCAUGUUCGACGCUAGCGAUGACAUGGGUGACGCGGGAAUGGCCGCGGCAGAGCUUGGUCUUCUUGAGACAUGGUUCUGAUCACAUUUGUAGGCAAAAGUAUGCCUGGCUGCAAAACACAAUAUUGUAUUCUGAUAAGGUGGCGGUCAUGCGCCAACUGGGACUUGGGCCGGGAGUCCGACACCCUACUGUCCCCCCGAUACGUGAAAGACACGAAGGACCUAGAUACCGGAGAACAUCACAAAACUCGAUAUUACCGGUUCUUUUGGUUCAUAGCCAGCGUGCGGGGACUCUAAUGUUACUUGACAUAGUGAGUAAAUUGAGCACGAUCAGCGAAGGAAGAGUCCUGAACUGUCGGAACGGUCUAUUGGUGUCCAAUGUGGCCCCCCGACAAACGAUCGCCCUAAAUGAGAGCCAGAAGAGACUGGAUAGUUUCCGACGAAUUAUAUCAUUUACAGUGUUGAGCAACUAUCAUGACUAUUUGCCCUACUAUGGAGAGUCAAGUGGACAAGGCGGAGAGGCCUUAUUUGAUGAGGGCAAACCAGUCCGUAAUACAUUUAAGGAAAGCGCCUUCACGAGCGUGCCUUCAGUAACUUCAGGAUAUGUGGACGUUGACACUGCAAAAAUCAUUGUGUGCCUACUUCGUAUGCCAGUAUAUAUACAAGCCUCUUCAGCGGUGAGGGCUAGCCAGCGGAGUUCUGACGCAAUUACCUACUAG\"\n\n# Convert to Seq object\ndna_seq = Seq(rna_string.replace(\"U\", \"T\"))  # Replace 'U' with 'T' to make it DNA\n\n# Translate\nprotein = dna_seq.translate()\n\n# Output the result\nprint(protein)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-3-rna-splicing",
+    "href": "100daysofcode/Day3.html#problem-3-rna-splicing",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "Problem 3: RNA Splicing",
+    "text": "Problem 3: RNA Splicing\nmy solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\n# Load FASTA file\nrecords = list(SeqIO.parse(\"rosalind_splc.fasta\", \"fasta\"))\n\n# First record is the DNA with introns\nfull_dna = str(records[0].seq)\n\n# Remaining records are introns\nintrons = [str(rec.seq) for rec in records[1:]]\n\n# Remove all introns from the full sequence\nfor intron in introns:\n    full_dna = full_dna.replace(intron, \"\")\n\n# Transcribe and translate\nrna = Seq(full_dna).transcribe()\nprotein = rna.translate(to_stop=True)\n\nprint(protein)"
+  },
+  {
+    "objectID": "100daysofcode/Day1.html",
+    "href": "100daysofcode/Day1.html",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day1.html#github-link",
+    "href": "100daysofcode/Day1.html#github-link",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day2.html",
+    "href": "100daysofcode/Day2.html",
+    "title": "Day 2: 4 simple rosiland problems",
+    "section": "",
+    "text": "Link provided here\nDay 2 is a coding warmup."
+  },
+  {
+    "objectID": "100daysofcode/index.html",
+    "href": "100daysofcode/index.html",
+    "title": "100 days of code",
+    "section": "",
+    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
+  },
+  {
+    "objectID": "100daysofcode/index.html#description",
+    "href": "100daysofcode/index.html#description",
+    "title": "100 days of code",
+    "section": "",
+    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
+  },
+  {
+    "objectID": "100daysofcode/index.html#recent-posts",
+    "href": "100daysofcode/index.html#recent-posts",
+    "title": "100 days of code",
+    "section": "📚 Recent Posts",
+    "text": "📚 Recent Posts\n\n2025-07-17 — Day 1-3 · Python Transcriptomics · Gene Expression · Pathway Enrichment\n2025-07-23 — Day 2 · Python logic · 4 Rosiland Problems\n2025-07-24 — Day 1-3 · Biopython · FASTA Parsing · 3 Rosiland Problems"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html",
+    "href": "blog/2025-05-23_AI in Life Sciences.html",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Key Trends",
+    "text": "Key Trends\n\nAI is moving from discovery to development.\nAI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.\nPharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making)."
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "What’s Holding AI Back in Biology?",
+    "text": "What’s Holding AI Back in Biology?\n\nCurrent issues with Ai in biosciences:\n\n\nReproducibility issues — hard to trust models without transparent workflows.\nLearning curve and training — lack of experience with AI was a significant pain point for many users.\n\nThis resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs."
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Changes for future adoption",
+    "text": "Changes for future adoption\n\nTransparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.\nTools need to be built with their actual users in mind (biologists)."
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html",
+    "href": "blog/2025-07-24_biopython-reading.html",
+    "title": "Reading the official Biopython documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapters 3 — covering the core functionality of working with sequences using Biopython."
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#introduction",
+    "href": "blog/2025-07-24_biopython-reading.html#introduction",
+    "title": "Reading the official Biopython documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapters 3 — covering the core functionality of working with sequences using Biopython."
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
+    "title": "Reading the official Biopython documentation",
+    "section": "Chapter 3 – Working with Sequences (Seq)",
+    "text": "Chapter 3 – Working with Sequences (Seq)\nI used this code on day 3 Rosiland problems, link here\ndef reverse_complement(seq):\n    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}\n    return ''.join(complement[base] for base in reversed(seq))\ninstead i could have used built in biopython function\nprint(s.reverse_complement()) \nBio.SeqUtils has many built in functions such as GC%.\nYou can set reading frames with my_seq[0::3] every 3rd base starting at 0 codon frame 1\nTwo Seq objects can be concatenated by adding them:\nfrom Bio.Seq import Seq\nlist_of_seqs = [Seq(\"ACGT\"), Seq(\"AACC\"), Seq(\"GGTT\")]\nconcatenated = Seq(\"\")\nfor s in list_of_seqs:\n    concatenated += s\n\nconcatenated\nSeq('ACGTAACCGGTT')\nalternatively\nspacer.join(contigs)\nTo make a seq mutable\nfrom Bio.Seq import MutableSeq\nmutable_seq = MutableSeq(my_seq)\nmutable_seq\nMutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')\nAn easy way to search a sequence\nfor index, sub in seq.search([\"CC\", \"GGG\", \"CC\"]):\n    print(index, sub)\n\n1 CC\n11 GGG\n14 CC\n23 GGG\n28 CC\n29 CC"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
+    "title": "Reading the official Biopython documentation",
+    "section": "Chapter 4 – Sequence Records (SeqRecord)",
+    "text": "Chapter 4 – Sequence Records (SeqRecord)"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
+    "title": "Reading the official Biopython documentation",
+    "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
+    "text": "Chapter 5 – Sequence Input/Output (SeqIO)"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
+    "title": "Reading the official Biopython documentation",
+    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
+    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
+  },
+  {
+    "objectID": "blog/C5Biopython.html",
+    "href": "blog/C5Biopython.html",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+  },
+  {
+    "objectID": "blog/C5Biopython.html#introduction",
+    "href": "blog/C5Biopython.html#introduction",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+  },
+  {
+    "objectID": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "href": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
+    "text": "Chapter 5 – Sequence Input/Output (SeqIO)"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+  },
+  {
+    "objectID": "blog/index.html#what-i-will-blog",
+    "href": "blog/index.html#what-i-will-blog",
+    "title": "Blog",
+    "section": "",
+    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+  },
+  {
+    "objectID": "blog/index.html#recent-posts",
+    "href": "blog/index.html#recent-posts",
+    "title": "Blog",
+    "section": "Recent Posts",
+    "text": "Recent Posts"
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html",
+    "href": "log/2025-05-23_prostate-limma.html",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "",
+    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#project-summary",
+    "href": "log/2025-05-23_prostate-limma.html#project-summary",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "",
+    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#methods-overview",
+    "href": "log/2025-05-23_prostate-limma.html#methods-overview",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "🔧 Methods Overview",
+    "text": "🔧 Methods Overview\nThe analysis was performed in R using the following packages:\n\nGEOquery — to load expression and metadata\n\nlimma — for linear modeling of microarray data\n\ntidyverse — for data wrangling and exploration\n\nclusterProfiler, org.Hs.eg.db — for GO enrichment analysis\n\n\nKey steps:\n\nDownloaded GSE6919 and extracted the expression matrix\n\nCleaned and labeled metadata (e.g. tumor vs. normal)\n\nFit a linear model using limma and contrasted tumor vs. normal\n\nExtracted top upregulated and downregulated genes\n\nPerformed GO enrichment to interpret biological meaning"
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#differential-expression-results",
+    "href": "log/2025-05-23_prostate-limma.html#differential-expression-results",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "📊 Differential Expression Results",
+    "text": "📊 Differential Expression Results\n\nVolcano Plot X axis is change in expression and y value is significance.\n\n\n\nVolcano plot showing DEGs in prostate cancer\n\n\nThis volcano plot shows the spread of differentially expressed genes between tumor and normal tissues. Genes with high log fold-change and low p-values are highlighted.\nThis version of the volcano plot contains unfiltered or duplicated gene symbols and extreme values resulted in alot of messy invalid data scewing graph scale and bad gene labels such as GAPDH.1 and ACTB.1."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
+    "href": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "📘 GO Enrichment Analysis",
+    "text": "📘 GO Enrichment Analysis\n\n🧪 Enriched Biological Processes\n\n\n\n\n\n\n\n\n\n\nGO ID\nBiological Process\nGene Ratio\nAdjusted P-value\nGene Count\n\n\n\n\nGO:0045765\nRegulation of angiogenesis\n11/88\n0.00111\n11\n\n\nGO:1901342\nRegulation of vasculature development\n11/88\n0.00111\n11\n\n\nGO:0002696\nPositive regulation of leukocyte activation\n10/88\n0.00572\n10\n\n\nGO:0050867\nPositive regulation of cell activation\n10/88\n0.00677\n10\n\n\nGO:0051251\nPositive regulation of lymphocyte activation\n9/88\n0.00902\n9\n\n\nGO:0045766\nPositive regulation of angiogenesis\n7/88\n0.00902\n7\n\n\nGO:1904018\nPositive regulation of vasculature development\n7/88\n0.00902\n7\n\n\nGO:0050878\nRegulation of body fluid levels\n9/88\n0.01740\n9\n\n\nGO:0045785\nPositive regulation of cell adhesion\n10/88\n0.02360\n10\n\n\nGO:0050870\nPositive regulation of T cell activation\n7/88\n0.04120\n7\n\n\n\n\n\n\n📊 GO Enrichment Bar Chart\n\n\n\nTop GO terms for prostate cancer DEGs\n\n\nThis bar chart shows the top GO Biological Process categories enriched in the DEGs. Angiogenesis, immune activation, and vasculature development were particularly prominent.\n\n\n\n🧬 Genes contributing to enriched biological processes\nRegulation of angiogenesis\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nRegulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nPositive regulation of angiogenesis\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1\nPositive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1"
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
+    "href": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "🧾Lessons Learned for myself",
+    "text": "🧾Lessons Learned for myself\nPlots didn’t save → forgot ggsave(). Used ggsave(“figures/Volcanoplot.jpg”) and made sure the folder path was right.\nPlots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.\nenrichplot::barplot() didn’t work → Just use barplot() without enrichplot:: prefix.\nPNG wouldn’t load → renamed .png and re-saved properly. Hosted on Imgur as backup.\nHad to clean probe → gene symbol mapping → mapIds() gave NAs. Filtered out before topTable / enrichment.\nSaved a bunch of useful code in .Rhistory — rescued a lot from there when I thought it was lost."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#notes",
+    "href": "log/2025-05-23_prostate-limma.html#notes",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "🧾 Notes",
+    "text": "🧾 Notes\nFull list of gene contribution regulation of angiogenesis STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG regulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG positive regulation of angiogenesis PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B positive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B"
+  }
+]

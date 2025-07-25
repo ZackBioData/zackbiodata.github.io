@@ -1,0 +1,21 @@
+---
+title: "Reading the Official Biopython Documentation"
+subtitle: "Chapter 6: AlignIO"
+date: 2025-07-11
+image: ../images/blog/biopython.png
+categories: [Sequence Alignment, Biopython, Documentation]
+tags: [AlignIO, Sequence Alignment, MultipleSeqAlignment]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+##  Introduction
+
+This notebook documents my guided reading of the official [Biopython Tutorial & Cookbook](https://biopython.org/DIST/docs/tutorial/Tutorial.html).  
+Focus: **Chapter 6** — a preview of handling multiple sequence alignments using `AlignIO`.
+
+---
+
+##  Chapter 6 – Sequence Alignments (`AlignIO`)

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-21">
 
-<title>Zack’s’ Bioinformatics</title>
+<title>Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,8 +79,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -89,16 +90,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./log/index.html"> 
+    <a class="nav-link" href="../log/index.html"> 
 <span class="menu-text">Logbook</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog/index.html"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./100daysofcode/index.html"> 
-<span class="menu-text">100 Days of code</span></a>
+    <a class="nav-link" href="../100daysofcode/index.html"> 
+<span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -116,33 +117,230 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#this-website-aims-to-be-way-to-track-progress-and-reinforce-learning-as-i-go" id="toc-this-website-aims-to-be-way-to-track-progress-and-reinforce-learning-as-i-go" class="nav-link active" data-scroll-target="#this-website-aims-to-be-way-to-track-progress-and-reinforce-learning-as-i-go">This website aims to be way to track progress and reinforce learning as i go</a></li>
-  <li><a href="#what-im-working-on" id="toc-what-im-working-on" class="nav-link" data-scroll-target="#what-im-working-on">What I’m Working On</a></li>
+  <li><a href="#github-link" id="toc-github-link" class="nav-link active" data-scroll-target="#github-link">Github link</a>
+  <ul class="collapse">
+  <li><a href="#tools-and-data-set" id="toc-tools-and-data-set" class="nav-link" data-scroll-target="#tools-and-data-set">Tools and Data set</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python Transcriptomics</div>
+    <div class="quarto-category">Gene Expression</div>
+    <div class="quarto-category">Pathway Enrichment</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="this-website-aims-to-be-way-to-track-progress-and-reinforce-learning-as-i-go" class="level1">
-<h1>This website aims to be way to track progress and reinforce learning as i go</h1>
-<p>🔗 <strong><a href="./log/index.html">Logbook</a></strong> — Casual notes, ideas, and progress from daily work and study<br>
-🔗 <strong><a href="./blog/index.html">Blog</a></strong> — Occasional deeper dives into tools, projects, or topics I’m exploring<br>
-🔗 <strong><a href="./100daysofcode/index.html">Daily Coding</a></strong> — A dedicated journey to improve coding skills every day for 100 consecutive days</p>
-<hr>
-</section>
-<section id="what-im-working-on" class="level1">
-<h1>What I’m Working On</h1>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 21, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="github-link" class="level2">
+<h2 class="anchored" data-anchor-id="github-link"><a href="https://github.com/ZackBioData/PCP4-Transcriptomics">Github link</a></h2>
+<section id="tools-and-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-data-set">Tools and Data set</h3>
+<p>Python (pandas), Enrichr, g:Profiler The data set was used from <strong><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE293745">here</a></strong>.</p>
+<p>The CSV contains the transcriptomic data of 2 groups</p>
 <ul>
-<li>Learning Bulk RNA-seq and eventually single-cell RNA-seq</li>
-<li>Studying machine learning with Python and scikit-learn</li>
+<li><p>a control group consisting of baseline C4-2B prostate cancer cell and</p></li>
+<li><p>an experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.</p></li>
 </ul>
-<p>Thanks for visiting!</p>
+<p><strong><a href="https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2025.1616046/full">Purkinje cell protein 4 (PCP4)</a></strong> is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).</p>
+<p>Although PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.</p>
+</section>
+<section id="steps" class="level3">
+<h3 class="anchored" data-anchor-id="steps">Steps</h3>
+<ul>
+<li>Loaded data using <code>pandas.read_csv()</code></li>
+<li>Calculated mean expression per group</li>
+<li>Computed log2 fold change (PCP4 vs.&nbsp;control)</li>
+<li>Filtered genes with:
+<ul>
+<li><code>abs(log2FC) &gt; 1</code></li>
+<li><code>raw expression &gt; 3</code> in either group</li>
+</ul></li>
+</ul>
+<p><strong>Key problems</strong></p>
+<p>Errors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. <em>Fix</em>: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. <em>Fix</em>: Changed VS Code’s Python interpreter.</p>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<p><strong>Differential Gene Expression Table</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>gene_symbol</th>
+<th>mean_patient</th>
+<th>mean_control</th>
+<th>log2_fc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>H2AC19</td>
+<td>0.000000</td>
+<td>52.033333</td>
+<td>-35.598717</td>
+</tr>
+<tr class="even">
+<td>TICAM2</td>
+<td>12.060000</td>
+<td>0.000000</td>
+<td>33.489511</td>
+</tr>
+<tr class="odd">
+<td>CTAG1B</td>
+<td>8.500000</td>
+<td>0.000000</td>
+<td>32.984816</td>
+</tr>
+<tr class="even">
+<td>FAM47E-STBD1</td>
+<td>6.650000</td>
+<td>0.000000</td>
+<td>32.630707</td>
+</tr>
+<tr class="odd">
+<td>CORO7-PAM16</td>
+<td>3.986667</td>
+<td>0.000000</td>
+<td>31.892536</td>
+</tr>
+<tr class="even">
+<td>FSTL4</td>
+<td>0.000000</td>
+<td>3.000000</td>
+<td>-31.482315</td>
+</tr>
+<tr class="odd">
+<td>FAP</td>
+<td>0.000000</td>
+<td>3.000000</td>
+<td>-31.482315</td>
+</tr>
+<tr class="even">
+<td>FUNDC1</td>
+<td>3.000000</td>
+<td>0.000000</td>
+<td>31.482315</td>
+</tr>
+<tr class="odd">
+<td>PRAMEF11</td>
+<td>0.000000</td>
+<td>2.823333</td>
+<td>-31.394752</td>
+</tr>
+<tr class="even">
+<td>RIMBP3C</td>
+<td>2.340000</td>
+<td>0.000000</td>
+<td>31.123861</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top GO terms in upregulated genes:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>intersection_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>multicellular organismal process</td>
+<td>340</td>
+</tr>
+<tr class="even">
+<td>molecular transducer activity</td>
+<td>151</td>
+</tr>
+<tr class="odd">
+<td>signaling receptor activity</td>
+<td>151</td>
+</tr>
+<tr class="even">
+<td>cell periphery</td>
+<td>297</td>
+</tr>
+<tr class="odd">
+<td>extracellular region</td>
+<td>219</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top GO terms in downregulated genes:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>intersection_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>multicellular organismal process</td>
+<td>424</td>
+</tr>
+<tr class="even">
+<td>cell periphery</td>
+<td>381</td>
+</tr>
+<tr class="odd">
+<td>developmental process</td>
+<td>368</td>
+</tr>
+<tr class="even">
+<td>plasma membrane</td>
+<td>343</td>
+</tr>
+<tr class="odd">
+<td>molecular transducer activity</td>
+<td>169</td>
+</tr>
+</tbody>
+</table>
+<p>Then i completed a top 200 upregulated <a href="https://maayanlab.cloud/Enrichr/enrich?dataset=d191fe2c6d54a8910b99ba6e03371b0b">enrichr</a> to better characterize the genes.</p>
+<p>I found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated <a href="https://aacrjournals.org/clincancerres/article/19/21/5835/78111/Molecular-Pathways-Targeting-MYC-induced-Metabolic">link</a>, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype <a href="https://pubmed.ncbi.nlm.nih.gov/20607826/">link</a>. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.</p>
+<p>EZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.</p>
+<p>Within the Top 200 downregulated genes <a href="https://maayanlab.cloud/Enrichr/enrich?dataset=aa81df826a74220c9ba42bfc78ee815d">enrichr</a> i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Enrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.</p>
+<ul>
+<li><p>Upregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.</p></li>
+<li><p>PCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.</p></li>
+</ul>
+<p>Although PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

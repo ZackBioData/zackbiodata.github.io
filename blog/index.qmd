@@ -1,15 +1,18 @@
 ---
 title: "Blog"
-format: html
+listing: 
+  type: grid
+  sort: "date desc"
+  categories: true
+
 ---
 
 ## What i will blog
 
 A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI.
 
----
 
-## 📚 Recent Posts
 
-- [2025-05-22 — How AI is Changing Life Science Research](2025-05-23_AI in Life Sciences.qmd)
-- [2025-06-11 — Engineering to improve the precision and flexibility of crispr editing](2025-06-11_Crispr.qmd)
+
+## Recent Posts
+

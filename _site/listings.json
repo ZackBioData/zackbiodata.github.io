@@ -1,0 +1,21 @@
+[
+  {
+    "listing": "/100daysofcode/index.html",
+    "items": [
+      "/100daysofcode/Day3.html",
+      "/100daysofcode/Day1.html",
+      "/100daysofcode/Day2.html"
+    ]
+  },
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/2025-07-24_biopython-reading.html",
+      "/blog/C4Biopython.html",
+      "/blog/C5Biopython.html",
+      "/blog/C6Biopython.html",
+      "/blog/2025-06-11_Crispr.html",
+      "/blog/2025-05-23_AI in Life Sciences.html"
+    ]
+  }
+]

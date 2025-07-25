@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-24">
 
-<title>100 Days of Code – Zack’s’ Bioinformatics</title>
+<title>Reading the official Biopython documentation – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -79,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -97,8 +133,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../100daysofcode/index.html" aria-current="page"> 
-<span class="menu-text">100 Days of code</span></a>
+    <a class="nav-link" href="../100daysofcode/index.html"> 
+<span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -116,8 +152,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
-  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link" data-scroll-target="#recent-posts">📚 Recent Posts</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#chapter-3-working-with-sequences-seq" id="toc-chapter-3-working-with-sequences-seq" class="nav-link" data-scroll-target="#chapter-3-working-with-sequences-seq">Chapter 3 – Working with Sequences (<code>Seq</code>)</a></li>
+  <li><a href="#chapter-4-sequence-records-seqrecord" id="toc-chapter-4-sequence-records-seqrecord" class="nav-link" data-scroll-target="#chapter-4-sequence-records-seqrecord">Chapter 4 – Sequence Records (SeqRecord)</a></li>
+  <li><a href="#chapter-5-sequence-inputoutput-seqio" id="toc-chapter-5-sequence-inputoutput-seqio" class="nav-link" data-scroll-target="#chapter-5-sequence-inputoutput-seqio">Chapter 5 – Sequence Input/Output (SeqIO)</a></li>
+  <li><a href="#chapter-6-sequence-alignments-alignio" id="toc-chapter-6-sequence-alignments-alignio" class="nav-link" data-scroll-target="#chapter-6-sequence-alignments-alignio">Chapter 6 – Sequence Alignments (AlignIO)</a></li>
   </ul>
 </nav>
     </div>
@@ -126,14 +165,25 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">100 Days of Code</h1>
-</div>
+<h1 class="title">Reading the official Biopython documentation</h1>
+<p class="subtitle lead">Chapters 3: Seq</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">Documentation</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 24, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -143,15 +193,57 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">Description</h2>
-<p>a This section is part journal, part learning log. I’m using the <strong>#100DaysOfCode</strong> challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This notebook documents my guided reading of the official <a href="https://biopython.org/DIST/docs/tutorial/Tutorial.html">Biopython Tutorial &amp; Cookbook</a>.<br>
+Focus: <strong>Chapters 3</strong> — covering the core functionality of working with sequences using Biopython.</p>
+<hr>
 </section>
-<section id="recent-posts" class="level2">
-<h2 class="anchored" data-anchor-id="recent-posts">📚 Recent Posts</h2>
-<ul>
-<li><a href="../100daysofcode/Day1.html">2025-07-17 — Day 1-3</a> <strong>· Python Transcriptomics · Gene Expression · Pathway Enrichment</strong></li>
-</ul>
+<section id="chapter-3-working-with-sequences-seq" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3-working-with-sequences-seq">Chapter 3 – Working with Sequences (<code>Seq</code>)</h2>
+<p>I used this code on day 3 Rosiland problems, <a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%203%20-%203%20rosiland%20problems/Locating%20Restriction%20Sites.py">link here</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reverse_complement(seq):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    complement <span class="op">=</span> {<span class="st">'A'</span>: <span class="st">'T'</span>, <span class="st">'T'</span>: <span class="st">'A'</span>, <span class="st">'C'</span>: <span class="st">'G'</span>, <span class="st">'G'</span>: <span class="st">'C'</span>}</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">''</span>.join(complement[base] <span class="cf">for</span> base <span class="kw">in</span> <span class="bu">reversed</span>(seq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>instead i could have used built in biopython function</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s.reverse_complement()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bio.SeqUtils has many built in functions such as GC%.</p>
+<p>You can set reading frames with my_seq[0::3] every 3rd base starting at 0 codon frame 1</p>
+<p>Two Seq objects can be concatenated by adding them:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>list_of_seqs <span class="op">=</span> [Seq(<span class="st">"ACGT"</span>), Seq(<span class="st">"AACC"</span>), Seq(<span class="st">"GGTT"</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>concatenated <span class="op">=</span> Seq(<span class="st">""</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> list_of_seqs:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    concatenated <span class="op">+=</span> s</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>concatenated</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Seq(<span class="st">'ACGTAACCGGTT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>alternatively</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>spacer.join(contigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To make a seq mutable</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> MutableSeq</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mutable_seq <span class="op">=</span> MutableSeq(my_seq)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mutable_seq</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>MutableSeq(<span class="st">'GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An easy way to search a sequence</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, sub <span class="kw">in</span> seq.search([<span class="st">"CC"</span>, <span class="st">"GGG"</span>, <span class="st">"CC"</span>]):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(index, sub)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> CC</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> GGG</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> CC</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> GGG</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dv">28</span> CC</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dv">29</span> CC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chapter-4-sequence-records-seqrecord" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4-sequence-records-seqrecord">Chapter 4 – Sequence Records (SeqRecord)</h2>
+</section>
+<section id="chapter-5-sequence-inputoutput-seqio" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-5-sequence-inputoutput-seqio">Chapter 5 – Sequence Input/Output (SeqIO)</h2>
+</section>
+<section id="chapter-6-sequence-alignments-alignio" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-6-sequence-alignments-alignio">Chapter 6 – Sequence Alignments (AlignIO)</h2>
 
 
 </section>

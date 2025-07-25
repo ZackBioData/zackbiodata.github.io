@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-06-11">
 
-<title>Blog – Zack’s’ Bioinformatics</title>
+<title>Engineering to improve the precision and flexibility of crispr editing – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,12 +94,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Logbook</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../blog/index.html" aria-current="page"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../100daysofcode/index.html"> 
-<span class="menu-text">100 Days of code</span></a>
+<span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -116,8 +117,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-i-will-blog" id="toc-what-i-will-blog" class="nav-link active" data-scroll-target="#what-i-will-blog">What i will blog</a></li>
-  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link" data-scroll-target="#recent-posts">📚 Recent Posts</a></li>
+  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#what-they-created-httpspammla.streamlit.app" id="toc-what-they-created-httpspammla.streamlit.app" class="nav-link" data-scroll-target="#what-they-created-httpspammla.streamlit.app">What they created https://pammla.streamlit.app/</a></li>
+  <li><a href="#significance" id="toc-significance" class="nav-link" data-scroll-target="#significance">Significance</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -126,14 +130,25 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
-</div>
+<h1 class="title">Engineering to improve the precision and flexibility of crispr editing</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Seminar</div>
+    <div class="quarto-category">Gene Editing</div>
+    <div class="quarto-category">Machine Learning</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 11, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -143,16 +158,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="what-i-will-blog" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-will-blog">What i will blog</h2>
-<p>A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI.</p>
-<hr>
+<section id="about" class="level2">
+<h2 class="anchored" data-anchor-id="about">About</h2>
+<p>This log summarizes key insights from the webinar <em>The Future of CRISPR</em>, hosted by <strong>The Scientist</strong> in June 2025.<br>
+<a href="https://www.bigmarker.com/labx-media-group/the-future-of-crispr?bmid=25a878c55316&amp;bmid_type=member&amp;bmid=25a878c55316">Watch the webinar</a><br>
+In this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me.</p>
 </section>
-<section id="recent-posts" class="level2">
-<h2 class="anchored" data-anchor-id="recent-posts">📚 Recent Posts</h2>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
 <ul>
-<li><a href="../blog/2025-05-23_AI in Life Sciences.html">2025-05-22 — How AI is Changing Life Science Research</a></li>
-<li><a href="../blog/2025-06-11_Crispr.html">2025-06-11 — Engineering to improve the precision and flexibility of crispr editing</a></li>
+<li>Cas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands</li>
+<li>Cas9 can only bind and cut DNA at sites adjacent to a PAM sequence.</li>
+<li>Wild-type enzymes are naturally occurring enzymes</li>
+</ul>
+</section>
+<section id="what-they-created-httpspammla.streamlit.app" class="level2">
+<h2 class="anchored" data-anchor-id="what-they-created-httpspammla.streamlit.app">What they created https://pammla.streamlit.app/</h2>
+<ul>
+<li>PAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.</li>
+<li>They trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS</li>
+<li>They then Sequenced the specific domains, And expressed its biological activity against each AA sequence.</li>
+<li>This was the data that PAMmla was trained on.</li>
+</ul>
+</section>
+<section id="significance" class="level2">
+<h2 class="anchored" data-anchor-id="significance">Significance</h2>
+<ul>
+<li>PAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development.</li>
+</ul>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<ul>
+<li>I wonder if this technology could be used within oncology on multiple gene targets to design <strong>combinatorial editing strategies</strong>.</li>
 </ul>
 
 

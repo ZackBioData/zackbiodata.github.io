@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-25">
+<meta name="dcterms.date" content="2025-07-11">
 
-<title>Prostate Cancer DEG Analysis (GSE6919) – Zack’s’ Bioinformatics</title>
+<title>Reading the Official Biopython Documentation – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -99,7 +99,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../100daysofcode/index.html"> 
-<span class="menu-text">100 Days of code</span></a>
+<span class="menu-text">100 Days of Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tags.qmd"> 
+<span class="menu-text">Tags</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -117,20 +121,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">🧬 Project Summary</a></li>
-  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">🔧 Methods Overview</a>
-  <ul class="collapse">
-  <li><a href="#key-steps" id="toc-key-steps" class="nav-link" data-scroll-target="#key-steps">Key steps:</a></li>
-  </ul></li>
-  <li><a href="#differential-expression-results" id="toc-differential-expression-results" class="nav-link" data-scroll-target="#differential-expression-results">📊 Differential Expression Results</a></li>
-  <li><a href="#go-enrichment-analysis" id="toc-go-enrichment-analysis" class="nav-link" data-scroll-target="#go-enrichment-analysis">📘 GO Enrichment Analysis</a>
-  <ul class="collapse">
-  <li><a href="#enriched-biological-processes" id="toc-enriched-biological-processes" class="nav-link" data-scroll-target="#enriched-biological-processes">🧪 Enriched Biological Processes</a></li>
-  <li><a href="#go-enrichment-bar-chart" id="toc-go-enrichment-bar-chart" class="nav-link" data-scroll-target="#go-enrichment-bar-chart">📊 GO Enrichment Bar Chart</a></li>
-  <li><a href="#genes-contributing-to-enriched-biological-processes" id="toc-genes-contributing-to-enriched-biological-processes" class="nav-link" data-scroll-target="#genes-contributing-to-enriched-biological-processes">🧬 Genes contributing to enriched biological processes</a></li>
-  </ul></li>
-  <li><a href="#lessons-learned-for-myself" id="toc-lessons-learned-for-myself" class="nav-link" data-scroll-target="#lessons-learned-for-myself">🧾Lessons Learned for myself</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">🧾 Notes</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#chapter-5-sequence-inputoutput-seqio" id="toc-chapter-5-sequence-inputoutput-seqio" class="nav-link" data-scroll-target="#chapter-5-sequence-inputoutput-seqio">Chapter 5 – Sequence Input/Output (<code>SeqIO</code>)</a></li>
   </ul>
 </nav>
     </div>
@@ -139,8 +131,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Prostate Cancer DEG Analysis (GSE6919)</h1>
-</div>
+<h1 class="title">Reading the Official Biopython Documentation</h1>
+<p class="subtitle lead">Chapter 5: SeqIO</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">FASTA Parsing</div>
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">Documentation</div>
+  </div>
+  </div>
 
 
 
@@ -150,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 25, 2025</p>
+      <p class="date">July 11, 2025</p>
     </div>
   </div>
   
@@ -162,190 +160,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="project-summary">🧬 Project Summary</h2>
-<p>In this analysis, I used <strong>bulk RNA sequencing (microarray data)</strong> from the public GEO dataset <strong><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE6919">GSE6919</a></strong> to investigate differences in gene expression between <strong>cancerous and healthy prostate tissues</strong>.</p>
-<p>The aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This notebook documents my guided reading of the official <a href="https://biopython.org/DIST/docs/tutorial/Tutorial.html">Biopython Tutorial &amp; Cookbook</a>.<br>
+Focus: <strong>Chapter 5</strong> — covering sequence file input/output using <code>SeqIO</code>.</p>
 <hr>
 </section>
-<section id="methods-overview" class="level2">
-<h2 class="anchored" data-anchor-id="methods-overview">🔧 Methods Overview</h2>
-<p>The analysis was performed in <strong>R</strong> using the following packages:</p>
-<ul>
-<li><code>GEOquery</code> — to load expression and metadata<br>
-</li>
-<li><code>limma</code> — for linear modeling of microarray data<br>
-</li>
-<li><code>tidyverse</code> — for data wrangling and exploration<br>
-</li>
-<li><code>clusterProfiler</code>, <code>org.Hs.eg.db</code> — for GO enrichment analysis</li>
-</ul>
-<section id="key-steps" class="level3">
-<h3 class="anchored" data-anchor-id="key-steps">Key steps:</h3>
-<ol type="1">
-<li><strong>Downloaded</strong> GSE6919 and extracted the expression matrix<br>
-</li>
-<li><strong>Cleaned and labeled</strong> metadata (e.g.&nbsp;tumor vs.&nbsp;normal)<br>
-</li>
-<li><strong>Fit</strong> a linear model using <code>limma</code> and contrasted tumor vs.&nbsp;normal<br>
-</li>
-<li><strong>Extracted</strong> top upregulated and downregulated genes<br>
-</li>
-<li><strong>Performed</strong> GO enrichment to interpret biological meaning</li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="differential-expression-results" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-results">📊 Differential Expression Results</h2>
-<section id="volcano-plot-x-axis-is-change-in-expression-and-y-value-is-significance." class="level5">
-<h5 class="anchored" data-anchor-id="volcano-plot-x-axis-is-change-in-expression-and-y-value-is-significance.">Volcano Plot X axis is change in expression and y value is significance.</h5>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://i.imgur.com/fEv3xc3.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Volcano plot showing DEGs in prostate cancer</figcaption>
-</figure>
-</div>
-<p>This volcano plot shows the spread of differentially expressed genes between tumor and normal tissues. Genes with high log fold-change and low p-values are highlighted.</p>
-<p>This version of the volcano plot contains unfiltered or duplicated gene symbols and extreme values resulted in alot of messy invalid data scewing graph scale and bad gene labels such as GAPDH.1 and ACTB.1.</p>
-<hr>
-</section>
-</section>
-<section id="go-enrichment-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="go-enrichment-analysis">📘 GO Enrichment Analysis</h2>
-<section id="enriched-biological-processes" class="level3">
-<h3 class="anchored" data-anchor-id="enriched-biological-processes">🧪 Enriched Biological Processes</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 11%">
-<col style="width: 47%">
-<col style="width: 11%">
-<col style="width: 17%">
-<col style="width: 11%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">GO ID</th>
-<th style="text-align: left;">Biological Process</th>
-<th style="text-align: left;">Gene Ratio</th>
-<th style="text-align: right;">Adjusted P-value</th>
-<th style="text-align: right;">Gene Count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">GO:0045765</td>
-<td style="text-align: left;">Regulation of angiogenesis</td>
-<td style="text-align: left;">11/88</td>
-<td style="text-align: right;">0.00111</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">GO:1901342</td>
-<td style="text-align: left;">Regulation of vasculature development</td>
-<td style="text-align: left;">11/88</td>
-<td style="text-align: right;">0.00111</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">GO:0002696</td>
-<td style="text-align: left;">Positive regulation of leukocyte activation</td>
-<td style="text-align: left;">10/88</td>
-<td style="text-align: right;">0.00572</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">GO:0050867</td>
-<td style="text-align: left;">Positive regulation of cell activation</td>
-<td style="text-align: left;">10/88</td>
-<td style="text-align: right;">0.00677</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">GO:0051251</td>
-<td style="text-align: left;">Positive regulation of lymphocyte activation</td>
-<td style="text-align: left;">9/88</td>
-<td style="text-align: right;">0.00902</td>
-<td style="text-align: right;">9</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">GO:0045766</td>
-<td style="text-align: left;">Positive regulation of angiogenesis</td>
-<td style="text-align: left;">7/88</td>
-<td style="text-align: right;">0.00902</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">GO:1904018</td>
-<td style="text-align: left;">Positive regulation of vasculature development</td>
-<td style="text-align: left;">7/88</td>
-<td style="text-align: right;">0.00902</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">GO:0050878</td>
-<td style="text-align: left;">Regulation of body fluid levels</td>
-<td style="text-align: left;">9/88</td>
-<td style="text-align: right;">0.01740</td>
-<td style="text-align: right;">9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">GO:0045785</td>
-<td style="text-align: left;">Positive regulation of cell adhesion</td>
-<td style="text-align: left;">10/88</td>
-<td style="text-align: right;">0.02360</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">GO:0050870</td>
-<td style="text-align: left;">Positive regulation of T cell activation</td>
-<td style="text-align: left;">7/88</td>
-<td style="text-align: right;">0.04120</td>
-<td style="text-align: right;">7</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="go-enrichment-bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="go-enrichment-bar-chart">📊 GO Enrichment Bar Chart</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://i.imgur.com/LI4YfFG.png" class="img-fluid figure-img"></p>
-<figcaption>Top GO terms for prostate cancer DEGs</figcaption>
-</figure>
-</div>
-<p>This bar chart shows the top GO Biological Process categories enriched in the DEGs. Angiogenesis, immune activation, and vasculature development were particularly prominent.</p>
-<hr>
-</section>
-<section id="genes-contributing-to-enriched-biological-processes" class="level3">
-<h3 class="anchored" data-anchor-id="genes-contributing-to-enriched-biological-processes">🧬 Genes contributing to enriched biological processes</h3>
-<p><strong>Regulation of angiogenesis</strong><br>
-<code>STAB1</code>, <code>PAK4</code>, <code>NPR1</code>, <code>PRKD2</code>, <code>SASH1</code>, <code>WNK1</code></p>
-<p><strong>Regulation of vasculature development</strong><br>
-<code>STAB1</code>, <code>PAK4</code>, <code>NPR1</code>, <code>PRKD2</code>, <code>SASH1</code>, <code>WNK1</code></p>
-<p><strong>Positive regulation of angiogenesis</strong><br>
-<code>PAK4</code>, <code>PRKD2</code>, <code>SASH1</code>, <code>WNK1</code>, <code>CD40</code>, <code>PDPK1</code></p>
-<p><strong>Positive regulation of vasculature development</strong><br>
-<code>PAK4</code>, <code>PRKD2</code>, <code>SASH1</code>, <code>WNK1</code>, <code>CD40</code>, <code>PDPK1</code></p>
-<hr>
-</section>
-</section>
-<section id="lessons-learned-for-myself" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-learned-for-myself">🧾Lessons Learned for myself</h2>
-<p>Plots didn’t save → forgot ggsave(). Used ggsave(“figures/Volcanoplot.jpg”) and made sure the folder path was right.</p>
-<p>Plots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.</p>
-<p>enrichplot::barplot() didn’t work → Just use barplot() without enrichplot:: prefix.</p>
-<p>PNG wouldn’t load → renamed .png and re-saved properly. Hosted on Imgur as backup.</p>
-<p>Had to clean probe → gene symbol mapping → mapIds() gave NAs. Filtered out before topTable / enrichment.</p>
-<p>Saved a bunch of useful code in .Rhistory — rescued a lot from there when I thought it was lost.</p>
-<hr>
-</section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">🧾 Notes</h2>
-<p>Full list of gene contribution regulation of angiogenesis STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG regulation of vasculature development<br>
-STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG positive regulation of angiogenesis PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B positive regulation of vasculature development<br>
-PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B</p>
+<section id="chapter-5-sequence-inputoutput-seqio" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-5-sequence-inputoutput-seqio">Chapter 5 – Sequence Input/Output (<code>SeqIO</code>)</h2>
 
 
 </section>

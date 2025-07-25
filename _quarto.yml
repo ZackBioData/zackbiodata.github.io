@@ -2,22 +2,18 @@ project:
   type: website
   output-dir: _site
 
-
 website:
-  title: "Zack's' Bioinformatics"
+  title: "Zack's Bioinformatics"
   site-url: https://ZackBioData.github.io
-  description: "Zacks Logbook"
-
+  description: "Zack's Logbook"
   navbar:
     left:
       - text: "Logbook"
         href: log/index.qmd
       - text: "Blog"
         href: blog/index.qmd
-      - text: "100 Days of code"
+      - text: "100 Days of Code"
         href: 100daysofcode/index.qmd
-
-
 format:
   html:
     theme: cosmo

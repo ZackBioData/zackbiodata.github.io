@@ -1,6 +1,9 @@
 ---
-title: ""
-format: html
+title: "ZackBioData"
+format:
+  html:
+    toc: true
+    code-fold: true
 ---
 
 # This website aims to be way to track progress and reinforce learning as i go
@@ -11,7 +14,7 @@ format: html
 
 ---
 
-# What I’m Working On
+# Recent posts
 
 - Learning Bulk RNA-seq and eventually single-cell RNA-seq
 - Studying machine learning with Python and scikit-learn

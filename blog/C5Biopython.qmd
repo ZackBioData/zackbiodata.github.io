@@ -1,0 +1,21 @@
+---
+title: "Reading the Official Biopython Documentation"
+subtitle: "Chapter 5: SeqIO"
+date: 2025-07-11
+image: ../images/blog/biopython.png
+categories: [FASTA Parsing, Biopython, Documentation]
+tags: [SeqIO, FASTA Parsing, File Input, File Output, Sequence Files]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Introduction
+
+This notebook documents my guided reading of the official [Biopython Tutorial & Cookbook](https://biopython.org/DIST/docs/tutorial/Tutorial.html).  
+Focus: **Chapter 5** — covering sequence file input/output using `SeqIO`.
+
+---
+
+## Chapter 5 – Sequence Input/Output (`SeqIO`)

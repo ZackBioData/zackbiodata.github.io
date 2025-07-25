@@ -1,0 +1,22 @@
+---
+title: "Reading the Official Biopython Documentation"
+subtitle: "Chapter 4: SeqRecord"
+date: 2025-07-11
+image: ../images/blog/biopython.png
+categories: [FASTA, GenBank, biopython, documentation]
+tags: [SeqRecord, Metadata, Description Fields, FASTA, GenBank]
+
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Introduction
+
+This notebook documents my guided reading of the official [Biopython Tutorial & Cookbook](https://biopython.org/DIST/docs/tutorial/Tutorial.html).  
+Focus: **Chapter 4** — covering the core functionality of working with annotated sequence records using `SeqRecord`.
+
+---
+
+## Chapter 4 – Sequence Records (`SeqRecord`)

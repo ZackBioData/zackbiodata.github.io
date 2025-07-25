@@ -1,6 +1,10 @@
 ---
 title: "AI in Life Sciences: What's Changing and What's Holding Us Back"
 date: 2025-05-22
+image: ../images/blog/seminar.png
+categories: [Seminar, AI in Biology]
+tags: [AI, Life Sciences, Data Reproducibility, Workflow Transparency, Biotech Trends, Bioinformatics]
+
 format:
   html:
     toc: true
@@ -28,9 +32,9 @@ This log summarizes key insights from the webinar *Inside the Minds of Scientist
 - **Learning curve and training** — lack of experience with AI was a significant pain point for many users.
 
 
-💬 *This resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs.*
+ *This resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs.*
 
 ##  Changes for future adoption
 
 - Transparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.
-- Tools need to be built with their actual users in mind — typically, biologists.
+- Tools need to be built with their actual users in mind (biologists).

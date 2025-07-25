@@ -1,0 +1,82 @@
+---
+title: "Reading the official Biopython documentation"
+subtitle: "Chapters 3: Sequence objects"
+date: 2025-07-24
+image: ../images/blog/biopython.png
+categories: [Biopython, Documentation]
+tags: [Seq, Transcription, Translation, Reverse Complement, DNA]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+##  Introduction
+
+This notebook documents my guided reading of the official [Biopython Tutorial & Cookbook](https://biopython.org/DIST/docs/tutorial/Tutorial.html).  
+Focus: [**Chapter 3**](https://biopython.org/docs/latest/Tutorial/chapter_seq_objects.html) — covering the core functionality of working with sequences using Biopython.
+
+---
+
+##  Chapter 3 – Working with Sequences (`Seq`)
+
+
+I used this code on day 3 Rosiland problems, [link here](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%203%20-%203%20rosiland%20problems/Locating%20Restriction%20Sites.py)
+
+```python
+def reverse_complement(seq):
+    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+    return ''.join(complement[base] for base in reversed(seq))
+```
+instead i could have used built in biopython function 
+
+```python
+print(s.reverse_complement()) 
+```
+
+Bio.SeqUtils has many built in functions such as GC%.
+
+You can set reading frames with my_seq[0::3] every 3rd base starting at 0 codon frame 1
+
+Two Seq objects can be concatenated by adding them:
+```python
+from Bio.Seq import Seq
+list_of_seqs = [Seq("ACGT"), Seq("AACC"), Seq("GGTT")]
+concatenated = Seq("")
+for s in list_of_seqs:
+    concatenated += s
+
+concatenated
+Seq('ACGTAACCGGTT')
+```
+alternatively 
+```python
+spacer.join(contigs)
+```
+
+To make a seq mutable 
+```python
+from Bio.Seq import MutableSeq
+mutable_seq = MutableSeq(my_seq)
+mutable_seq
+MutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')
+```
+
+An easy way to search a sequence
+```python
+for index, sub in seq.search(["CC", "GGG", "CC"]):
+    print(index, sub)
+
+1 CC
+11 GGG
+14 CC
+23 GGG
+28 CC
+29 CC
+```
+
+##  Chapter 4 – Sequence Records (SeqRecord)
+
+##  Chapter 5 – Sequence Input/Output (SeqIO)
+
+##  Chapter 6 – Sequence Alignments (AlignIO) 

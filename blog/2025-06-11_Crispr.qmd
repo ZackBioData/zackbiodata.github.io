@@ -1,6 +1,9 @@
 ---
 title: "Engineering to improve the precision and flexibility of crispr editing"
 date: 2025-06-11
+image: ../images/blog/seminar.png
+categories: [Seminar, Gene Editing, Machine Learning]
+tags: [CRISPR, Cas9, PAMmla, Machine Learning, Genome Engineering, Off-Target Effects, Therapeutic Editing]
 format:
   html:
     toc: true

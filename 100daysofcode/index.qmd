@@ -1,6 +1,10 @@
 ---
-title: "100 Days of Code"
-format: html
+title: "100 days of code"
+listing: 
+  type: grid
+  sort: "date desc"
+  categories: true
+
 ---
 
 
@@ -9,7 +13,3 @@ format: html
 ## Description
 a
 This section is part journal, part learning log. I’m using the **#100DaysOfCode** challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation.
-
-## 📚 Recent Posts
-
-- [2025-07-17 — Day 1-3](Day1.qmd) **· Python Transcriptomics · Gene Expression · Pathway Enrichment**

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-22">
+<meta name="dcterms.date" content="2025-07-11">
 
-<title>AI in Life Sciences: What’s Changing and What’s Holding Us Back – Zack's' Bioinformatics</title>
+<title>Reading the Official Biopython Documentation – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s’ Bioinformatics</span>
+    <span class="navbar-title">Zack’s Bioinformatics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -99,7 +99,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../100daysofcode/index.html"> 
-<span class="menu-text">100 Days of code</span></a>
+<span class="menu-text">100 Days of Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tags.qmd"> 
+<span class="menu-text">Tags</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -117,10 +121,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
-  <li><a href="#key-trends" id="toc-key-trends" class="nav-link" data-scroll-target="#key-trends">Key Trends</a></li>
-  <li><a href="#whats-holding-ai-back-in-biology" id="toc-whats-holding-ai-back-in-biology" class="nav-link" data-scroll-target="#whats-holding-ai-back-in-biology">What’s Holding AI Back in Biology?</a></li>
-  <li><a href="#changes-for-future-adoption" id="toc-changes-for-future-adoption" class="nav-link" data-scroll-target="#changes-for-future-adoption">Changes for future adoption</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#chapter-4-sequence-records-seqrecord" id="toc-chapter-4-sequence-records-seqrecord" class="nav-link" data-scroll-target="#chapter-4-sequence-records-seqrecord">Chapter 4 – Sequence Records (<code>SeqRecord</code>)</a></li>
   </ul>
 </nav>
     </div>
@@ -129,8 +131,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI in Life Sciences: What’s Changing and What’s Holding Us Back</h1>
-</div>
+<h1 class="title">Reading the Official Biopython Documentation</h1>
+<p class="subtitle lead">Chapter 4: SeqRecord</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">FASTA</div>
+    <div class="quarto-category">GenBank</div>
+    <div class="quarto-category">biopython</div>
+    <div class="quarto-category">documentation</div>
+  </div>
+  </div>
 
 
 
@@ -140,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 22, 2025</p>
+      <p class="date">July 11, 2025</p>
     </div>
   </div>
   
@@ -152,36 +161,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about" class="level2">
-<h2 class="anchored" data-anchor-id="about">About</h2>
-<p>This log summarizes key insights from the webinar <em>Inside the Minds of Scientists: How AI is Changing Life Science Research</em>, hosted by <strong>Bioinformatics</strong> in May 2025.<br>
-🎥 <a href="https://vimeo.com/1086878814">Watch the webinar on Vimeo</a></p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This notebook documents my guided reading of the official <a href="https://biopython.org/DIST/docs/tutorial/Tutorial.html">Biopython Tutorial &amp; Cookbook</a>.<br>
+Focus: <strong>Chapter 4</strong> — covering the core functionality of working with annotated sequence records using <code>SeqRecord</code>.</p>
+<hr>
 </section>
-<section id="key-trends" class="level2">
-<h2 class="anchored" data-anchor-id="key-trends">Key Trends</h2>
-<ul>
-<li>AI is moving from discovery to development.</li>
-<li>AI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.</li>
-<li>Pharma is integrating AI across more stages of R&amp;D (e.g., target ID, trial design, decision-making).</li>
-</ul>
-</section>
-<section id="whats-holding-ai-back-in-biology" class="level2">
-<h2 class="anchored" data-anchor-id="whats-holding-ai-back-in-biology">What’s Holding AI Back in Biology?</h2>
-<blockquote class="blockquote">
-<p>Current issues with Ai in biosciences:</p>
-</blockquote>
-<ul>
-<li><strong>Reproducibility issues</strong> — hard to trust models without transparent workflows.</li>
-<li><strong>Learning curve and training</strong> — lack of experience with AI was a significant pain point for many users.</li>
-</ul>
-<p>💬 <em>This resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs.</em></p>
-</section>
-<section id="changes-for-future-adoption" class="level2">
-<h2 class="anchored" data-anchor-id="changes-for-future-adoption">Changes for future adoption</h2>
-<ul>
-<li>Transparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.</li>
-<li>Tools need to be built with their actual users in mind — typically, biologists.</li>
-</ul>
+<section id="chapter-4-sequence-records-seqrecord" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4-sequence-records-seqrecord">Chapter 4 – Sequence Records (<code>SeqRecord</code>)</h2>
 
 
 </section>
