@@ -1,0 +1,140 @@
+---
+title: "Day 5: Rosalind Problems – GC Content & Hamming Distance"
+subtitle: "FASTA Handling, Sequence Comparison, and Population Genetics"
+date: 2025-07-26
+image: ../images/100daysofcode/rosiland.png
+categories: [Biopython, Sequence Comparison, Probability, Rosiland Problems]
+html:
+  toc: true
+  code-fold: true
+---
+his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython
+
+
+## Problem 1: [GC Content](https://rosalind.info/problems/gc/)
+
+Calculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Computing%20GC%20Content.py)
+
+```python
+#https://rosalind.info/problems/gc/
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqUtils import gc_fraction
+import os
+
+
+# Get directory of the current script
+script_dir = os.path.dirname(os.path.realpath(__file__))
+fasta_path = os.path.join(script_dir, "rosalind_gc.fasta")
+records = list(SeqIO.parse(fasta_path, "fasta"))
+
+# Track highest GC content and ID
+max_gc = 0
+max_id = ""
+# Loop over each record and calculate GC content
+for record in records:
+    gc = gc_fraction(record.seq) * 100  # get % value
+    if gc > max_gc:
+        max_gc = gc
+        max_id = record.id
+
+# Print results
+print(max_id)
+print(f"{max_gc:.6f}")
+```
+### What I learned:
+
+- `gc_fraction` from `Bio.SeqUtils` gives clean GC percentages.
+- Looping through `SeqIO` records helps to process multiple sequences efficiently.
+- Comparing and tracking values is easy using standard `if` logic
+
+
+
+
+
+## Problem 2: [Hamming Distance](https://rosalind.info/problems/hamm/)
+Compute the number of differing characters between two DNA strings of equal length.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Counting%20Point%20Mutations.py)
+```python
+# https://rosalind.info/problems/hamm/
+
+from Bio import SeqIO
+import os
+
+
+# Get directory of the current script
+script_dir = os.path.dirname(os.path.realpath(__file__))
+fasta_path = os.path.join(script_dir, "rosalind_hamm.fasta")
+records = list(SeqIO.parse(fasta_path, "fasta"))
+
+for i in range(len(records)):
+    for j in range(i + 1, len(records)):
+        # Calculate Hamming distance
+        seq1 = records[i].seq
+        seq2 = records[j].seq
+        hamming_distance = sum(el1 != el2 for el1, el2 in zip(seq1, seq2))
+        print(hamming_distance)
+```
+
+### What I learned:
+- `zip(seq1, seq2)` lets you pair corresponding elements.
+- The comparison `el1 != el2` returns `True` for mismatches (which equals `1` when summed).
+- `sum(...)` neatly counts total differences without explicit loops.
+
+## Problem 3: [Hamming Distance](https://rosalind.info/problems/iprb/)
+Given the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population,
+ compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Mendel's%20First%20Law.py)
+
+```python
+# https://rosalind.info/problems/iprb/
+AApop = 29
+Aapop = 17
+aapop = 22
+
+totalpop = AApop + Aapop + aapop
+
+#                             aA                                          AA                                                 aa                                                   Aa
+aaoutcome = ((aapop/totalpop) * ((Aapop)/(totalpop-1))*0.5) + ((Aapop/totalpop) * ((Aapop-1)/(totalpop-1))*0.25) + ((aapop/totalpop) * ((aapop-1)/(totalpop-1))) + ((Aapop/totalpop) * ((aapop)/(totalpop-1))*0.5)
+
+
+
+
+Aoutcome = (1 - aaoutcome) * 100
+
+
+print(f"{Aoutcome:.2f}% of the offspring will have a dominant allele")
+```
+
+### What I learned:
+
+- Probability trees help remove errors.
+- The cleanest solution subtracts P(recessive) from 1 to get P(dominant)
+
+## Problem 3: [Rabbits and Recurrence Relations](https://rosalind.info/problems/fib/)
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Rabbits%20and%20Recurrence%20Relations.py)
+
+```python
+months = 36
+litter_size = 2
+
+prev = 1  # F(n-2)
+curr = 1  # F(n-1)
+
+for _ in range(3, months + 1):
+    next_rabbits = curr + litter_size * prev
+    prev, curr = curr, next_rabbits
+
+print(months, curr)
+#curr = number of pairs last month (F(n−1)).
+#prev = number of pairs two months ago (F(n−2)).
+```
+
+### What I learned:
+- Clean recurrence: F(n) = F(n−1) + k * F(n−2).

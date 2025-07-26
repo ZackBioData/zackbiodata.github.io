@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-26">
 
-<title>100 days of code – Zack’s Bioinformatics</title>
+<title>Day 5: Rosalind Problems – GC Content &amp; Hamming Distance – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +66,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,65 +103,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -157,7 +133,7 @@ window.Quarto = {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../100daysofcode/index.html" aria-current="page"> 
+    <a class="nav-link" href="../100daysofcode/index.html"> 
 <span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
@@ -176,23 +152,51 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#problem-1-gc-content" id="toc-problem-1-gc-content" class="nav-link active" data-scroll-target="#problem-1-gc-content">Problem 1: GC Content</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I learned:</a></li>
+  </ul></li>
+  <li><a href="#problem-2-hamming-distance" id="toc-problem-2-hamming-distance" class="nav-link" data-scroll-target="#problem-2-hamming-distance">Problem 2: Hamming Distance</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What I learned:</a></li>
+  </ul></li>
+  <li><a href="#problem-3-hamming-distance" id="toc-problem-3-hamming-distance" class="nav-link" data-scroll-target="#problem-3-hamming-distance">Problem 3: Hamming Distance</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">What I learned:</a></li>
+  </ul></li>
+  <li><a href="#problem-3-rabbits-and-recurrence-relations" id="toc-problem-3-rabbits-and-recurrence-relations" class="nav-link" data-scroll-target="#problem-3-rabbits-and-recurrence-relations">Problem 3: Rabbits and Recurrence Relations</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-3" id="toc-what-i-learned-3" class="nav-link" data-scroll-target="#what-i-learned-3">What I learned:</a></li>
+  </ul></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2VuZSUyMEV4cHJlc3Npb24=">Gene Expression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T1JGcw==">ORFs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGF0aHdheSUyMEVucmljaG1lbnQ=">Pathway Enrichment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvYmFiaWxpdHk=">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw==">Python logic · 4 Rosiland Problems <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNz">Python Transcriptomics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxpbmQ=">Rosalind <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zaWxhbmQlMjBQcm9ibGVtcw==">Rosiland Problems <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBDb21wYXJpc29u">Sequence Comparison <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">100 days of code</h1>
-</div>
+<h1 class="title">Day 5: Rosalind Problems – GC Content &amp; Hamming Distance</h1>
+<p class="subtitle lead">FASTA Handling, Sequence Comparison, and Population Genetics</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">Sequence Comparison</div>
+    <div class="quarto-category">Probability</div>
+    <div class="quarto-category">Rosiland Problems</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 26, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -202,184 +206,133 @@ window.Quarto = {
 </header>
 
 
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">Description</h2>
-<p>a This section is part journal, part learning log. I’m using the <strong>#100DaysOfCode</strong> challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation.</p>
-
+<p>his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython</p>
+<section id="problem-1-gc-content" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-gc-content">Problem 1: <a href="https://rosalind.info/problems/gc/">GC Content</a></h2>
+<p>Calculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.</p>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Computing%20GC%20Content.py">My solution</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#https://rosalind.info/problems/gc/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.SeqUtils <span class="im">import</span> gc_fraction</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get directory of the current script</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>script_dir <span class="op">=</span> os.path.dirname(os.path.realpath(<span class="va">__file__</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>fasta_path <span class="op">=</span> os.path.join(script_dir, <span class="st">"rosalind_gc.fasta"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(fasta_path, <span class="st">"fasta"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Track highest GC content and ID</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>max_gc <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>max_id <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over each record and calculate GC content</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> records:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    gc <span class="op">=</span> gc_fraction(record.seq) <span class="op">*</span> <span class="dv">100</span>  <span class="co"># get % value</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gc <span class="op">&gt;</span> max_gc:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        max_gc <span class="op">=</span> gc</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        max_id <span class="op">=</span> record.<span class="bu">id</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(max_id)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>max_gc<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned">What I learned:</h3>
+<ul>
+<li><code>gc_fraction</code> from <code>Bio.SeqUtils</code> gives clean GC percentages.</li>
+<li>Looping through <code>SeqIO</code> records helps to process multiple sequences efficiently.</li>
+<li>Comparing and tracking values is easy using standard <code>if</code> logic</li>
+</ul>
+</section>
+</section>
+<section id="problem-2-hamming-distance" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-hamming-distance">Problem 2: <a href="https://rosalind.info/problems/hamm/">Hamming Distance</a></h2>
+<p>Compute the number of differing characters between two DNA strings of equal length.</p>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Counting%20Point%20Mutations.py">My solution</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rosalind.info/problems/hamm/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get directory of the current script</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>script_dir <span class="op">=</span> os.path.dirname(os.path.realpath(<span class="va">__file__</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fasta_path <span class="op">=</span> os.path.join(script_dir, <span class="st">"rosalind_hamm.fasta"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(fasta_path, <span class="st">"fasta"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(records)):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(records)):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate Hamming distance</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        seq1 <span class="op">=</span> records[i].seq</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        seq2 <span class="op">=</span> records[j].seq</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        hamming_distance <span class="op">=</span> <span class="bu">sum</span>(el1 <span class="op">!=</span> el2 <span class="cf">for</span> el1, el2 <span class="kw">in</span> <span class="bu">zip</span>(seq1, seq2))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(hamming_distance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-1">What I learned:</h3>
+<ul>
+<li><code>zip(seq1, seq2)</code> lets you pair corresponding elements.</li>
+<li>The comparison <code>el1 != el2</code> returns <code>True</code> for mismatches (which equals <code>1</code> when summed).</li>
+<li><code>sum(...)</code> neatly counts total differences without explicit loops.</li>
+</ul>
+</section>
+</section>
+<section id="problem-3-hamming-distance" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-hamming-distance">Problem 3: <a href="https://rosalind.info/problems/iprb/">Hamming Distance</a></h2>
+<p>Given the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population, compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.</p>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Mendel's%20First%20Law.py">My solution</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rosalind.info/problems/iprb/</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>AApop <span class="op">=</span> <span class="dv">29</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Aapop <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>aapop <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>totalpop <span class="op">=</span> AApop <span class="op">+</span> Aapop <span class="op">+</span> aapop</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                             aA                                          AA                                                 aa                                                   Aa</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>aaoutcome <span class="op">=</span> ((aapop<span class="op">/</span>totalpop) <span class="op">*</span> ((Aapop)<span class="op">/</span>(totalpop<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span><span class="fl">0.5</span>) <span class="op">+</span> ((Aapop<span class="op">/</span>totalpop) <span class="op">*</span> ((Aapop<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(totalpop<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span><span class="fl">0.25</span>) <span class="op">+</span> ((aapop<span class="op">/</span>totalpop) <span class="op">*</span> ((aapop<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(totalpop<span class="op">-</span><span class="dv">1</span>))) <span class="op">+</span> ((Aapop<span class="op">/</span>totalpop) <span class="op">*</span> ((aapop)<span class="op">/</span>(totalpop<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span><span class="fl">0.5</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Aoutcome <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> aaoutcome) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>Aoutcome<span class="sc">:.2f}</span><span class="ss">% of the offspring will have a dominant allele"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-2" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-2">What I learned:</h3>
+<ul>
+<li>Probability trees help remove errors.</li>
+<li>The cleanest solution subtracts P(recessive) from 1 to get P(dominant)</li>
+</ul>
+</section>
+</section>
+<section id="problem-3-rabbits-and-recurrence-relations" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-rabbits-and-recurrence-relations">Problem 3: <a href="https://rosalind.info/problems/iprb/">Rabbits and Recurrence Relations</a></h2>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%205%20-%204%20rosiland%20problems/Rabbits%20and%20Recurrence%20Relations.py">My solution</a> https://rosalind.info/problems/fib/</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> <span class="dv">36</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>litter_size <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>prev <span class="op">=</span> <span class="dv">1</span>  <span class="co"># F(n-2)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>curr <span class="op">=</span> <span class="dv">1</span>  <span class="co"># F(n-1)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>, months <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    next_rabbits <span class="op">=</span> curr <span class="op">+</span> litter_size <span class="op">*</span> prev</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    prev, curr <span class="op">=</span> curr, next_rabbits</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(months, curr)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#curr = number of pairs last month (F(n−1)).</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#prev = number of pairs two months ago (F(n−2)).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-3" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-3">What I learned:</h3>
+<ul>
+<li>Clean recurrence: F(n) = F(n−1) + k * F(n−2).</li>
+</ul>
 
 
 </section>
+</section>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="QmlvcHl0aG9uJTJDU2VxdWVuY2UlMjBDb21wYXJpc29uJTJDUHJvYmFiaWxpdHklMkNSb3NpbGFuZCUyMFByb2JsZW1z" data-listing-date-sort="1753484400000" data-listing-file-modified-sort="1753546886675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="643">
-<a href="../100daysofcode/Day5.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 5: Rosalind Problems – GC Content &amp; Hamming Distance
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VxdWVuY2UlMjBDb21wYXJpc29u'); return false;">Sequence Comparison</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvYmFiaWxpdHk='); return false;">Probability</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 26, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDT1JGcyUyQ1Jvc2FsaW5k" data-listing-date-sort="1753398000000" data-listing-file-modified-sort="1753464474338" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="376">
-<a href="../100daysofcode/Day4.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 4: Rosalind Problem – Open Reading Frames
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('T1JGcw=='); return false;">ORFs</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
-
-</div>
-<div class="card-text listing-description delink">
-Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement).…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 25, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDUm9zaWxhbmQlMjBQcm9ibGVtcw==" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1753464536986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="340">
-<a href="../100daysofcode/Day3.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 3: 3 Rosiland problems: FASTA and Biopython
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-3 Rosalind Problems – FASTA &amp; Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 24, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNzJTJDR2VuZSUyMEV4cHJlc3Npb24lMkNQYXRod2F5JTIwRW5yaWNobWVudA==" data-listing-date-sort="1753052400000" data-listing-file-modified-sort="1753546929982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1151">
-<a href="../100daysofcode/Day1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/cancer.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNz'); return false;">Python Transcriptomics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2VuZSUyMEV4cHJlc3Npb24='); return false;">Gene Expression</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGF0aHdheSUyMEVucmljaG1lbnQ='); return false;">Pathway Enrichment</div>
-
-</div>
-<div class="card-text listing-description delink">
-Python (pandas), Enrichr, g:Profiler The data set was used from <strong>here</strong>.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 21, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw==" data-listing-date-sort="1752361200000" data-listing-file-modified-sort="1753464468688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<a href="../100daysofcode/Day2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 2: 4 simple rosiland problems
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Python logic · 4 Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-Day 2 is a coding warmup Link provided here
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 13, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
