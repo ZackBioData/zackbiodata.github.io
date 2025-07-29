@@ -1,0 +1,82 @@
+---
+title: "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA"
+subtitle: "Efficient Algorithmic Modelling and FASTA Data Aggregation"
+date: 2025-07-27
+image: ../images/100daysofcode/rosiland.png
+categories: [Bioinformatics, Biopython, Algorithm Design, FASTA Parsing]
+html:
+  toc: true
+  code-fold: true
+---
+
+This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA records.
+
+---
+
+## Problem 1: [Mortal Fibonacci Rabbits](https://rosalind.info/problems/fibd/)
+
+Simulated rabbit population growth over 89 months with a fixed lifespan of 18 months.
+
+[my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%206%20-%202%20rosiland%20problems/Consensus%20and%20Profile.py)
+
+```python
+n = 89  # Total months
+m = 18  # Lifespan in months
+
+def mortal_fibonacci(n, m):
+    ages = [1] + [0] * (m - 1) # max array length = m
+
+    for month in range(1, n):
+        new_borns = sum(ages[1:])  # rabbits of age ≥1 can reproduce
+        # Age rabbits: shift right, oldest dies
+        ages = [new_borns] + ages[:-1]
+
+    return sum(ages)
+print(mortal_fibonacci(n, m))
+```
+### What I learned: 
+- ages[1:] ensures only mature rabbits reproduce.
+- arrays have an interesting usecase due to its max capacity. 
+
+
+## Problem 2: [Consensus and Profile](https://rosalind.info/problems/cons/)
+
+Given multiple DNA sequences in FASTA format, construct a profile matrix showing the count of each base at each position, and build a consensus string using the most frequent base at each position.
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%206%20-%202%20rosiland%20problems/Mortall%20Fibonacci%20Rabbits.py)
+
+```python
+from Bio import SeqIO
+from collections import Counter, defaultdict
+
+records = list(SeqIO.parse("rosalind_cons1.fasta", "fasta"))
+full_dna = list(zip(*[str(record.seq) for record in records]))
+
+
+profile = {
+    'A': [],
+    'C': [],
+    'G': [],
+    'T': []
+}
+
+for col in full_dna:
+    counts = Counter(col)
+    for base in "ACGT":
+        profile[base].append(counts.get(base, 0))
+
+consensus = ""
+for i in range(len(full_dna)):
+    max_base = max("ACGT", key=lambda base: profile[base][i])
+    consensus += max_base
+
+print(consensus)
+```
+
+### What I learned: 
+- zip(*sequences) is a clean Python trick to transpose a matrix (get columns).
+
+- Counter helps efficiently count nucleotides at each position.
+
+- Building a consensus string is just choosing the max-count base per column.
+
+- Handling multi-record FASTA files is smoother using SeqIO.parse().

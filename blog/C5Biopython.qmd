@@ -19,3 +19,24 @@ Focus: **Chapter 5** — covering sequence file input/output using `SeqIO`.
 ---
 
 ## Chapter 5 – Sequence Input/Output (`SeqIO`)
+
+
+
+
+```python
+record_iterator = SeqIO.parse("ls_orchid.gbk", "genbank")
+first_record = next(record_iterator)
+print(first_record)
+```
+
+Python supports negative indexing for lists:
+0	first element
+-1	last element
+-2	second-to-last
+
+also useful 
+
+from Bio import SeqIO
+record_iterator = SeqIO.parse("ls_orchid.gbk", "genbank")
+first_record = next(record_iterator)
+print(first_record)
