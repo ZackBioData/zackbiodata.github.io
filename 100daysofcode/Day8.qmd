@@ -1,0 +1,204 @@
+---
+title: "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif"
+subtitle: "Binomial Tails, Look‑ahead Regex, and Brute‑Force Substrings"
+author: "ZackBioData"
+date: 2025-07-30
+image: ../images/100daysofcode/rosiland.png
+format:
+  html:
+    toc: true
+    code-fold: true
+categories: [Rosalind, Biopython, Python, Learning Log]
+---
+
+## Problem 1: [Independent Alleles](https://rosalind.info/problems/lia/)
+
+Compute the probability that at least \(N\) of the \(2^k\) offspring have genotype Aa Bb, given every parent is Aa Bb.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Independent%20Alleles.py)
+
+```python
+import math
+
+def independent_assortment(k: int, N: int) -> float:
+    """
+    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).
+    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.
+    """
+    n = 2**k
+    p = 1/4
+    prob = 0.0
+    # sum the right‐hand tail of the binomial distribution
+    for i in range(N, n+1):
+        prob += math.comb(n, i) * p**i * (1-p)**(n-i)
+    return prob
+
+if __name__ == "__main__":
+    k, N = 5, 8
+    print(f"{independent_assortment(k, N):.6f}")
+```
+### What I learned:
+
+ **Binomial “tail” sums** 
+  The probability of getting at least \(N\) successes out of \(n\) trials with success rate \(p\) is
+  $$
+    P(X \ge N)
+    \;=\;
+    \sum_{i=N}^{n} \binom{n}{i}\,p^i\,(1-p)^{\,n-i}\,.
+  $$
+  Implemented in Python by summing from `i = N` to `n` of `math.comb(n, i) * p**i * (1-p)**(n-i)`.
+
+- **Exact binomial coefficients**  
+  Python 3.8+’s `math.comb(n, i)` computes \(\binom{n}{i}\) directly and exactly.
+
+- **Off‑by‑one vigilance**  
+  Translating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots.
+
+
+## Problem 2: [Finding a Protein Motif](https://rosalind.info/problems/prot/)
+
+Locate every occurrence (including overlaps) of the N‑glycosylation motif N{P}[ST]{P} in a set of UniProt sequences.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Finding%20a%20Shared%20Motif.py)
+
+
+```Python
+from Bio import SeqIO
+
+def get_substrings(s):
+    """
+    Generate all possible substrings of the input string s,
+    returning them from longest to shortest.
+
+    Parameters:
+        s (str): The string from which to generate substrings.
+
+    Returns:
+        List[str]: A list of every substring of s, ordered by decreasing length.
+    """
+    substrs = []             # Will hold all substrings
+    n = len(s)               # Total length of the string
+
+    # For each possible substring length L from n down to 1
+    for L in range(n, 0, -1):
+        # Slide a window of length L along the string
+        # i goes from 0 up to n - L
+        for i in range(n - L + 1):
+            # Extract the substring of length L starting at i
+            substrs.append(s[i:i + L])
+    return substrs          # Return all substrings, longest first
+
+def longest_common_substring_bruteforce(records):
+    """
+    Find the longest substring common to all sequences in the provided SeqRecord list,
+    using a brute‑force approach.
+
+    """
+    # Convert each SeqRecord to a plain Python string
+    seqs = [str(rec.seq) for rec in records]
+
+    # Sort by length so the shortest sequence is first
+    # We only need to generate substrings from the shortest one
+    seqs.sort(key=len)
+    shortest = seqs[0]       # The sequence to pull substrings from
+    others = seqs[1:]        # The rest of the sequences
+
+    # Generate substrings from longest to shortest
+    for sub in get_substrings(shortest):
+        # Check if this substring appears in every other sequence
+        if all(sub in seq for seq in others):
+            return sub       # As soon as one matches all, it's the LCS
+
+    return ""  # If no common substring is found (edge case), return empty
+
+
+
+
+if __name__ == "__main__":
+    # Parse the FASTA file (make sure the filename matches exactly)
+    records = list(SeqIO.parse("rosalind_lcsm (2).fasta", "fasta"))
+
+    # Compute the longest common substring
+    result = longest_common_substring_bruteforce(records)
+
+    # Output the result
+    print("Brute‑force LCS:", result)
+```
+
+
+### What I learned:
+- Zero‑width look‑ahead ((?=…)) lets the engine test every offset without skipping—so overlapping motifs (e.g. positions 276 and 278) are both found.
+
+- Translating PROSITE shorthand (N{P}[ST]{P}) to regex (N[^P][ST][^P]).
+
+- Robust HTTP fetch with raise_for_status() to catch bad accessions early.
+
+
+
+## Problem 3: [Finding a Shared Motif](https://rosalind.info/problems/lcsm/)
+
+Identify the longest substring common to all sequences in a FASTA file (brute‑force approach).
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Finding%20a%20Protein%20Motif.py)
+
+```python
+import re
+import requests
+"""
+    this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.
+
+    """
+# Compile the PROSITE motif using a look‑ahead so we catch overlaps
+# (?=(…)) is zero‑width, so the regex engine checks at every position without skipping
+motif = re.compile(r"(?=(N[^P][ST][^P]))")
+
+def fetch_sequence(accession: str) -> str:
+    """
+    Given a UniProt accession (optionally with "_NAME" suffix),
+    fetch its protein FASTA from UniProt and return the concatenated sequence.
+    """
+    # Strip off anything after the first underscore
+    acc = accession.split("_", 1)[0]
+    url = f"https://www.uniprot.org/uniprot/{acc}.fasta"
+    resp = requests.get(url)
+    resp.raise_for_status()
+    lines = resp.text.splitlines()
+    # Skip the header (first line) and join the rest into one sequence string
+    return "".join(lines[1:])
+
+def find_motif_positions(seq: str) -> list[str]:
+    """
+    Scan `seq` for the N‑glycosylation motif N{P}[ST]{P},
+    returning all 1‑based start positions (including overlaps).
+    """
+    # m.start() is 0‑based, so add 1 for Rosalind’s 1‑based indexing
+    return [str(m.start() + 1) for m in motif.finditer(seq)]
+
+def main():
+    # Read your list of raw UniProt IDs (one per line) from ids_mprt.txt
+    with open("ids_mprt.txt") as f:
+        raw_ids = [line.strip() for line in f if line.strip()]
+
+    for raw in raw_ids:
+        seq = fetch_sequence(raw)
+        positions = find_motif_positions(seq)
+        if positions:
+            # Print the original raw ID, then the space‑separated positions
+            print(raw)
+            print(" ".join(positions))
+
+if __name__ == "__main__":
+    main()
+```
+
+### What I learned:
+- Sorting by length ensures we find the longest common substring early and exit.
+
