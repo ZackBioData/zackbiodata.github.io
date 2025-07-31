@@ -1,0 +1,106 @@
+---
+title: "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations"
+subtitle: "Binomial Tails, Look‑ahead Regex, and Brute‑Force Substrings"
+author: "ZackBioData"
+date: 2025-07-30
+image: ../images/100daysofcode/rosiland.png
+format:
+  html:
+    toc: true
+    code-fold: true
+categories: [Rosalind, Biopython, Python, Learning Log]
+---
+
+## Problem 1: [Enumerating Gene Orders](https://rosalind.info/problems/perm/)
+> **Given:** A positive integer \(n \le 7\).  
+> **Return:** First, the total number of permutations of length \(n\). Then list every permutation of \(\{1,2,\dots,n\}\) (in any order), one per line.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Independent%20Alleles.py)
+
+```python
+from itertools import permutations
+import math
+
+def main():
+    n = 5
+    # Print the total number of permutations (n!)
+    print(math.factorial(n))
+    # Generate and print each permutation of 1..n
+    with open("rosalind_perm.txt", "w") as f:
+        for perm in permutations(range(1, n+1)):
+            f.write(" ".join(map(str, perm)) + "\n")
+    print(f"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### What I learned:
+
+- Total count
+   A permutation of length \(n\) is an ordering of \(\{1,\dots,n\}\).  There are
+   \[
+     n! = 1 \times 2 \times 3 \times \cdots \times n
+   \]
+   such orderings.
+
+- Generation strategy  
+   - **Built-in**: Python’s `itertools.permutations` returns all \(n!\) tuples.  
+   - **Recursive**: Fix each element in turn at the front, recurse on the remaining \(n-1\).
+
+
+## Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)
+> **Given:** A positive integer \(n \le 7\).  
+> **Return:** First, the total number of permutations of length \(n\). Then list every permutation of \(\{1,2,\dots,n\}\) (in any order), one per line.
+
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Independent%20Alleles.py)
+
+```python
+
+import itertools  # for generating permutations and all sign combinations
+import math
+
+""" Core analogy: signed permutations are like an onion.
+# - The outer layer is the ordering (permutation) of the numbers.
+# - The inner layers are the signs applied to each position (±) for that ordering.
+# Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.
+"""
+def main():
+    n = 3  # length of the base permutation (1..n)
+    numbers = list(range(1, n + 1))  # [1, 2, ..., n]
+    output_path = "signed_permutations.txt"  # output file for results
+
+    # Open the file once for writing; the 'with' ensures it closes automatically
+    with open(output_path, "w") as f:
+        # Compute total number of signed permutations:
+        # n! permutations times 2^n choices of sign assignments
+        total = math.factorial(n) * (2 ** n)
+        f.write(f"{total}\n")  # write the count on the first line
+
+        # Outer loop: iterate over all orderings of [1..n] (the outer onion layer)
+        for perm in itertools.permutations(numbers):  # all orderings (n! of them)
+            # Inner loop: for each ordering, apply every combination of +/− to each position
+            for sign_choice in itertools.product([1, -1], repeat=n):  # 2^n sign vectors
+                # Apply sign to each element of the permutation (elementwise multiplication)
+                signed_perm = [sign_choice[i] * perm[i] for i in range(n)]
+                # Format the signed permutation: include '+' explicitly for positives
+                line = " ".join(f"{'+' if x > 0 else ''}{x}" for x in signed_perm)
+                f.write(line + "\n")  # write one signed permutation per line
+
+    # Confirmation output to console
+    print(f"Wrote {total} signed permutations to {output_path}")
+
+# Immediately invoke main when script runs
+main()
+```
+
+### What I learned:
+
+- Signed permutations structure: **n!x2^n** = Total permutations = n! independent sign flips = 2^n 
+
+- Analogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.
+
+- Formatting: Explicitly include “+” for positive values to make orientation clear.
+
+- use of intertools
