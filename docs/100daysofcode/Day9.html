@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="ZackBioData">
+<meta name="dcterms.date" content="2025-07-31">
 
-<title>100 days of code – Zack’s Bioinformatics</title>
+<title>Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +67,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,65 +104,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -157,7 +134,7 @@ window.Quarto = {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../100daysofcode/index.html" aria-current="page"> 
+    <a class="nav-link" href="../100daysofcode/index.html"> 
 <span class="menu-text">100 Days of Code</span></a>
   </li>  
 </ul>
@@ -176,23 +153,49 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
+  <li><a href="#problem-1-enumerating-gene-orders" id="toc-problem-1-enumerating-gene-orders" class="nav-link active" data-scroll-target="#problem-1-enumerating-gene-orders">Problem 1: Enumerating Gene Orders</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I learned:</a></li>
+  </ul></li>
+  <li><a href="#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign" id="toc-problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign" class="nav-link" data-scroll-target="#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign">Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What I learned:</a></li>
+  </ul></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="QWxnb3JpdGhtJTIwRGVzaWdu">Algorithm Design <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QmlvaW5mb3JtYXRpY3M=">Bioinformatics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(4)</span></div><div class="category" data-category="R2VuZSUyMEV4cHJlc3Npb24=">Gene Expression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGVhcm5pbmclMjBMb2c=">Learning Log <span class="quarto-category-count">(2)</span></div><div class="category" data-category="T1JGcw==">ORFs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGF0aHdheSUyMEVucmljaG1lbnQ=">Pathway Enrichment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvYmFiaWxpdHk=">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw==">Python logic · 4 Rosiland Problems <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNz">Python Transcriptomics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxpbmQ=">Rosalind <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Um9zaWxhbmQlMjBQcm9ibGVtcw==">Rosiland Problems <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBDb21wYXJpc29u">Sequence Comparison <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">100 days of code</h1>
-</div>
+<h1 class="title">Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations</h1>
+<p class="subtitle lead">Binomial Tails, Look‑ahead Regex, and Brute‑Force Substrings</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Rosalind</div>
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Learning Log</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ZackBioData </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 31, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -202,325 +205,97 @@ window.Quarto = {
 </header>
 
 
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">Description</h2>
-<p>a This section is part journal, part learning log. I’m using the <strong>#100DaysOfCode</strong> challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation.</p>
-
+<section id="problem-1-enumerating-gene-orders" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-enumerating-gene-orders">Problem 1: <a href="https://rosalind.info/problems/perm/">Enumerating Gene Orders</a></h2>
+<blockquote class="blockquote">
+<p><strong>Given:</strong> A positive integer (n ).<br>
+<strong>Return:</strong> First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.</p>
+</blockquote>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%209%20-%202%20rosiland%20problems/Enumerating%20Gene%20Orders.py">My solution</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> permutations</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print the total number of permutations (n!)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(math.factorial(n))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate and print each permutation of 1..n</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"rosalind_perm.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> perm <span class="kw">in</span> permutations(<span class="bu">range</span>(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>)):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            f.write(<span class="st">" "</span>.join(<span class="bu">map</span>(<span class="bu">str</span>, perm)) <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"All </span><span class="sc">{</span>math<span class="sc">.</span>factorial(n)<span class="sc">}</span><span class="ss"> permutations written to </span><span class="sc">{</span><span class="st">'rosalind_perm.txt'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned">What I learned:</h3>
+<ul>
+<li><p>Total count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.</p></li>
+<li><p>Generation strategy<br>
+</p></li>
+<li><p><strong>Built-in</strong>: Python’s <code>itertools.permutations</code> returns all (n!) tuples.</p></li>
+<li><p><strong>Recursive</strong>: Fix each element in turn at the front, recurse on the remaining (n-1).</p></li>
+</ul>
+</section>
+</section>
+<section id="problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign">Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)</h2>
+<blockquote class="blockquote">
+<p><strong>Given:</strong> A positive integer (n ).<br>
+<strong>Return:</strong> First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.</p>
+</blockquote>
+<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%209%20-%202%20rosiland%20problems/Enumerating%20Oriented%20Gene%20Orderings.py">My solution</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools  <span class="co"># for generating permutations and all sign combinations</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">""" Core analogy: signed permutations are like an onion.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - The outer layer is the ordering (permutation) of the numbers.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - The inner layers are the signs applied to each position (±) for that ordering.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">3</span>  <span class="co"># length of the base permutation (1..n)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    numbers <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>))  <span class="co"># [1, 2, ..., n]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> <span class="st">"signed_permutations.txt"</span>  <span class="co"># output file for results</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Open the file once for writing; the 'with' ensures it closes automatically</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute total number of signed permutations:</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># n! permutations times 2^n choices of sign assignments</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> math.factorial(n) <span class="op">*</span> (<span class="dv">2</span> <span class="op">**</span> n)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="ss">f"</span><span class="sc">{</span>total<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)  <span class="co"># write the count on the first line</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Outer loop: iterate over all orderings of [1..n] (the outer onion layer)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> perm <span class="kw">in</span> itertools.permutations(numbers):  <span class="co"># all orderings (n! of them)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Inner loop: for each ordering, apply every combination of +/− to each position</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> sign_choice <span class="kw">in</span> itertools.product([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], repeat<span class="op">=</span>n):  <span class="co"># 2^n sign vectors</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Apply sign to each element of the permutation (elementwise multiplication)</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                signed_perm <span class="op">=</span> [sign_choice[i] <span class="op">*</span> perm[i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Format the signed permutation: include '+' explicitly for positives</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                line <span class="op">=</span> <span class="st">" "</span>.join(<span class="ss">f"</span><span class="sc">{</span><span class="st">'+'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}{</span>x<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> x <span class="kw">in</span> signed_perm)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                f.write(line <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)  <span class="co"># write one signed permutation per line</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confirmation output to console</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Wrote </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> signed permutations to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Immediately invoke main when script runs</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-1">What I learned:</h3>
+<ul>
+<li><p>Signed permutations structure: <strong>n!x2^n</strong> = Total permutations = n! independent sign flips = 2^n</p></li>
+<li><p>Analogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.</p></li>
+<li><p>Formatting: Explicitly include “+” for positive values to make orientation clear.</p></li>
+<li><p>use of intertools</p></li>
+</ul>
 
 
 </section>
+</section>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753916400000" data-listing-file-modified-sort="1753985432313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="706">
-<a href="../100daysofcode/Day9.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
-
-</div>
-<div class="card-text listing-description delink">
-<strong>Given:</strong> A positive integer (n ).<br>
-<strong>Return:</strong> First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-ZackBioData
-</div>
-<div class="listing-date">
-Jul 31, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753830000000" data-listing-file-modified-sort="1753907878874" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1307">
-<a href="../100daysofcode/Day8.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 8: Rosalind Problems – Independent Alleles, Protein Motif &amp; Shared Motif
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
-
-</div>
-<div class="card-text listing-description delink">
-Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-ZackBioData
-</div>
-<div class="listing-date">
-Jul 30, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="QmlvaW5mb3JtYXRpY3MlMkNCaW9weXRob24lMkNBbGdvcml0aG0lMjBEZXNpZ24lMkNGQVNUQSUyMFBhcnNpbmc=" data-listing-date-sort="1753743600000" data-listing-file-modified-sort="1753906535065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
-<a href="../100daysofcode/Day7.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 7: Rosalind Problems – Overlap Graphs &amp;
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvaW5mb3JtYXRpY3M='); return false;">Bioinformatics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWxnb3JpdGhtJTIwRGVzaWdu'); return false;">Algorithm Design</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-</div>
-<div class="card-text listing-description delink">
-Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length <em>k</em>.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 29, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="QmlvaW5mb3JtYXRpY3MlMkNCaW9weXRob24lMkNBbGdvcml0aG0lMjBEZXNpZ24lMkNGQVNUQSUyMFBhcnNpbmc=" data-listing-date-sort="1753570800000" data-listing-file-modified-sort="1753630715531" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="313">
-<a href="../100daysofcode/Day6.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 6: Rosalind Problems – Mortal Fibonacci &amp; Consensus DNA
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvaW5mb3JtYXRpY3M='); return false;">Bioinformatics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWxnb3JpdGhtJTIwRGVzaWdu'); return false;">Algorithm Design</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-</div>
-<div class="card-text listing-description delink">
-This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 27, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="QmlvcHl0aG9uJTJDU2VxdWVuY2UlMjBDb21wYXJpc29uJTJDUHJvYmFiaWxpdHklMkNSb3NpbGFuZCUyMFByb2JsZW1z" data-listing-date-sort="1753484400000" data-listing-file-modified-sort="1753546998315" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="643">
-<a href="../100daysofcode/Day5.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 5: Rosalind Problems – GC Content &amp; Hamming Distance
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VxdWVuY2UlMjBDb21wYXJpc29u'); return false;">Sequence Comparison</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvYmFiaWxpdHk='); return false;">Probability</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 26, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDT1JGcyUyQ1Jvc2FsaW5k" data-listing-date-sort="1753398000000" data-listing-file-modified-sort="1753464474338" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="376">
-<a href="../100daysofcode/Day4.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 4: Rosalind Problem – Open Reading Frames
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('T1JGcw=='); return false;">ORFs</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
-
-</div>
-<div class="card-text listing-description delink">
-Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement).…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 25, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDUm9zaWxhbmQlMjBQcm9ibGVtcw==" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1753464536986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="340">
-<a href="../100daysofcode/Day3.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 3: 3 Rosiland problems: FASTA and Biopython
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-3 Rosalind Problems – FASTA &amp; Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 24, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNzJTJDR2VuZSUyMEV4cHJlc3Npb24lMkNQYXRod2F5JTIwRW5yaWNobWVudA==" data-listing-date-sort="1753052400000" data-listing-file-modified-sort="1753546929982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1151">
-<a href="../100daysofcode/Day1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/cancer.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwVHJhbnNjcmlwdG9taWNz'); return false;">Python Transcriptomics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2VuZSUyMEV4cHJlc3Npb24='); return false;">Gene Expression</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGF0aHdheSUyMEVucmljaG1lbnQ='); return false;">Pathway Enrichment</div>
-
-</div>
-<div class="card-text listing-description delink">
-Python (pandas), Enrichr, g:Profiler The data set was used from <strong>here</strong>.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 21, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw==" data-listing-date-sort="1752361200000" data-listing-file-modified-sort="1753464468688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<a href="../100daysofcode/Day2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Day 2: 4 simple rosiland problems
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9uJTIwbG9naWMlMjAlQzIlQjclMjA0JTIwUm9zaWxhbmQlMjBQcm9ibGVtcw=='); return false;">Python logic · 4 Rosiland Problems</div>
-
-</div>
-<div class="card-text listing-description delink">
-Day 2 is a coding warmup Link provided here
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 13, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

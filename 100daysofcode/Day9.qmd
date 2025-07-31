@@ -2,7 +2,7 @@
 title: "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations"
 subtitle: "Binomial Tails, Look‑ahead Regex, and Brute‑Force Substrings"
 author: "ZackBioData"
-date: 2025-07-30
+date: 2025-07-31
 image: ../images/100daysofcode/rosiland.png
 format:
   html:
@@ -15,7 +15,7 @@ categories: [Rosalind, Biopython, Python, Learning Log]
 > **Given:** A positive integer \(n \le 7\).  
 > **Return:** First, the total number of permutations of length \(n\). Then list every permutation of \(\{1,2,\dots,n\}\) (in any order), one per line.
 
-[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Independent%20Alleles.py)
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%209%20-%202%20rosiland%20problems/Enumerating%20Gene%20Orders.py)
 
 ```python
 from itertools import permutations
@@ -46,15 +46,16 @@ if __name__ == "__main__":
    such orderings.
 
 - Generation strategy  
-   - **Built-in**: Python’s `itertools.permutations` returns all \(n!\) tuples.  
-   - **Recursive**: Fix each element in turn at the front, recurse on the remaining \(n-1\).
+- **Built-in**: Python’s `itertools.permutations` returns all \(n!\) tuples.  
+
+- **Recursive**: Fix each element in turn at the front, recurse on the remaining \(n-1\).
 
 
 ## Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)
 > **Given:** A positive integer \(n \le 7\).  
 > **Return:** First, the total number of permutations of length \(n\). Then list every permutation of \(\{1,2,\dots,n\}\) (in any order), one per line.
 
-[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%208%20-%202.5%20rosilland%20problems/Independent%20Alleles.py)
+[My solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%209%20-%202%20rosiland%20problems/Enumerating%20Oriented%20Gene%20Orderings.py)
 
 ```python
 
