@@ -1,0 +1,135 @@
+---
+title: "Variant Filtering in Calcium-Regulating Genes"
+subtitle: "Exploring Mastoparan B sensitivity through loss-of-function analysis"
+author: ZackBioData
+date: 2025-08-04
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Project Summary
+
+The goal of this mini-project is to identify genetic variants that might impair calcium-buffering capacity in cancer cells specifically those that could make them more vulnerable to calcium overload triggered by **Mastoparan B**.
+
+Mastoparan B is known to destabilise the plasma membrane, leading to a spike in intracellular calcium. If certain genes responsible for calcium homeostasis (e.g. **PCP4**, **ATP2B1**, **BCL2**) are disrupted by mutations, it could tip the balance and push the cell toward apoptosis.
+
+This is an early-stage exploration of that hypothesis.
+
+---
+
+## Methods Overview
+
+- **Input:** Local ClinVar VCF file (`clinvar.vcf`)  
+
+- **Approach:** String filter by `GENEINFO` for genes of interest  
+
+- **Languages:** Python 3.11, basic file handling  
+
+- **Goal:** Print out pathogenic or reviewed variants in relevant calcium-buffering genes
+
+### Gene panel (early draft)
+
+- `PCP4` — Calmodulin modulator, neuron-like buffering  
+
+- `ATP2B1` — PMCA1 calcium efflux pump  
+
+- `BCL2` — Anti-apoptotic, links calcium and mitochondrial integrity
+
+- `VDAC1` — Mitochondrial membrane permeability  
+
+- `RYR1` — Ryanodine receptor; ER calcium release  
+
+- `MYC` - Regulator of glycolysis - drives warburg phenotype
+
+---
+
+## Code Snippet
+
+```python
+output_path = "mastoparan_variants.txt"
+out = open(output_path, "w", encoding="utf-8")
+
+with open(r"C:\Users\zackd\Bioinformatics\clinvar.vcf", "r") as f:
+    genes_of_interest = ["PCP4", "BCL2", "ATP2B1", "VDAC1", "RYR1"]
+
+    for line in f:
+        if line.startswith("#"):
+            continue
+
+        cols = line.strip().split("\t")
+        chrom = cols[0].replace("chr", "")
+        pos = int(cols[1])
+        ref = cols[3]
+        alt = cols[4]
+        info = cols[7]
+
+        for gene in genes_of_interest:
+            if f"GENEINFO={gene}" in info:
+                info_dict = dict(item.split("=") for item in info.split(";") if "=" in item)
+                significance = info_dict.get("CLNSIG", "NA")
+                disease = info_dict.get("CLNDN", "NA")
+                review = info_dict.get("CLNREVSTAT", "NA")
+
+                out.write(f"{chrom}:{pos} {ref}>{alt}\n")
+                out.write(f"   Significance: {significance}\n")
+                out.write(f"   Disease: {disease}\n")
+                out.write(f"   Review: {review}\n\n")
+
+out.close()
+```
+
+
+##Output Example
+
+```python
+1:161284466 G>A
+   Gene: PCP4
+   Significance: Benign
+   Disease: not_provided
+   Review: criteria_provided,_multiple_submitters,_no_conflicts
+
+2:111123784 C>T
+   Gene: BCL2
+   Significance: Benign
+   Disease: not_provided
+   Review: criteria_provided,_multiple_submitters,_no_conflicts
+```
+Current outputs only provides unreviewed untilted point mutations.
+
+
+
+##Interpretation and Context
+
+Right now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it's a good starting point.
+
+Variants in calcium-buffering genes might:
+
+Reduce calcium export or sequestration
+
+Increase membrane fragility or ER stress
+
+Accelerate the death response after a calcium spike
+
+This could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.
+
+
+
+##Limitations + Future Add-ons
+
+- No frame shift or missense classification yet
+
+- Doesn’t look at protein domains (e.g. calmodulin-binding)
+
+- No integration with ENSEMBL VEP or SnpEff
+
+- No filtering by ClinVar significance beyond string match
+
+- Add more genes resulting in warburg effect 
+
+##What i learned
+
+- First interactions with clinvar
+
+- GENEINFO filtering is a quick but rough approach

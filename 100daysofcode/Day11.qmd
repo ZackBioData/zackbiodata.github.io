@@ -1,0 +1,12 @@
+---
+title: "Day 11: consolidation from day 1-10"
+subtitle: "Resolve my hardest challenges over the past 10 days"
+author: "ZackBioData"
+date: 2025-08-01
+image: ../images/100daysofcode/recap.png
+format:
+  html:
+    toc: true
+    code-fold: true
+categories: [Rosalind, Biopython, Python, Learning Log]
+---

@@ -4,357 +4,98 @@
     "href": "log/index.html",
     "title": "Bioinformatics Logbook",
     "section": "",
-    "text": "A logbook documenting my journey through bioinformatics.\n\n\n2025-05-23 — Prostate Cancer DEG (GSE6919) bulk RNA sequencing (microarray data) from the GEO dataset GSE6919 to identify genes that are differentially expressed between cancerous and healthy prostate tissues. The analysis was performed using the limma package in R."
+    "text": "A logbook documenting my journey through bioinformatics.\n\n\n2025-05-23 — Prostate Cancer DEG (GSE6919) bulk RNA sequencing (microarray data) from the GEO dataset GSE6919 to identify genes that are differentially expressed between cancerous and healthy prostate tissues. The analysis was performed using the limma package in R.\n2025-08-04 — Mastoparan B Variant Panel (ClinVar)\nUsed a local ClinVar VCF to extract variants in calcium-buffering and metabolic genes that may influence susceptibility to Mastoparan B–induced apoptosis. Focused on genes like PCP4, ATP2B1, BCL2, and MYC."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ZackBioData",
+    "objectID": "log/2025-05-23_prostate-limma.html",
+    "href": "log/2025-05-23_prostate-limma.html",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
     "section": "",
-    "text": "This website aims to be way to track progress and reinforce learning as i go\n🔗 Logbook — Casual notes, ideas, and progress from daily work and study\n🔗 Blog — Occasional deeper dives into tools, projects, or topics I’m exploring\n🔗 Daily Coding — A dedicated journey to improve coding skills every day for 100 consecutive days\n\n\n\nRecent posts\n\nLearning Bulk RNA-seq and eventually single-cell RNA-seq\nStudying machine learning with Python and scikit-learn\n\nThanks for visiting!"
+    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
   },
   {
-    "objectID": "blog/C6Biopython.html",
-    "href": "blog/C6Biopython.html",
+    "objectID": "log/2025-05-23_prostate-limma.html#project-summary",
+    "href": "log/2025-05-23_prostate-limma.html#project-summary",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "",
+    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#methods-overview",
+    "href": "log/2025-05-23_prostate-limma.html#methods-overview",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "Methods Overview",
+    "text": "Methods Overview\nThe analysis was performed in R using the following packages:\n\nGEOquery — to load expression and metadata\n\nlimma — for linear modeling of microarray data\n\ntidyverse — for data wrangling and exploration\n\nclusterProfiler, org.Hs.eg.db — for GO enrichment analysis\n\n\nKey steps:\n\nDownloaded GSE6919 and extracted the expression matrix\n\nCleaned and labeled metadata (e.g. tumor vs. normal)\n\nFit a linear model using limma and contrasted tumor vs. normal\n\nExtracted top upregulated and downregulated genes\n\nPerformed GO enrichment to interpret biological meaning"
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#differential-expression-results",
+    "href": "log/2025-05-23_prostate-limma.html#differential-expression-results",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "Differential Expression Results",
+    "text": "Differential Expression Results\n\nVolcano Plot X axis is change in expression and y value is significance.\n\n\n\nVolcano plot showing DEGs in prostate cancer\n\n\nThis volcano plot shows the spread of differentially expressed genes between tumor and normal tissues. Genes with high log fold-change and low p-values are highlighted.\nThis version of the volcano plot contains unfiltered or duplicated gene symbols and extreme values resulted in alot of messy invalid data scewing graph scale and bad gene labels such as GAPDH.1 and ACTB.1."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
+    "href": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "GO Enrichment Analysis",
+    "text": "GO Enrichment Analysis\n\nEnriched Biological Processes\n\n\n\n\n\n\n\n\n\n\nGO ID\nBiological Process\nGene Ratio\nAdjusted P-value\nGene Count\n\n\n\n\nGO:0045765\nRegulation of angiogenesis\n11/88\n0.00111\n11\n\n\nGO:1901342\nRegulation of vasculature development\n11/88\n0.00111\n11\n\n\nGO:0002696\nPositive regulation of leukocyte activation\n10/88\n0.00572\n10\n\n\nGO:0050867\nPositive regulation of cell activation\n10/88\n0.00677\n10\n\n\nGO:0051251\nPositive regulation of lymphocyte activation\n9/88\n0.00902\n9\n\n\nGO:0045766\nPositive regulation of angiogenesis\n7/88\n0.00902\n7\n\n\nGO:1904018\nPositive regulation of vasculature development\n7/88\n0.00902\n7\n\n\nGO:0050878\nRegulation of body fluid levels\n9/88\n0.01740\n9\n\n\nGO:0045785\nPositive regulation of cell adhesion\n10/88\n0.02360\n10\n\n\nGO:0050870\nPositive regulation of T cell activation\n7/88\n0.04120\n7\n\n\n\n\n\n\nGO Enrichment Bar Chart\n\n\n\nTop GO terms for prostate cancer DEGs\n\n\nThis bar chart shows the top GO Biological Process categories enriched in the DEGs. Angiogenesis, immune activation, and vasculature development were particularly prominent.\n\n\n\nGenes contributing to enriched biological processes\nRegulation of angiogenesis\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nRegulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nPositive regulation of angiogenesis\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1\nPositive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1"
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
+    "href": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "Lessons Learned for myself",
+    "text": "Lessons Learned for myself\nPlots didn’t save → forgot ggsave(). Used ggsave(“figures/Volcanoplot.jpg”) and made sure the folder path was right.\nPlots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.\nenrichplot::barplot() didn’t work → Just use barplot() without enrichplot:: prefix.\nPNG wouldn’t load → renamed .png and re-saved properly. Hosted on Imgur as backup.\nHad to clean probe → gene symbol mapping → mapIds() gave NAs. Filtered out before topTable / enrichment.\nSaved a bunch of useful code in .Rhistory — rescued a lot from there when I thought it was lost."
+  },
+  {
+    "objectID": "log/2025-05-23_prostate-limma.html#notes",
+    "href": "log/2025-05-23_prostate-limma.html#notes",
+    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "section": "Notes",
+    "text": "Notes\nFull list of gene contribution regulation of angiogenesis STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG regulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG positive regulation of angiogenesis PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B positive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+  },
+  {
+    "objectID": "blog/index.html#what-i-will-blog",
+    "href": "blog/index.html#what-i-will-blog",
+    "title": "Blog",
+    "section": "",
+    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+  },
+  {
+    "objectID": "blog/index.html#recent-posts",
+    "href": "blog/index.html#recent-posts",
+    "title": "Blog",
+    "section": "Recent Posts",
+    "text": "Recent Posts"
+  },
+  {
+    "objectID": "blog/C5Biopython.html",
+    "href": "blog/C5Biopython.html",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
   },
   {
-    "objectID": "blog/C6Biopython.html#introduction",
-    "href": "blog/C6Biopython.html#introduction",
+    "objectID": "blog/C5Biopython.html#introduction",
+    "href": "blog/C5Biopython.html#introduction",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
   },
   {
-    "objectID": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
-    "href": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
+    "objectID": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "href": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
     "title": "Reading the Official Biopython Documentation",
-    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
-    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
-  },
-  {
-    "objectID": "blog/C4Biopython.html",
-    "href": "blog/C4Biopython.html",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
-  },
-  {
-    "objectID": "blog/C4Biopython.html#introduction",
-    "href": "blog/C4Biopython.html#introduction",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
-  },
-  {
-    "objectID": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
-    "href": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "Chapter 4 – Sequence Records (SeqRecord)",
-    "text": "Chapter 4 – Sequence Records (SeqRecord)\nyou can interact with meta data using\nfrom Bio.SeqRecord import SeqRecord\n\nsimple_seq_r.id = \"AC12345\"\nsimple_seq_r.description = \"Made up sequence I wish I could write a paper about\"\nprint(simple_seq_r.description)\nannotations. is used for any miscellaneous annotations\nfrom Bio import SeqIO record = SeqIO.read(“NC_005816.fna”, “fasta”) record.description ‘gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence’\nfeature positions within biopython have a few options,\n\nExactPosition as described\nBeforePosition a range of bases before a feature\nWithinPosition between two specified nucleotides\nOneOfPosition one of 2 exact positions\nUnknownPosition as described\n\nLocation testing for SNPs\nfrom Bio import SeqIO\nmy_snp = 4350\nrecord = SeqIO.read(\"NC_005816.gb\", \"genbank\")\nfor feature in record.features:\n    if my_snp in feature:\n        print(\"%s %s\" % (feature.type, feature.qualifiers.get(\"db_xref\")))\n\nsource ['taxon:229193']\ngene ['GeneID:2767712']\nCDS ['GI:45478716', 'GeneID:2767712']\nfrom Bio.Seq import Seq from Bio.SeqRecord import SeqRecord record = SeqRecord( Seq( “MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD” “GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK” “NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM” “SSAC” ), id=“gi|14150838|gb|AAK54648.1|AF376133_1”, description=“chalcone synthase [Cucumis sativus]”, ) print(record.format(“fasta”))"
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html",
-    "href": "blog/2025-06-11_Crispr.html",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "",
-    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html#about",
-    "href": "blog/2025-06-11_Crispr.html#about",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "",
-    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html#background",
-    "href": "blog/2025-06-11_Crispr.html#background",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Background",
-    "text": "Background\n\nCas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands\nCas9 can only bind and cut DNA at sites adjacent to a PAM sequence.\nWild-type enzymes are naturally occurring enzymes"
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
-    "href": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "What they created https://pammla.streamlit.app/",
-    "text": "What they created https://pammla.streamlit.app/\n\nPAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.\nThey trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS\nThey then Sequenced the specific domains, And expressed its biological activity against each AA sequence.\nThis was the data that PAMmla was trained on."
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html#significance",
-    "href": "blog/2025-06-11_Crispr.html#significance",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Significance",
-    "text": "Significance\n\nPAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development."
-  },
-  {
-    "objectID": "blog/2025-06-11_Crispr.html#questions",
-    "href": "blog/2025-06-11_Crispr.html#questions",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Questions",
-    "text": "Questions\n\nI wonder if this technology could be used within oncology on multiple gene targets to design combinatorial editing strategies."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "100daysofcode/Day9.html",
-    "href": "100daysofcode/Day9.html",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
-    "section": "",
-    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
-  },
-  {
-    "objectID": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
-    "href": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
-    "section": "",
-    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
-  },
-  {
-    "objectID": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
-    "href": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
-    "section": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)",
-    "text": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)\n\nGiven: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\n\nimport itertools  # for generating permutations and all sign combinations\nimport math\n\n\"\"\" Core analogy: signed permutations are like an onion.\n# - The outer layer is the ordering (permutation) of the numbers.\n# - The inner layers are the signs applied to each position (±) for that ordering.\n# Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.\n\"\"\"\ndef main():\n    n = 3  # length of the base permutation (1..n)\n    numbers = list(range(1, n + 1))  # [1, 2, ..., n]\n    output_path = \"signed_permutations.txt\"  # output file for results\n\n    # Open the file once for writing; the 'with' ensures it closes automatically\n    with open(output_path, \"w\") as f:\n        # Compute total number of signed permutations:\n        # n! permutations times 2^n choices of sign assignments\n        total = math.factorial(n) * (2 ** n)\n        f.write(f\"{total}\\n\")  # write the count on the first line\n\n        # Outer loop: iterate over all orderings of [1..n] (the outer onion layer)\n        for perm in itertools.permutations(numbers):  # all orderings (n! of them)\n            # Inner loop: for each ordering, apply every combination of +/− to each position\n            for sign_choice in itertools.product([1, -1], repeat=n):  # 2^n sign vectors\n                # Apply sign to each element of the permutation (elementwise multiplication)\n                signed_perm = [sign_choice[i] * perm[i] for i in range(n)]\n                # Format the signed permutation: include '+' explicitly for positives\n                line = \" \".join(f\"{'+' if x &gt; 0 else ''}{x}\" for x in signed_perm)\n                f.write(line + \"\\n\")  # write one signed permutation per line\n\n    # Confirmation output to console\n    print(f\"Wrote {total} signed permutations to {output_path}\")\n\n# Immediately invoke main when script runs\nmain()\n\nWhat I learned:\n\nSigned permutations structure: n!x2^n = Total permutations = n! independent sign flips = 2^n\nAnalogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.\nFormatting: Explicitly include “+” for positive values to make orientation clear.\nuse of intertools"
-  },
-  {
-    "objectID": "100daysofcode/Day7.html",
-    "href": "100daysofcode/Day7.html",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
-    "section": "",
-    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
-  },
-  {
-    "objectID": "100daysofcode/Day7.html#problem-1-overlap-graphs",
-    "href": "100daysofcode/Day7.html#problem-1-overlap-graphs",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
-    "section": "",
-    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
-  },
-  {
-    "objectID": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
-    "href": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
-    "section": "Problem 2: Mortal Fibonacci Rabbits",
-    "text": "Problem 2: Mortal Fibonacci Rabbits\nMy solution\ncounts = [1, 0, 0, 1, 0, 1]\nweights = [1.0, 1.0, 1.0, 0.75, 0.5, 0.0]\n\nexpected_dominant_offspring = sum(2 * count * prob for count, prob in zip(counts, weights))\nprint(expected_dominant_offspring)\n\nWhat I learned:\n\nzip(counts, weights) combines both lists for pairwise computation in the list comprehension."
-  },
-  {
-    "objectID": "100daysofcode/Day5.html",
-    "href": "100daysofcode/Day5.html",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "",
-    "text": "his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython"
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-1-gc-content",
-    "href": "100daysofcode/Day5.html#problem-1-gc-content",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 1: GC Content",
-    "text": "Problem 1: GC Content\nCalculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.\nMy solution\n#https://rosalind.info/problems/gc/\n\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\nfrom Bio.SeqUtils import gc_fraction\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_gc.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\n# Track highest GC content and ID\nmax_gc = 0\nmax_id = \"\"\n# Loop over each record and calculate GC content\nfor record in records:\n    gc = gc_fraction(record.seq) * 100  # get % value\n    if gc &gt; max_gc:\n        max_gc = gc\n        max_id = record.id\n\n# Print results\nprint(max_id)\nprint(f\"{max_gc:.6f}\")\n\nWhat I learned:\n\ngc_fraction from Bio.SeqUtils gives clean GC percentages.\nLooping through SeqIO records helps to process multiple sequences efficiently.\nComparing and tracking values is easy using standard if logic"
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-2-hamming-distance",
-    "href": "100daysofcode/Day5.html#problem-2-hamming-distance",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 2: Hamming Distance",
-    "text": "Problem 2: Hamming Distance\nCompute the number of differing characters between two DNA strings of equal length.\nMy solution\n# https://rosalind.info/problems/hamm/\n\nfrom Bio import SeqIO\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_hamm.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\nfor i in range(len(records)):\n    for j in range(i + 1, len(records)):\n        # Calculate Hamming distance\n        seq1 = records[i].seq\n        seq2 = records[j].seq\n        hamming_distance = sum(el1 != el2 for el1, el2 in zip(seq1, seq2))\n        print(hamming_distance)\n\nWhat I learned:\n\nzip(seq1, seq2) lets you pair corresponding elements.\nThe comparison el1 != el2 returns True for mismatches (which equals 1 when summed).\nsum(...) neatly counts total differences without explicit loops."
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-3-hamming-distance",
-    "href": "100daysofcode/Day5.html#problem-3-hamming-distance",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 3: Hamming Distance",
-    "text": "Problem 3: Hamming Distance\nGiven the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population, compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.\nMy solution\n# https://rosalind.info/problems/iprb/\nAApop = 29\nAapop = 17\naapop = 22\n\ntotalpop = AApop + Aapop + aapop\n\n#                             aA                                          AA                                                 aa                                                   Aa\naaoutcome = ((aapop/totalpop) * ((Aapop)/(totalpop-1))*0.5) + ((Aapop/totalpop) * ((Aapop-1)/(totalpop-1))*0.25) + ((aapop/totalpop) * ((aapop-1)/(totalpop-1))) + ((Aapop/totalpop) * ((aapop)/(totalpop-1))*0.5)\n\n\n\n\nAoutcome = (1 - aaoutcome) * 100\n\n\nprint(f\"{Aoutcome:.2f}% of the offspring will have a dominant allele\")\n\nWhat I learned:\n\nProbability trees help remove errors.\nThe cleanest solution subtracts P(recessive) from 1 to get P(dominant)"
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
-    "href": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 3: Rabbits and Recurrence Relations",
-    "text": "Problem 3: Rabbits and Recurrence Relations\nMy solution\nmonths = 36\nlitter_size = 2\n\nprev = 1  # F(n-2)\ncurr = 1  # F(n-1)\n\nfor _ in range(3, months + 1):\n    next_rabbits = curr + litter_size * prev\n    prev, curr = curr, next_rabbits\n\nprint(months, curr)\n#curr = number of pairs last month (F(n−1)).\n#prev = number of pairs two months ago (F(n−2)).\n\nWhat I learned:\n\nClean recurrence: F(n) = F(n−1) + k * F(n−2)."
-  },
-  {
-    "objectID": "100daysofcode/Day3.html",
-    "href": "100daysofcode/Day3.html",
-    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
-    "section": "",
-    "text": "3 Rosalind Problems – FASTA & Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:\nLocating Restriction Enzymes – Identify reverse palindromic sequences using string manipulation and logic.\nRNA to Protein Translation – Convert an RNA sequence into its corresponding protein chain using .translate().\nRNA Splicing – Parse multi-record FASTA files, remove introns, and translate the resulting exons into protein.\nThese problems build skill in reading FASTA files, using SeqIO, and applying biological logic to string-based sequence analysis. my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
-  },
-  {
-    "objectID": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
-    "href": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
-    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
-    "section": "",
-    "text": "3 Rosalind Problems – FASTA & Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:\nLocating Restriction Enzymes – Identify reverse palindromic sequences using string manipulation and logic.\nRNA to Protein Translation – Convert an RNA sequence into its corresponding protein chain using .translate().\nRNA Splicing – Parse multi-record FASTA files, remove introns, and translate the resulting exons into protein.\nThese problems build skill in reading FASTA files, using SeqIO, and applying biological logic to string-based sequence analysis. my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
-  },
-  {
-    "objectID": "100daysofcode/Day3.html#problem-2-protein-translation",
-    "href": "100daysofcode/Day3.html#problem-2-protein-translation",
-    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
-    "section": "Problem 2: Protein Translation",
-    "text": "Problem 2: Protein Translation\nmy solution\nfrom Bio.Seq import Seq\n\n\nrna_string = \"AUGCUGUUAUUAAUGUGUAUGUCUUUCCGGGGAGUAAUAACUCAACACAAUCCCUCGGAAGGUUUGCUCAAUUGGAUUCCGUCACAUUCAAGCGCCCGUCUCUCUGCCCUAGUGAUCCUCUUCACAACUUAUACGACGGAGCACUCUGUUCUUGCUGACUUAAUAGAUACCGGAUUAGAGCGUUCCGGUAAGGCUUCGACUCUCUACAUAACGAAGUGCUCUGUCAACUCCAUUAGGCCAUCGGCCGGAUAUCUAGACGCAGACAGCUUUUUCAACUUUGAGGAUCGCGUGAAGGUAUCGACUGCGAACUCUCAUAGGGACUGCUUCCUCUUCGCGGGCAUUUAUCGGGUGAUUUGUGUGGGUAGGGGCCUAAGGAAAGUCACCGGGUCCAUACAGACGGGGGUAUUGAUGAUCUUGCGGGGUGGGUCGGACACCAACAGACCCACCGCGACGGUUCUUCUGAUAUUUGGGCAUUACUUGGGUAGGAGCCCUGUGCUAGUGAAUUGCGCGGCCUUGCAAAUAGCGGCAUGCAACGACACUCUAGGAUUUGAAAACCCCUUUACUCGAGAUAGAACGUCACUAGGCACCACUUAUAAGAUCGGGCGCCGACUUUACGCCUCAUCACCUUUAGUCCGGGAGGCGUACAGCUCACUCCAGGCCUGCGGGAUGGAAACUGGACGUUUCGCUCGGCUGGGCAGAUGUUACGCACGUAGUAGGCUAACGACUUGCUACAAGCAAUACCUCCCAGUGGAAGGCAUUGUUGGGGAAGGCCGCUACGCUGACCUGGGCCGGUAUGUCGGCACGCACCCCGCUAACAGUGUUGUAAAGUAUACUUACCAGCGCGCGCUAGGGCCUCGCCGGGUUGUUCUCAAGGGCCACCAUAGAAAACCCCUUAAUCACGUUACACUAUCUCUCCAUGUGGUCGGUGCGGAGAGGGCGAAGUUAGCCUUGGGCAGGCCCCUUCUGAAUUUUGGCCUCUCGUGGGGGGGUCUAAGAUCUACCUGUAGCACAAUACGAGUAAGCAUCUACCCGUGUGCUGAGAUCCUUGCUAUGCGUCACCCUGUUGCCAACCGAAAAGGGGUGGCAGUUCGAAGGUCGCUGUCAUUGGUGGCUUCCCACCCUCGACCCCCGGUAUAUGCUUUAGUGUCACAGCAAGUAAACUCGCUCGCACCCUAUGCUACAUGCAUCCGCAGGGCAGGACCAUCGAUCGGUCGGGUACGGCAACACAAACUGUCCGGUUAUUUCAGGGAGACACUUAACGCCAGAGCCAUGCCUACGGUUGAGAUAUAUUCCCUGUUGCCCAUGACAGAGUCCAAUGACGCUCACGAGCUAUUUAACCCACGAUCGUAUAGACAAUUUUGGACACCGCGACGAAAUACAUUAUUACGACAAAAGAGUUCGCAAACAAGAUCUAUUACCCAUCUAGGAGUUGGUAUUACUCUUAGCGAGGAGCAACUCUGCAACUUCCCAAGGCAGUAUGAGAUCUCUCUUGUGUUGUGUAGUCUCUUCGAUUUGGCCCGAGAUUCAUGCCAUUCGUACCUGCUUUUCUCCCCCCGGGGUUCCGAACGCGGUAUAGGUGUGUCCUACGUUAGACGGAGGACGCGUCGACACGCUUGGGCCCUGGGUCUGUGUAGGGUAGUCUCGGAGAACAUGAUGAGUUUUAGUAGGCGUGUGCCAUACAAGUUGCUGGAGUUCAAAAGUCGUACGUGCCCUCUAAGCCUUGAGACGCGUCAAACCGUAUUUUACCUGUUUGAAACUUCACUGAAUAACGCUAGAUUUGUGCCUAAUCAUUGGAUAGGGCAGCCUGAGCUCGGCGGCCGGCCCACCAUAGGGGCGGAGACUGGAUGUUCGCAAAUCUUGCGGAGCGGAUCGAAGAUCUAUUAUUGUUAUGAAUUUAGCAAAAUAGGGGCACAAAGCAUCAGUCUUUCCGCACCAGCGAGGGCCAGGAGGUCCUACCAAGGUUGUACUGCUGCACCAGCCUCGUUUGGGAAACCUGGUCAUAAUGUGGCGCGUGGUAAUUACUGGUCUUAUGGGUUAAAGCGGCUGUGCAUCUUCUGGUGGCAGGUGGGACGGCGUAUGGUCAGUCCCUGCCGGCUACUGGAAAUUAUACAAGCUCUAUCUGCAGUCGACAAUCGAGGAAAUCCCGGGAUUCAGUCAGUCUUCGGAUCACAAAGUCGUUGGCUCACAGAACGCGUAGCCAAUAAGCAAGUAAGCAAUCUCGCUCGUGCGGCAGCUAACACCAACCUCGAACCAAACGAAGCCGGGCGGGCAAAACACCGUAAACGUGCUGAUGUCCGGGUUUGCAGAACUGUAGAAAAGCGGGCGAUUUGGCUACUCUUUGGUUUUCAAGAGCUACACUGUCAGGCUUUGGUACAACAGAUCGAGACCGGUUUGCUGAGUUGUAGUGCAUAUAAUAUCCUUGCAACUCCGGAUGUUUCUCGUUUUAUACUUACUAAAAUCCGAUUUGUGAUAUUUCUUAGGGAACCGAAUGUAAUCCGCAGAGAGCAAGCGGGUUUCCUAAUAGAAUCGAAGCCUUCACAGAGGCAAGUCAGUGUGAGUGCCAGGCUGAUAGCUUAUACCACACGCGCACGGUACUACUGCAACAAGUGUGAACCGCAGCCGUGCGCUUAUUCCGAGAUUUCCGCCUGCAUACGCAUCCUUCACGGUUCAAGCGAUCGGCAAUCCUCAGCCAUUACCAACUGUAGGGUCAUGCCGAUCAACAAGAUGGGAAUGACAGGCGCACUGCAUAUGGACGCCUCGUCUCGGCUCUCUAAAACUUGGGAGAGCAGCGAGCGACUAGUAGUGUUCAAUUGUUUCACACGUGGAAGGCUUCCAGGUUGUGCAACUACAAGAUCACGCGAACUUCAUACGAAAAACUCAGCCGCUCUUGAUAAUCUCUUAAUUGUAGGACAGCUUCCCCGAACACAGAGUGGGUGUUAUACGCUCGGCAUUAUGCUUUUCCAAGUCAAGGCGGGGUUCGAAGUUCGCAGCUUAUUGGUUUGGCAAGUUGGUACCAGAGACAAGUUAUCCUCUUCGAGUCACGCCACGGAGGGACAGCCGCUGUUCGAACCUCACCGCCCCGAGCAGCUACACCGAUUACACUCCCGCGAACGGGUGCAAUUCGAUCACGCUACGUACGAUUUCAGCAUACCCGUGUCAGAAACGCUAGACGAAGAUGUUAGUGACCGAGGUCCACGUGACAACAUCAGCGGUUCUAGACCGGUUUCAGCGAUUGUCUUCCCAGCCCCUGGCCCGCAUCGAUGUCUCAUCCAGAGUACGGGCGUAUUUUUGGCGGAGGCAGUGGAACUGGUAAUCUUGCUCGAACCCGCCAGGAUAGACGACCCACAUGAGUUCUACGGGACAUCACCUGGAUUUGGUGAACGUUGUUCGGGGAAAACGGAGUGCUCCGAUCGGCAAGCAUGGCGCGACAUCGAUUUUGGAAUCGAUAUGCUUCUUAUUAGUACCUCAAUAGCGGUGGUGGGUGUAUUGCGUGGACUCACGAACAUGGUGUUGAUUUGGGUGUGGCGCCCACAAACUUAUCAUCCAGCCUUGCAGCUUACUAUUAAGGAGCUAUUUUUCUUCGAUAUUUCAUUUUGCUGGCGGUGCCGGAUAAAUUACGCCAAUGAUGAUACGCAGGGCCGCCAAUAUCGCAGAGCGAGAAUCGCCGACACAUAUGCUAACGUCGCAAUACUAUGUCGUGGAAGCUUCGGCACGCAAAGAACCAGUAUCUAUUCUGCCUGCCCACCAAGGUUCCGCUCCACACUCGGGACCUGUGUUUUUUUUCGGCUCAUGAAAGCAAGCGUUAGACUAGCAAUUACGCUCCGCUCUGUGGCCGACUUUCCGUAUGACGUCCUAAUGACGCCGCAGUAUGAAAAUCUGAACUACUAUCGACUUAAUUCGUCCACAUGCGACCGAGCUCUAGCGAUAUUGAUUGCGAGUCGGCAUAGGGUAUUAGGGAGAUGGUUGUCUUGUCUUGUUCAAUUAGCAAUUUGGUCGGGACGAGAUGAUCACGCACCCUGCUUGAGCCCCCUUAAAUCAAAUUCUCCAUGGCAGAGUCGGAAGGGCUGUAAAAUCGGCCUCGUUUCGGACCAAUGGAAGUUCGAUUUGAGCGCGUCGCGGUAUGCGGGCUGGGACGUCGGCUUCGGUACCUCGAGUAUGAGUGUCGUGUCCCCGUUAAUCACAGGGGUGUAUAAUGCGGAAGCGGCCCAGGGGUACUAUUAUGGGAGCGCCCACGGCUUGAGGGUUCGAGUACUUCUACUCAUGAAGGCUCGCCCUUAUAUAGAGCUAGGCGGUAUGCACCUGAUUAUUGCACACCCGCGAUCAUGUGAGUACAAACCUGUUUUGUGGAAGGUACGCCUUAGGGUUUUCCACCUUUGUGCCUCCCGCUUUGGUCGCGGUCGCGGACCGGUCUUGUCCGGACUUGGUUGUGAGCAGUACAUUUCCGUUUCGCCACCCUUCUUAAACAUACUUUGCAACGCGUCAUGUCCCAACGCCGUACUUAAUAAGCGAGGGGGCUGGAUAUGGUUAUUGGUUCCGUCAACUGUAUCAACCACUACAGUUCCCUAUUUGAAAGUCUCUCUCUCACCAGAAGCUACAGUUUUGCUUUCGGUUGGAACACUGCCCGUUCGCACUGGGGAAAGAGUUAUAUCUUUCUCGGGAUGUAACAUGCAGGUCCUGCCUGCUAAAAAGCUUCGUGUUCUUCUUCCACAUGCACAAACAUGGCUGUGUUAUGUGGAUAAGCUCGCAACUUCACUACGGAGAUGCUACUUCUUCUGUCGAUGUUCGGUAAACGAAGGGGUGAAAAUACUAGAGGUACUAUGCCAACAAUUCACGAUAUGCUUUACAUCGUGCGACCCUAGGAGAGGUCUAGUAGGUAUGACUAUCUUCGAUAAUUUUAGUCAAAUGGUGUUUGGGAAGUCCCAAGGGUGGCAUACGCGUAGUGCCCGGUGUUUAAGCUUGGAAGUCUUGCCCUCUAUGGCGAAACGACUCGUGCACCAGUUUUGGCCCGUUAUGAGUUUUAUUGAUACGCAGAACCGGAUCUGGAUGGGACCCUUAAGCCCGGGGACACGAGCCAGAUGGCUCGGGUUAGCGAAGGCGGAGUGCGUCUCCAGCCCGCCCGCAGCGCCGGCUGUGAAAAAUAAUGUGUGUGAGGUCAUAACUUACGCUGGGGACAAGAACAGUGAUCCAGAACGUACAUCUAACUUUCACAGUGUAGACGCGCUCUGGACAAUGUUCCUUGAUGGUAAUGAUCUAUGGGUGGACUAUAUUAACUGUACGCAGGGCGGAGUGUUAUCUACCAGCCGGACGCGAAUCCCCUCAAACAGGUACACUCGUACUCUAAAACCUUCCCACACGCUCGCCGAGCUUGGUCGUCUCCUUACGUGUGGUCAGACCCGGGGUCCCUUUAAUGCCGUGUCACUAGGCAUGGUUACAGAUUACAGUUACAGUGUCGGUGGAACUUUGGCUUCGAAGCUUGUGACCCUGAGUAUCGCACGCAAUGAUUGUAGCCCUCGUCUGGCACUUUUGUUGCUUAUCGUCCUAAGUAACAUAAUACGAUGUUAUCUCGCUACAUCGUUUUCCGUAUACGCCUUUACAUCAGUAUACUCUGAGCAUUGUCCUGUAAAGAUAGAAGUGUCCAGAUGGGGAGCCGCUCCCAGCAUAAGUUGCUGGCUUUUCGGCGAUGCGCGGAGUGAAUUGGCCCCGGAGAAGAAAACGUUAAUACUGGCACCAGUACCAUACUCUGUUCCACUAGUGGAGGAAUCACGGAAAGGAGAUGGUGGGCAAGGUAUAAGACAGAUCGUAGGUGGCUUCAACAGAUGUUUCCUAGGCACACCGUUUCCACGGGCUGAUAUUGUCAUAAUAGGCAACCCCCAUAUCAGUGACGAACCCCGAGCAUGUAUUUCUUCGAACUUCGUGAGUGAAAUUGUCGUGCAAUAUCACCUACGGUCUAAGUGUUUGAUCCUUGAUGCGAUGAGCACGCCGGGGAAGGCUGGCAAAACAGCUAUAUUUGAGCUGACUAUGUGGCCCUCUCCACUAUCUCAAAUGAGUUUCGCUGCUGGAGCGAAGCGCCGGGGCACGAUCGAUCAUCGCCAACUUCCCUCAAUGCUGGCAGGUGGUAGCCUACUGCGCCAUGUUGGUGUUCGUAACGCACGAGGCUUAUCUCCAGUCAUCAAUCCGCGCCACUAUGGGGCAGGUUUCUCGGACGCUGACGAACAACAGAAACUGGCCAGGACGGGCACUAAGGCCCAGAAUGCAGUGGAUGUUGACGAGCACGGCCCUUCCGCCUUCGCGUUCCCUCUCAUACAGUCGCAGAUCGAGCCCAGGACUCCCAAAUGCUCCGCCGGCAUAGUCUGCAUGAAUGUGCAUUGGAUUACACGGCAUAAGGGACCGUCUUCGGUUCUGUAUAAAAAACACUUGAUGGCUCUGCGCUUCGCCAGCAUUCACUCAGGCAUUCGCAGGAUCUUAGAUCUCCGCUUCUUUAGCACACACCCAGCAAUAAUCUUGACCCGAAAGCAGAUCGAUUCGUCGGUCAUUUCGGUCGCAUGGGCGGCACCAUUGUACUUGUGCAAGAGCAUGCUCUUCCAUGGGGGAAGCGCAUGCGAGCACCGGAAUUGGCACAGGCCUCUCAUAAUCGCAAACUCUAGUCCGGAAUUUAACUUUACCUAUGUGCGGAAAUCUUUGUACCUUGAUUGGCAAAUCCUGUACGUACCGUCGAUAACCCGCCCACCAACCCGAUUUCAGGCCGACCACUUUGAAAGGCCAUGCGUCAACGAUUCGCCGAGGACAUGGCGGGUGAACUCUGGCUGCGGAACGGUAUCACUAGCAGUUCUAAGGCAGGGGACUCUGAAAGCUUAUGGUCGGGUCAGUAGCCGUUCCUCACUUUUAAGGAAUGGGAUAAGUUACACGCCCGUGCAGAAGCAGAUCUGCUCGUCCUUGGCUCGGCGUCCGUACAUGACCGGACGACACCCUACAAGUAGCGUGCUUGUGGGUAGUCAGAAAGGAGUUUGGCGGGGAAGAAGGUCUACCGCGAUGCUGUCGCGAAUGAAGCUAUACGAAUCUACCUCAACGAGAAAACCCGGCUCGUACGGCAAUCUAACUUUUCCCCGAUACUUCUCGCCAUACGGAAGGGAUGGAAGCUUAUGGCAACGCGUUGGAUACGCUGGGCGACCUUUGGGCCGGUCAUUUAACGCCAUCUUAUUUCAACAGACGUUCGUGAAAUUAAUGUCCGAGAGGCUCAAAGGUGAGCAGAAUCCCAGAUCCGGUCUUUGUAUCCUGAUUAAGUCACCACCUGGGGGUACUUACGGUUCUGGUACCUGGGGUAGCUCGCCGACGUGGCGGGAAGUCGGGUGCGUAGGUCUCUUUGCGGUGCGCAGUGAUCCACAUGAGGGUAAACUCCUUAGACAGGUAACCGCACACGGUUCGCUAUGGGGAAAAUCCUGGCCAGUGACUCAUAGUUACGAUGUUUUAGGUCUGGUGGACCUAUUCUCAACUGCUAGAAAGUAUACCACUUAUGACAAUACAGAGGGGAGAUCCCAUCGACCGUCCAGAGAAUUGCUCCCUGAUACUUUCAGAAAACAAGGUGGGAGGUAUCGCGAGGUAGUAUUAUAUCGCACCGUUCGAAUAUGUCAUCUGCUGCCCGUGUCGCAGAUAGCGUCCAGAGCACUGGAACCAUGGAAACUUGUUCCAAAAACGGACAUUAUGUUUUGCGUUUUGGAGCAGGUGAAGCGCAUUAUGCCUACGCCAAGGGCGGCGCGGACAAUUCUGCAAUGUGCCAGUAGCGCGCGGGCUGUGCAGAUUGAGACCGGAUGGGCGGCUCGGUCUCAAGAUGAAGCGGGGACCUUAUUGGACCCAGAUCCAUGUUCGACGCUAGCGAUGACAUGGGUGACGCGGGAAUGGCCGCGGCAGAGCUUGGUCUUCUUGAGACAUGGUUCUGAUCACAUUUGUAGGCAAAAGUAUGCCUGGCUGCAAAACACAAUAUUGUAUUCUGAUAAGGUGGCGGUCAUGCGCCAACUGGGACUUGGGCCGGGAGUCCGACACCCUACUGUCCCCCCGAUACGUGAAAGACACGAAGGACCUAGAUACCGGAGAACAUCACAAAACUCGAUAUUACCGGUUCUUUUGGUUCAUAGCCAGCGUGCGGGGACUCUAAUGUUACUUGACAUAGUGAGUAAAUUGAGCACGAUCAGCGAAGGAAGAGUCCUGAACUGUCGGAACGGUCUAUUGGUGUCCAAUGUGGCCCCCCGACAAACGAUCGCCCUAAAUGAGAGCCAGAAGAGACUGGAUAGUUUCCGACGAAUUAUAUCAUUUACAGUGUUGAGCAACUAUCAUGACUAUUUGCCCUACUAUGGAGAGUCAAGUGGACAAGGCGGAGAGGCCUUAUUUGAUGAGGGCAAACCAGUCCGUAAUACAUUUAAGGAAAGCGCCUUCACGAGCGUGCCUUCAGUAACUUCAGGAUAUGUGGACGUUGACACUGCAAAAAUCAUUGUGUGCCUACUUCGUAUGCCAGUAUAUAUACAAGCCUCUUCAGCGGUGAGGGCUAGCCAGCGGAGUUCUGACGCAAUUACCUACUAG\"\n\n# Convert to Seq object\ndna_seq = Seq(rna_string.replace(\"U\", \"T\"))  # Replace 'U' with 'T' to make it DNA\n\n# Translate\nprotein = dna_seq.translate()\n\n# Output the result\nprint(protein)"
-  },
-  {
-    "objectID": "100daysofcode/Day3.html#problem-3-rna-splicing",
-    "href": "100daysofcode/Day3.html#problem-3-rna-splicing",
-    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
-    "section": "Problem 3: RNA Splicing",
-    "text": "Problem 3: RNA Splicing\nmy solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\n# Load FASTA file\nrecords = list(SeqIO.parse(\"rosalind_splc.fasta\", \"fasta\"))\n\n# First record is the DNA with introns\nfull_dna = str(records[0].seq)\n\n# Remaining records are introns\nintrons = [str(rec.seq) for rec in records[1:]]\n\n# Remove all introns from the full sequence\nfor intron in introns:\n    full_dna = full_dna.replace(intron, \"\")\n\n# Transcribe and translate\nrna = Seq(full_dna).transcribe()\nprotein = rna.translate(to_stop=True)\n\nprint(protein)"
-  },
-  {
-    "objectID": "100daysofcode/Day10.html",
-    "href": "100daysofcode/Day10.html",
-    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
-    "section": "",
-    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
-  },
-  {
-    "objectID": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
-    "href": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
-    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
-    "section": "",
-    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
-  },
-  {
-    "objectID": "100daysofcode/Day1.html",
-    "href": "100daysofcode/Day1.html",
-    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
-    "section": "",
-    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
-  },
-  {
-    "objectID": "100daysofcode/Day1.html#github-link",
-    "href": "100daysofcode/Day1.html#github-link",
-    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
-    "section": "",
-    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
-  },
-  {
-    "objectID": "100daysofcode/Day2.html",
-    "href": "100daysofcode/Day2.html",
-    "title": "Day 2: 4 simple rosiland problems",
-    "section": "",
-    "text": "Day 2 is a coding warmup Link provided here"
-  },
-  {
-    "objectID": "100daysofcode/Day4.html",
-    "href": "100daysofcode/Day4.html",
-    "title": "Day 4: Rosalind Problem – Open Reading Frames",
-    "section": "",
-    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))"
-  },
-  {
-    "objectID": "100daysofcode/Day4.html#problem-1-open-reading-frames",
-    "href": "100daysofcode/Day4.html#problem-1-open-reading-frames",
-    "title": "Day 4: Rosalind Problem – Open Reading Frames",
-    "section": "",
-    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))"
-  },
-  {
-    "objectID": "100daysofcode/Day6.html",
-    "href": "100daysofcode/Day6.html",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
-    "section": "",
-    "text": "This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA records."
-  },
-  {
-    "objectID": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
-    "href": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
-    "section": "Problem 1: Mortal Fibonacci Rabbits",
-    "text": "Problem 1: Mortal Fibonacci Rabbits\nSimulated rabbit population growth over 89 months with a fixed lifespan of 18 months.\nmy solution\nn = 89  # Total months\nm = 18  # Lifespan in months\n\ndef mortal_fibonacci(n, m):\n    ages = [1] + [0] * (m - 1) # max array length = m\n\n    for month in range(1, n):\n        new_borns = sum(ages[1:])  # rabbits of age ≥1 can reproduce\n        # Age rabbits: shift right, oldest dies\n        ages = [new_borns] + ages[:-1]\n\n    return sum(ages)\nprint(mortal_fibonacci(n, m))\n\nWhat I learned:\n\nages[1:] ensures only mature rabbits reproduce.\narrays have an interesting usecase due to its max capacity."
-  },
-  {
-    "objectID": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
-    "href": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
-    "section": "Problem 2: Consensus and Profile",
-    "text": "Problem 2: Consensus and Profile\nGiven multiple DNA sequences in FASTA format, construct a profile matrix showing the count of each base at each position, and build a consensus string using the most frequent base at each position. My solution\nfrom Bio import SeqIO\nfrom collections import Counter, defaultdict\n\nrecords = list(SeqIO.parse(\"rosalind_cons1.fasta\", \"fasta\"))\nfull_dna = list(zip(*[str(record.seq) for record in records]))\n\n\nprofile = {\n    'A': [],\n    'C': [],\n    'G': [],\n    'T': []\n}\n\nfor col in full_dna:\n    counts = Counter(col)\n    for base in \"ACGT\":\n        profile[base].append(counts.get(base, 0))\n\nconsensus = \"\"\nfor i in range(len(full_dna)):\n    max_base = max(\"ACGT\", key=lambda base: profile[base][i])\n    consensus += max_base\n\nprint(consensus)\n\nWhat I learned:\n\nzip(*sequences) is a clean Python trick to transpose a matrix (get columns).\nCounter helps efficiently count nucleotides at each position.\nBuilding a consensus string is just choosing the max-count base per column.\nHandling multi-record FASTA files is smoother using SeqIO.parse()."
-  },
-  {
-    "objectID": "100daysofcode/Day8.html",
-    "href": "100daysofcode/Day8.html",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "",
-    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
-  },
-  {
-    "objectID": "100daysofcode/Day8.html#problem-1-independent-alleles",
-    "href": "100daysofcode/Day8.html#problem-1-independent-alleles",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "",
-    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
-  },
-  {
-    "objectID": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
-    "href": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "Problem 2: Finding a Protein Motif",
-    "text": "Problem 2: Finding a Protein Motif\nLocate every occurrence (including overlaps) of the N‑glycosylation motif N{P}[ST]{P} in a set of UniProt sequences.\nMy solution\nfrom Bio import SeqIO\n\ndef get_substrings(s):\n    \"\"\"\n    Generate all possible substrings of the input string s,\n    returning them from longest to shortest.\n\n    Parameters:\n        s (str): The string from which to generate substrings.\n\n    Returns:\n        List[str]: A list of every substring of s, ordered by decreasing length.\n    \"\"\"\n    substrs = []             # Will hold all substrings\n    n = len(s)               # Total length of the string\n\n    # For each possible substring length L from n down to 1\n    for L in range(n, 0, -1):\n        # Slide a window of length L along the string\n        # i goes from 0 up to n - L\n        for i in range(n - L + 1):\n            # Extract the substring of length L starting at i\n            substrs.append(s[i:i + L])\n    return substrs          # Return all substrings, longest first\n\ndef longest_common_substring_bruteforce(records):\n    \"\"\"\n    Find the longest substring common to all sequences in the provided SeqRecord list,\n    using a brute‑force approach.\n\n    \"\"\"\n    # Convert each SeqRecord to a plain Python string\n    seqs = [str(rec.seq) for rec in records]\n\n    # Sort by length so the shortest sequence is first\n    # We only need to generate substrings from the shortest one\n    seqs.sort(key=len)\n    shortest = seqs[0]       # The sequence to pull substrings from\n    others = seqs[1:]        # The rest of the sequences\n\n    # Generate substrings from longest to shortest\n    for sub in get_substrings(shortest):\n        # Check if this substring appears in every other sequence\n        if all(sub in seq for seq in others):\n            return sub       # As soon as one matches all, it's the LCS\n\n    return \"\"  # If no common substring is found (edge case), return empty\n\n\n\n\nif __name__ == \"__main__\":\n    # Parse the FASTA file (make sure the filename matches exactly)\n    records = list(SeqIO.parse(\"rosalind_lcsm (2).fasta\", \"fasta\"))\n\n    # Compute the longest common substring\n    result = longest_common_substring_bruteforce(records)\n\n    # Output the result\n    print(\"Brute‑force LCS:\", result)\n\nWhat I learned:\n\nZero‑width look‑ahead ((?=…)) lets the engine test every offset without skipping—so overlapping motifs (e.g. positions 276 and 278) are both found.\nTranslating PROSITE shorthand (N{P}[ST]{P}) to regex (N[^P][ST][^P]).\nRobust HTTP fetch with raise_for_status() to catch bad accessions early."
-  },
-  {
-    "objectID": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
-    "href": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "Problem 3: Finding a Shared Motif",
-    "text": "Problem 3: Finding a Shared Motif\nIdentify the longest substring common to all sequences in a FASTA file (brute‑force approach).\nMy solution\nimport re\nimport requests\n\"\"\"\n    this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\n\n    \"\"\"\n# Compile the PROSITE motif using a look‑ahead so we catch overlaps\n# (?=(…)) is zero‑width, so the regex engine checks at every position without skipping\nmotif = re.compile(r\"(?=(N[^P][ST][^P]))\")\n\ndef fetch_sequence(accession: str) -&gt; str:\n    \"\"\"\n    Given a UniProt accession (optionally with \"_NAME\" suffix),\n    fetch its protein FASTA from UniProt and return the concatenated sequence.\n    \"\"\"\n    # Strip off anything after the first underscore\n    acc = accession.split(\"_\", 1)[0]\n    url = f\"https://www.uniprot.org/uniprot/{acc}.fasta\"\n    resp = requests.get(url)\n    resp.raise_for_status()\n    lines = resp.text.splitlines()\n    # Skip the header (first line) and join the rest into one sequence string\n    return \"\".join(lines[1:])\n\ndef find_motif_positions(seq: str) -&gt; list[str]:\n    \"\"\"\n    Scan `seq` for the N‑glycosylation motif N{P}[ST]{P},\n    returning all 1‑based start positions (including overlaps).\n    \"\"\"\n    # m.start() is 0‑based, so add 1 for Rosalind’s 1‑based indexing\n    return [str(m.start() + 1) for m in motif.finditer(seq)]\n\ndef main():\n    # Read your list of raw UniProt IDs (one per line) from ids_mprt.txt\n    with open(\"ids_mprt.txt\") as f:\n        raw_ids = [line.strip() for line in f if line.strip()]\n\n    for raw in raw_ids:\n        seq = fetch_sequence(raw)\n        positions = find_motif_positions(seq)\n        if positions:\n            # Print the original raw ID, then the space‑separated positions\n            print(raw)\n            print(\" \".join(positions))\n\nif __name__ == \"__main__\":\n    main()\n\nWhat I learned:\n\nSorting by length ensures we find the longest common substring early and exit."
-  },
-  {
-    "objectID": "100daysofcode/index.html",
-    "href": "100daysofcode/index.html",
-    "title": "100 days of code",
-    "section": "",
-    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
-  },
-  {
-    "objectID": "100daysofcode/index.html#description",
-    "href": "100daysofcode/index.html#description",
-    "title": "100 days of code",
-    "section": "",
-    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html",
-    "href": "blog/2025-05-23_AI in Life Sciences.html",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "",
-    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#about",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#about",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "",
-    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "Key Trends",
-    "text": "Key Trends\n\nAI is moving from discovery to development.\nAI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.\nPharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making)."
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "What’s Holding AI Back in Biology?",
-    "text": "What’s Holding AI Back in Biology?\n\nCurrent issues with Ai in biosciences:\n\n\nReproducibility issues — hard to trust models without transparent workflows.\nLearning curve and training — lack of experience with AI was a significant pain point for many users.\n\nThis resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs."
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "Changes for future adoption",
-    "text": "Changes for future adoption\n\nTransparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.\nTools need to be built with their actual users in mind (biologists)."
+    "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
+    "text": "Chapter 5 – Sequence Input/Output (SeqIO)\nrecord_iterator = SeqIO.parse(\"ls_orchid.gbk\", \"genbank\")\nfirst_record = next(record_iterator)\nprint(first_record)\nPython supports negative indexing for lists: 0 first element -1 last element -2 second-to-last\nalso useful\nfrom Bio import SeqIO record_iterator = SeqIO.parse(“ls_orchid.gbk”, “genbank”) first_record = next(record_iterator) print(first_record)"
   },
   {
     "objectID": "blog/2025-07-24_biopython-reading.html",
@@ -399,94 +140,381 @@
     "text": "Chapter 6 – Sequence Alignments (AlignIO)"
   },
   {
-    "objectID": "blog/C5Biopython.html",
-    "href": "blog/C5Biopython.html",
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html",
+    "href": "blog/2025-05-23_AI in Life Sciences.html",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Key Trends",
+    "text": "Key Trends\n\nAI is moving from discovery to development.\nAI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.\nPharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making)."
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "What’s Holding AI Back in Biology?",
+    "text": "What’s Holding AI Back in Biology?\n\nCurrent issues with Ai in biosciences:\n\n\nReproducibility issues — hard to trust models without transparent workflows.\nLearning curve and training — lack of experience with AI was a significant pain point for many users.\n\nThis resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs."
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Changes for future adoption",
+    "text": "Changes for future adoption\n\nTransparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.\nTools need to be built with their actual users in mind (biologists)."
+  },
+  {
+    "objectID": "100daysofcode/index.html",
+    "href": "100daysofcode/index.html",
+    "title": "100 days of code",
+    "section": "",
+    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
+  },
+  {
+    "objectID": "100daysofcode/index.html#description",
+    "href": "100daysofcode/index.html#description",
+    "title": "100 days of code",
+    "section": "",
+    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
+  },
+  {
+    "objectID": "100daysofcode/Day8.html",
+    "href": "100daysofcode/Day8.html",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "",
+    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
+  },
+  {
+    "objectID": "100daysofcode/Day8.html#problem-1-independent-alleles",
+    "href": "100daysofcode/Day8.html#problem-1-independent-alleles",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "",
+    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
+  },
+  {
+    "objectID": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
+    "href": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "Problem 2: Finding a Protein Motif",
+    "text": "Problem 2: Finding a Protein Motif\nLocate every occurrence (including overlaps) of the N‑glycosylation motif N{P}[ST]{P} in a set of UniProt sequences.\nMy solution\nfrom Bio import SeqIO\n\ndef get_substrings(s):\n    \"\"\"\n    Generate all possible substrings of the input string s,\n    returning them from longest to shortest.\n\n    Parameters:\n        s (str): The string from which to generate substrings.\n\n    Returns:\n        List[str]: A list of every substring of s, ordered by decreasing length.\n    \"\"\"\n    substrs = []             # Will hold all substrings\n    n = len(s)               # Total length of the string\n\n    # For each possible substring length L from n down to 1\n    for L in range(n, 0, -1):\n        # Slide a window of length L along the string\n        # i goes from 0 up to n - L\n        for i in range(n - L + 1):\n            # Extract the substring of length L starting at i\n            substrs.append(s[i:i + L])\n    return substrs          # Return all substrings, longest first\n\ndef longest_common_substring_bruteforce(records):\n    \"\"\"\n    Find the longest substring common to all sequences in the provided SeqRecord list,\n    using a brute‑force approach.\n\n    \"\"\"\n    # Convert each SeqRecord to a plain Python string\n    seqs = [str(rec.seq) for rec in records]\n\n    # Sort by length so the shortest sequence is first\n    # We only need to generate substrings from the shortest one\n    seqs.sort(key=len)\n    shortest = seqs[0]       # The sequence to pull substrings from\n    others = seqs[1:]        # The rest of the sequences\n\n    # Generate substrings from longest to shortest\n    for sub in get_substrings(shortest):\n        # Check if this substring appears in every other sequence\n        if all(sub in seq for seq in others):\n            return sub       # As soon as one matches all, it's the LCS\n\n    return \"\"  # If no common substring is found (edge case), return empty\n\n\n\n\nif __name__ == \"__main__\":\n    # Parse the FASTA file (make sure the filename matches exactly)\n    records = list(SeqIO.parse(\"rosalind_lcsm (2).fasta\", \"fasta\"))\n\n    # Compute the longest common substring\n    result = longest_common_substring_bruteforce(records)\n\n    # Output the result\n    print(\"Brute‑force LCS:\", result)\n\nWhat I learned:\n\nZero‑width look‑ahead ((?=…)) lets the engine test every offset without skipping—so overlapping motifs (e.g. positions 276 and 278) are both found.\nTranslating PROSITE shorthand (N{P}[ST]{P}) to regex (N[^P][ST][^P]).\nRobust HTTP fetch with raise_for_status() to catch bad accessions early."
+  },
+  {
+    "objectID": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
+    "href": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "Problem 3: Finding a Shared Motif",
+    "text": "Problem 3: Finding a Shared Motif\nIdentify the longest substring common to all sequences in a FASTA file (brute‑force approach).\nMy solution\nimport re\nimport requests\n\"\"\"\n    this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\n\n    \"\"\"\n# Compile the PROSITE motif using a look‑ahead so we catch overlaps\n# (?=(…)) is zero‑width, so the regex engine checks at every position without skipping\nmotif = re.compile(r\"(?=(N[^P][ST][^P]))\")\n\ndef fetch_sequence(accession: str) -&gt; str:\n    \"\"\"\n    Given a UniProt accession (optionally with \"_NAME\" suffix),\n    fetch its protein FASTA from UniProt and return the concatenated sequence.\n    \"\"\"\n    # Strip off anything after the first underscore\n    acc = accession.split(\"_\", 1)[0]\n    url = f\"https://www.uniprot.org/uniprot/{acc}.fasta\"\n    resp = requests.get(url)\n    resp.raise_for_status()\n    lines = resp.text.splitlines()\n    # Skip the header (first line) and join the rest into one sequence string\n    return \"\".join(lines[1:])\n\ndef find_motif_positions(seq: str) -&gt; list[str]:\n    \"\"\"\n    Scan `seq` for the N‑glycosylation motif N{P}[ST]{P},\n    returning all 1‑based start positions (including overlaps).\n    \"\"\"\n    # m.start() is 0‑based, so add 1 for Rosalind’s 1‑based indexing\n    return [str(m.start() + 1) for m in motif.finditer(seq)]\n\ndef main():\n    # Read your list of raw UniProt IDs (one per line) from ids_mprt.txt\n    with open(\"ids_mprt.txt\") as f:\n        raw_ids = [line.strip() for line in f if line.strip()]\n\n    for raw in raw_ids:\n        seq = fetch_sequence(raw)\n        positions = find_motif_positions(seq)\n        if positions:\n            # Print the original raw ID, then the space‑separated positions\n            print(raw)\n            print(\" \".join(positions))\n\nif __name__ == \"__main__\":\n    main()\n\nWhat I learned:\n\nSorting by length ensures we find the longest common substring early and exit."
+  },
+  {
+    "objectID": "100daysofcode/Day6.html",
+    "href": "100daysofcode/Day6.html",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "section": "",
+    "text": "This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA records."
+  },
+  {
+    "objectID": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
+    "href": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "section": "Problem 1: Mortal Fibonacci Rabbits",
+    "text": "Problem 1: Mortal Fibonacci Rabbits\nSimulated rabbit population growth over 89 months with a fixed lifespan of 18 months.\nmy solution\nn = 89  # Total months\nm = 18  # Lifespan in months\n\ndef mortal_fibonacci(n, m):\n    ages = [1] + [0] * (m - 1) # max array length = m\n\n    for month in range(1, n):\n        new_borns = sum(ages[1:])  # rabbits of age ≥1 can reproduce\n        # Age rabbits: shift right, oldest dies\n        ages = [new_borns] + ages[:-1]\n\n    return sum(ages)\nprint(mortal_fibonacci(n, m))\n\nWhat I learned:\n\nages[1:] ensures only mature rabbits reproduce.\narrays have an interesting usecase due to its max capacity."
+  },
+  {
+    "objectID": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
+    "href": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "section": "Problem 2: Consensus and Profile",
+    "text": "Problem 2: Consensus and Profile\nGiven multiple DNA sequences in FASTA format, construct a profile matrix showing the count of each base at each position, and build a consensus string using the most frequent base at each position. My solution\nfrom Bio import SeqIO\nfrom collections import Counter, defaultdict\n\nrecords = list(SeqIO.parse(\"rosalind_cons1.fasta\", \"fasta\"))\nfull_dna = list(zip(*[str(record.seq) for record in records]))\n\n\nprofile = {\n    'A': [],\n    'C': [],\n    'G': [],\n    'T': []\n}\n\nfor col in full_dna:\n    counts = Counter(col)\n    for base in \"ACGT\":\n        profile[base].append(counts.get(base, 0))\n\nconsensus = \"\"\nfor i in range(len(full_dna)):\n    max_base = max(\"ACGT\", key=lambda base: profile[base][i])\n    consensus += max_base\n\nprint(consensus)\n\nWhat I learned:\n\nzip(*sequences) is a clean Python trick to transpose a matrix (get columns).\nCounter helps efficiently count nucleotides at each position.\nBuilding a consensus string is just choosing the max-count base per column.\nHandling multi-record FASTA files is smoother using SeqIO.parse()."
+  },
+  {
+    "objectID": "100daysofcode/Day4.html",
+    "href": "100daysofcode/Day4.html",
+    "title": "Day 4: Rosalind Problem – Open Reading Frames",
+    "section": "",
+    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))"
+  },
+  {
+    "objectID": "100daysofcode/Day4.html#problem-1-open-reading-frames",
+    "href": "100daysofcode/Day4.html#problem-1-open-reading-frames",
+    "title": "Day 4: Rosalind Problem – Open Reading Frames",
+    "section": "",
+    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))"
+  },
+  {
+    "objectID": "100daysofcode/Day2.html",
+    "href": "100daysofcode/Day2.html",
+    "title": "Day 1: 4 simple rosiland problems",
+    "section": "",
+    "text": "Day 2 is a coding warmup Link provided here"
+  },
+  {
+    "objectID": "100daysofcode/Day1.html",
+    "href": "100daysofcode/Day1.html",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day1.html#github-link",
+    "href": "100daysofcode/Day1.html#github-link",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day10.html",
+    "href": "100daysofcode/Day10.html",
+    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
+    "section": "",
+    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
+  },
+  {
+    "objectID": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
+    "href": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
+    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
+    "section": "",
+    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
+  },
+  {
+    "objectID": "100daysofcode/Day3.html",
+    "href": "100daysofcode/Day3.html",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "",
+    "text": "3 Rosalind Problems – FASTA & Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:\nLocating Restriction Enzymes – Identify reverse palindromic sequences using string manipulation and logic.\nRNA to Protein Translation – Convert an RNA sequence into its corresponding protein chain using .translate().\nRNA Splicing – Parse multi-record FASTA files, remove introns, and translate the resulting exons into protein.\nThese problems build skill in reading FASTA files, using SeqIO, and applying biological logic to string-based sequence analysis. my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
+    "href": "100daysofcode/Day3.html#problem-1-locating-restriction-enzymes",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "",
+    "text": "3 Rosalind Problems – FASTA & Biopython A multi-part challenge using Biopython and core Python to solve classic sequence analysis problems:\nLocating Restriction Enzymes – Identify reverse palindromic sequences using string manipulation and logic.\nRNA to Protein Translation – Convert an RNA sequence into its corresponding protein chain using .translate().\nRNA Splicing – Parse multi-record FASTA files, remove introns, and translate the resulting exons into protein.\nThese problems build skill in reading FASTA files, using SeqIO, and applying biological logic to string-based sequence analysis. my solution\ndef reverse_complement(seq):\n    complement = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\"}\n    return \"\".join(complement[base] for base in reversed(seq))\n\nfor i in range(len(dna)):\n    for l in range(4, 13):\n        sub = dna[i:i+l]\n        if len(sub) == l and sub == reverse_complement(sub):\n            print(i + 1, l)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-2-protein-translation",
+    "href": "100daysofcode/Day3.html#problem-2-protein-translation",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "Problem 2: Protein Translation",
+    "text": "Problem 2: Protein Translation\nmy solution\nfrom Bio.Seq import Seq\n\n\nrna_string = \"AUGCUGUUAUUAAUGUGUAUGUCUUUCCGGGGAGUAAUAACUCAACACAAUCCCUCGGAAGGUUUGCUCAAUUGGAUUCCGUCACAUUCAAGCGCCCGUCUCUCUGCCCUAGUGAUCCUCUUCACAACUUAUACGACGGAGCACUCUGUUCUUGCUGACUUAAUAGAUACCGGAUUAGAGCGUUCCGGUAAGGCUUCGACUCUCUACAUAACGAAGUGCUCUGUCAACUCCAUUAGGCCAUCGGCCGGAUAUCUAGACGCAGACAGCUUUUUCAACUUUGAGGAUCGCGUGAAGGUAUCGACUGCGAACUCUCAUAGGGACUGCUUCCUCUUCGCGGGCAUUUAUCGGGUGAUUUGUGUGGGUAGGGGCCUAAGGAAAGUCACCGGGUCCAUACAGACGGGGGUAUUGAUGAUCUUGCGGGGUGGGUCGGACACCAACAGACCCACCGCGACGGUUCUUCUGAUAUUUGGGCAUUACUUGGGUAGGAGCCCUGUGCUAGUGAAUUGCGCGGCCUUGCAAAUAGCGGCAUGCAACGACACUCUAGGAUUUGAAAACCCCUUUACUCGAGAUAGAACGUCACUAGGCACCACUUAUAAGAUCGGGCGCCGACUUUACGCCUCAUCACCUUUAGUCCGGGAGGCGUACAGCUCACUCCAGGCCUGCGGGAUGGAAACUGGACGUUUCGCUCGGCUGGGCAGAUGUUACGCACGUAGUAGGCUAACGACUUGCUACAAGCAAUACCUCCCAGUGGAAGGCAUUGUUGGGGAAGGCCGCUACGCUGACCUGGGCCGGUAUGUCGGCACGCACCCCGCUAACAGUGUUGUAAAGUAUACUUACCAGCGCGCGCUAGGGCCUCGCCGGGUUGUUCUCAAGGGCCACCAUAGAAAACCCCUUAAUCACGUUACACUAUCUCUCCAUGUGGUCGGUGCGGAGAGGGCGAAGUUAGCCUUGGGCAGGCCCCUUCUGAAUUUUGGCCUCUCGUGGGGGGGUCUAAGAUCUACCUGUAGCACAAUACGAGUAAGCAUCUACCCGUGUGCUGAGAUCCUUGCUAUGCGUCACCCUGUUGCCAACCGAAAAGGGGUGGCAGUUCGAAGGUCGCUGUCAUUGGUGGCUUCCCACCCUCGACCCCCGGUAUAUGCUUUAGUGUCACAGCAAGUAAACUCGCUCGCACCCUAUGCUACAUGCAUCCGCAGGGCAGGACCAUCGAUCGGUCGGGUACGGCAACACAAACUGUCCGGUUAUUUCAGGGAGACACUUAACGCCAGAGCCAUGCCUACGGUUGAGAUAUAUUCCCUGUUGCCCAUGACAGAGUCCAAUGACGCUCACGAGCUAUUUAACCCACGAUCGUAUAGACAAUUUUGGACACCGCGACGAAAUACAUUAUUACGACAAAAGAGUUCGCAAACAAGAUCUAUUACCCAUCUAGGAGUUGGUAUUACUCUUAGCGAGGAGCAACUCUGCAACUUCCCAAGGCAGUAUGAGAUCUCUCUUGUGUUGUGUAGUCUCUUCGAUUUGGCCCGAGAUUCAUGCCAUUCGUACCUGCUUUUCUCCCCCCGGGGUUCCGAACGCGGUAUAGGUGUGUCCUACGUUAGACGGAGGACGCGUCGACACGCUUGGGCCCUGGGUCUGUGUAGGGUAGUCUCGGAGAACAUGAUGAGUUUUAGUAGGCGUGUGCCAUACAAGUUGCUGGAGUUCAAAAGUCGUACGUGCCCUCUAAGCCUUGAGACGCGUCAAACCGUAUUUUACCUGUUUGAAACUUCACUGAAUAACGCUAGAUUUGUGCCUAAUCAUUGGAUAGGGCAGCCUGAGCUCGGCGGCCGGCCCACCAUAGGGGCGGAGACUGGAUGUUCGCAAAUCUUGCGGAGCGGAUCGAAGAUCUAUUAUUGUUAUGAAUUUAGCAAAAUAGGGGCACAAAGCAUCAGUCUUUCCGCACCAGCGAGGGCCAGGAGGUCCUACCAAGGUUGUACUGCUGCACCAGCCUCGUUUGGGAAACCUGGUCAUAAUGUGGCGCGUGGUAAUUACUGGUCUUAUGGGUUAAAGCGGCUGUGCAUCUUCUGGUGGCAGGUGGGACGGCGUAUGGUCAGUCCCUGCCGGCUACUGGAAAUUAUACAAGCUCUAUCUGCAGUCGACAAUCGAGGAAAUCCCGGGAUUCAGUCAGUCUUCGGAUCACAAAGUCGUUGGCUCACAGAACGCGUAGCCAAUAAGCAAGUAAGCAAUCUCGCUCGUGCGGCAGCUAACACCAACCUCGAACCAAACGAAGCCGGGCGGGCAAAACACCGUAAACGUGCUGAUGUCCGGGUUUGCAGAACUGUAGAAAAGCGGGCGAUUUGGCUACUCUUUGGUUUUCAAGAGCUACACUGUCAGGCUUUGGUACAACAGAUCGAGACCGGUUUGCUGAGUUGUAGUGCAUAUAAUAUCCUUGCAACUCCGGAUGUUUCUCGUUUUAUACUUACUAAAAUCCGAUUUGUGAUAUUUCUUAGGGAACCGAAUGUAAUCCGCAGAGAGCAAGCGGGUUUCCUAAUAGAAUCGAAGCCUUCACAGAGGCAAGUCAGUGUGAGUGCCAGGCUGAUAGCUUAUACCACACGCGCACGGUACUACUGCAACAAGUGUGAACCGCAGCCGUGCGCUUAUUCCGAGAUUUCCGCCUGCAUACGCAUCCUUCACGGUUCAAGCGAUCGGCAAUCCUCAGCCAUUACCAACUGUAGGGUCAUGCCGAUCAACAAGAUGGGAAUGACAGGCGCACUGCAUAUGGACGCCUCGUCUCGGCUCUCUAAAACUUGGGAGAGCAGCGAGCGACUAGUAGUGUUCAAUUGUUUCACACGUGGAAGGCUUCCAGGUUGUGCAACUACAAGAUCACGCGAACUUCAUACGAAAAACUCAGCCGCUCUUGAUAAUCUCUUAAUUGUAGGACAGCUUCCCCGAACACAGAGUGGGUGUUAUACGCUCGGCAUUAUGCUUUUCCAAGUCAAGGCGGGGUUCGAAGUUCGCAGCUUAUUGGUUUGGCAAGUUGGUACCAGAGACAAGUUAUCCUCUUCGAGUCACGCCACGGAGGGACAGCCGCUGUUCGAACCUCACCGCCCCGAGCAGCUACACCGAUUACACUCCCGCGAACGGGUGCAAUUCGAUCACGCUACGUACGAUUUCAGCAUACCCGUGUCAGAAACGCUAGACGAAGAUGUUAGUGACCGAGGUCCACGUGACAACAUCAGCGGUUCUAGACCGGUUUCAGCGAUUGUCUUCCCAGCCCCUGGCCCGCAUCGAUGUCUCAUCCAGAGUACGGGCGUAUUUUUGGCGGAGGCAGUGGAACUGGUAAUCUUGCUCGAACCCGCCAGGAUAGACGACCCACAUGAGUUCUACGGGACAUCACCUGGAUUUGGUGAACGUUGUUCGGGGAAAACGGAGUGCUCCGAUCGGCAAGCAUGGCGCGACAUCGAUUUUGGAAUCGAUAUGCUUCUUAUUAGUACCUCAAUAGCGGUGGUGGGUGUAUUGCGUGGACUCACGAACAUGGUGUUGAUUUGGGUGUGGCGCCCACAAACUUAUCAUCCAGCCUUGCAGCUUACUAUUAAGGAGCUAUUUUUCUUCGAUAUUUCAUUUUGCUGGCGGUGCCGGAUAAAUUACGCCAAUGAUGAUACGCAGGGCCGCCAAUAUCGCAGAGCGAGAAUCGCCGACACAUAUGCUAACGUCGCAAUACUAUGUCGUGGAAGCUUCGGCACGCAAAGAACCAGUAUCUAUUCUGCCUGCCCACCAAGGUUCCGCUCCACACUCGGGACCUGUGUUUUUUUUCGGCUCAUGAAAGCAAGCGUUAGACUAGCAAUUACGCUCCGCUCUGUGGCCGACUUUCCGUAUGACGUCCUAAUGACGCCGCAGUAUGAAAAUCUGAACUACUAUCGACUUAAUUCGUCCACAUGCGACCGAGCUCUAGCGAUAUUGAUUGCGAGUCGGCAUAGGGUAUUAGGGAGAUGGUUGUCUUGUCUUGUUCAAUUAGCAAUUUGGUCGGGACGAGAUGAUCACGCACCCUGCUUGAGCCCCCUUAAAUCAAAUUCUCCAUGGCAGAGUCGGAAGGGCUGUAAAAUCGGCCUCGUUUCGGACCAAUGGAAGUUCGAUUUGAGCGCGUCGCGGUAUGCGGGCUGGGACGUCGGCUUCGGUACCUCGAGUAUGAGUGUCGUGUCCCCGUUAAUCACAGGGGUGUAUAAUGCGGAAGCGGCCCAGGGGUACUAUUAUGGGAGCGCCCACGGCUUGAGGGUUCGAGUACUUCUACUCAUGAAGGCUCGCCCUUAUAUAGAGCUAGGCGGUAUGCACCUGAUUAUUGCACACCCGCGAUCAUGUGAGUACAAACCUGUUUUGUGGAAGGUACGCCUUAGGGUUUUCCACCUUUGUGCCUCCCGCUUUGGUCGCGGUCGCGGACCGGUCUUGUCCGGACUUGGUUGUGAGCAGUACAUUUCCGUUUCGCCACCCUUCUUAAACAUACUUUGCAACGCGUCAUGUCCCAACGCCGUACUUAAUAAGCGAGGGGGCUGGAUAUGGUUAUUGGUUCCGUCAACUGUAUCAACCACUACAGUUCCCUAUUUGAAAGUCUCUCUCUCACCAGAAGCUACAGUUUUGCUUUCGGUUGGAACACUGCCCGUUCGCACUGGGGAAAGAGUUAUAUCUUUCUCGGGAUGUAACAUGCAGGUCCUGCCUGCUAAAAAGCUUCGUGUUCUUCUUCCACAUGCACAAACAUGGCUGUGUUAUGUGGAUAAGCUCGCAACUUCACUACGGAGAUGCUACUUCUUCUGUCGAUGUUCGGUAAACGAAGGGGUGAAAAUACUAGAGGUACUAUGCCAACAAUUCACGAUAUGCUUUACAUCGUGCGACCCUAGGAGAGGUCUAGUAGGUAUGACUAUCUUCGAUAAUUUUAGUCAAAUGGUGUUUGGGAAGUCCCAAGGGUGGCAUACGCGUAGUGCCCGGUGUUUAAGCUUGGAAGUCUUGCCCUCUAUGGCGAAACGACUCGUGCACCAGUUUUGGCCCGUUAUGAGUUUUAUUGAUACGCAGAACCGGAUCUGGAUGGGACCCUUAAGCCCGGGGACACGAGCCAGAUGGCUCGGGUUAGCGAAGGCGGAGUGCGUCUCCAGCCCGCCCGCAGCGCCGGCUGUGAAAAAUAAUGUGUGUGAGGUCAUAACUUACGCUGGGGACAAGAACAGUGAUCCAGAACGUACAUCUAACUUUCACAGUGUAGACGCGCUCUGGACAAUGUUCCUUGAUGGUAAUGAUCUAUGGGUGGACUAUAUUAACUGUACGCAGGGCGGAGUGUUAUCUACCAGCCGGACGCGAAUCCCCUCAAACAGGUACACUCGUACUCUAAAACCUUCCCACACGCUCGCCGAGCUUGGUCGUCUCCUUACGUGUGGUCAGACCCGGGGUCCCUUUAAUGCCGUGUCACUAGGCAUGGUUACAGAUUACAGUUACAGUGUCGGUGGAACUUUGGCUUCGAAGCUUGUGACCCUGAGUAUCGCACGCAAUGAUUGUAGCCCUCGUCUGGCACUUUUGUUGCUUAUCGUCCUAAGUAACAUAAUACGAUGUUAUCUCGCUACAUCGUUUUCCGUAUACGCCUUUACAUCAGUAUACUCUGAGCAUUGUCCUGUAAAGAUAGAAGUGUCCAGAUGGGGAGCCGCUCCCAGCAUAAGUUGCUGGCUUUUCGGCGAUGCGCGGAGUGAAUUGGCCCCGGAGAAGAAAACGUUAAUACUGGCACCAGUACCAUACUCUGUUCCACUAGUGGAGGAAUCACGGAAAGGAGAUGGUGGGCAAGGUAUAAGACAGAUCGUAGGUGGCUUCAACAGAUGUUUCCUAGGCACACCGUUUCCACGGGCUGAUAUUGUCAUAAUAGGCAACCCCCAUAUCAGUGACGAACCCCGAGCAUGUAUUUCUUCGAACUUCGUGAGUGAAAUUGUCGUGCAAUAUCACCUACGGUCUAAGUGUUUGAUCCUUGAUGCGAUGAGCACGCCGGGGAAGGCUGGCAAAACAGCUAUAUUUGAGCUGACUAUGUGGCCCUCUCCACUAUCUCAAAUGAGUUUCGCUGCUGGAGCGAAGCGCCGGGGCACGAUCGAUCAUCGCCAACUUCCCUCAAUGCUGGCAGGUGGUAGCCUACUGCGCCAUGUUGGUGUUCGUAACGCACGAGGCUUAUCUCCAGUCAUCAAUCCGCGCCACUAUGGGGCAGGUUUCUCGGACGCUGACGAACAACAGAAACUGGCCAGGACGGGCACUAAGGCCCAGAAUGCAGUGGAUGUUGACGAGCACGGCCCUUCCGCCUUCGCGUUCCCUCUCAUACAGUCGCAGAUCGAGCCCAGGACUCCCAAAUGCUCCGCCGGCAUAGUCUGCAUGAAUGUGCAUUGGAUUACACGGCAUAAGGGACCGUCUUCGGUUCUGUAUAAAAAACACUUGAUGGCUCUGCGCUUCGCCAGCAUUCACUCAGGCAUUCGCAGGAUCUUAGAUCUCCGCUUCUUUAGCACACACCCAGCAAUAAUCUUGACCCGAAAGCAGAUCGAUUCGUCGGUCAUUUCGGUCGCAUGGGCGGCACCAUUGUACUUGUGCAAGAGCAUGCUCUUCCAUGGGGGAAGCGCAUGCGAGCACCGGAAUUGGCACAGGCCUCUCAUAAUCGCAAACUCUAGUCCGGAAUUUAACUUUACCUAUGUGCGGAAAUCUUUGUACCUUGAUUGGCAAAUCCUGUACGUACCGUCGAUAACCCGCCCACCAACCCGAUUUCAGGCCGACCACUUUGAAAGGCCAUGCGUCAACGAUUCGCCGAGGACAUGGCGGGUGAACUCUGGCUGCGGAACGGUAUCACUAGCAGUUCUAAGGCAGGGGACUCUGAAAGCUUAUGGUCGGGUCAGUAGCCGUUCCUCACUUUUAAGGAAUGGGAUAAGUUACACGCCCGUGCAGAAGCAGAUCUGCUCGUCCUUGGCUCGGCGUCCGUACAUGACCGGACGACACCCUACAAGUAGCGUGCUUGUGGGUAGUCAGAAAGGAGUUUGGCGGGGAAGAAGGUCUACCGCGAUGCUGUCGCGAAUGAAGCUAUACGAAUCUACCUCAACGAGAAAACCCGGCUCGUACGGCAAUCUAACUUUUCCCCGAUACUUCUCGCCAUACGGAAGGGAUGGAAGCUUAUGGCAACGCGUUGGAUACGCUGGGCGACCUUUGGGCCGGUCAUUUAACGCCAUCUUAUUUCAACAGACGUUCGUGAAAUUAAUGUCCGAGAGGCUCAAAGGUGAGCAGAAUCCCAGAUCCGGUCUUUGUAUCCUGAUUAAGUCACCACCUGGGGGUACUUACGGUUCUGGUACCUGGGGUAGCUCGCCGACGUGGCGGGAAGUCGGGUGCGUAGGUCUCUUUGCGGUGCGCAGUGAUCCACAUGAGGGUAAACUCCUUAGACAGGUAACCGCACACGGUUCGCUAUGGGGAAAAUCCUGGCCAGUGACUCAUAGUUACGAUGUUUUAGGUCUGGUGGACCUAUUCUCAACUGCUAGAAAGUAUACCACUUAUGACAAUACAGAGGGGAGAUCCCAUCGACCGUCCAGAGAAUUGCUCCCUGAUACUUUCAGAAAACAAGGUGGGAGGUAUCGCGAGGUAGUAUUAUAUCGCACCGUUCGAAUAUGUCAUCUGCUGCCCGUGUCGCAGAUAGCGUCCAGAGCACUGGAACCAUGGAAACUUGUUCCAAAAACGGACAUUAUGUUUUGCGUUUUGGAGCAGGUGAAGCGCAUUAUGCCUACGCCAAGGGCGGCGCGGACAAUUCUGCAAUGUGCCAGUAGCGCGCGGGCUGUGCAGAUUGAGACCGGAUGGGCGGCUCGGUCUCAAGAUGAAGCGGGGACCUUAUUGGACCCAGAUCCAUGUUCGACGCUAGCGAUGACAUGGGUGACGCGGGAAUGGCCGCGGCAGAGCUUGGUCUUCUUGAGACAUGGUUCUGAUCACAUUUGUAGGCAAAAGUAUGCCUGGCUGCAAAACACAAUAUUGUAUUCUGAUAAGGUGGCGGUCAUGCGCCAACUGGGACUUGGGCCGGGAGUCCGACACCCUACUGUCCCCCCGAUACGUGAAAGACACGAAGGACCUAGAUACCGGAGAACAUCACAAAACUCGAUAUUACCGGUUCUUUUGGUUCAUAGCCAGCGUGCGGGGACUCUAAUGUUACUUGACAUAGUGAGUAAAUUGAGCACGAUCAGCGAAGGAAGAGUCCUGAACUGUCGGAACGGUCUAUUGGUGUCCAAUGUGGCCCCCCGACAAACGAUCGCCCUAAAUGAGAGCCAGAAGAGACUGGAUAGUUUCCGACGAAUUAUAUCAUUUACAGUGUUGAGCAACUAUCAUGACUAUUUGCCCUACUAUGGAGAGUCAAGUGGACAAGGCGGAGAGGCCUUAUUUGAUGAGGGCAAACCAGUCCGUAAUACAUUUAAGGAAAGCGCCUUCACGAGCGUGCCUUCAGUAACUUCAGGAUAUGUGGACGUUGACACUGCAAAAAUCAUUGUGUGCCUACUUCGUAUGCCAGUAUAUAUACAAGCCUCUUCAGCGGUGAGGGCUAGCCAGCGGAGUUCUGACGCAAUUACCUACUAG\"\n\n# Convert to Seq object\ndna_seq = Seq(rna_string.replace(\"U\", \"T\"))  # Replace 'U' with 'T' to make it DNA\n\n# Translate\nprotein = dna_seq.translate()\n\n# Output the result\nprint(protein)"
+  },
+  {
+    "objectID": "100daysofcode/Day3.html#problem-3-rna-splicing",
+    "href": "100daysofcode/Day3.html#problem-3-rna-splicing",
+    "title": "Day 3: 3 Rosiland problems: FASTA and Biopython",
+    "section": "Problem 3: RNA Splicing",
+    "text": "Problem 3: RNA Splicing\nmy solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\n# Load FASTA file\nrecords = list(SeqIO.parse(\"rosalind_splc.fasta\", \"fasta\"))\n\n# First record is the DNA with introns\nfull_dna = str(records[0].seq)\n\n# Remaining records are introns\nintrons = [str(rec.seq) for rec in records[1:]]\n\n# Remove all introns from the full sequence\nfor intron in introns:\n    full_dna = full_dna.replace(intron, \"\")\n\n# Transcribe and translate\nrna = Seq(full_dna).transcribe()\nprotein = rna.translate(to_stop=True)\n\nprint(protein)"
+  },
+  {
+    "objectID": "100daysofcode/Day5.html",
+    "href": "100daysofcode/Day5.html",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "",
+    "text": "his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython"
+  },
+  {
+    "objectID": "100daysofcode/Day5.html#problem-1-gc-content",
+    "href": "100daysofcode/Day5.html#problem-1-gc-content",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 1: GC Content",
+    "text": "Problem 1: GC Content\nCalculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.\nMy solution\n#https://rosalind.info/problems/gc/\n\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\nfrom Bio.SeqUtils import gc_fraction\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_gc.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\n# Track highest GC content and ID\nmax_gc = 0\nmax_id = \"\"\n# Loop over each record and calculate GC content\nfor record in records:\n    gc = gc_fraction(record.seq) * 100  # get % value\n    if gc &gt; max_gc:\n        max_gc = gc\n        max_id = record.id\n\n# Print results\nprint(max_id)\nprint(f\"{max_gc:.6f}\")\n\nWhat I learned:\n\ngc_fraction from Bio.SeqUtils gives clean GC percentages.\nLooping through SeqIO records helps to process multiple sequences efficiently.\nComparing and tracking values is easy using standard if logic"
+  },
+  {
+    "objectID": "100daysofcode/Day5.html#problem-2-hamming-distance",
+    "href": "100daysofcode/Day5.html#problem-2-hamming-distance",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 2: Hamming Distance",
+    "text": "Problem 2: Hamming Distance\nCompute the number of differing characters between two DNA strings of equal length.\nMy solution\n# https://rosalind.info/problems/hamm/\n\nfrom Bio import SeqIO\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_hamm.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\nfor i in range(len(records)):\n    for j in range(i + 1, len(records)):\n        # Calculate Hamming distance\n        seq1 = records[i].seq\n        seq2 = records[j].seq\n        hamming_distance = sum(el1 != el2 for el1, el2 in zip(seq1, seq2))\n        print(hamming_distance)\n\nWhat I learned:\n\nzip(seq1, seq2) lets you pair corresponding elements.\nThe comparison el1 != el2 returns True for mismatches (which equals 1 when summed).\nsum(...) neatly counts total differences without explicit loops."
+  },
+  {
+    "objectID": "100daysofcode/Day5.html#problem-3-hamming-distance",
+    "href": "100daysofcode/Day5.html#problem-3-hamming-distance",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 3: Hamming Distance",
+    "text": "Problem 3: Hamming Distance\nGiven the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population, compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.\nMy solution\n# https://rosalind.info/problems/iprb/\nAApop = 29\nAapop = 17\naapop = 22\n\ntotalpop = AApop + Aapop + aapop\n\n#                             aA                                          AA                                                 aa                                                   Aa\naaoutcome = ((aapop/totalpop) * ((Aapop)/(totalpop-1))*0.5) + ((Aapop/totalpop) * ((Aapop-1)/(totalpop-1))*0.25) + ((aapop/totalpop) * ((aapop-1)/(totalpop-1))) + ((Aapop/totalpop) * ((aapop)/(totalpop-1))*0.5)\n\n\n\n\nAoutcome = (1 - aaoutcome) * 100\n\n\nprint(f\"{Aoutcome:.2f}% of the offspring will have a dominant allele\")\n\nWhat I learned:\n\nProbability trees help remove errors.\nThe cleanest solution subtracts P(recessive) from 1 to get P(dominant)"
+  },
+  {
+    "objectID": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
+    "href": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 3: Rabbits and Recurrence Relations",
+    "text": "Problem 3: Rabbits and Recurrence Relations\nMy solution\nmonths = 36\nlitter_size = 2\n\nprev = 1  # F(n-2)\ncurr = 1  # F(n-1)\n\nfor _ in range(3, months + 1):\n    next_rabbits = curr + litter_size * prev\n    prev, curr = curr, next_rabbits\n\nprint(months, curr)\n#curr = number of pairs last month (F(n−1)).\n#prev = number of pairs two months ago (F(n−2)).\n\nWhat I learned:\n\nClean recurrence: F(n) = F(n−1) + k * F(n−2)."
+  },
+  {
+    "objectID": "100daysofcode/Day7.html",
+    "href": "100daysofcode/Day7.html",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "section": "",
+    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
+  },
+  {
+    "objectID": "100daysofcode/Day7.html#problem-1-overlap-graphs",
+    "href": "100daysofcode/Day7.html#problem-1-overlap-graphs",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "section": "",
+    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
+  },
+  {
+    "objectID": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
+    "href": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "section": "Problem 2: Mortal Fibonacci Rabbits",
+    "text": "Problem 2: Mortal Fibonacci Rabbits\nMy solution\ncounts = [1, 0, 0, 1, 0, 1]\nweights = [1.0, 1.0, 1.0, 0.75, 0.5, 0.0]\n\nexpected_dominant_offspring = sum(2 * count * prob for count, prob in zip(counts, weights))\nprint(expected_dominant_offspring)\n\nWhat I learned:\n\nzip(counts, weights) combines both lists for pairwise computation in the list comprehension."
+  },
+  {
+    "objectID": "100daysofcode/Day9.html",
+    "href": "100daysofcode/Day9.html",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "section": "",
+    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
+  },
+  {
+    "objectID": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
+    "href": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "section": "",
+    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
+  },
+  {
+    "objectID": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
+    "href": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "section": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)",
+    "text": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)\n\nGiven: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\n\nimport itertools  # for generating permutations and all sign combinations\nimport math\n\n\"\"\" Core analogy: signed permutations are like an onion.\n# - The outer layer is the ordering (permutation) of the numbers.\n# - The inner layers are the signs applied to each position (±) for that ordering.\n# Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.\n\"\"\"\ndef main():\n    n = 3  # length of the base permutation (1..n)\n    numbers = list(range(1, n + 1))  # [1, 2, ..., n]\n    output_path = \"signed_permutations.txt\"  # output file for results\n\n    # Open the file once for writing; the 'with' ensures it closes automatically\n    with open(output_path, \"w\") as f:\n        # Compute total number of signed permutations:\n        # n! permutations times 2^n choices of sign assignments\n        total = math.factorial(n) * (2 ** n)\n        f.write(f\"{total}\\n\")  # write the count on the first line\n\n        # Outer loop: iterate over all orderings of [1..n] (the outer onion layer)\n        for perm in itertools.permutations(numbers):  # all orderings (n! of them)\n            # Inner loop: for each ordering, apply every combination of +/− to each position\n            for sign_choice in itertools.product([1, -1], repeat=n):  # 2^n sign vectors\n                # Apply sign to each element of the permutation (elementwise multiplication)\n                signed_perm = [sign_choice[i] * perm[i] for i in range(n)]\n                # Format the signed permutation: include '+' explicitly for positives\n                line = \" \".join(f\"{'+' if x &gt; 0 else ''}{x}\" for x in signed_perm)\n                f.write(line + \"\\n\")  # write one signed permutation per line\n\n    # Confirmation output to console\n    print(f\"Wrote {total} signed permutations to {output_path}\")\n\n# Immediately invoke main when script runs\nmain()\n\nWhat I learned:\n\nSigned permutations structure: n!x2^n = Total permutations = n! independent sign flips = 2^n\nAnalogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.\nFormatting: Explicitly include “+” for positive values to make orientation clear.\nuse of intertools"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html",
+    "href": "blog/2025-06-11_Crispr.html",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#about",
+    "href": "blog/2025-06-11_Crispr.html#about",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "",
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#background",
+    "href": "blog/2025-06-11_Crispr.html#background",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Background",
+    "text": "Background\n\nCas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands\nCas9 can only bind and cut DNA at sites adjacent to a PAM sequence.\nWild-type enzymes are naturally occurring enzymes"
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "href": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "What they created https://pammla.streamlit.app/",
+    "text": "What they created https://pammla.streamlit.app/\n\nPAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.\nThey trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS\nThey then Sequenced the specific domains, And expressed its biological activity against each AA sequence.\nThis was the data that PAMmla was trained on."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#significance",
+    "href": "blog/2025-06-11_Crispr.html#significance",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Significance",
+    "text": "Significance\n\nPAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#questions",
+    "href": "blog/2025-06-11_Crispr.html#questions",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Questions",
+    "text": "Questions\n\nI wonder if this technology could be used within oncology on multiple gene targets to design combinatorial editing strategies."
+  },
+  {
+    "objectID": "blog/C4Biopython.html",
+    "href": "blog/C4Biopython.html",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#introduction",
+    "href": "blog/C4Biopython.html#introduction",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "href": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "Chapter 4 – Sequence Records (SeqRecord)",
+    "text": "Chapter 4 – Sequence Records (SeqRecord)\nyou can interact with meta data using\nfrom Bio.SeqRecord import SeqRecord\n\nsimple_seq_r.id = \"AC12345\"\nsimple_seq_r.description = \"Made up sequence I wish I could write a paper about\"\nprint(simple_seq_r.description)\nannotations. is used for any miscellaneous annotations\nfrom Bio import SeqIO record = SeqIO.read(“NC_005816.fna”, “fasta”) record.description ‘gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence’\nfeature positions within biopython have a few options,\n\nExactPosition as described\nBeforePosition a range of bases before a feature\nWithinPosition between two specified nucleotides\nOneOfPosition one of 2 exact positions\nUnknownPosition as described\n\nLocation testing for SNPs\nfrom Bio import SeqIO\nmy_snp = 4350\nrecord = SeqIO.read(\"NC_005816.gb\", \"genbank\")\nfor feature in record.features:\n    if my_snp in feature:\n        print(\"%s %s\" % (feature.type, feature.qualifiers.get(\"db_xref\")))\n\nsource ['taxon:229193']\ngene ['GeneID:2767712']\nCDS ['GI:45478716', 'GeneID:2767712']\nfrom Bio.Seq import Seq from Bio.SeqRecord import SeqRecord record = SeqRecord( Seq( “MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD” “GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK” “NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM” “SSAC” ), id=“gi|14150838|gb|AAK54648.1|AF376133_1”, description=“chalcone synthase [Cucumis sativus]”, ) print(record.format(“fasta”))"
+  },
+  {
+    "objectID": "blog/C6Biopython.html",
+    "href": "blog/C6Biopython.html",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
   },
   {
-    "objectID": "blog/C5Biopython.html#introduction",
-    "href": "blog/C5Biopython.html#introduction",
+    "objectID": "blog/C6Biopython.html#introduction",
+    "href": "blog/C6Biopython.html#introduction",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
   },
   {
-    "objectID": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
-    "href": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "objectID": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
+    "href": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
     "title": "Reading the Official Biopython Documentation",
-    "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
-    "text": "Chapter 5 – Sequence Input/Output (SeqIO)\nrecord_iterator = SeqIO.parse(\"ls_orchid.gbk\", \"genbank\")\nfirst_record = next(record_iterator)\nprint(first_record)\nPython supports negative indexing for lists: 0 first element -1 last element -2 second-to-last\nalso useful\nfrom Bio import SeqIO record_iterator = SeqIO.parse(“ls_orchid.gbk”, “genbank”) first_record = next(record_iterator) print(first_record)"
+    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
+    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
   },
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ZackBioData",
     "section": "",
-    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+    "text": "This website aims to be way to track progress and reinforce learning as i go\n🔗 Logbook — Casual notes, ideas, and progress from daily work and study\n🔗 Blog — Occasional deeper dives into tools, projects, or topics I’m exploring\n🔗 Daily Coding — A dedicated journey to improve coding skills every day for 100 consecutive days\n\n\n\nRecent posts\n\nLearning Bulk RNA-seq and eventually single-cell RNA-seq\nStudying machine learning with Python and scikit-learn\n\nThanks for visiting!"
   },
   {
-    "objectID": "blog/index.html#what-i-will-blog",
-    "href": "blog/index.html#what-i-will-blog",
-    "title": "Blog",
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html",
+    "href": "log/2025-08-04_MPb-geneticvariants.html",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "",
-    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+    "text": "The goal of this mini-project is to identify genetic variants that might impair calcium-buffering capacity in cancer cells specifically those that could make them more vulnerable to calcium overload triggered by Mastoparan B.\nMastoparan B is known to destabilise the plasma membrane, leading to a spike in intracellular calcium. If certain genes responsible for calcium homeostasis (e.g. PCP4, ATP2B1, BCL2) are disrupted by mutations, it could tip the balance and push the cell toward apoptosis.\nThis is an early-stage exploration of that hypothesis."
   },
   {
-    "objectID": "blog/index.html#recent-posts",
-    "href": "blog/index.html#recent-posts",
-    "title": "Blog",
-    "section": "Recent Posts",
-    "text": "Recent Posts"
-  },
-  {
-    "objectID": "log/2025-05-23_prostate-limma.html",
-    "href": "log/2025-05-23_prostate-limma.html",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#project-summary",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#project-summary",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "",
-    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
+    "text": "The goal of this mini-project is to identify genetic variants that might impair calcium-buffering capacity in cancer cells specifically those that could make them more vulnerable to calcium overload triggered by Mastoparan B.\nMastoparan B is known to destabilise the plasma membrane, leading to a spike in intracellular calcium. If certain genes responsible for calcium homeostasis (e.g. PCP4, ATP2B1, BCL2) are disrupted by mutations, it could tip the balance and push the cell toward apoptosis.\nThis is an early-stage exploration of that hypothesis."
   },
   {
-    "objectID": "log/2025-05-23_prostate-limma.html#project-summary",
-    "href": "log/2025-05-23_prostate-limma.html#project-summary",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "",
-    "text": "In this analysis, I used bulk RNA sequencing (microarray data) from the public GEO dataset GSE6919 to investigate differences in gene expression between cancerous and healthy prostate tissues.\nThe aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery."
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#methods-overview",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#methods-overview",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "Methods Overview",
+    "text": "Methods Overview\n\nInput: Local ClinVar VCF file (clinvar.vcf)\nApproach: String filter by GENEINFO for genes of interest\nLanguages: Python 3.11, basic file handling\nGoal: Print out pathogenic or reviewed variants in relevant calcium-buffering genes\n\n\nGene panel (early draft)\n\nPCP4 — Calmodulin modulator, neuron-like buffering\nATP2B1 — PMCA1 calcium efflux pump\nBCL2 — Anti-apoptotic, links calcium and mitochondrial integrity\nVDAC1 — Mitochondrial membrane permeability\nRYR1 — Ryanodine receptor; ER calcium release\nMYC - Regulator of glycolysis - drives warburg phenotype"
   },
   {
-    "objectID": "log/2025-05-23_prostate-limma.html#methods-overview",
-    "href": "log/2025-05-23_prostate-limma.html#methods-overview",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "🔧 Methods Overview",
-    "text": "🔧 Methods Overview\nThe analysis was performed in R using the following packages:\n\nGEOquery — to load expression and metadata\n\nlimma — for linear modeling of microarray data\n\ntidyverse — for data wrangling and exploration\n\nclusterProfiler, org.Hs.eg.db — for GO enrichment analysis\n\n\nKey steps:\n\nDownloaded GSE6919 and extracted the expression matrix\n\nCleaned and labeled metadata (e.g. tumor vs. normal)\n\nFit a linear model using limma and contrasted tumor vs. normal\n\nExtracted top upregulated and downregulated genes\n\nPerformed GO enrichment to interpret biological meaning"
-  },
-  {
-    "objectID": "log/2025-05-23_prostate-limma.html#differential-expression-results",
-    "href": "log/2025-05-23_prostate-limma.html#differential-expression-results",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "📊 Differential Expression Results",
-    "text": "📊 Differential Expression Results\n\nVolcano Plot X axis is change in expression and y value is significance.\n\n\n\nVolcano plot showing DEGs in prostate cancer\n\n\nThis volcano plot shows the spread of differentially expressed genes between tumor and normal tissues. Genes with high log fold-change and low p-values are highlighted.\nThis version of the volcano plot contains unfiltered or duplicated gene symbols and extreme values resulted in alot of messy invalid data scewing graph scale and bad gene labels such as GAPDH.1 and ACTB.1."
-  },
-  {
-    "objectID": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
-    "href": "log/2025-05-23_prostate-limma.html#go-enrichment-analysis",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "📘 GO Enrichment Analysis",
-    "text": "📘 GO Enrichment Analysis\n\n🧪 Enriched Biological Processes\n\n\n\n\n\n\n\n\n\n\nGO ID\nBiological Process\nGene Ratio\nAdjusted P-value\nGene Count\n\n\n\n\nGO:0045765\nRegulation of angiogenesis\n11/88\n0.00111\n11\n\n\nGO:1901342\nRegulation of vasculature development\n11/88\n0.00111\n11\n\n\nGO:0002696\nPositive regulation of leukocyte activation\n10/88\n0.00572\n10\n\n\nGO:0050867\nPositive regulation of cell activation\n10/88\n0.00677\n10\n\n\nGO:0051251\nPositive regulation of lymphocyte activation\n9/88\n0.00902\n9\n\n\nGO:0045766\nPositive regulation of angiogenesis\n7/88\n0.00902\n7\n\n\nGO:1904018\nPositive regulation of vasculature development\n7/88\n0.00902\n7\n\n\nGO:0050878\nRegulation of body fluid levels\n9/88\n0.01740\n9\n\n\nGO:0045785\nPositive regulation of cell adhesion\n10/88\n0.02360\n10\n\n\nGO:0050870\nPositive regulation of T cell activation\n7/88\n0.04120\n7\n\n\n\n\n\n\n📊 GO Enrichment Bar Chart\n\n\n\nTop GO terms for prostate cancer DEGs\n\n\nThis bar chart shows the top GO Biological Process categories enriched in the DEGs. Angiogenesis, immune activation, and vasculature development were particularly prominent.\n\n\n\n🧬 Genes contributing to enriched biological processes\nRegulation of angiogenesis\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nRegulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1\nPositive regulation of angiogenesis\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1\nPositive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1"
-  },
-  {
-    "objectID": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
-    "href": "log/2025-05-23_prostate-limma.html#lessons-learned-for-myself",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "🧾Lessons Learned for myself",
-    "text": "🧾Lessons Learned for myself\nPlots didn’t save → forgot ggsave(). Used ggsave(“figures/Volcanoplot.jpg”) and made sure the folder path was right.\nPlots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.\nenrichplot::barplot() didn’t work → Just use barplot() without enrichplot:: prefix.\nPNG wouldn’t load → renamed .png and re-saved properly. Hosted on Imgur as backup.\nHad to clean probe → gene symbol mapping → mapIds() gave NAs. Filtered out before topTable / enrichment.\nSaved a bunch of useful code in .Rhistory — rescued a lot from there when I thought it was lost."
-  },
-  {
-    "objectID": "log/2025-05-23_prostate-limma.html#notes",
-    "href": "log/2025-05-23_prostate-limma.html#notes",
-    "title": "Prostate Cancer DEG Analysis (GSE6919)",
-    "section": "🧾 Notes",
-    "text": "🧾 Notes\nFull list of gene contribution regulation of angiogenesis STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG regulation of vasculature development\nSTAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG positive regulation of angiogenesis PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B positive regulation of vasculature development\nPAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B"
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#code-snippet",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#code-snippet",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "Code Snippet",
+    "text": "Code Snippet\noutput_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\", encoding=\"utf-8\")\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n    genes_of_interest = [\"PCP4\", \"BCL2\", \"ATP2B1\", \"VDAC1\", \"RYR1\"]\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        for gene in genes_of_interest:\n            if f\"GENEINFO={gene}\" in info:\n                info_dict = dict(item.split(\"=\") for item in info.split(\";\") if \"=\" in item)\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n\nout.close()\n##Output Example\n1:161284466 G&gt;A\n   Gene: PCP4\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\n\n2:111123784 C&gt;T\n   Gene: BCL2\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\nCurrent outputs only provides unreviewed untilted point mutations.\n##Interpretation and Context\nRight now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.\nVariants in calcium-buffering genes might:\nReduce calcium export or sequestration\nIncrease membrane fragility or ER stress\nAccelerate the death response after a calcium spike\nThis could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.\n##Limitations + Future Add-ons\n\nNo frame shift or missense classification yet\nDoesn’t look at protein domains (e.g. calmodulin-binding)\nNo integration with ENSEMBL VEP or SnpEff\nNo filtering by ClinVar significance beyond string match\nAdd more genes resulting in warburg effect\n\n##What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach"
   }
 ]

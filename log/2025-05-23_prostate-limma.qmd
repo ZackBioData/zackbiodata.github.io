@@ -7,7 +7,7 @@ format:
     code-fold: true
 ---
 
-## 🧬 Project Summary
+## Project Summary
 
 In this analysis, I used **bulk RNA sequencing (microarray data)** from the public GEO dataset **[GSE6919](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE6919)** to investigate differences in gene expression between **cancerous and healthy prostate tissues**.
 
@@ -15,7 +15,7 @@ The aim was to identify differentially expressed genes (DEGs) that could point t
 
 ---
 
-## 🔧 Methods Overview
+## Methods Overview
 
 The analysis was performed in **R** using the following packages:
 
@@ -34,7 +34,7 @@ The analysis was performed in **R** using the following packages:
 
 ---
 
-## 📊 Differential Expression Results
+## Differential Expression Results
 
 ##### Volcano Plot X axis is change in expression and y value is significance.
 
@@ -47,9 +47,9 @@ This version of the volcano plot contains unfiltered or duplicated gene symbols 
 
 ---
 
-## 📘 GO Enrichment Analysis
+## GO Enrichment Analysis
 
-### 🧪 Enriched Biological Processes
+### Enriched Biological Processes
 
 | GO ID      | Biological Process                             | Gene Ratio | Adjusted P-value | Gene Count |
 |:----------:|:-----------------------------------------------|:-----------|-----------------:|-----------:|
@@ -67,7 +67,7 @@ This version of the volcano plot contains unfiltered or duplicated gene symbols 
 ---
 
 
-### 📊 GO Enrichment Bar Chart
+### GO Enrichment Bar Chart
 
 ![Top GO terms for prostate cancer DEGs](https://i.imgur.com/LI4YfFG.png)
 
@@ -75,7 +75,7 @@ This bar chart shows the top GO Biological Process categories enriched in the DE
 
 ---
 
-### 🧬 Genes contributing to enriched biological processes
+### Genes contributing to enriched biological processes
 
 **Regulation of angiogenesis**  
 `STAB1`, `PAK4`, `NPR1`, `PRKD2`, `SASH1`, `WNK1`
@@ -91,7 +91,7 @@ This bar chart shows the top GO Biological Process categories enriched in the DE
 
 ---
 
-## 🧾Lessons Learned for myself
+## Lessons Learned for myself
 
 
 Plots didn’t save → forgot ggsave(). Used ggsave("figures/Volcanoplot.jpg") and made sure the folder path was right.
@@ -108,7 +108,7 @@ Saved a bunch of useful code in .Rhistory — rescued a lot from there when I th
 
 ---
 
-## 🧾 Notes
+## Notes
 
 Full list of gene contribution
 regulation of angiogenesis

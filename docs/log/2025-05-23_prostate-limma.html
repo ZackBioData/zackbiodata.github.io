@@ -117,20 +117,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">🧬 Project Summary</a></li>
-  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">🔧 Methods Overview</a>
+  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">Project Summary</a></li>
+  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">Methods Overview</a>
   <ul class="collapse">
   <li><a href="#key-steps" id="toc-key-steps" class="nav-link" data-scroll-target="#key-steps">Key steps:</a></li>
   </ul></li>
-  <li><a href="#differential-expression-results" id="toc-differential-expression-results" class="nav-link" data-scroll-target="#differential-expression-results">📊 Differential Expression Results</a></li>
-  <li><a href="#go-enrichment-analysis" id="toc-go-enrichment-analysis" class="nav-link" data-scroll-target="#go-enrichment-analysis">📘 GO Enrichment Analysis</a>
+  <li><a href="#differential-expression-results" id="toc-differential-expression-results" class="nav-link" data-scroll-target="#differential-expression-results">Differential Expression Results</a></li>
+  <li><a href="#go-enrichment-analysis" id="toc-go-enrichment-analysis" class="nav-link" data-scroll-target="#go-enrichment-analysis">GO Enrichment Analysis</a>
   <ul class="collapse">
-  <li><a href="#enriched-biological-processes" id="toc-enriched-biological-processes" class="nav-link" data-scroll-target="#enriched-biological-processes">🧪 Enriched Biological Processes</a></li>
-  <li><a href="#go-enrichment-bar-chart" id="toc-go-enrichment-bar-chart" class="nav-link" data-scroll-target="#go-enrichment-bar-chart">📊 GO Enrichment Bar Chart</a></li>
-  <li><a href="#genes-contributing-to-enriched-biological-processes" id="toc-genes-contributing-to-enriched-biological-processes" class="nav-link" data-scroll-target="#genes-contributing-to-enriched-biological-processes">🧬 Genes contributing to enriched biological processes</a></li>
+  <li><a href="#enriched-biological-processes" id="toc-enriched-biological-processes" class="nav-link" data-scroll-target="#enriched-biological-processes">Enriched Biological Processes</a></li>
+  <li><a href="#go-enrichment-bar-chart" id="toc-go-enrichment-bar-chart" class="nav-link" data-scroll-target="#go-enrichment-bar-chart">GO Enrichment Bar Chart</a></li>
+  <li><a href="#genes-contributing-to-enriched-biological-processes" id="toc-genes-contributing-to-enriched-biological-processes" class="nav-link" data-scroll-target="#genes-contributing-to-enriched-biological-processes">Genes contributing to enriched biological processes</a></li>
   </ul></li>
-  <li><a href="#lessons-learned-for-myself" id="toc-lessons-learned-for-myself" class="nav-link" data-scroll-target="#lessons-learned-for-myself">🧾Lessons Learned for myself</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">🧾 Notes</a></li>
+  <li><a href="#lessons-learned-for-myself" id="toc-lessons-learned-for-myself" class="nav-link" data-scroll-target="#lessons-learned-for-myself">Lessons Learned for myself</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -163,13 +163,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="project-summary">🧬 Project Summary</h2>
+<h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
 <p>In this analysis, I used <strong>bulk RNA sequencing (microarray data)</strong> from the public GEO dataset <strong><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE6919">GSE6919</a></strong> to investigate differences in gene expression between <strong>cancerous and healthy prostate tissues</strong>.</p>
 <p>The aim was to identify differentially expressed genes (DEGs) that could point to disrupted biological processes in prostate cancer, especially with a view toward metabolic shifts or biomarker discovery.</p>
 <hr>
 </section>
 <section id="methods-overview" class="level2">
-<h2 class="anchored" data-anchor-id="methods-overview">🔧 Methods Overview</h2>
+<h2 class="anchored" data-anchor-id="methods-overview">Methods Overview</h2>
 <p>The analysis was performed in <strong>R</strong> using the following packages:</p>
 <ul>
 <li><code>GEOquery</code> — to load expression and metadata<br>
@@ -197,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 <section id="differential-expression-results" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-results">📊 Differential Expression Results</h2>
+<h2 class="anchored" data-anchor-id="differential-expression-results">Differential Expression Results</h2>
 <section id="volcano-plot-x-axis-is-change-in-expression-and-y-value-is-significance." class="level5">
 <h5 class="anchored" data-anchor-id="volcano-plot-x-axis-is-change-in-expression-and-y-value-is-significance.">Volcano Plot X axis is change in expression and y value is significance.</h5>
 <div class="quarto-figure quarto-figure-center">
@@ -212,9 +212,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 <section id="go-enrichment-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="go-enrichment-analysis">📘 GO Enrichment Analysis</h2>
+<h2 class="anchored" data-anchor-id="go-enrichment-analysis">GO Enrichment Analysis</h2>
 <section id="enriched-biological-processes" class="level3">
-<h3 class="anchored" data-anchor-id="enriched-biological-processes">🧪 Enriched Biological Processes</h3>
+<h3 class="anchored" data-anchor-id="enriched-biological-processes">Enriched Biological Processes</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 11%">
@@ -308,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="go-enrichment-bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="go-enrichment-bar-chart">📊 GO Enrichment Bar Chart</h3>
+<h3 class="anchored" data-anchor-id="go-enrichment-bar-chart">GO Enrichment Bar Chart</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://i.imgur.com/LI4YfFG.png" class="img-fluid figure-img"></p>
@@ -319,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="genes-contributing-to-enriched-biological-processes" class="level3">
-<h3 class="anchored" data-anchor-id="genes-contributing-to-enriched-biological-processes">🧬 Genes contributing to enriched biological processes</h3>
+<h3 class="anchored" data-anchor-id="genes-contributing-to-enriched-biological-processes">Genes contributing to enriched biological processes</h3>
 <p><strong>Regulation of angiogenesis</strong><br>
 <code>STAB1</code>, <code>PAK4</code>, <code>NPR1</code>, <code>PRKD2</code>, <code>SASH1</code>, <code>WNK1</code></p>
 <p><strong>Regulation of vasculature development</strong><br>
@@ -332,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 <section id="lessons-learned-for-myself" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-learned-for-myself">🧾Lessons Learned for myself</h2>
+<h2 class="anchored" data-anchor-id="lessons-learned-for-myself">Lessons Learned for myself</h2>
 <p>Plots didn’t save → forgot ggsave(). Used ggsave(“figures/Volcanoplot.jpg”) and made sure the folder path was right.</p>
 <p>Plots didn’t render in site → wrong relative path. Switched to log/figures/ and renamed files cleanly.</p>
 <p>enrichplot::barplot() didn’t work → Just use barplot() without enrichplot:: prefix.</p>
@@ -342,7 +342,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">🧾 Notes</h2>
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <p>Full list of gene contribution regulation of angiogenesis STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG regulation of vasculature development<br>
 STAB1, PAK4, NPR1, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B, PPP1R16B, HRG positive regulation of angiogenesis PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B positive regulation of vasculature development<br>
 PAK4, PRKD2, SASH1, WNK1, CD40, PDPK1, IL1B</p>
