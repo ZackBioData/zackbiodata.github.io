@@ -3,7 +3,7 @@ title: "Day 4: Rosalind Problem – Open Reading Frames"
 subtitle: "Reverse Complements · Transcription · Protein Extraction"
 date: 2025-07-25
 image: ../images/100daysofcode/rosiland.png
-categories: [Biopython, FASTA Parsing, ORFs, Rosalind]
+categories: [Biopython, FASTA Parsing, ORFs, Rosiland]
 html:
   toc: true
   code-fold: true
@@ -53,7 +53,7 @@ all_proteins = forward_proteins.union(reverse_proteins)
 print("\n".join(all_proteins))
 ```
 
-# What i learned:
+### What i learned:
 The first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.
 
 I couldnt work out the logic for the 3 reading frames 

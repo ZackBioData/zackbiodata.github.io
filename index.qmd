@@ -14,9 +14,14 @@ format:
 
 ---
 
-# Recent posts
+## What I’m working with
 
-- Learning Bulk RNA-seq and eventually single-cell RNA-seq
-- Studying machine learning with Python and scikit-learn
+**Languages & Libraries:**  
+Python · pandas · matplotlib · Biopython · scikit-learn · GSEApy · Enrichr · ClinVar  
 
-Thanks for visiting!
+**Comfortable with:**  
+Transcriptomics · Variant filtering · Gene expression analysis  
+
+**Learning next:**  
+Sequence alignment · SnpEff · VEP · Pathway prediction  
+

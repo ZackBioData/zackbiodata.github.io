@@ -3,7 +3,7 @@ title: "Day 7: Rosalind Problems – Overlap Graphs & "
 subtitle: "Efficient Algorithmic Modelling and FASTA Data Aggregation"
 date: 2025-07-29
 image: ../images/100daysofcode/rosiland.png
-categories: [Bioinformatics, Biopython, Algorithm Design, FASTA Parsing]
+categories: [ Biopython, Algorithm Design, FASTA Parsing]
 html:
   toc: true
   code-fold: true

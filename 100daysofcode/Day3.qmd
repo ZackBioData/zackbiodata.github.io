@@ -3,7 +3,7 @@ title: "Day 3: 3 Rosiland problems: FASTA and Biopython"
 subtitle: "Reverse Complements, Introns, Transcription"
 date: 2025-07-24
 image: ../images/100daysofcode/rosiland.png
-categories: [Biopython, FASTA Parsing, Rosiland Problems]
+categories: [Biopython, FASTA Parsing, Rosiland]
 html:
   toc: true
   code-fold: true
@@ -34,7 +34,7 @@ for i in range(len(dna)):
         if len(sub) == l and sub == reverse_complement(sub):
             print(i + 1, l)
 ```
-# What i learned:
+### What i learned:
 reversed() - is a clean method to reverse strings.
 
 
@@ -61,7 +61,7 @@ protein = dna_seq.translate()
 # Output the result
 print(protein)
 ```
-# What i learned:
+### What i learned:
 .replace("U", "T") to convert an RNA string into DNA format before translation.
 
 
@@ -100,7 +100,7 @@ protein = rna.translate(to_stop=True)
 print(protein)
 ```
 
-# What i learned:
+### What i learned:
 SeqIO.parse() - to do FASTA file Parsing
 
 

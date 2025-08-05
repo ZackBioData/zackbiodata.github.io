@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="ZackBioData">
+<meta name="dcterms.date" content="2025-08-04">
 
-<title>day12 – Zack's Bioinformatics</title>
+<title>Day 12: Mini project – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -111,17 +148,155 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-write-up-for-this-code-is-linked-here" id="toc-a-write-up-for-this-code-is-linked-here" class="nav-link active" data-scroll-target="#a-write-up-for-this-code-is-linked-here">A write up for this code is linked here</a>
+  <ul class="collapse">
+  <li><a href="#problem-lexicographic-order-of-strings-lexv" id="toc-problem-lexicographic-order-of-strings-lexv" class="nav-link" data-scroll-target="#problem-lexicographic-order-of-strings-lexv">Problem: Lexicographic Order of Strings (LEXV)</a></li>
+  <li><a href="#my-solution" id="toc-my-solution" class="nav-link" data-scroll-target="#my-solution">My Solution</a></li>
+  </ul></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">what i learned</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Day 12: Mini project</h1>
+<p class="subtitle lead">Analysing protein expression in Gioblastoma via ORF’s</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">RMini project</div>
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">Python</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ZackBioData </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 4, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="a-write-up-for-this-code-is-linked-here" class="level1">
+<h1>A write up for this code is linked <a href="log/2025-08-04_MPb-geneticvariants">here</a></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">"mastoparan_variants.txt"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> <span class="bu">open</span>(output_path, <span class="st">"w"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>genes_of_interest <span class="op">=</span> [<span class="st">"LDLR"</span>, <span class="st">"BCL2"</span>, <span class="st">"PCP4"</span>, <span class="st">"VDAC1"</span>, <span class="st">"ATP2B1"</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="dv">\B</span><span class="vs">ioinformatics</span><span class="er">\</span><span class="vs">clinvar</span><span class="dv">.</span><span class="vs">vcf"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> line.startswith(<span class="st">"#"</span>):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span>  <span class="co"># skip header lines</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        cols <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        chrom <span class="op">=</span> cols[<span class="dv">0</span>].replace(<span class="st">"chr"</span>, <span class="st">""</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        pos <span class="op">=</span> <span class="bu">int</span>(cols[<span class="dv">1</span>])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        ref <span class="op">=</span> cols[<span class="dv">3</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        alt <span class="op">=</span> cols[<span class="dv">4</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        info <span class="op">=</span> cols[<span class="dv">7</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Parse INFO into dictionary</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        info_dict <span class="op">=</span> <span class="bu">dict</span>(item.split(<span class="st">'='</span>) <span class="cf">for</span> item <span class="kw">in</span> info.split(<span class="st">';'</span>) <span class="cf">if</span> <span class="st">'='</span> <span class="kw">in</span> item)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        gene_info <span class="op">=</span> info_dict.get(<span class="st">"GENEINFO"</span>, <span class="st">""</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># See if any gene in the list appears in the GENEINFO field</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> gene <span class="kw">in</span> genes_of_interest:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> gene <span class="kw">in</span> gene_info:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                significance <span class="op">=</span> info_dict.get(<span class="st">"CLNSIG"</span>, <span class="st">"NA"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                disease <span class="op">=</span> info_dict.get(<span class="st">"CLNDN"</span>, <span class="st">"NA"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                review <span class="op">=</span> info_dict.get(<span class="st">"CLNREVSTAT"</span>, <span class="st">"NA"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Output</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"</span><span class="sc">{</span>chrom<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>pos<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>ref<span class="sc">}</span><span class="ss">&gt;</span><span class="sc">{</span>alt<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Gene: </span><span class="sc">{</span>gene<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Significance: </span><span class="sc">{</span>significance<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Disease: </span><span class="sc">{</span>disease<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Review: </span><span class="sc">{</span>review<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span>  <span class="co"># Avoid writing the same variant twice if multiple gene names match</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>out.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="problem-lexicographic-order-of-strings-lexv" class="level2">
+<h2 class="anchored" data-anchor-id="problem-lexicographic-order-of-strings-lexv">Problem: <a href="https://rosalind.info/problems/lexv/">Lexicographic Order of Strings (LEXV)</a></h2>
+<blockquote class="blockquote">
+<p>Given: A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n (n ≤ 10).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Return: All strings of length at most n formed from the alphabet, ordered lexicographically by the given ordering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="my-solution" class="level2">
+<h2 class="anchored" data-anchor-id="my-solution"><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2012%20-%20mini%20project%20%2B%20rosiland/Ordering%20Strings%20of%20Varying%20Length%20Lexicographically.py">My Solution</a></h2>
+<p>Used recursion to <strong>build up strings depth-first</strong>, following the custom lexicographic order. Each level of recursion adds one more symbol from the alphabet until the desired max length is reached.</p>
+<p>This required:</p>
+<ul>
+<li><strong>Expanding</strong> from the shortest strings to longest</li>
+<li><strong>Respecting custom order</strong>, not ASCII</li>
+<li><strong>Avoiding empty lines</strong> in output</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lexv(alphabet, max_len):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> []</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> build(current):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> current:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            results.append(<span class="st">""</span>.join(current))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(current) <span class="op">==</span> max_len:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> symbol <span class="kw">in</span> alphabet:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            build(current <span class="op">+</span> [symbol])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    build([])</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Input</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>alphabet <span class="op">=</span> [<span class="st">"D"</span>, <span class="st">"N"</span>, <span class="st">"A"</span>]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">"rosalind_lexv_output.txt"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate and save output</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"w"</span>) <span class="im">as</span> out:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> kmer <span class="kw">in</span> lexv(alphabet, n):</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        out.write(kmer <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="what-i-learned" class="level1">
+<h1>what i learned</h1>
+<ul>
+<li><p>How to recursively generate strings from a custom alphabet</p></li>
+<li><p>How to avoid trailing empty lines in file output</p></li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

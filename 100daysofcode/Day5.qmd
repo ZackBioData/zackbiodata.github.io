@@ -3,7 +3,7 @@ title: "Day 5: Rosalind Problems – GC Content & Hamming Distance"
 subtitle: "FASTA Handling, Sequence Comparison, and Population Genetics"
 date: 2025-07-26
 image: ../images/100daysofcode/rosiland.png
-categories: [Biopython, Sequence Comparison, Probability, Rosiland Problems]
+categories: [Biopython, Sequence Comparison, Probability, Rosiland]
 html:
   toc: true
   code-fold: true

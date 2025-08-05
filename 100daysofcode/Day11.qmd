@@ -2,7 +2,7 @@
 title: "Day 11: consolidation from day 1-10"
 subtitle: "Resolve my hardest challenges over the past 10 days"
 author: "ZackBioData"
-date: 2025-08-01
+date: 2025-08-03
 image: ../images/100daysofcode/recap.png
 format:
   html:
@@ -10,3 +10,59 @@ format:
     code-fold: true
 categories: [Rosalind, Biopython, Python, Learning Log]
 ---
+
+## (Reverse palindrone: probllem number 1)[https://rosalind.info/problems/revp/] from day 3.
+
+I attempted to complete this problem as quick as possible without looking at any literature of any formatting from any other code.
+
+My new code can be seen below.
+```python
+from Bio.Seq import Seq
+
+String1 = "TATAGCACGCGACCGGTACCCAGTCAATCGTTGCCCTTGACCGAGTATTCTCAATGCCCGCCCCCAGCACCGAACGTTCCACAATACACCTAAAGTTGAGAGACACGGTTGCAGCCCTGACTATCTACTGTCAGGGATAAGCTAGTCAGCAACAGACTCCTGCGTACGCTAGCGCATGAATCCAAATGGGCTCCAACTATATAGCGTTAAACCTCCGTAGCATGACTGTGGGAATGAAGCTATAGAAGGCTATGCGGCACATCCTGTTATCCGCGCCCAGCAGGCAAAGGAGGCCGGTCCAGCCCACGGACGTTTCCTGATTGCCGTTCTACAGAGTCTTACGTGCGGTAGACTGAGGTAACTCGACACGATGAGAAGTTTGTGTTATGAATGGCATGCTTTAAAGCACACAAGTTGGGCGAGGGTGTCTGACAGGGGTCCGCCAGGCCTCGTTCCAAAATAATGACGGACGAGCTAATAGATACAATACTGCAATCATATCTCTTGTAATACCGTCTAGCATCATATCCACCCAGCCAAGTCCGAGTCTAAGATAACGCTACAAAGGACAGGTACGGGAGCACGACGCTTCCGGAAAGGGCCCAACCTCCCGAGAACAAAGCGACTAAAGCGTTCATCGGCCTATGAAGCTCTTCCGTGTACGAAGAGGCAGTGATTTATATCTCTTAGAATCGCATGCCGCAACGTCGCACCATACGGTCGCAATTCAACCGTGGTCGCCATTTGCGTACCGTTTAGTACTGGTTTGGCTCCCGTCTAAGTGTAATCCCCCCGAAGGGCGCG"
+
+for i in range(len(String1)):
+    for length in range(4, 13):  # 4 to 12 inclusive
+        if i + length <= len(String1):
+            chunk = String1[i:i+length]
+            revcomp = str(Seq(chunk).reverse_complement())
+            if chunk == revcomp:
+                print(f"{i+1} {length}")
+```
+
+## (Reverse palindrone: probllem number 1)[https://rosalind.info/problems/revp/] from day 3.
+
+I had less struggle with this problem but my code is inneficient compared to when i first did it.
+```python
+from Bio import SeqIO
+
+record = list(SeqIO.parse("rosalind_orf (2).fasta", "fasta"))
+DNAseq = record[0].seq
+forward_rna = DNAseq.transcribe() 
+reverse_rna = DNAseq.reverse_complement().transcribe()
+
+
+    for frame in range(3):
+        protein = forward_rna[frame:].translate(to_stop=False)
+        aa_seq = str(protein)
+        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']
+        for start in starts:
+            sub = aa_seq[start:]
+            stop = sub.find("*")
+            if stop != -1:
+                print(sub[:stop])
+                
+        protein = reverse_rna[frame:].translate(to_stop=False)
+        aa_seq = str(protein)
+        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']
+        for start in starts:
+            sub = aa_seq[start:]
+            stop = sub.find("*")
+            if stop != -1:
+                print(sub[:stop])
+```
+## What i learned 
+
+- Had to jog my memory of biopythons .translate and p
+
+- i should have used for rna in [forward_rna, reverse_rna] 

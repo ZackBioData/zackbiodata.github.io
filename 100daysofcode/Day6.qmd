@@ -3,7 +3,7 @@ title: "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA"
 subtitle: "Efficient Algorithmic Modelling and FASTA Data Aggregation"
 date: 2025-07-27
 image: ../images/100daysofcode/rosiland.png
-categories: [Bioinformatics, Biopython, Algorithm Design, FASTA Parsing]
+categories: [Biopython, Rosiland, FASTA Parsing]
 html:
   toc: true
   code-fold: true

@@ -1,0 +1,108 @@
+---
+title: "Day 12: Mini project"
+subtitle: "Analysing protein expression in Gioblastoma via ORF's"
+author: "ZackBioData"
+date: 2025-08-04
+image: ../images/100daysofcode/rosiland.png
+format:
+  html:
+    toc: true
+    code-fold: true
+categories: [RMini project, Biopython, Python]
+---
+
+# A write up for this code is linked [here](log/2025-08-04_MPb-geneticvariants)
+
+```python
+output_path = "mastoparan_variants.txt"
+out = open(output_path, "w")
+
+genes_of_interest = ["LDLR", "BCL2", "PCP4", "VDAC1", "ATP2B1"]
+
+with open(r"C:\Users\zackd\Bioinformatics\clinvar.vcf", "r") as f:
+
+    for line in f:
+        if line.startswith("#"):
+            continue  # skip header lines
+
+        cols = line.strip().split("\t")
+        chrom = cols[0].replace("chr", "")
+        pos = int(cols[1])
+        ref = cols[3]
+        alt = cols[4]
+        info = cols[7]
+
+        # Parse INFO into dictionary
+        info_dict = dict(item.split('=') for item in info.split(';') if '=' in item)
+        gene_info = info_dict.get("GENEINFO", "")
+
+        # See if any gene in the list appears in the GENEINFO field
+        for gene in genes_of_interest:
+            if gene in gene_info:
+                significance = info_dict.get("CLNSIG", "NA")
+                disease = info_dict.get("CLNDN", "NA")
+                review = info_dict.get("CLNREVSTAT", "NA")
+
+                # Output
+                out.write(f"{chrom}:{pos} {ref}>{alt}\n")
+                out.write(f"   Gene: {gene}\n")
+                out.write(f"   Significance: {significance}\n")
+                out.write(f"   Disease: {disease}\n")
+                out.write(f"   Review: {review}\n\n")
+                break  # Avoid writing the same variant twice if multiple gene names match
+
+out.close()
+```
+
+
+## Problem: [Lexicographic Order of Strings (LEXV)](https://rosalind.info/problems/lexv/)
+
+> Given: A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n (n ≤ 10).
+
+> Return: All strings of length at most n formed from the alphabet, ordered lexicographically by the given ordering.
+
+---
+
+## [My Solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2012%20-%20mini%20project%20%2B%20rosiland/Ordering%20Strings%20of%20Varying%20Length%20Lexicographically.py)
+
+Used recursion to **build up strings depth-first**, following the custom lexicographic order. Each level of recursion adds one more symbol from the alphabet until the desired max length is reached.
+
+This required:
+
+- **Expanding** from the shortest strings to longest
+- **Respecting custom order**, not ASCII
+- **Avoiding empty lines** in output
+
+```python
+from itertools import product
+
+def lexv(alphabet, max_len):
+    results = []
+
+    def build(current):
+        if current:
+            results.append("".join(current))
+        if len(current) == max_len:
+            return
+        for symbol in alphabet:
+            build(current + [symbol])
+
+    build([])
+    return results
+
+# Input
+alphabet = ["D", "N", "A"]
+n = 3
+output_path = "rosalind_lexv_output.txt"
+
+# Generate and save output
+with open(output_path, "w") as out:
+    for kmer in lexv(alphabet, n):
+        out.write(kmer + "\n")
+```
+
+# what i learned
+
+- How to recursively generate strings from a custom alphabet
+
+- How to avoid trailing empty lines in file output

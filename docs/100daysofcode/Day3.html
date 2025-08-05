@@ -152,16 +152,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-1-locating-restriction-enzymes" id="toc-problem-1-locating-restriction-enzymes" class="nav-link active" data-scroll-target="#problem-1-locating-restriction-enzymes">Problem 1: Locating restriction enzymes</a></li>
-  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned:</a>
+  <li><a href="#problem-1-locating-restriction-enzymes" id="toc-problem-1-locating-restriction-enzymes" class="nav-link active" data-scroll-target="#problem-1-locating-restriction-enzymes">Problem 1: Locating restriction enzymes</a>
   <ul class="collapse">
-  <li><a href="#problem-2-protein-translation" id="toc-problem-2-protein-translation" class="nav-link" data-scroll-target="#problem-2-protein-translation">Problem 2: Protein Translation</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned:</a></li>
   </ul></li>
-  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What i learned:</a>
+  <li><a href="#problem-2-protein-translation" id="toc-problem-2-protein-translation" class="nav-link" data-scroll-target="#problem-2-protein-translation">Problem 2: Protein Translation</a>
   <ul class="collapse">
-  <li><a href="#problem-3-rna-splicing" id="toc-problem-3-rna-splicing" class="nav-link" data-scroll-target="#problem-3-rna-splicing">Problem 3: RNA Splicing</a></li>
+  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What i learned:</a></li>
   </ul></li>
+  <li><a href="#problem-3-rna-splicing" id="toc-problem-3-rna-splicing" class="nav-link" data-scroll-target="#problem-3-rna-splicing">Problem 3: RNA Splicing</a>
+  <ul class="collapse">
   <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">What i learned:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -175,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-categories">
     <div class="quarto-category">Biopython</div>
     <div class="quarto-category">FASTA Parsing</div>
-    <div class="quarto-category">Rosiland Problems</div>
+    <div class="quarto-category">Rosiland</div>
   </div>
   </div>
 
@@ -215,12 +217,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        sub <span class="op">=</span> dna[i:i<span class="op">+</span>l]</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(sub) <span class="op">==</span> l <span class="kw">and</span> sub <span class="op">==</span> reverse_complement(sub):</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(i <span class="op">+</span> <span class="dv">1</span>, l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="what-i-learned" class="level1">
-<h1>What i learned:</h1>
+<section id="what-i-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned">What i learned:</h3>
 <p>reversed() - is a clean method to reverse strings.</p>
 <p>.join() - is a clean method to reassemble strings.</p>
 <p>How to handle variables between biopython to Python.</p>
+</section>
+</section>
 <section id="problem-2-protein-translation" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2-protein-translation">Problem 2: <a href="https://rosalind.info/problems/ptra/">Protein Translation</a></h2>
 <p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%203%20-%203%20rosiland%20problems/RNA-to-protein%20translation.py">my solution</a></p>
@@ -237,14 +240,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the result</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(protein)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="what-i-learned-1" class="level1">
-<h1>What i learned:</h1>
+<section id="what-i-learned-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-1">What i learned:</h3>
 <p>.replace(“U”, “T”) to convert an RNA string into DNA format before translation.</p>
 <p>.translate() - is a clean method to translate DNA into proteins</p>
 <p>Biopython’s Seq object to translate RNA into protein</p>
 <p>Fasta manipulation</p>
+</section>
+</section>
 <section id="problem-3-rna-splicing" class="level2">
 <h2 class="anchored" data-anchor-id="problem-3-rna-splicing">Problem 3: <a href="https://rosalind.info/problems/splc/">RNA Splicing</a></h2>
 <p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%203%20-%203%20rosiland%20problems/RNA%20Splicing.py">my solution</a></p>
@@ -269,16 +272,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>protein <span class="op">=</span> rna.translate(to_stop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(protein)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="what-i-learned-2" class="level1">
-<h1>What i learned:</h1>
+<section id="what-i-learned-2" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-2">What i learned:</h3>
 <p>SeqIO.parse() - to do FASTA file Parsing</p>
 <p>.replace(intron, ““) - to splice introns</p>
 <p>how to handle multi-record FASTA files</p>
 <p>Load Fasta → assign parts (.seq biopython) → convert to string (str() python) → manipulate → return</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
