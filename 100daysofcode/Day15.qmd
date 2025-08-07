@@ -1,0 +1,144 @@
+---
+title: "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr"
+subtitle: "Five Algorithmic Problems in Python"
+date: 2025-08-07
+image: ../images/100daysofcode/leetcode.png
+categories: [LeetCode, Biopython, Python, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# [Problem 1: Two Sum (#1)](https://leetcode.com/problems/two-sum/)
+
+**Task**: Given an array of integers `nums` and an integer `target`, return **indices** of the two numbers such that they add up to `target`. Exactly one solution exists.
+
+```python
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        seen = {}
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in seen:
+                return [seen[complement], i]
+            seen[num] = i
+```
+
+## what i learned
+
+- How to use a hash map for constant-time lookups.
+- The complement pattern for sum problems.
+- Tracking indices alongside values.
+
+---
+
+# [Problem 2: Valid Anagram (#242)](https://leetcode.com/problems/valid-anagram/)
+
+**Task**: Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, else `False`. An anagram uses all original letters exactly once.
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        counts = {}
+        for ch in s:
+            counts[ch] = counts.get(ch, 0) + 1
+        for ch in t:
+            if counts.get(ch, 0) == 0:
+                return False
+            counts[ch] -= 1
+        return True
+```
+
+## what i learned
+
+- Counting frequencies in one pass per string.
+- Early exit on length mismatch and zero counts.
+- Using `dict.get` to simplify initialization.
+
+---
+
+# [Problem 3: Group Anagrams (#49)](https://leetcode.com/problems/group-anagrams/)
+
+**Task**: Given an array of strings `strs`, group the **anagrams** together. Return the result as a list of lists.
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        groups = defaultdict(list)
+        for s in strs:
+            key = "".join(sorted(s))
+            groups[key].append(s)
+        return list(groups.values())
+```
+
+## what i learned
+
+- Creating a canonical signature via sorted strings.
+- Using `defaultdict(list)` to collect groups.
+- Trade-offs between sorting and counting approaches.
+
+---
+
+# [Problem 4: Longest Palindromic Substring (#5)](https://leetcode.com/problems/longest-palindromic-substring/)
+
+**Task**: Given string `s`, return the longest palindromic substring.
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if not s:
+            return ""
+        start = end = 0
+        n = len(s)
+
+        def expand(l: int, r: int) -> int:
+            while l >= 0 and r < n and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return r - l - 1
+
+        for i in range(n):
+            len1 = expand(i, i)
+            len2 = expand(i, i + 1)
+            length = max(len1, len2)
+            if length > (end - start + 1):
+                start = i - (length - 1) // 2
+                end   = i +  length // 2
+
+        return s[start:end + 1]
+```
+
+## what i learned
+
+- Center-expansion technique for palindromes.
+- Handling both odd and even centers.
+- Maintaining start/end pointers efficiently.
+
+---
+
+# [Problem 5: Implement strStr() (#28)](https://leetcode.com/problems/implement-strstr/)
+
+**Task**: Return the index of the first occurrence of `needle` in `haystack`, or `-1` if not present. If `needle` is empty, return `0`.
+
+```python
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+        n, m = len(haystack), len(needle)
+        for i in range(n - m + 1):
+            if haystack[i:i + m] == needle:
+                return i
+        return -1
+```
+
+## what i learned
+
+- Sliding-window substring comparisons.
+- Edge-case handling for empty `needle`.
+- Simple O(n·m) approach before exploring KMP.

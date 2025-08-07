@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-25">
+<meta name="dcterms.date" content="2025-08-07">
 
-<title>Day 4: Rosalind Problem – Open Reading Frames – Zack’s Bioinformatics</title>
+<title>Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,9 +152,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-1-open-reading-frames" id="toc-problem-1-open-reading-frames" class="nav-link active" data-scroll-target="#problem-1-open-reading-frames">Problem 1: Open Reading Frames</a>
+  <li><a href="#problem-1-two-sum-1" id="toc-problem-1-two-sum-1" class="nav-link active" data-scroll-target="#problem-1-two-sum-1">Problem 1: Two Sum (#1)</a>
   <ul class="collapse">
-  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned:</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">what i learned</a></li>
+  </ul></li>
+  <li><a href="#problem-2-valid-anagram-242" id="toc-problem-2-valid-anagram-242" class="nav-link" data-scroll-target="#problem-2-valid-anagram-242">Problem 2: Valid Anagram (#242)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">what i learned</a></li>
+  </ul></li>
+  <li><a href="#problem-3-group-anagrams-49" id="toc-problem-3-group-anagrams-49" class="nav-link" data-scroll-target="#problem-3-group-anagrams-49">Problem 3: Group Anagrams (#49)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">what i learned</a></li>
+  </ul></li>
+  <li><a href="#problem-4-longest-palindromic-substring-5" id="toc-problem-4-longest-palindromic-substring-5" class="nav-link" data-scroll-target="#problem-4-longest-palindromic-substring-5">Problem 4: Longest Palindromic Substring (#5)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-3" id="toc-what-i-learned-3" class="nav-link" data-scroll-target="#what-i-learned-3">what i learned</a></li>
+  </ul></li>
+  <li><a href="#problem-5-implement-strstr-28" id="toc-problem-5-implement-strstr-28" class="nav-link" data-scroll-target="#problem-5-implement-strstr-28">Problem 5: Implement strStr() (#28)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-4" id="toc-what-i-learned-4" class="nav-link" data-scroll-target="#what-i-learned-4">what i learned</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -164,13 +180,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 4: Rosalind Problem – Open Reading Frames</h1>
-<p class="subtitle lead">Reverse Complements · Transcription · Protein Extraction</p>
+<h1 class="title">Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr</h1>
+<p class="subtitle lead">Five Algorithmic Problems in Python</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Biopython</div>
-    <div class="quarto-category">FASTA Parsing</div>
-    <div class="quarto-category">ORFs</div>
-    <div class="quarto-category">Rosiland</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Algorithms</div>
   </div>
   </div>
 
@@ -182,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 25, 2025</p>
+      <p class="date">August 7, 2025</p>
     </div>
   </div>
   
@@ -194,60 +208,128 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="problem-1-open-reading-frames" class="level2">
-<h2 class="anchored" data-anchor-id="problem-1-open-reading-frames">Problem 1: <a href="https://rosalind.info/problems/orf/">Open Reading Frames</a></h2>
-<p>Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.<a href="https://github.com/ZackBioData/100days-of-coding/tree/main/Day%204%20-%201%20rosiland%20problem">my solution</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>record <span class="op">=</span> SeqIO.read(<span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="er">\</span><span class="vs">Coding challenge</span><span class="dv">\D</span><span class="vs">ay 4 -</span><span class="ch">\r</span><span class="vs">osalind_orf </span><span class="kw">(</span><span class="vs">2</span><span class="kw">)</span><span class="dv">.</span><span class="vs">fasta"</span>, <span class="st">"fasta"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dna <span class="op">=</span> record.seq</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># First record is the DNA</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>reverse_dna <span class="op">=</span> dna.reverse_complement()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transcribe to RNA</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>forward_rna <span class="op">=</span> dna.transcribe()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>reverse_rna <span class="op">=</span> reverse_dna.transcribe()</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dna)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_proteins(rna):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    proteins <span class="op">=</span> <span class="bu">set</span>()</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> frame <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        protein <span class="op">=</span> rna[frame:].translate(to_stop<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        aa_seq <span class="op">=</span> <span class="bu">str</span>(protein)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        starts <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(aa_seq)) <span class="cf">if</span> aa_seq[i] <span class="op">==</span> <span class="st">'M'</span>]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> start <span class="kw">in</span> starts:</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            sub <span class="op">=</span> aa_seq[start:]</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            stop <span class="op">=</span> sub.find(<span class="st">"*"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> stop <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>:</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                proteins.add(sub[:stop])</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> proteins</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Get proteins from all 6 frames</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>forward_proteins <span class="op">=</span> get_proteins(forward_rna)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>reverse_proteins <span class="op">=</span> get_proteins(reverse_rna)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all and print unique</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>all_proteins <span class="op">=</span> forward_proteins.union(reverse_proteins)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(all_proteins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="what-i-learned" class="level3">
-<h3 class="anchored" data-anchor-id="what-i-learned">What i learned:</h3>
-<p>The first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.</p>
-<p>I couldnt work out the logic for the 3 reading frames</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>protein <span class="op">=</span> rna[frame:].translate(to_stop<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I found similar problem online and this solution works to generate all protein sequences for all frames.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>starts <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(aa_seq)) <span class="cf">if</span> aa_seq[i] <span class="op">==</span> <span class="st">'M'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Loops through my AA string and finds every index where there is a M (start codon)</p>
-<p>Then i looked for all stop codons within the string generated above. now i have M-&gt;*</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> start <span class="kw">in</span> starts:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> aa_seq[start:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then i removed the stop codon and added it to a protein sequence and returned them</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> stop <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>:</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    proteins.add(sub[:stop])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>My solution feels abit crude but it works.</p>
+<section id="problem-1-two-sum-1" class="level1">
+<h1><a href="https://leetcode.com/problems/two-sum/">Problem 1: Two Sum (#1)</a></h1>
+<p><strong>Task</strong>: Given an array of integers <code>nums</code> and an integer <code>target</code>, return <strong>indices</strong> of the two numbers such that they add up to <code>target</code>. Exactly one solution exists.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> twoSum(<span class="va">self</span>, nums: <span class="bu">list</span>[<span class="bu">int</span>], target: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        seen <span class="op">=</span> {}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, num <span class="kw">in</span> <span class="bu">enumerate</span>(nums):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            complement <span class="op">=</span> target <span class="op">-</span> num</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> complement <span class="kw">in</span> seen:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> [seen[complement], i]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            seen[num] <span class="op">=</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned">what i learned</h2>
+<ul>
+<li>How to use a hash map for constant-time lookups.</li>
+<li>The complement pattern for sum problems.</li>
+<li>Tracking indices alongside values.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="problem-2-valid-anagram-242" class="level1">
+<h1><a href="https://leetcode.com/problems/valid-anagram/">Problem 2: Valid Anagram (#242)</a></h1>
+<p><strong>Task</strong>: Given two strings <code>s</code> and <code>t</code>, return <code>True</code> if <code>t</code> is an anagram of <code>s</code>, else <code>False</code>. An anagram uses all original letters exactly once.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> isAnagram(<span class="va">self</span>, s: <span class="bu">str</span>, t: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(s) <span class="op">!=</span> <span class="bu">len</span>(t):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        counts <span class="op">=</span> {}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> ch <span class="kw">in</span> s:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            counts[ch] <span class="op">=</span> counts.get(ch, <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> ch <span class="kw">in</span> t:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> counts.get(ch, <span class="dv">0</span>) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            counts[ch] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-1">what i learned</h2>
+<ul>
+<li>Counting frequencies in one pass per string.</li>
+<li>Early exit on length mismatch and zero counts.</li>
+<li>Using <code>dict.get</code> to simplify initialization.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="problem-3-group-anagrams-49" class="level1">
+<h1><a href="https://leetcode.com/problems/group-anagrams/">Problem 3: Group Anagrams (#49)</a></h1>
+<p><strong>Task</strong>: Given an array of strings <code>strs</code>, group the <strong>anagrams</strong> together. Return the result as a list of lists.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> groupAnagrams(<span class="va">self</span>, strs: <span class="bu">list</span>[<span class="bu">str</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">list</span>[<span class="bu">str</span>]]:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        groups <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> strs:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            key <span class="op">=</span> <span class="st">""</span>.join(<span class="bu">sorted</span>(s))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            groups[key].append(s)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">list</span>(groups.values())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-2" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-2">what i learned</h2>
+<ul>
+<li>Creating a canonical signature via sorted strings.</li>
+<li>Using <code>defaultdict(list)</code> to collect groups.</li>
+<li>Trade-offs between sorting and counting approaches.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="problem-4-longest-palindromic-substring-5" class="level1">
+<h1><a href="https://leetcode.com/problems/longest-palindromic-substring/">Problem 4: Longest Palindromic Substring (#5)</a></h1>
+<p><strong>Task</strong>: Given string <code>s</code>, return the longest palindromic substring.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> longestPalindrome(<span class="va">self</span>, s: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> s:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> end <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="bu">len</span>(s)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> expand(l: <span class="bu">int</span>, r: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> l <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> r <span class="op">&lt;</span> n <span class="kw">and</span> s[l] <span class="op">==</span> s[r]:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                l <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                r <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> r <span class="op">-</span> l <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            len1 <span class="op">=</span> expand(i, i)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            len2 <span class="op">=</span> expand(i, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            length <span class="op">=</span> <span class="bu">max</span>(len1, len2)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> length <span class="op">&gt;</span> (end <span class="op">-</span> start <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                start <span class="op">=</span> i <span class="op">-</span> (length <span class="op">-</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                end   <span class="op">=</span> i <span class="op">+</span>  length <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s[start:end <span class="op">+</span> <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-3" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-3">what i learned</h2>
+<ul>
+<li>Center-expansion technique for palindromes.</li>
+<li>Handling both odd and even centers.</li>
+<li>Maintaining start/end pointers efficiently.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="problem-5-implement-strstr-28" class="level1">
+<h1><a href="https://leetcode.com/problems/implement-strstr/">Problem 5: Implement strStr() (#28)</a></h1>
+<p><strong>Task</strong>: Return the index of the first occurrence of <code>needle</code> in <code>haystack</code>, or <code>-1</code> if not present. If <code>needle</code> is empty, return <code>0</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> strStr(<span class="va">self</span>, haystack: <span class="bu">str</span>, needle: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> needle:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        n, m <span class="op">=</span> <span class="bu">len</span>(haystack), <span class="bu">len</span>(needle)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> m <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> haystack[i:i <span class="op">+</span> m] <span class="op">==</span> needle:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> i</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-4" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-4">what i learned</h2>
+<ul>
+<li>Sliding-window substring comparisons.</li>
+<li>Edge-case handling for empty <code>needle</code>.</li>
+<li>Simple O(n·m) approach before exploring KMP.</li>
+</ul>
 
 
 </section>

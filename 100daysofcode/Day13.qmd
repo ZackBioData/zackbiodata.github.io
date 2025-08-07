@@ -1,0 +1,121 @@
+---
+title: "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering"
+subtitle: "Four Bioinformatics Challenges with Biopython"
+date: 2025-08-05
+image: ../images/100daysofcode/rosalind.png
+categories: [Rosiland, Biopython, Python, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# [Problem 1: Protein Mass (PRTM)](https://rosalind.info/problems/prtm/)
+
+**Task**: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein.
+[my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Calculating%20protein%20mass.py)
+
+
+```python
+from Bio.Seq import Seq
+
+# Mass table (monoisotopic)
+mass_table = {
+  'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,
+  'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,
+  'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,
+  'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,
+  'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333
+}
+
+# Read or define protein sequence
+protein_seq = Seq("CNLWGSFNIMISTLYYNP...FDGVKWA")
+
+# Compute total mass
+total_mass = sum(mass_table[aa] for aa in protein_seq)
+print(f"Total monoisotopic mass: {total_mass:.3f}")
+```
+
+## what i learned 
+
+- How to parse a Seq object and iterate over residues.
+
+- Using a dictionary lookup for residue masses and summing with Python’s built‑in sum.
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+[# Problem 2: Inferring mRNA from Protein (MRNA)](https://rosalind.info/problems/mrna/)
+
+Task: Compute the number of distinct RNA strings that could translate into a given protein, modulo 1,000,000.
+[my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Infering%20mRNA%20from%20Protein.py)
+
+
+```python
+from Bio.Data import CodonTable
+from Bio.Seq import Seq
+
+# Build amino acid → codons mapping
+rna_table = CodonTable.unambiguous_rna_by_id[1]
+aa_to_codons = {}
+for codon, aa in rna_table.forward_table.items():
+    aa_to_codons.setdefault(aa, []).append(codon)
+for stop in rna_table.stop_codons:
+    aa_to_codons.setdefault('*', []).append(stop)
+
+# Given protein sequence (no '*' at end)
+protein = Seq("MWDRYNTIIIWQHCEGYVFN...VTSDPSHF")
+
+MOD = 1_000_000
+total_options = 1
+
+# Multiply codon counts per residue (modulo at each step)
+for aa in protein:
+    total_options = (total_options * len(aa_to_codons.get(aa, []))) % MOD
+
+# Account for stop codons
+total_options = (total_options * len(aa_to_codons['*'])) % MOD
+
+print(f"Number of possible mRNAs (mod {MOD}): {total_options}")
+```
+
+## what i learned 
+
+- How to reverse-map the genetic code from codon→amino acid.
+
+- The importance of modular arithmetic to keep counts manageable.
+
+- Remembering to include stop codon possibilities.
+
+
+[# Problem 3: Ordering Strings of Varying Length Lexicographically](https://rosalind.info/problems/lexv/)
+Given: A permutation of at most 12 symbols defining an ordered alphabet A
+ and a positive integer n
+
+Return: All strings of length at most n formed from A, ordered lexicographically. (Note: As in “Enumerating k-mers Lexicographically”, alphabet order is based on the order in which the symbols are given.)
+[my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Ordering%20Strings%20of%20Varying%20Length%20Lexicographically.py)
+
+```python
+s = "TGTTATAATCTAGTTCCACACTCTCTACGCTTTGCTCTCAATTGCCCTCTTAAGACGCCGTGCCGGATAACCATACGAACGCACAGTCGGCCTATTTGCAGCCTTTCGAACGCATCACAGAACCTGTGAGCGTTAGTAAAGCGAGATCTTGCCGACGTTCGCTCTGGTAGCAACGCGCGCCGCGGTGATGTTTATTTCTGAACTCCCGATCATGGACAGTTATGCCCAGCAACCCTGTTTCTATCATCAGGGTCAGACCAAACCATTGCATATCAATCCTTGCTAAAAGAAAGGGAACACCATTAGGACGCCTGCTAAATTCGAACTGCCGGCTCGGTTGCTGATGACGATGCCAATAGCCGCGACGCTGCTCATCAATACGATGCTTGATAGAGCGCGGTATAGTGGTTAAAAGATTTATCAGTTCTGCTGTAACTTCGGCTGCCACGAATTCAAGGCTTCGGTCCTATAATCCCTCTTTACTCGGCATTACAGTTGACGAACTTGACAAGGCAACGTGGCCGAGGTTGGTGTGGCCGAGACTGTGGCGAGCATTGGGACGCTATAGACCGCGCTTAGTTAGGATCCTGGTATGTACCATTTGATGTAGACAGGTCGTTCCTAAACAATGGAGTCTTCCTTATGGACCGGTTGGGTTTCCCGATGTGATTCAAGGACAAATAGTCCCCTGGTACGATGGATCTGTTGGATTTCCCACTATGTCTACTTAGGGACTGTTATCTGTCTCCTCCTGACTCTCCCCATCTCATGTTCTTTCTTAGCAATCAACAAACCTAGGGGTTTTCAATAGGGCAGTGTGAACAGGATTTCAAATCGTTAATGCGGAAAGTGGATTTGGTTAAAATGACACCCCCACCTTGTTCCATAACCCGAAATGCTGCGAATTAAATCTGTCGTGCCTTCGGAGTCGCCTGCTTACTCTTAACCAGATC"
+t = "ATAAACCAAGTACACACCGGAGTTCGCAATTCGAAAGGC"
+
+pos = 0
+for char in t:
+    while s[pos] != char:
+        pos += 1
+    print(pos + 1, end=" ")  # 1-based indexing
+    pos += 1
+```
+
+
+## what i learned 
+
+- Using itertools.product to generate Cartesian products in lex order.
+
+- Sorting mixed-length lists with Python’s list.sort().
+
+- A two-tiered sort: by length via generation order, then lexicographically by sort().
+
