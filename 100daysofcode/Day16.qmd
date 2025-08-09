@@ -1,0 +1,170 @@
+---
+title: "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window"
+subtitle: "Five Essential Problems in Python"
+date: 2025-08-08
+image: ../images/100daysofcode/leetcode.png
+categories:
+  - LeetCode
+  - Python
+  - Algorithms
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# 121. Best Time to Buy and Sell Stock
+
+**Link:** <https://leetcode.com/problems/best-time-to-buy-and-sell-stock/>
+
+**Task:** Return the max profit from one buy and one sell (sell after buy).
+
+**Approach (One-pass):** Track the **minimum price so far** and update **best profit** with `price - min_price`.
+
+
+```python
+class Solution:
+    def maxProfit(self, prices):
+        if not prices:
+            return 0
+        min_price = prices[0]
+        best = 0
+        for p in prices[1:]:
+            if p - min_price > best:
+                best = p - min_price
+            if p < min_price:
+                min_price = p
+        return best
+```
+
+## what i learned
+
+- Why one-pass works (buy day always ≤ sell day).
+
+- Sentinel vs first-element init for running minimum.
+
+- Edge case: strictly decreasing prices → 0.
+
+
+---
+
+# 20. Valid Parentheses
+
+**Link:** <https://leetcode.com/problems/valid-parentheses/>
+
+**Task:** Determine if the string of brackets is valid.
+
+**Approach (Stack):** Push opens; on a close, top must match. Empty stack at end.
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        pairs = {')': '(', ']': '[', '}': '{'}
+        for ch in s:
+            if ch in "([{":
+                stack.append(ch)
+            else:
+                if not stack or stack[-1] != pairs.get(ch, None):
+                    return False
+                stack.pop()
+        return not stack
+```
+
+## what i learned
+
+- Classic stack usage; LIFO ensures nearest unmatched open closes first.
+
+- Early exits on mismatch or premature close.
+
+
+---
+
+# 125. Valid Palindrome
+**Link:** <https://leetcode.com/problems/valid-palindrome/>
+
+**Task:** Check if a string is a palindrome after removing non-alphanumeric chars and ignoring case.
+
+**Approach (Two Pointers):** Move `i/j` inward; skip non-alnum; compare lowercase.
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        i, j = 0, len(s) - 1
+        while i < j:
+            while i < j and not s[i].isalnum():
+                i += 1
+            while i < j and not s[j].isalnum():
+                j -= 1
+            if s[i].lower() != s[j].lower():
+                return False
+            i += 1
+            j -= 1
+        return True
+```
+
+## what i learned
+
+- Skipping non-alnum in-place avoids extra space.
+
+- `.lower()` is usually fine; `.casefold()` is stricter for Unicode.
+
+- .isalnum()  keep only letters/digits before comparing. - strip punctuation
+
+
+---
+
+# 217. Contains Duplicate
+**Link:** <https://leetcode.com/problems/contains-duplicate/>
+
+**Task:** Return `True` if any value appears at least twice in the array.
+
+**Approach (Hash Set):** Track seen values; duplicate → True.
+
+```python
+class Solution:
+    def containsDuplicate(self, nums):
+        seen = set()
+        for x in nums:
+            if x in seen:
+                return True
+            seen.add(x)
+        return False
+```
+
+## what i learned
+
+- Set membership is average O(1); simplest and fastest here.
+
+- Alternative: `len(nums) != len(set(nums))`.
+
+
+
+---
+
+# 3. Longest Substring Without Repeating Characters (Stretch)
+**Link:** <https://leetcode.com/problems/longest-substring-without-repeating-characters/>
+
+**Task:** Length of the longest substring without repeating characters.
+
+**Approach (Sliding Window):** Map last-seen index of each char; move `start` when a repeat falls **inside** the window.
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        last = {}   
+        start = 0   
+        best = 0
+        for i, ch in enumerate(s):
+            if ch in last and last[ch] >= start:
+                start = last[ch] + 1      
+            last[ch] = i
+            best = max(best, i - start + 1)
+        return best
+```
+
+## what i learned
+
+- Why the `last[ch] >= start` check is essential (repeat inside window).
+
+- Window length formula: `i - start + 1`.

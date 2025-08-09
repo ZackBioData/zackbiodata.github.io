@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-05">
+<meta name="dcterms.date" content="2025-08-08">
 
-<title>Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering – Zack’s Bioinformatics</title>
+<title>Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,17 +152,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-1-protein-mass-prtm" id="toc-problem-1-protein-mass-prtm" class="nav-link active" data-scroll-target="#problem-1-protein-mass-prtm">Problem 1: Protein Mass (PRTM)</a>
+  <li><a href="#best-time-to-buy-and-sell-stock" id="toc-best-time-to-buy-and-sell-stock" class="nav-link active" data-scroll-target="#best-time-to-buy-and-sell-stock">121. Best Time to Buy and Sell Stock</a>
   <ul class="collapse">
   <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">what i learned</a></li>
   </ul></li>
-  <li><a href="#problem-2-inferring-mrna-from-protein-mrna" id="toc-problem-2-inferring-mrna-from-protein-mrna" class="nav-link" data-scroll-target="#problem-2-inferring-mrna-from-protein-mrna">Problem 2: Inferring mRNA from Protein (MRNA)</a>
+  <li><a href="#valid-parentheses" id="toc-valid-parentheses" class="nav-link" data-scroll-target="#valid-parentheses">20. Valid Parentheses</a>
   <ul class="collapse">
   <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">what i learned</a></li>
   </ul></li>
-  <li><a href="#problem-3-ordering-strings-of-varying-length-lexicographically" id="toc-problem-3-ordering-strings-of-varying-length-lexicographically" class="nav-link" data-scroll-target="#problem-3-ordering-strings-of-varying-length-lexicographically">Problem 3: Ordering Strings of Varying Length Lexicographically</a>
+  <li><a href="#valid-palindrome" id="toc-valid-palindrome" class="nav-link" data-scroll-target="#valid-palindrome">125. Valid Palindrome</a>
   <ul class="collapse">
   <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">what i learned</a></li>
+  </ul></li>
+  <li><a href="#contains-duplicate" id="toc-contains-duplicate" class="nav-link" data-scroll-target="#contains-duplicate">217. Contains Duplicate</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-3" id="toc-what-i-learned-3" class="nav-link" data-scroll-target="#what-i-learned-3">what i learned</a></li>
+  </ul></li>
+  <li><a href="#longest-substring-without-repeating-characters-stretch" id="toc-longest-substring-without-repeating-characters-stretch" class="nav-link" data-scroll-target="#longest-substring-without-repeating-characters-stretch">3. Longest Substring Without Repeating Characters (Stretch)</a>
+  <ul class="collapse">
+  <li><a href="#what-i-learned-4" id="toc-what-i-learned-4" class="nav-link" data-scroll-target="#what-i-learned-4">what i learned</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -172,13 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering</h1>
-<p class="subtitle lead">Four Bioinformatics Challenges with Biopython</p>
+<h1 class="title">Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window</h1>
+<p class="subtitle lead">Five Essential Problems in Python</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Rosaland</div>
-    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">LeetCode</div>
     <div class="quarto-category">Python</div>
-    <div class="quarto-category">Learning Log</div>
+    <div class="quarto-category">Algorithms</div>
   </div>
   </div>
 
@@ -190,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2025</p>
+      <p class="date">August 8, 2025</p>
     </div>
   </div>
   
@@ -202,93 +209,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="problem-1-protein-mass-prtm" class="level1">
-<h1><a href="https://rosalind.info/problems/prtm/">Problem 1: Protein Mass (PRTM)</a></h1>
-<p><strong>Task</strong>: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein.</p>
-<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Calculating%20protein%20mass.py">my solution</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mass table (monoisotopic)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mass_table <span class="op">=</span> {</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'A'</span>: <span class="fl">71.03711</span>,  <span class="st">'C'</span>: <span class="fl">103.00919</span>, <span class="st">'D'</span>: <span class="fl">115.02694</span>, <span class="st">'E'</span>: <span class="fl">129.04259</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'F'</span>: <span class="fl">147.06841</span>, <span class="st">'G'</span>: <span class="fl">57.02146</span>,  <span class="st">'H'</span>: <span class="fl">137.05891</span>, <span class="st">'I'</span>: <span class="fl">113.08406</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'K'</span>: <span class="fl">128.09496</span>, <span class="st">'L'</span>: <span class="fl">113.08406</span>, <span class="st">'M'</span>: <span class="fl">131.04049</span>, <span class="st">'N'</span>: <span class="fl">114.04293</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'P'</span>: <span class="fl">97.05276</span>,  <span class="st">'Q'</span>: <span class="fl">128.05858</span>, <span class="st">'R'</span>: <span class="fl">156.10111</span>, <span class="st">'S'</span>: <span class="fl">87.03203</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'T'</span>: <span class="fl">101.04768</span>, <span class="st">'V'</span>: <span class="fl">99.06841</span>,  <span class="st">'W'</span>: <span class="fl">186.07931</span>, <span class="st">'Y'</span>: <span class="fl">163.06333</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Read or define protein sequence</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>protein_seq <span class="op">=</span> Seq(<span class="st">"CNLWGSFNIMISTLYYNP...FDGVKWA"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute total mass</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>total_mass <span class="op">=</span> <span class="bu">sum</span>(mass_table[aa] <span class="cf">for</span> aa <span class="kw">in</span> protein_seq)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total monoisotopic mass: </span><span class="sc">{</span>total_mass<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="best-time-to-buy-and-sell-stock" class="level1">
+<h1>121. Best Time to Buy and Sell Stock</h1>
+<p><strong>Link:</strong> <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" class="uri">https://leetcode.com/problems/best-time-to-buy-and-sell-stock/</a></p>
+<p><strong>Task:</strong> Return the max profit from one buy and one sell (sell after buy).</p>
+<p><strong>Approach (One-pass):</strong> Track the <strong>minimum price so far</strong> and update <strong>best profit</strong> with <code>price - min_price</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> maxProfit(<span class="va">self</span>, prices):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> prices:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        min_price <span class="op">=</span> prices[<span class="dv">0</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> p <span class="kw">in</span> prices[<span class="dv">1</span>:]:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> p <span class="op">-</span> min_price <span class="op">&gt;</span> best:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                best <span class="op">=</span> p <span class="op">-</span> min_price</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> p <span class="op">&lt;</span> min_price:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                min_price <span class="op">=</span> p</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="what-i-learned" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-learned">what i learned</h2>
 <ul>
-<li><p>How to parse a Seq object and iterate over residues.</p></li>
-<li><p>Using a dictionary lookup for residue masses and summing with Python’s built‑in sum.</p></li>
+<li><p>Why one-pass works (buy day always ≤ sell day).</p></li>
+<li><p>Sentinel vs first-element init for running minimum.</p></li>
+<li><p>Edge case: strictly decreasing prices → 0.</p></li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="problem-2-inferring-mrna-from-protein-mrna" class="level1">
-<h1><a href="https://rosalind.info/problems/mrna/">Problem 2: Inferring mRNA from Protein (MRNA)</a></h1>
-<p>Task: Compute the number of distinct RNA strings that could translate into a given protein, modulo 1,000,000.</p>
-<p><a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Infering%20mRNA%20from%20Protein.py">my solution</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Data <span class="im">import</span> CodonTable</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build amino acid → codons mapping</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>rna_table <span class="op">=</span> CodonTable.unambiguous_rna_by_id[<span class="dv">1</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>aa_to_codons <span class="op">=</span> {}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> codon, aa <span class="kw">in</span> rna_table.forward_table.items():</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    aa_to_codons.setdefault(aa, []).append(codon)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stop <span class="kw">in</span> rna_table.stop_codons:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    aa_to_codons.setdefault(<span class="st">'*'</span>, []).append(stop)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Given protein sequence (no '*' at end)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>protein <span class="op">=</span> Seq(<span class="st">"MWDRYNTIIIWQHCEGYVFN...VTSDPSHF"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>MOD <span class="op">=</span> <span class="dv">1_000_000</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>total_options <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply codon counts per residue (modulo at each step)</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> aa <span class="kw">in</span> protein:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    total_options <span class="op">=</span> (total_options <span class="op">*</span> <span class="bu">len</span>(aa_to_codons.get(aa, []))) <span class="op">%</span> MOD</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Account for stop codons</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>total_options <span class="op">=</span> (total_options <span class="op">*</span> <span class="bu">len</span>(aa_to_codons[<span class="st">'*'</span>])) <span class="op">%</span> MOD</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of possible mRNAs (mod </span><span class="sc">{</span>MOD<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>total_options<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="valid-parentheses" class="level1">
+<h1>20. Valid Parentheses</h1>
+<p><strong>Link:</strong> <a href="https://leetcode.com/problems/valid-parentheses/" class="uri">https://leetcode.com/problems/valid-parentheses/</a></p>
+<p><strong>Task:</strong> Determine if the string of brackets is valid.</p>
+<p><strong>Approach (Stack):</strong> Push opens; on a close, top must match. Empty stack at end.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> isValid(<span class="va">self</span>, s: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        stack <span class="op">=</span> []</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        pairs <span class="op">=</span> {<span class="st">')'</span>: <span class="st">'('</span>, <span class="st">']'</span>: <span class="st">'['</span>, <span class="st">'}'</span>: <span class="st">'{'</span>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> ch <span class="kw">in</span> s:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ch <span class="kw">in</span> <span class="st">"([{"</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                stack.append(ch)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> stack <span class="kw">or</span> stack[<span class="op">-</span><span class="dv">1</span>] <span class="op">!=</span> pairs.get(ch, <span class="va">None</span>):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                stack.pop()</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">not</span> stack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="what-i-learned-1" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-learned-1">what i learned</h2>
 <ul>
-<li><p>How to reverse-map the genetic code from codon→amino acid.</p></li>
-<li><p>The importance of modular arithmetic to keep counts manageable.</p></li>
-<li><p>Remembering to include stop codon possibilities.</p></li>
+<li><p>Classic stack usage; LIFO ensures nearest unmatched open closes first.</p></li>
+<li><p>Early exits on mismatch or premature close.</p></li>
 </ul>
+<hr>
 </section>
 </section>
-<section id="problem-3-ordering-strings-of-varying-length-lexicographically" class="level1">
-<h1><a href="https://rosalind.info/problems/lexv/">Problem 3: Ordering Strings of Varying Length Lexicographically</a></h1>
-<p>Given: A permutation of at most 12 symbols defining an ordered alphabet A and a positive integer n</p>
-<p>Return: All strings of length at most n formed from A, ordered lexicographically. (Note: As in “Enumerating k-mers Lexicographically”, alphabet order is based on the order in which the symbols are given.) <a href="https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Ordering%20Strings%20of%20Varying%20Length%20Lexicographically.py">my solution</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"TGTTATAATCTAGTTCCACACTCTCTACGCTTTGCTCTCAATTGCCCTCTTAAGACGCCGTGCCGGATAACCATACGAACGCACAGTCGGCCTATTTGCAGCCTTTCGAACGCATCACAGAACCTGTGAGCGTTAGTAAAGCGAGATCTTGCCGACGTTCGCTCTGGTAGCAACGCGCGCCGCGGTGATGTTTATTTCTGAACTCCCGATCATGGACAGTTATGCCCAGCAACCCTGTTTCTATCATCAGGGTCAGACCAAACCATTGCATATCAATCCTTGCTAAAAGAAAGGGAACACCATTAGGACGCCTGCTAAATTCGAACTGCCGGCTCGGTTGCTGATGACGATGCCAATAGCCGCGACGCTGCTCATCAATACGATGCTTGATAGAGCGCGGTATAGTGGTTAAAAGATTTATCAGTTCTGCTGTAACTTCGGCTGCCACGAATTCAAGGCTTCGGTCCTATAATCCCTCTTTACTCGGCATTACAGTTGACGAACTTGACAAGGCAACGTGGCCGAGGTTGGTGTGGCCGAGACTGTGGCGAGCATTGGGACGCTATAGACCGCGCTTAGTTAGGATCCTGGTATGTACCATTTGATGTAGACAGGTCGTTCCTAAACAATGGAGTCTTCCTTATGGACCGGTTGGGTTTCCCGATGTGATTCAAGGACAAATAGTCCCCTGGTACGATGGATCTGTTGGATTTCCCACTATGTCTACTTAGGGACTGTTATCTGTCTCCTCCTGACTCTCCCCATCTCATGTTCTTTCTTAGCAATCAACAAACCTAGGGGTTTTCAATAGGGCAGTGTGAACAGGATTTCAAATCGTTAATGCGGAAAGTGGATTTGGTTAAAATGACACCCCCACCTTGTTCCATAACCCGAAATGCTGCGAATTAAATCTGTCGTGCCTTCGGAGTCGCCTGCTTACTCTTAACCAGATC"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="st">"ATAAACCAAGTACACACCGGAGTTCGCAATTCGAAAGGC"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> char <span class="kw">in</span> t:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> s[pos] <span class="op">!=</span> char:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        pos <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pos <span class="op">+</span> <span class="dv">1</span>, end<span class="op">=</span><span class="st">" "</span>)  <span class="co"># 1-based indexing</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="valid-palindrome" class="level1">
+<h1>125. Valid Palindrome</h1>
+<p><strong>Link:</strong> <a href="https://leetcode.com/problems/valid-palindrome/" class="uri">https://leetcode.com/problems/valid-palindrome/</a></p>
+<p><strong>Task:</strong> Check if a string is a palindrome after removing non-alphanumeric chars and ignoring case.</p>
+<p><strong>Approach (Two Pointers):</strong> Move <code>i/j</code> inward; skip non-alnum; compare lowercase.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> isPalindrome(<span class="va">self</span>, s: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        i, j <span class="op">=</span> <span class="dv">0</span>, <span class="bu">len</span>(s) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> i <span class="op">&lt;</span> j:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> i <span class="op">&lt;</span> j <span class="kw">and</span> <span class="kw">not</span> s[i].isalnum():</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> i <span class="op">&lt;</span> j <span class="kw">and</span> <span class="kw">not</span> s[j].isalnum():</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> s[i].lower() <span class="op">!=</span> s[j].lower():</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="what-i-learned-2" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-learned-2">what i learned</h2>
 <ul>
-<li><p>Using itertools.product to generate Cartesian products in lex order.</p></li>
-<li><p>Sorting mixed-length lists with Python’s list.sort().</p></li>
-<li><p>A two-tiered sort: by length via generation order, then lexicographically by sort().</p></li>
+<li><p>Skipping non-alnum in-place avoids extra space.</p></li>
+<li><p><code>.lower()</code> is usually fine; <code>.casefold()</code> is stricter for Unicode.</p></li>
+<li><p>.isalnum() keep only letters/digits before comparing. - strip punctuation</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="contains-duplicate" class="level1">
+<h1>217. Contains Duplicate</h1>
+<p><strong>Link:</strong> <a href="https://leetcode.com/problems/contains-duplicate/" class="uri">https://leetcode.com/problems/contains-duplicate/</a></p>
+<p><strong>Task:</strong> Return <code>True</code> if any value appears at least twice in the array.</p>
+<p><strong>Approach (Hash Set):</strong> Track seen values; duplicate → True.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> containsDuplicate(<span class="va">self</span>, nums):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        seen <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> nums:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> x <span class="kw">in</span> seen:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            seen.add(x)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-3" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-3">what i learned</h2>
+<ul>
+<li><p>Set membership is average O(1); simplest and fastest here.</p></li>
+<li><p>Alternative: <code>len(nums) != len(set(nums))</code>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="longest-substring-without-repeating-characters-stretch" class="level1">
+<h1>3. Longest Substring Without Repeating Characters (Stretch)</h1>
+<p><strong>Link:</strong> <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" class="uri">https://leetcode.com/problems/longest-substring-without-repeating-characters/</a></p>
+<p><strong>Task:</strong> Length of the longest substring without repeating characters.</p>
+<p><strong>Approach (Sliding Window):</strong> Map last-seen index of each char; move <code>start</code> when a repeat falls <strong>inside</strong> the window.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lengthOfLongestSubstring(<span class="va">self</span>, s: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        last <span class="op">=</span> {}   </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> <span class="dv">0</span>   </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, ch <span class="kw">in</span> <span class="bu">enumerate</span>(s):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ch <span class="kw">in</span> last <span class="kw">and</span> last[ch] <span class="op">&gt;=</span> start:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                start <span class="op">=</span> last[ch] <span class="op">+</span> <span class="dv">1</span>      </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            last[ch] <span class="op">=</span> i</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            best <span class="op">=</span> <span class="bu">max</span>(best, i <span class="op">-</span> start <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="what-i-learned-4" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned-4">what i learned</h2>
+<ul>
+<li><p>Why the <code>last[ch] &gt;= start</code> check is essential (repeat inside window).</p></li>
+<li><p>Window length formula: <code>i - start + 1</code>.</p></li>
 </ul>
 
 

@@ -259,6 +259,55 @@
     "text": "Day 2 is a coding warmup Link provided here"
   },
   {
+    "objectID": "100daysofcode/Day16.html",
+    "href": "100daysofcode/Day16.html",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "",
+    "text": "Link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/\nTask: Return the max profit from one buy and one sell (sell after buy).\nApproach (One-pass): Track the minimum price so far and update best profit with price - min_price.\nclass Solution:\n    def maxProfit(self, prices):\n        if not prices:\n            return 0\n        min_price = prices[0]\n        best = 0\n        for p in prices[1:]:\n            if p - min_price &gt; best:\n                best = p - min_price\n            if p &lt; min_price:\n                min_price = p\n        return best\n\n\n\nWhy one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned",
+    "href": "100daysofcode/Day16.html#what-i-learned",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "",
+    "text": "Why one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-1",
+    "href": "100daysofcode/Day16.html#what-i-learned-1",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nClassic stack usage; LIFO ensures nearest unmatched open closes first.\nEarly exits on mismatch or premature close."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-2",
+    "href": "100daysofcode/Day16.html#what-i-learned-2",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nSkipping non-alnum in-place avoids extra space.\n.lower() is usually fine; .casefold() is stricter for Unicode.\n.isalnum() keep only letters/digits before comparing. - strip punctuation"
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-3",
+    "href": "100daysofcode/Day16.html#what-i-learned-3",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nSet membership is average O(1); simplest and fastest here.\nAlternative: len(nums) != len(set(nums))."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-4",
+    "href": "100daysofcode/Day16.html#what-i-learned-4",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nWhy the last[ch] &gt;= start check is essential (repeat inside window).\nWindow length formula: i - start + 1."
+  },
+  {
+    "objectID": "100daysofcode/Day14.html",
+    "href": "100daysofcode/Day14.html",
+    "title": "Day 14: consolidation from 6-10",
+    "section": "",
+    "text": "problem 1 https://rosalind.info/problems/hamm/\npseudocode for bases in zip if string[i] =/= string2[i] then hamm += 1 print hamm"
+  },
+  {
     "objectID": "100daysofcode/Day12.html",
     "href": "100daysofcode/Day12.html",
     "title": "Day 12: Mini project",
@@ -336,46 +385,102 @@
     "text": "What i learned\n\nHad to jog my memory of biopythons .translate and p\ni should have used for rna in [forward_rna, reverse_rna]"
   },
   {
+    "objectID": "100daysofcode/Day13.html",
+    "href": "100daysofcode/Day13.html",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "",
+    "text": "Task: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein.\nmy solution\nfrom Bio.Seq import Seq\n\n# Mass table (monoisotopic)\nmass_table = {\n  'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,\n  'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,\n  'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,\n  'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,\n  'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333\n}\n\n# Read or define protein sequence\nprotein_seq = Seq(\"CNLWGSFNIMISTLYYNP...FDGVKWA\")\n\n# Compute total mass\ntotal_mass = sum(mass_table[aa] for aa in protein_seq)\nprint(f\"Total monoisotopic mass: {total_mass:.3f}\")\n\n\n\nHow to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned",
+    "href": "100daysofcode/Day13.html#what-i-learned",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "",
+    "text": "How to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned-1",
+    "href": "100daysofcode/Day13.html#what-i-learned-1",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "what i learned",
+    "text": "what i learned\n\nHow to reverse-map the genetic code from codon→amino acid.\nThe importance of modular arithmetic to keep counts manageable.\nRemembering to include stop codon possibilities."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned-2",
+    "href": "100daysofcode/Day13.html#what-i-learned-2",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "what i learned",
+    "text": "what i learned\n\nUsing itertools.product to generate Cartesian products in lex order.\nSorting mixed-length lists with Python’s list.sort().\nA two-tiered sort: by length via generation order, then lexicographically by sort()."
+  },
+  {
     "objectID": "100daysofcode/Day15.html",
     "href": "100daysofcode/Day15.html",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "",
     "text": "Task: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. Exactly one solution exists.\nclass Solution:\n    def twoSum(self, nums: list[int], target: int) -&gt; list[int]:\n        seen = {}\n        for i, num in enumerate(nums):\n            complement = target - num\n            if complement in seen:\n                return [seen[complement], i]\n            seen[num] = i\n\n\n\nHow to use a hash map for constant-time lookups.\nThe complement pattern for sum problems.\nTracking indices alongside values."
   },
   {
     "objectID": "100daysofcode/Day15.html#what-i-learned",
     "href": "100daysofcode/Day15.html#what-i-learned",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "",
     "text": "How to use a hash map for constant-time lookups.\nThe complement pattern for sum problems.\nTracking indices alongside values."
   },
   {
     "objectID": "100daysofcode/Day15.html#what-i-learned-1",
     "href": "100daysofcode/Day15.html#what-i-learned-1",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "what i learned",
     "text": "what i learned\n\nCounting frequencies in one pass per string.\nEarly exit on length mismatch and zero counts.\nUsing dict.get to simplify initialization."
   },
   {
     "objectID": "100daysofcode/Day15.html#what-i-learned-2",
     "href": "100daysofcode/Day15.html#what-i-learned-2",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "what i learned",
     "text": "what i learned\n\nCreating a canonical signature via sorted strings.\nUsing defaultdict(list) to collect groups.\nTrade-offs between sorting and counting approaches."
   },
   {
     "objectID": "100daysofcode/Day15.html#what-i-learned-3",
     "href": "100daysofcode/Day15.html#what-i-learned-3",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "what i learned",
     "text": "what i learned\n\nCenter-expansion technique for palindromes.\nHandling both odd and even centers.\nMaintaining start/end pointers efficiently."
   },
   {
     "objectID": "100daysofcode/Day15.html#what-i-learned-4",
     "href": "100daysofcode/Day15.html#what-i-learned-4",
-    "title": "Day 14: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
     "section": "what i learned",
     "text": "what i learned\n\nSliding-window substring comparisons.\nEdge-case handling for empty needle.\nSimple O(n·m) approach before exploring KMP."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html",
+    "href": "100daysofcode/Day17.html",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "",
+    "text": "Today was about expanding my bioinformatics toolkit by setting up SQL in my local Python environment, specifically for querying large biological datasets through Google BigQuery."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#overview",
+    "href": "100daysofcode/Day17.html#overview",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "",
+    "text": "Today was about expanding my bioinformatics toolkit by setting up SQL in my local Python environment, specifically for querying large biological datasets through Google BigQuery."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#what-i-did",
+    "href": "100daysofcode/Day17.html#what-i-did",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "What I Did",
+    "text": "What I Did\n\nSkimmed fundamentals of probability\nInstalled the google-cloud-bigquery Python package.\nCreated a Google Cloud project and service account.\nGenerated and downloaded a JSON key file for authentication.\nLearned two ways to authenticate:\n\nSetting GOOGLE_APPLICATION_CREDENTIALS as an environment variable.\nLoading the service account JSON directly in Python (preferred for portability).\n\nSuccessfully ran my first BigQuery query in Python.\nSwapped out the sample “USA Names” dataset for the ClinVar variants dataset, so I can directly query genetic variant data."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#key-learnings",
+    "href": "100daysofcode/Day17.html#key-learnings",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "Key Learnings",
+    "text": "Key Learnings\n\nEnvironment setup matters: Correct authentication is essential for BigQuery access.\nDataset schema inspection: Query errors like Unrecognized name often mean column names are wrong—use client.get_table() to check the schema before writing queries.\nReusable client setup: Keeping a clean “top-half” of Python code for BigQuery connection makes new queries quick to run.\nFirst SQL in Python: Successfully SELECTed, filtered, sorted, and limited data from BigQuery."
   },
   {
     "objectID": "100daysofcode/Day3.html",
@@ -614,40 +719,5 @@
     "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "Code Snippet",
     "text": "Code Snippet\noutput_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\", encoding=\"utf-8\")\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n    genes_of_interest = [\"PCP4\", \"BCL2\", \"ATP2B1\", \"VDAC1\", \"RYR1\"]\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        for gene in genes_of_interest:\n            if f\"GENEINFO={gene}\" in info:\n                info_dict = dict(item.split(\"=\") for item in info.split(\";\") if \"=\" in item)\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n\nout.close()\n##Output Example\n1:161284466 G&gt;A\n   Gene: PCP4\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\n\n2:111123784 C&gt;T\n   Gene: BCL2\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\nCurrent outputs only provides unreviewed untilted point mutations.\n##Interpretation and Context\nRight now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.\nVariants in calcium-buffering genes might:\nReduce calcium export or sequestration\nIncrease membrane fragility or ER stress\nAccelerate the death response after a calcium spike\nThis could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.\n##Limitations + Future Add-ons\n\nNo frame shift or missense classification yet\nDoesn’t look at protein domains (e.g. calmodulin-binding)\nNo integration with ENSEMBL VEP or SnpEff\nNo filtering by ClinVar significance beyond string match\nAdd more genes resulting in warburg effect\n\n##What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach"
-  },
-  {
-    "objectID": "100daysofcode/Day13.html",
-    "href": "100daysofcode/Day13.html",
-    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
-    "section": "",
-    "text": "Task: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein. my solution\nfrom Bio.Seq import Seq\n\n# Mass table (monoisotopic)\nmass_table = {\n  'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,\n  'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,\n  'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,\n  'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,\n  'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333\n}\n\n# Read or define protein sequence\nprotein_seq = Seq(\"CNLWGSFNIMISTLYYNP...FDGVKWA\")\n\n# Compute total mass\ntotal_mass = sum(mass_table[aa] for aa in protein_seq)\nprint(f\"Total monoisotopic mass: {total_mass:.3f}\")\n\n\n\nHow to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum.\n\n\n# Problem 2: Inferring mRNA from Protein (MRNA)\nTask: Compute the number of distinct RNA strings that could translate into a given protein, modulo 1,000,000. my solution\nfrom Bio.Data import CodonTable\nfrom Bio.Seq import Seq\n\n# Build amino acid → codons mapping\nrna_table = CodonTable.unambiguous_rna_by_id[1]\naa_to_codons = {}\nfor codon, aa in rna_table.forward_table.items():\n    aa_to_codons.setdefault(aa, []).append(codon)\nfor stop in rna_table.stop_codons:\n    aa_to_codons.setdefault('*', []).append(stop)\n\n# Given protein sequence (no '*' at end)\nprotein = Seq(\"MWDRYNTIIIWQHCEGYVFN...VTSDPSHF\")\n\nMOD = 1_000_000\ntotal_options = 1\n\n# Multiply codon counts per residue (modulo at each step)\nfor aa in protein:\n    total_options = (total_options * len(aa_to_codons.get(aa, []))) % MOD\n\n# Account for stop codons\ntotal_options = (total_options * len(aa_to_codons['*'])) % MOD\n\nprint(f\"Number of possible mRNAs (mod {MOD}): {total_options}\")\n\n\n\n\nHow to reverse-map the genetic code from codon→amino acid.\nThe importance of modular arithmetic to keep counts manageable.\nRemembering to include stop codon possibilities.\n\n# Problem 3: Ordering Strings of Varying Length Lexicographically Given: A permutation of at most 12 symbols defining an ordered alphabet A and a positive integer n\nReturn: All strings of length at most n formed from A, ordered lexicographically. (Note: As in “Enumerating k-mers Lexicographically”, alphabet order is based on the order in which the symbols are given.) my solution\ns = \"TGTTATAATCTAGTTCCACACTCTCTACGCTTTGCTCTCAATTGCCCTCTTAAGACGCCGTGCCGGATAACCATACGAACGCACAGTCGGCCTATTTGCAGCCTTTCGAACGCATCACAGAACCTGTGAGCGTTAGTAAAGCGAGATCTTGCCGACGTTCGCTCTGGTAGCAACGCGCGCCGCGGTGATGTTTATTTCTGAACTCCCGATCATGGACAGTTATGCCCAGCAACCCTGTTTCTATCATCAGGGTCAGACCAAACCATTGCATATCAATCCTTGCTAAAAGAAAGGGAACACCATTAGGACGCCTGCTAAATTCGAACTGCCGGCTCGGTTGCTGATGACGATGCCAATAGCCGCGACGCTGCTCATCAATACGATGCTTGATAGAGCGCGGTATAGTGGTTAAAAGATTTATCAGTTCTGCTGTAACTTCGGCTGCCACGAATTCAAGGCTTCGGTCCTATAATCCCTCTTTACTCGGCATTACAGTTGACGAACTTGACAAGGCAACGTGGCCGAGGTTGGTGTGGCCGAGACTGTGGCGAGCATTGGGACGCTATAGACCGCGCTTAGTTAGGATCCTGGTATGTACCATTTGATGTAGACAGGTCGTTCCTAAACAATGGAGTCTTCCTTATGGACCGGTTGGGTTTCCCGATGTGATTCAAGGACAAATAGTCCCCTGGTACGATGGATCTGTTGGATTTCCCACTATGTCTACTTAGGGACTGTTATCTGTCTCCTCCTGACTCTCCCCATCTCATGTTCTTTCTTAGCAATCAACAAACCTAGGGGTTTTCAATAGGGCAGTGTGAACAGGATTTCAAATCGTTAATGCGGAAAGTGGATTTGGTTAAAATGACACCCCCACCTTGTTCCATAACCCGAAATGCTGCGAATTAAATCTGTCGTGCCTTCGGAGTCGCCTGCTTACTCTTAACCAGATC\"\nt = \"ATAAACCAAGTACACACCGGAGTTCGCAATTCGAAAGGC\"\n\npos = 0\nfor char in t:\n    while s[pos] != char:\n        pos += 1\n    print(pos + 1, end=\" \")  # 1-based indexing\n    pos += 1\n\n\n\n\nUsing itertools.product to generate Cartesian products in lex order.\nSorting mixed-length lists with Python’s list.sort().\nA two-tiered sort: by length via generation order, then lexicographically by sort()."
-  },
-  {
-    "objectID": "100daysofcode/Day13.html#what-i-learned",
-    "href": "100daysofcode/Day13.html#what-i-learned",
-    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
-    "section": "",
-    "text": "How to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum.\n\n\n# Problem 2: Inferring mRNA from Protein (MRNA)\nTask: Compute the number of distinct RNA strings that could translate into a given protein, modulo 1,000,000. my solution\nfrom Bio.Data import CodonTable\nfrom Bio.Seq import Seq\n\n# Build amino acid → codons mapping\nrna_table = CodonTable.unambiguous_rna_by_id[1]\naa_to_codons = {}\nfor codon, aa in rna_table.forward_table.items():\n    aa_to_codons.setdefault(aa, []).append(codon)\nfor stop in rna_table.stop_codons:\n    aa_to_codons.setdefault('*', []).append(stop)\n\n# Given protein sequence (no '*' at end)\nprotein = Seq(\"MWDRYNTIIIWQHCEGYVFN...VTSDPSHF\")\n\nMOD = 1_000_000\ntotal_options = 1\n\n# Multiply codon counts per residue (modulo at each step)\nfor aa in protein:\n    total_options = (total_options * len(aa_to_codons.get(aa, []))) % MOD\n\n# Account for stop codons\ntotal_options = (total_options * len(aa_to_codons['*'])) % MOD\n\nprint(f\"Number of possible mRNAs (mod {MOD}): {total_options}\")"
-  },
-  {
-    "objectID": "100daysofcode/Day13.html#what-i-learned-1",
-    "href": "100daysofcode/Day13.html#what-i-learned-1",
-    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
-    "section": "",
-    "text": "How to reverse-map the genetic code from codon→amino acid.\nThe importance of modular arithmetic to keep counts manageable.\nRemembering to include stop codon possibilities.\n\n# Problem 3: Ordering Strings of Varying Length Lexicographically Given: A permutation of at most 12 symbols defining an ordered alphabet A and a positive integer n\nReturn: All strings of length at most n formed from A, ordered lexicographically. (Note: As in “Enumerating k-mers Lexicographically”, alphabet order is based on the order in which the symbols are given.) my solution\ns = \"TGTTATAATCTAGTTCCACACTCTCTACGCTTTGCTCTCAATTGCCCTCTTAAGACGCCGTGCCGGATAACCATACGAACGCACAGTCGGCCTATTTGCAGCCTTTCGAACGCATCACAGAACCTGTGAGCGTTAGTAAAGCGAGATCTTGCCGACGTTCGCTCTGGTAGCAACGCGCGCCGCGGTGATGTTTATTTCTGAACTCCCGATCATGGACAGTTATGCCCAGCAACCCTGTTTCTATCATCAGGGTCAGACCAAACCATTGCATATCAATCCTTGCTAAAAGAAAGGGAACACCATTAGGACGCCTGCTAAATTCGAACTGCCGGCTCGGTTGCTGATGACGATGCCAATAGCCGCGACGCTGCTCATCAATACGATGCTTGATAGAGCGCGGTATAGTGGTTAAAAGATTTATCAGTTCTGCTGTAACTTCGGCTGCCACGAATTCAAGGCTTCGGTCCTATAATCCCTCTTTACTCGGCATTACAGTTGACGAACTTGACAAGGCAACGTGGCCGAGGTTGGTGTGGCCGAGACTGTGGCGAGCATTGGGACGCTATAGACCGCGCTTAGTTAGGATCCTGGTATGTACCATTTGATGTAGACAGGTCGTTCCTAAACAATGGAGTCTTCCTTATGGACCGGTTGGGTTTCCCGATGTGATTCAAGGACAAATAGTCCCCTGGTACGATGGATCTGTTGGATTTCCCACTATGTCTACTTAGGGACTGTTATCTGTCTCCTCCTGACTCTCCCCATCTCATGTTCTTTCTTAGCAATCAACAAACCTAGGGGTTTTCAATAGGGCAGTGTGAACAGGATTTCAAATCGTTAATGCGGAAAGTGGATTTGGTTAAAATGACACCCCCACCTTGTTCCATAACCCGAAATGCTGCGAATTAAATCTGTCGTGCCTTCGGAGTCGCCTGCTTACTCTTAACCAGATC\"\nt = \"ATAAACCAAGTACACACCGGAGTTCGCAATTCGAAAGGC\"\n\npos = 0\nfor char in t:\n    while s[pos] != char:\n        pos += 1\n    print(pos + 1, end=\" \")  # 1-based indexing\n    pos += 1"
-  },
-  {
-    "objectID": "100daysofcode/Day13.html#what-i-learned-2",
-    "href": "100daysofcode/Day13.html#what-i-learned-2",
-    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
-    "section": "",
-    "text": "Using itertools.product to generate Cartesian products in lex order.\nSorting mixed-length lists with Python’s list.sort().\nA two-tiered sort: by length via generation order, then lexicographically by sort()."
-  },
-  {
-    "objectID": "100daysofcode/Day14.html",
-    "href": "100daysofcode/Day14.html",
-    "title": "Day 14: consolidation from 6-10",
-    "section": "",
-    "text": "problem 1 https://rosalind.info/problems/hamm/\npseudocode for bases in zip if string[i] =/= string2[i] then hamm += 1 print hamm"
   }
 ]

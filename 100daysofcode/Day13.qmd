@@ -2,8 +2,8 @@
 title: "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering"
 subtitle: "Four Bioinformatics Challenges with Biopython"
 date: 2025-08-05
-image: ../images/100daysofcode/rosalind.png
-categories: [Rosiland, Biopython, Python, Learning Log]
+image: ../images/100daysofcode/rosiland.png
+categories: [Rosaland, Biopython, Python, Learning Log]
 format:
   html:
     toc: true
@@ -13,6 +13,7 @@ format:
 # [Problem 1: Protein Mass (PRTM)](https://rosalind.info/problems/prtm/)
 
 **Task**: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein.
+
 [my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Calculating%20protein%20mass.py)
 
 
@@ -42,15 +43,11 @@ print(f"Total monoisotopic mass: {total_mass:.3f}")
 
 - Using a dictionary lookup for residue masses and summing with Python’s built‑in sum.
 
-
-
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------
-[# Problem 2: Inferring mRNA from Protein (MRNA)](https://rosalind.info/problems/mrna/)
+---
+# [Problem 2: Inferring mRNA from Protein (MRNA)](https://rosalind.info/problems/mrna/)
 
 Task: Compute the number of distinct RNA strings that could translate into a given protein, modulo 1,000,000.
+
 [my solution](https://github.com/ZackBioData/100days-of-coding/blob/main/Day%2013%20-%203%20Rosaland%20problems/Infering%20mRNA%20from%20Protein.py)
 
 
@@ -91,7 +88,8 @@ print(f"Number of possible mRNAs (mod {MOD}): {total_options}")
 - Remembering to include stop codon possibilities.
 
 
-[# Problem 3: Ordering Strings of Varying Length Lexicographically](https://rosalind.info/problems/lexv/)
+# [Problem 3: Ordering Strings of Varying Length Lexicographically](https://rosalind.info/problems/lexv/)
+
 Given: A permutation of at most 12 symbols defining an ordered alphabet A
  and a positive integer n
 

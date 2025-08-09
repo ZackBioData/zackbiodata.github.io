@@ -1,0 +1,45 @@
+---
+title: "Day 17: Setting Up SQL + probability"
+date: 2025-08-09
+image: ../images/100daysofcode/sql.png
+categories: [SQL, BigQuery]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Overview
+Today was about expanding my bioinformatics toolkit by setting up **SQL** in my local Python environment, specifically for querying large biological datasets through **Google BigQuery**.
+
+## What I Did
+
+- Skimmed fundamentals of probability
+
+- Installed the `google-cloud-bigquery` Python package.
+
+- Created a Google Cloud project and service account.
+
+- Generated and downloaded a JSON key file for authentication.
+
+- Learned two ways to authenticate:
+
+  - Setting `GOOGLE_APPLICATION_CREDENTIALS` as an environment variable.
+  - Loading the service account JSON directly in Python (preferred for portability).
+
+- Successfully ran my first BigQuery query in Python.
+
+- Swapped out the sample “USA Names” dataset for the **ClinVar variants** dataset, so I can directly query genetic variant data.
+
+## Key Learnings
+
+- **Environment setup matters**: Correct authentication is essential for BigQuery access.
+
+- **Dataset schema inspection**: Query errors like `Unrecognized name` often mean column names are wrong—use `client.get_table()` to check the schema before writing queries.
+
+- **Reusable client setup**: Keeping a clean “top-half” of Python code for BigQuery connection makes new queries quick to run.
+
+- **First SQL in Python**: Successfully SELECTed, filtered, sorted, and limited data from BigQuery.
+
+
+
