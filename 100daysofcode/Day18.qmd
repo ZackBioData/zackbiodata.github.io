@@ -1,0 +1,207 @@
+---
+title: "Day 18 — ClinVar clustered variants (SQL → Python → Export)"
+author: "Zack"
+date: 2025-08-10
+image: ../images/100daysofcode/sql.png
+categories: [SQL, BigQuery, Bioinformatics, ClinVar, Python]
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+jupyter: python3
+---
+
+## Overview
+
+Today’s pipeline (based on my working Python file):
+
+1. **Query** ClinVar (hg19) in BigQuery for **pathogenic / likely pathogenic** variants  
+2. **Detect clusters**: consecutive variants within `MAX_DIST` bp (per chromosome)  
+3. **Export**:
+   - `clinvar_clustered_pairs_XXXXbp.csv` (full table)
+   - `clinvar_rs_batch_XXXXbp.txt` (rsIDs for ClinVar batch search)
+
+I’m also collecting **reusable lessons** so I can copy this approach to other datasets (gnomAD, gene expression, etc).
+
+---
+
+
+##  Connect & Query (your SQL, with array-safe bits)
+
+
+```python
+
+from google.cloud import bigquery
+from google.oauth2 import service_account
+import pandas as pd
+import numpy as np
+
+creds = service_account.Credentials.from_service_account_file(KEY_PATH)
+client = bigquery.Client(project=PROJECT_ID, credentials=creds)
+
+chrom_list_sql = ",".join([f"'{c}'" for c in CHROMS])
+
+query = f"""
+SELECT
+  reference_name,
+  start_position,
+  end_position,
+  ARRAY_TO_STRING(RS, ',') AS RS,  -- handle ARRAY<STRING> safely
+  GENEINFO,
+  LOWER(sig) AS clnsig
+FROM `{TABLE}`,
+UNNEST(CLNSIG) AS sig
+WHERE reference_name IN ({chrom_list_sql})
+  AND LOWER(sig) LIKE '%pathogenic%'
+ORDER BY reference_name, start_position
+"""
+
+print("Running BigQuery…")
+df = client.query(query).to_dataframe()
+print(f"Fetched {len(df):,} pathogenic/likely-pathogenic rows.")
+df.head()
+```
+
+##  Cluster Detection (consecutive variants ≤ MAX_DIST)
+
+```python
+def parse_geneinfo(x):
+    """'BRCA1:672|NBR1:4077' -> ['BRCA1','NBR1']"""
+    if not isinstance(x, str) or not x:
+        return []
+    return [part.split(":")[0] for part in x.split("|") if ":" in part]
+
+pairs_rows = []
+for chrom, sub in df.groupby("reference_name", sort=False):
+    sub = sub.sort_values("start_position").reset_index(drop=True)
+    pos = sub["start_position"].values
+    for i in range(len(sub) - 1):
+        d = int(pos[i+1] - pos[i])
+        if d <= MAX_DIST:
+            r1 = sub.iloc[i]
+            r2 = sub.iloc[i+1]
+            g1 = parse_geneinfo(r1["GENEINFO"])
+            g2 = parse_geneinfo(r2["GENEINFO"])
+            pairs_rows.append({
+                "chrom": chrom,
+                "pos1": int(r1["start_position"]),
+                "pos2": int(r2["start_position"]),
+                "distance_bp": d,
+                "rs1": r1["RS"] if r1["RS"] else "",
+                "rs2": r2["RS"] if r2["RS"] else "",
+                "clnsig1": r1["clnsig"],
+                "clnsig2": r2["clnsig"],
+                "genes1": ";".join(g1),
+                "genes2": ";".join(g2),
+                "shared_genes": ";".join(sorted(set(g1).intersection(g2))),
+            })
+
+pairs_df = pd.DataFrame(pairs_rows).sort_values(["chrom","distance_bp","pos1"]).reset_index(drop=True)
+print(f"Found {len(pairs_df):,} clustered consecutive pairs within {MAX_DIST} bp.")
+pairs_df.head(10)
+```
+
+##  Export (CSV + rsIDs for browser batch search)
+
+```python
+if not pairs_df.empty:
+    pairs_df.to_csv(CSV_OUT, index=False)
+    print(f"Saved CSV → {CSV_OUT}")
+
+    rs_ids = pd.unique(pd.concat([pairs_df["rs1"], pairs_df["rs2"]]).dropna())
+    rs_ids = [r for r in rs_ids if isinstance(r, str) and r.startswith("rs")]
+    with open(TXT_OUT, "w") as f:
+        f.write("\n".join(sorted(set(rs_ids), key=lambda x: int(x[2:]) if x[2:].isdigit() else 10**12)))
+    print(f"Saved RS batch list → {TXT_OUT}")
+```
+
+### How I’ll use it :
+     - open the TXT → copy all → paste into ClinVar’s search → review variant pages & PubMed links.
+
+## Lessons I can reuse (pattern library)
+
+SQL patterns
+
+    - Schema-first: inspect table, note array vs scalar fields.
+
+    - Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')
+     if I just need a printable value.
+
+    - Filter early: push WHERE conditions into SQL so Python handles smaller frames.
+
+Python patterns
+
+    - Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).
+
+    - Text parsing: split composite fields (GENEINFO) into usable tokens.
+
+    - Exports for the web: create both a rich CSV and a plain TXT for batch tools.
+
+Workflow patterns
+
+    - Parametrize CHROMS, MAX_DIST, TABLE at the top.
+
+    - Keep query → process → export in separate cells so debugging is easy.
+
+
+## How to reuse
+
+To Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.
+
+
+## key idea
+
+**1 Pick data source**
+
+```python
+from google.cloud import bigquery
+from google.oauth2 import service_account
+
+PROJECT_ID = "bio-sql-playground"
+KEY_PATH   = r"C:\Users\zackd\Downloads\bio-sql-playground-bac6463c2d62.json"
+TABLE      = "bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701"
+
+creds  = service_account.Credentials.from_service_account_file(KEY_PATH)
+client = bigquery.Client(project=PROJECT_ID, credentials=creds)
+```
+
+**2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)**
+
+```sql
+SELECT
+  reference_name,
+  start_position,
+  end_position,
+  ARRAY_TO_STRING(RS, ',') AS RS,  -- flatten array
+  GENEINFO,
+  LOWER(sig) AS clnsig             -- one label per row
+FROM `bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`,
+UNNEST(CLNSIG) AS sig
+```
+
+**3 Filter early (shrink the dataset in SQL / when loading)**
+
+```sql
+WHERE reference_name IN ('1','2','…','22','X','Y')
+  AND LOWER(sig) LIKE '%pathogenic%'
+ORDER BY reference_name, start_position
+```
+
+**4 Sort = find neighbors (the “consecutive pairs” trick)**
+
+
+```python
+def parse_geneinfo(x):
+    if not isinstance(x, str) or not x:
+        return []
+    return [part.split(":")[0] for part in x.split("|") if ":" in part]
+```
+
+**5 Export CSV for analysis**
+
+```python
+csv_path = f"clinvar_clustered_pairs_{MAX_DIST}bp.csv"
+pairs_df.to_csv(csv_path, index=False)
+print("Saved CSV →", csv_path)
+```
