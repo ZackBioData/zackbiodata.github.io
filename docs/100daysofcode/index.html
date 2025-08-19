@@ -80,7 +80,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+      page: 18,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
@@ -172,14 +173,8 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description">Description</a></li>
-  </ul>
-</nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(18)</span></div><div class="category" data-category="QWxnb3JpdGhtJTIwRGVzaWdu">Algorithm Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QWxnb3JpdGhtcw==">Algorithms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlnUXVlcnk=">BigQuery <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QmlvaW5mb3JtYXRpY3M=">Bioinformatics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Q2xpblZhcg==">ClinVar <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(4)</span></div><div class="category" data-category="R2VuZSUyMEV4cHJlc3Npb24=">Gene Expression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGVhcm5pbmclMjBMb2c=">Learning Log <span class="quarto-category-count">(7)</span></div><div class="category" data-category="TGVldENvZGU=">LeetCode <span class="quarto-category-count">(2)</span></div><div class="category" data-category="T1JGcw==">ORFs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGF0aHdheSUyMEVucmljaG1lbnQ=">Pathway Enrichment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvYmFiaWxpdHk=">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(11)</span></div><div class="category" data-category="Uk1pbmklMjBwcm9qZWN0">RMini project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxhbmQ=">Rosaland <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxpbmQ=">Rosalind <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Um9zaWxhbmQ=">Rosiland <span class="quarto-category-count">(5)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBDb21wYXJpc29u">Sequence Comparison <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1FM">SQL <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VHJhbnNjcmlwdG9taWNz">Transcriptomics <span class="quarto-category-count">(1)</span></div></div></div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(22)</span></div><div class="category" data-category="QWxnb3JpdGhtJTIwRGVzaWdu">Algorithm Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QWxnb3JpdGhtcw==">Algorithms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlnUXVlcnk=">BigQuery <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QmlvaW5mb3JtYXRpY3M=">Bioinformatics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(15)</span></div><div class="category" data-category="Q2xpblZhcg==">ClinVar <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGF0YSUyMFdyYW5nbGluZw==">Data Wrangling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(4)</span></div><div class="category" data-category="R2VuZSUyMEV4cHJlc3Npb24=">Gene Expression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGVhcm5pbmclMjBMb2c=">Learning Log <span class="quarto-category-count">(10)</span></div><div class="category" data-category="TGVldENvZGU=">LeetCode <span class="quarto-category-count">(3)</span></div><div class="category" data-category="T1JGcw==">ORFs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFuZGFz">Pandas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGF0aHdheSUyMEVucmljaG1lbnQ=">Pathway Enrichment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvYmFiaWxpdHk=">Probability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Uk1pbmklMjBwcm9qZWN0">RMini project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxhbmQ=">Rosaland <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Um9zYWxpbmQ=">Rosalind <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Um9zaWxhbmQ=">Rosiland <span class="quarto-category-count">(6)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBDb21wYXJpc29u">Sequence Comparison <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1FM">SQL <span class="quarto-category-count">(3)</span></div><div class="category" data-category="VHJhbnNjcmlwdG9taWNz">Transcriptomics <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -202,20 +197,161 @@ window.Quarto = {
 </header>
 
 
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">Description</h2>
-<p>a This section is part journal, part learning log. I’m using the <strong>#100DaysOfCode</strong> challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation.</p>
+<p>This section is part journal, part learning log. I’m using the <strong>#100DaysOfCode</strong> challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.</p>
 
 
 
-</section>
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="U1FMJTJDQmlnUXVlcnklMkNCaW9pbmZvcm1hdGljcyUyQ0NsaW5WYXIlMkNQeXRob24=" data-listing-date-sort="1754780400000" data-listing-file-modified-sort="1754840301337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="948">
+<div class="g-col-1" data-index="0" data-categories="U1FMJTJDRGF0YSUyMFdyYW5nbGluZyUyQ0xlYXJuaW5nJTIwTG9n" data-listing-date-sort="1755558000000" data-listing-file-modified-sort="1755618715019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="630">
+<a href="../100daysofcode/Day22.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/100daysofcode/sql.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Day 22: SQL Fundamentals for Bioinformatics
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U1FM'); return false;">SQL</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFdyYW5nbGluZw=='); return false;">Data Wrangling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
+
+</div>
+<div class="card-text listing-description delink">
+Today I focused entirely on refreshing and strengthening my understanding of SQL using SQLBolt and Mode’s interactive SQL tutorials. While these aren’t built for…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Aug 19, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1755471600000" data-listing-file-modified-sort="1755618293004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="229">
+<a href="../100daysofcode/Day21.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Day 21: Protein Mass, RNA Translation, GC Content &amp; Hamming Distance
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
+
+</div>
+<div class="card-text listing-description delink">
+confidence completing basic biological processes
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Zack Davis
+</div>
+<div class="listing-date">
+Aug 18, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1755385200000" data-listing-file-modified-sort="1755618358355" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
+<a href="../100daysofcode/Day20.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
+
+</div>
+<div class="card-text listing-description delink">
+Ive now gained gained confidence in -fundimentals of syntax. -Biopython methods.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Zack Davis
+</div>
+<div class="listing-date">
+Aug 17, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="TGVldENvZGUlMkNQeXRob24lMkNQYW5kYXMlMkNCaW9pbmZvcm1hdGljcyUyQ0NsaW5WYXIlMkNCaWdRdWVyeQ==" data-listing-date-sort="1754866800000" data-listing-file-modified-sort="1755617164809" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="337">
+<a href="../100daysofcode/Day19.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../images/100daysofcode/sql.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Day 19 — Mini Project - Clinvar clustered pairs: extraction and stats
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVldENvZGU='); return false;">LeetCode</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGFuZGFz'); return false;">Pandas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlvaW5mb3JtYXRpY3M='); return false;">Bioinformatics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xpblZhcg=='); return false;">ClinVar</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmlnUXVlcnk='); return false;">BigQuery</div>
+
+</div>
+<div class="card-text listing-description delink">
+n_pairs = 77,161 — big signal; lots of close pathogenic pairs.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Zack
+</div>
+<div class="listing-date">
+Aug 11, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="U1FMJTJDQmlnUXVlcnklMkNCaW9pbmZvcm1hdGljcyUyQ0NsaW5WYXIlMkNQeXRob24=" data-listing-date-sort="1754780400000" data-listing-file-modified-sort="1755617015418" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="995">
 <a href="../100daysofcode/Day18.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<p class="card-img-top">
+<img loading="lazy" src="../images/100daysofcode/sql.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Day 18 — ClinVar clustered variants (SQL → Python → Export)
@@ -247,7 +383,7 @@ Aug 10, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="U1FMJTJDQmlnUXVlcnk=" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754757352479" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="174">
+<div class="g-col-1" data-index="5" data-categories="U1FMJTJDQmlnUXVlcnk=" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754757352479" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="174">
 <a href="../100daysofcode/Day17.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -278,7 +414,7 @@ Aug 9, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="TGVldENvZGUlMkNQeXRob24lMkNBbGdvcml0aG1z" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754692943002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="952">
+<div class="g-col-1" data-index="6" data-categories="TGVldENvZGUlMkNQeXRob24lMkNBbGdvcml0aG1z" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754692943002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="952">
 <a href="../100daysofcode/Day16.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -311,7 +447,7 @@ Aug 8, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="TGVldENvZGUlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754521200000" data-listing-file-modified-sort="1754603273809" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="916">
+<div class="g-col-1" data-index="7" data-categories="TGVldENvZGUlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754521200000" data-listing-file-modified-sort="1754603273809" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="916">
 <a href="../100daysofcode/Day15.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -346,7 +482,7 @@ Aug 7, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="Um9zaWxhbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754434800000" data-listing-file-modified-sort="1754603324246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
+<div class="g-col-1" data-index="8" data-categories="Um9zaWxhbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754434800000" data-listing-file-modified-sort="1754603324246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
 <a href="../100daysofcode/Day14.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -381,7 +517,7 @@ Aug 6, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Um9zYWxhbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754348400000" data-listing-file-modified-sort="1754740016264" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="389">
+<div class="g-col-1" data-index="9" data-categories="Um9zYWxhbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754348400000" data-listing-file-modified-sort="1754740016264" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="389">
 <a href="../100daysofcode/Day13.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -416,7 +552,7 @@ Aug 5, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="Uk1pbmklMjBwcm9qZWN0JTJDQmlvcHl0aG9uJTJDUHl0aG9u" data-listing-date-sort="1754262000000" data-listing-file-modified-sort="1754377873475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="640">
+<div class="g-col-1" data-index="10" data-categories="Uk1pbmklMjBwcm9qZWN0JTJDQmlvcHl0aG9uJTJDUHl0aG9u" data-listing-date-sort="1754262000000" data-listing-file-modified-sort="1754377873475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="640">
 <a href="../100daysofcode/Day12.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -449,7 +585,7 @@ Aug 4, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754175600000" data-listing-file-modified-sort="1754375129909" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="426">
+<div class="g-col-1" data-index="11" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754175600000" data-listing-file-modified-sort="1754375129909" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="426">
 <a href="../100daysofcode/Day11.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -484,7 +620,7 @@ Aug 3, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754002800000" data-listing-file-modified-sort="1754077238858" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="777">
+<div class="g-col-1" data-index="12" data-categories="Um9zaWxhbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1754002800000" data-listing-file-modified-sort="1755617295570" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="777">
 <a href="../100daysofcode/Day10.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -496,7 +632,7 @@ Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence
 </h5>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('Um9zYWxpbmQ='); return false;">Rosalind</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Um9zaWxhbmQ='); return false;">Rosiland</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
 
@@ -519,7 +655,7 @@ Aug 1, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753916400000" data-listing-file-modified-sort="1753985432313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="706">
+<div class="g-col-1" data-index="13" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753916400000" data-listing-file-modified-sort="1753985432313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="706">
 <a href="../100daysofcode/Day9.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -555,7 +691,7 @@ Jul 31, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753830000000" data-listing-file-modified-sort="1753907878874" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1307">
+<div class="g-col-1" data-index="14" data-categories="Um9zYWxpbmQlMkNCaW9weXRob24lMkNQeXRob24lMkNMZWFybmluZyUyMExvZw==" data-listing-date-sort="1753830000000" data-listing-file-modified-sort="1753907878874" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1307">
 <a href="../100daysofcode/Day8.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -590,7 +726,7 @@ Jul 30, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="QmlvcHl0aG9uJTJDQWxnb3JpdGhtJTIwRGVzaWduJTJDRkFTVEElMjBQYXJzaW5n" data-listing-date-sort="1753743600000" data-listing-file-modified-sort="1754377994941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
+<div class="g-col-1" data-index="15" data-categories="QmlvcHl0aG9uJTJDQWxnb3JpdGhtJTIwRGVzaWduJTJDRkFTVEElMjBQYXJzaW5n" data-listing-date-sort="1753743600000" data-listing-file-modified-sort="1754377994941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
 <a href="../100daysofcode/Day7.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -623,7 +759,7 @@ Jul 29, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="12" data-categories="QmlvcHl0aG9uJTJDUm9zaWxhbmQlMkNGQVNUQSUyMFBhcnNpbmc=" data-listing-date-sort="1753570800000" data-listing-file-modified-sort="1754378012075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="313">
+<div class="g-col-1" data-index="16" data-categories="QmlvcHl0aG9uJTJDUm9zaWxhbmQlMkNGQVNUQSUyMFBhcnNpbmc=" data-listing-date-sort="1753570800000" data-listing-file-modified-sort="1754378012075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="313">
 <a href="../100daysofcode/Day6.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -656,7 +792,7 @@ Jul 27, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="QmlvcHl0aG9uJTJDU2VxdWVuY2UlMjBDb21wYXJpc29uJTJDUHJvYmFiaWxpdHklMkNSb3NpbGFuZA==" data-listing-date-sort="1753484400000" data-listing-file-modified-sort="1754377971068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="643">
+<div class="g-col-1" data-index="17" data-categories="QmlvcHl0aG9uJTJDU2VxdWVuY2UlMjBDb21wYXJpc29uJTJDUHJvYmFiaWxpdHklMkNSb3NpbGFuZA==" data-listing-date-sort="1753484400000" data-listing-file-modified-sort="1754377971068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="643">
 <a href="../100daysofcode/Day5.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -691,11 +827,11 @@ Jul 26, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="14" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDT1JGcyUyQ1Jvc2lsYW5k" data-listing-date-sort="1753398000000" data-listing-file-modified-sort="1754378574017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="376">
+<div class="g-col-1" data-index="18" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDT1JGcyUyQ1Jvc2lsYW5k" data-listing-date-sort="1753398000000" data-listing-file-modified-sort="1754378574017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="376">
 <a href="../100daysofcode/Day4.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -726,11 +862,11 @@ Jul 25, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="15" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDUm9zaWxhbmQ=" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1754377962956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="340">
+<div class="g-col-1" data-index="19" data-categories="QmlvcHl0aG9uJTJDRkFTVEElMjBQYXJzaW5nJTJDUm9zaWxhbmQ=" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1754377962956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="340">
 <a href="../100daysofcode/Day3.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -759,11 +895,11 @@ Jul 24, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="16" data-categories="VHJhbnNjcmlwdG9taWNzJTJDR2VuZSUyMEV4cHJlc3Npb24lMkNQYXRod2F5JTIwRW5yaWNobWVudA==" data-listing-date-sort="1753052400000" data-listing-file-modified-sort="1754378044213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1151">
+<div class="g-col-1" data-index="20" data-categories="VHJhbnNjcmlwdG9taWNzJTJDR2VuZSUyMEV4cHJlc3Npb24lMkNQYXRod2F5JTIwRW5yaWNobWVudA==" data-listing-date-sort="1753052400000" data-listing-file-modified-sort="1754378044213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1151">
 <a href="../100daysofcode/Day1.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/cancer.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="../images/100daysofcode/cancer.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -792,11 +928,11 @@ Jul 21, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="17" data-categories="UHl0aG9u" data-listing-date-sort="1752361200000" data-listing-file-modified-sort="1754377944753" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="g-col-1" data-index="21" data-categories="UHl0aG9u" data-listing-date-sort="1752361200000" data-listing-file-modified-sort="1754377944753" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <a href="../100daysofcode/Day2.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="../images/100daysofcode/rosiland.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -823,6 +959,9 @@ Jul 13, 2025
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

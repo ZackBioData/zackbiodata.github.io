@@ -1,0 +1,107 @@
+---
+title: "Day 22: SQL Fundamentals for Bioinformatics"
+date: 2025-08-19
+image: ../images/100daysofcode/sql.png
+categories: [SQL, Data Wrangling, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+jupyter: python3
+---
+
+##  What I Did
+
+Today I focused entirely on refreshing and strengthening my understanding of SQL using [SQLBolt](https://sqlbolt.com/) and Mode’s interactive SQL tutorials. While these aren't built for bioinformatics directly, they teach essential querying logic that maps well to querying structured biological databases (e.g. gene annotations, variant tables, expression matrices).
+
+---
+
+##  SQL Basics
+
+###  The Two Required Clauses: `SELECT` and `FROM`
+
+Every SQL query begins with:
+
+```sql
+SELECT column1, column2
+FROM table_name;
+SELECT specifies which columns you want to see.
+FROM defines which table to pull from.
+```
+Note: You can only run one SELECT statement at a time.
+
+### Limiting results
+```sql
+SELECT *
+FROM table_name
+LIMIT 10;
+```
+Note: used to prevent long wait times when querying large datasets
+
+### Filtering with WHERE
+
+```sql
+SELECT *
+FROM table_name
+WHERE column_name = 'value';
+```
+Note: SQL clauses must follow this order: SELECT → FROM → WHERE
+
+### Comparison Operators
+
+| Operation             | Syntax       |
+| --------------------- | ------------ |
+| Equal to              | `=`          |
+| Not equal to          | `<>` or `!=` |
+| Greater than          | `>`          |
+| Less than             | `<`          |
+| Greater than or equal | `>=`         |
+| Less than or equal    | `<=`         |
+
+```sql
+WHERE name = 'BRCA1'
+```
+Note: SQL uses single quotes for string matching:
+
+### Arithmetic and Derived Columns
+
+You can create new columns by adding, subtracting, or multiplying existing ones:
+```sql
+SELECT (south + west) * 1.1 AS adjusted_units
+FROM housing_units;
+```
+
+### Pattern Matching and Logic Operators
+
+```sql
+SELECT *
+FROM gene_table
+WHERE gene_name LIKE 'BRCA%';
+```
+
+    -% matches zero or more characters.
+    -_ matches a single character.
+    -ILIKE case insensitivity 
+
+### Other Operators
+
+| Operator  | Use Case                                        |
+| --------- | ----------------------------------------------- |
+| `IN`      | Match multiple values from a list               |
+| `BETWEEN` | Match within a range                            |
+| `IS NULL` | Find missing values                             |
+| `AND`     | Combine multiple conditions                     |
+| `OR`      | Match if **any** of multiple conditions is true |
+| `NOT`     | Exclude rows that match a condition             |
+
+
+### Relivance to bioinformatics
+
+    -Querying ClinVar, COSMIC, or Ensembl gene annotations
+    -Filtering variants or transcripts based on condition
+    -fluency in SQL enables efficcent querying for .csv, .tsv, or .vcf files via SQLite.
+
+Things i learned
+    -How to structure queries with SELECT, FROM, WHERE
+    -The benefits of SQL
+    -Basic Operators and their use cases

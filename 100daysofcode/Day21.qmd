@@ -1,0 +1,102 @@
+---
+title: "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance"
+author: "Zack Davis"
+date: 2025-08-18
+image: ../images/100daysofcode/rosiland.png
+categories: [Rosalind, Biopython, Python, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+jupyter: python3
+---
+
+
+##  Problem 1: [Protein Mass](https://rosalind.info/problems/prtm/)
+
+
+## Code
+
+```python
+from Bio.Seq import Seq
+
+mass_table = {
+    'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,
+    'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,
+    'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,
+    'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,
+    'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333
+}
+
+protein_seq = Seq("SKADYEK")
+
+def calculate_protein_mass(protein_sequence):
+    return sum(mass_table.get(aa, 0) for aa in protein_sequence)
+
+print(f"{calculate_protein_mass(protein_seq):.3f}")
+
+
+## Problem 2: [RNA → Protein](https://rosalind.info/problems/prot/)
+
+## Code
+
+```python
+from Bio.Seq import Seq
+
+seq = Seq("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
+protein = seq.translate(table=1, to_stop=True)
+
+print(protein)
+```
+
+## Problem 3: [Hamming Distance](https://rosalind.info/problems/hamm/)
+
+
+## Code
+
+```python
+String1 = "GAGCCTACTAACGGGAT"
+String2 = "CATCGTAATGACGGCCT"
+
+zip_iterator = zip(String1, String2)
+hamming_distance = 0
+
+for a, b in zip_iterator:
+    if a != b:
+        hamming_distance += 1
+
+print(hamming_distance)
+```
+
+## Problem 4: [GC Content](https://rosalind.info/problems/gc/)
+
+## Code
+
+```python
+from Bio.Seq import Seq
+from Bio import SeqIO
+from Bio.SeqUtils import gc_fraction
+
+Highest_GC_content = 0
+Highest_ID = ""
+
+record = SeqIO.parse("rosalind_gc.fasta", "fasta")
+
+for seq_record in record:
+    seq = seq_record.seq
+    gc_content = gc_fraction(seq)
+    if gc_content > Highest_GC_content:
+        Highest_GC_content = gc_content
+        Highest_ID = seq_record.id
+
+print(f"{Highest_ID}\n{Highest_GC_content:.8f}")
+```
+
+## Reflection 
+
+confidence completing basic biological processes 
+
+    -Protein → mass calculations
+    -NA → protein translation
+    -Mutation analysis with Hamming distance
+    -GC content across multiple FASTA sequences

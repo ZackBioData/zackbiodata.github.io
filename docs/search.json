@@ -60,14 +60,7 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
-  },
-  {
-    "objectID": "blog/index.html#what-i-will-blog",
-    "href": "blog/index.html#what-i-will-blog",
-    "title": "Blog",
-    "section": "",
-    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI."
+    "text": "A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics."
   },
   {
     "objectID": "blog/index.html#recent-posts",
@@ -179,14 +172,7 @@
     "href": "100daysofcode/index.html",
     "title": "100 days of code",
     "section": "",
-    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
-  },
-  {
-    "objectID": "100daysofcode/index.html#description",
-    "href": "100daysofcode/index.html#description",
-    "title": "100 days of code",
-    "section": "",
-    "text": "a This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced — all with a focus on clean, professional documentation."
+    "text": "This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 22: SQL Fundamentals for Bioinformatics\n\n\n\nSQL\n\nData Wrangling\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 21: Protein Mass, RNA Translation, GC Content & Hamming Distance\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 19 — Mini Project - Clinvar clustered pairs: extraction and stats\n\n\n\nLeetCode\n\nPython\n\nPandas\n\nBioinformatics\n\nClinVar\n\nBigQuery\n\n\n\n\n\n\n\nZack\n\n\nAug 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 18 — ClinVar clustered variants (SQL → Python → Export)\n\n\n\nSQL\n\nBigQuery\n\nBioinformatics\n\nClinVar\n\nPython\n\n\n\n\n\n\n\nZack\n\n\nAug 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 17: Setting Up SQL + probability\n\n\n\nSQL\n\nBigQuery\n\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window\n\n\n\nLeetCode\n\nPython\n\nAlgorithms\n\n\n\n\n\n\n\n\n\n\nAug 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr\n\n\n\nLeetCode\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 14: consolidation from 6-10\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering\n\n\n\nRosaland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 12: Mini project\n\n\n\nRMini project\n\nBiopython\n\nPython\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11: consolidation from day 1-10\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Rosalind Problems – Overlap Graphs &\n\n\n\nBiopython\n\nAlgorithm Design\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA\n\n\n\nBiopython\n\nRosiland\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: Rosalind Problems – GC Content & Hamming Distance\n\n\n\nBiopython\n\nSequence Comparison\n\nProbability\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Rosalind Problem – Open Reading Frames\n\n\n\nBiopython\n\nFASTA Parsing\n\nORFs\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: 3 Rosiland problems: FASTA and Biopython\n\n\n\nBiopython\n\nFASTA Parsing\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability\n\n\n\nTranscriptomics\n\nGene Expression\n\nPathway Enrichment\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: 4 simple rosiland problems\n\n\n\nPython\n\n\n\n\n\n\n\n\n\n\nJul 13, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "100daysofcode/Day8.html",
@@ -252,11 +238,312 @@
     "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
   },
   {
-    "objectID": "100daysofcode/Day2.html",
-    "href": "100daysofcode/Day2.html",
-    "title": "Day 1: 4 simple rosiland problems",
+    "objectID": "100daysofcode/Day22.html",
+    "href": "100daysofcode/Day22.html",
+    "title": "Day 22: SQL Fundamentals for Bioinformatics",
     "section": "",
-    "text": "Day 2 is a coding warmup Link provided here"
+    "text": "Today I focused entirely on refreshing and strengthening my understanding of SQL using SQLBolt and Mode’s interactive SQL tutorials. While these aren’t built for bioinformatics directly, they teach essential querying logic that maps well to querying structured biological databases (e.g. gene annotations, variant tables, expression matrices)."
+  },
+  {
+    "objectID": "100daysofcode/Day22.html#what-i-did",
+    "href": "100daysofcode/Day22.html#what-i-did",
+    "title": "Day 22: SQL Fundamentals for Bioinformatics",
+    "section": "",
+    "text": "Today I focused entirely on refreshing and strengthening my understanding of SQL using SQLBolt and Mode’s interactive SQL tutorials. While these aren’t built for bioinformatics directly, they teach essential querying logic that maps well to querying structured biological databases (e.g. gene annotations, variant tables, expression matrices)."
+  },
+  {
+    "objectID": "100daysofcode/Day22.html#sql-basics",
+    "href": "100daysofcode/Day22.html#sql-basics",
+    "title": "Day 22: SQL Fundamentals for Bioinformatics",
+    "section": "SQL Basics",
+    "text": "SQL Basics\n\nThe Two Required Clauses: SELECT and FROM\nEvery SQL query begins with:\nSELECT column1, column2\nFROM table_name;\nSELECT specifies which columns you want to see.\nFROM defines which table to pull from.\nNote: You can only run one SELECT statement at a time.\n\n\nLimiting results\nSELECT *\nFROM table_name\nLIMIT 10;\nNote: used to prevent long wait times when querying large datasets\n\n\nFiltering with WHERE\nSELECT *\nFROM table_name\nWHERE column_name = 'value';\nNote: SQL clauses must follow this order: SELECT → FROM → WHERE\n\n\nComparison Operators\n\n\n\nOperation\nSyntax\n\n\n\n\nEqual to\n=\n\n\nNot equal to\n&lt;&gt; or !=\n\n\nGreater than\n&gt;\n\n\nLess than\n&lt;\n\n\nGreater than or equal\n&gt;=\n\n\nLess than or equal\n&lt;=\n\n\n\nWHERE name = 'BRCA1'\nNote: SQL uses single quotes for string matching:\n\n\nArithmetic and Derived Columns\nYou can create new columns by adding, subtracting, or multiplying existing ones:\nSELECT (south + west) * 1.1 AS adjusted_units\nFROM housing_units;\n\n\nPattern Matching and Logic Operators\nSELECT *\nFROM gene_table\nWHERE gene_name LIKE 'BRCA%';\n-% matches zero or more characters.\n-_ matches a single character.\n-ILIKE case insensitivity \n\n\nOther Operators\n\n\n\nOperator\nUse Case\n\n\n\n\nIN\nMatch multiple values from a list\n\n\nBETWEEN\nMatch within a range\n\n\nIS NULL\nFind missing values\n\n\nAND\nCombine multiple conditions\n\n\nOR\nMatch if any of multiple conditions is true\n\n\nNOT\nExclude rows that match a condition\n\n\n\n\n\nRelivance to bioinformatics\n-Querying ClinVar, COSMIC, or Ensembl gene annotations\n-Filtering variants or transcripts based on condition\n-fluency in SQL enables efficcent querying for .csv, .tsv, or .vcf files via SQLite.\nThings i learned -How to structure queries with SELECT, FROM, WHERE -The benefits of SQL -Basic Operators and their use cases"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html",
+    "href": "100daysofcode/Day20.html",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "",
+    "text": "DNA_string = \"CTCAGCCTTCAACCCGAGGGTTCTCCGAAGTATCTGAACCCAATACTAGCAGGTTTTGCGATTTACACGCCTCGAGCGTTACATGGTAATTTGCGAATGCGCCTTCTAAGGTTCGGTCTTACCACTAAGTAGCAAATTGTAAGACTATCCCTCCGACTATTCTAATCGTTGGGCCTGGGCTTTCAGTTCACCCGCGAAGCCCTATGGCGCTCCCTCTTCCTGTGACATGCAGGGCGTCGCCCCCGGACCATTCTGAGCAGAAGCCGGCCTCCGCTGACGTGGCGGTAACAGACTGCTCCCGGAGAGCCGGTACACGCATGCGAGATTCCTACGTCCTTCAGCGTGCCTACACCTATCCCTATGAATCCAAGCTACGCCCGAGACGTCCGATAAACATACACCAATACTGTTTGTTAGCCACACTAGAGGGTATCGTTTCGGTGCTCCGCTGGATTATCGAGCCGCTTTGGCGGTTGCGCTGCTAAATGGCACGTAGCATACAGGTCCAAAACTACTAACAGGTGGGTCCTGTCGCACAAGCTGCGTTCCCCACTCGCGACCTAAAACCAAGCCACCATTGATTTTTTACTTCCGGGGCGGTGGCCAGTTCAGGCTAGTTCGTTGTAGAGCAATGTTGTAACGAGAGTACTCAGGGCCAAACAGGGTGACTGATATTTTTGCGCTGTCCAGCTTTACTCCTGTCTTCTTTAAATCTCAAGGGGCGCCGTAGAAATAGTGCCGCGCTTTAGGTAGCAAGTAAGAAGCCGAAGCAAAAACGGTGCGGAGCGACGTGTTTATCGGAAGCAACTAGACGGGTATTCCATCTGGGCGCGCCGCGTTTGAATATCACGGGAGGACGGCTAGATCCAGCTCTGTCGAGGCAGCTCTCAAGAATACGGGTAAAAGTGCCCACGACCCATTGTCTTCTGTTC\"\n\nA, T, C, G = 0, 0, 0, 0\n\nfor nt in DNA_string:\n    if nt == \"A\":\n        A += 1\n    elif nt == \"T\":\n        T += 1\n    elif nt == \"C\":\n        C += 1\n    elif nt == \"G\":\n        G += 1\n\nprint(A, C, G, T)"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html#problem-1-counting-dna-nucleotides",
+    "href": "100daysofcode/Day20.html#problem-1-counting-dna-nucleotides",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "",
+    "text": "DNA_string = \"CTCAGCCTTCAACCCGAGGGTTCTCCGAAGTATCTGAACCCAATACTAGCAGGTTTTGCGATTTACACGCCTCGAGCGTTACATGGTAATTTGCGAATGCGCCTTCTAAGGTTCGGTCTTACCACTAAGTAGCAAATTGTAAGACTATCCCTCCGACTATTCTAATCGTTGGGCCTGGGCTTTCAGTTCACCCGCGAAGCCCTATGGCGCTCCCTCTTCCTGTGACATGCAGGGCGTCGCCCCCGGACCATTCTGAGCAGAAGCCGGCCTCCGCTGACGTGGCGGTAACAGACTGCTCCCGGAGAGCCGGTACACGCATGCGAGATTCCTACGTCCTTCAGCGTGCCTACACCTATCCCTATGAATCCAAGCTACGCCCGAGACGTCCGATAAACATACACCAATACTGTTTGTTAGCCACACTAGAGGGTATCGTTTCGGTGCTCCGCTGGATTATCGAGCCGCTTTGGCGGTTGCGCTGCTAAATGGCACGTAGCATACAGGTCCAAAACTACTAACAGGTGGGTCCTGTCGCACAAGCTGCGTTCCCCACTCGCGACCTAAAACCAAGCCACCATTGATTTTTTACTTCCGGGGCGGTGGCCAGTTCAGGCTAGTTCGTTGTAGAGCAATGTTGTAACGAGAGTACTCAGGGCCAAACAGGGTGACTGATATTTTTGCGCTGTCCAGCTTTACTCCTGTCTTCTTTAAATCTCAAGGGGCGCCGTAGAAATAGTGCCGCGCTTTAGGTAGCAAGTAAGAAGCCGAAGCAAAAACGGTGCGGAGCGACGTGTTTATCGGAAGCAACTAGACGGGTATTCCATCTGGGCGCGCCGCGTTTGAATATCACGGGAGGACGGCTAGATCCAGCTCTGTCGAGGCAGCTCTCAAGAATACGGGTAAAAGTGCCCACGACCCATTGTCTTCTGTTC\"\n\nA, T, C, G = 0, 0, 0, 0\n\nfor nt in DNA_string:\n    if nt == \"A\":\n        A += 1\n    elif nt == \"T\":\n        T += 1\n    elif nt == \"C\":\n        C += 1\n    elif nt == \"G\":\n        G += 1\n\nprint(A, C, G, T)"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html#problem-2-transcribing-dna-into-rna",
+    "href": "100daysofcode/Day20.html#problem-2-transcribing-dna-into-rna",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "Problem 2: Transcribing DNA into RNA",
+    "text": "Problem 2: Transcribing DNA into RNA\nfrom Bio.Seq import Seq\n\nRNAstring = Seq(\"CCCTCCTGCTCTTTTTAGGCGTCCCGGGTTGTTGAGTTGTTTAGGAAAAAGTGGACGTTCTCTGTTAGGGTTGTTCCTATTGTGTATGATTTCGTTAGTCGGAGCTCATTGTGACAGAGCTCGGTGAAAACGCTGCGTTTCACAAGTGTGGCCAGCCGTTAAAAAAGGGGCTCACATCGGAAATACGTTACGGCATAGGACACATTCGTCTCAGTTACGTCGGCATTTACGTTTTAGTCGCAATAGGTAGTTAGAATTTATATGCTAGAACGAATAGAATCACTGACTTTGATCATTGCGTGTGAATCGAGGAGCGCCGAGCACGCCGCGTCTTTTGTGAAGGAAGCATACTCCACAAAGCACCTCGGGCTAGCATGTCTAGCTTTTTGGGAGACTAATACGTATGCCATATCCCGAGCTCAAGGTAGTGGGTATCGCCAGGTCAGATCTGCATCTTAGCTCCTGCTATCCTGACTATTAACGGCTTATCTTTACACGAACAAATCCAGAATCTTATTACAATCGGTATCCAAACGGGGGCTTAATTAGCGTATATTACGCCGACGCGCCCATCGAGGGACGGTGTGCGCATTTCGCTATGGGGAGCCTCGACTGACGGCGGCTTTGAAGAGGGCTCGCCTCGACCTTCCGTCAACAAGAGCTTATGTACCGCACATAGCCTCACTCCGGGTTACCGGGAAGCTGCCGGCAAGCACAGGAAACCAGTACGGGGCGGCGAGGCGGCTCATGCTTGCCGGCAAATCTCACACTTGTCAAGAGCAGTGAACACACCTGTTCGTAGTGTTGCATAGTTTAGCGAACAATGATCGTGAATTGGAACGATAACACCTTAACATTGGTTCATAGTGCCTTTGGCGCGAGCGCTAACGTCATGAGCACAAGCGTGTCTACACAGCCCATGGTAC\")\nmRNA = RNAstring.transcribe()\n\nprint(mRNA)"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html#problem-3-complementing-a-strand-of-dna",
+    "href": "100daysofcode/Day20.html#problem-3-complementing-a-strand-of-dna",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "Problem 3: Complementing a strand of DNA",
+    "text": "Problem 3: Complementing a strand of DNA\nfrom Bio.Seq import Seq\n\nDNA = Seq(\"TAGGACGCCAGATCAAACTTCCTGAAGACAGTATGAGGGGTCAGAATGGTAAGGGGATTAACTTAGATGCCCTATGCAACCCCCGTTGATGCAGGCATGTGTTGCCTGTTTAGCTCATGACTCTGGCGATTATTGTAATATAGCGCTCTTCTAAGCCCAGTCAGACTAATTTTAGACCCAACAAAAGTGCTTGTGCCTTGGTATGTAACATCATGTCATTACTACCATGAATTAATAGACAATAAGTAACCGGAATTTGAGGGACGGTAAGATGAAGAGTTATTGCTGGGGTAGTCACCTTCTCTAGACATATGGGCGGCAACGATAGCATAGCCCCGATCTCCTTGGGTAATTTGGGCTCTAAACGCTATCTTTGACGTGGTTGGTGCGCACGCGCATGTAAACCGTCAAGTTGTTGGTCAGCTGGTAGATGCAGAGCCACTCAGCGTATTCACGAGTTAGGTAAAACGCTGTTGCAGGAAGGGTTGCGTCGTCTCGGTGAGATAATATTTCCCAACATAGGAACGAAATCTGGTCGTTCCTATCGTTTTTTACCAAAGAACCTAAGGACTCACAGCGTCAGTTGTACCCGCATTCTTTCGTGTCAGTAGGTACGATTACCACTCAGACACAATAACGGCCACGCCCCAACCGCTTTCTGCTAGATTACGGGGCTAATGGCCGATTTGCGCAGGTCGTAGAGCACAATAAGATTTGAAAGTAATGATCCATGGTTTTCTCTGAGTGTAATTCCCCCAGCGAGGGTGCCCGATCTCAGGATGAAACGTGACAAAGTGAATCTTCCCCCTGTAAATCCAACTGACCTGCTTGGGATCCCTCGCAACCTATTTCGTCTGCGCTCGTACCGTGTAGCTGGTGTATA\")\nrev_comp = DNA.reverse_complement()\n\nprint(rev_comp)"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html#problem-4-hamming-distance",
+    "href": "100daysofcode/Day20.html#problem-4-hamming-distance",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "Problem 4: Hamming Distance",
+    "text": "Problem 4: Hamming Distance\nString1 = \"GAGCCTACTAACGGGAT\"\nString2 = \"CATCGTAATGACGGCCT\"\ncount = 0\n\nfor nt1, nt2 in zip(String1, String2):\n    if nt1 != nt2:\n        count += 1\n\nprint(count)"
+  },
+  {
+    "objectID": "100daysofcode/Day20.html#reflection",
+    "href": "100daysofcode/Day20.html#reflection",
+    "title": "Day 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements",
+    "section": "Reflection",
+    "text": "Reflection\nIve now gained gained confidence in -fundimentals of syntax. -Biopython methods."
+  },
+  {
+    "objectID": "100daysofcode/Day19.html",
+    "href": "100daysofcode/Day19.html",
+    "title": "Day 19 — Mini Project - Clinvar clustered pairs: extraction and stats",
+    "section": "",
+    "text": "import pandas as pd\nimport numpy as np\nfrom pathlib import Path\nfrom datetime import datetime\nimport matplotlib.pyplot as plt\n\n\"\"\"----- 1 Load one file -----\"\"\"\ncsv_path = Path(\"clinvar_clustered_pairs_1000bp.csv\")\nDTYPES = {\n    \"chrom\": \"string\", \"pos1\": \"Int64\", \"pos2\": \"Int64\",\n    \"distance_bp\": \"Int64\", \"rs1\": \"string\", \"rs2\": \"string\",\n    \"genes1\": \"string\", \"genes2\": \"string\", \"shared_genes\": \"string\",\n}\ndf = pd.read_csv(csv_path, dtype=DTYPES, low_memory=False)\n\n# If distance not present or has NAs, recompute from pos1/pos2\nif \"distance_bp\" not in df or df[\"distance_bp\"].isna().any():\n    df[\"distance_bp\"] = (df[[\"pos1\",\"pos2\"]].max(axis=1) - df[[\"pos1\",\"pos2\"]].min(axis=1)).astype(\"Int64\")\n\n\"\"\" ----- 2 Simple stats -----\"\"\"\ndist = df[\"distance_bp\"].dropna().astype(int)\nsame_gene_frac = (df[\"shared_genes\"].fillna(\"\") != \"\").mean()\n\nsummary = {\n    \"run_time\": datetime.now().isoformat(timespec=\"seconds\"),\n    \"file\": csv_path.name,\n    \"n_pairs\": int(len(df)),\n    \"same_gene_fraction\": round(float(same_gene_frac), 4),\n    \"dist_min\": int(dist.min()) if len(dist) else None,\n    \"dist_median\": float(np.median(dist)) if len(dist) else None,\n    \"dist_mean\": round(float(dist.mean()), 2) if len(dist) else None,\n    \"dist_p95\": float(np.percentile(dist, 95)) if len(dist) else None,\n}\n# tightness thresholds\nfor thr in (10, 25, 50, 100, 250, 500, 1000):\n    summary[f\"frac_≤{thr}bp\"] = round(float((dist &lt;= thr).mean()), 4) if len(dist) else None\n\nprint(summary)\n\n\"\"\" ----- 3 Log the stats to a persistent CSV -----\"\"\"\nlog_path = Path(\"cluster_metrics_log.csv\")\nlog_df = pd.DataFrame([summary])\nif log_path.exists():\n    log_df.to_csv(log_path, mode=\"a\", header=False, index=False)\nelse:\n    log_df.to_csv(log_path, index=False)\nprint(f\"Appended metrics to {log_path}\")\n\n\"\"\" ----- 4 Tiny extra artifacts -----\"\"\"\n# Top chromosomes\ntop_chroms = df[\"chrom\"].value_counts().head(10)\ntop_chroms.to_csv(\"top_chroms.csv\")\n\n# Top genes by appearance (genes1 + genes2)\ndef split_genes(series):\n    genes = []\n    for s in series.fillna(\"\"):\n        genes.extend([g for g in str(s).split(\";\") if g])\n    return genes\n\ntop_genes = (\n    pd.Series(split_genes(df[\"genes1\"]) + split_genes(df[\"genes2\"]))\n      .value_counts()\n      .head(20)\n)\n\n# Linear (zoomed to ≤500 bp so you see the peak)\nplt.hist(dist[dist &lt;= 500], bins=50)\nplt.xlabel(\"Clustered pair distance (bp) — zoom ≤ 500\")\nplt.ylabel(\"Count\")\nplt.title(\"Cluster tightness (zoom)\")\nplt.show()\n\ntop_genes.to_csv(\"top_genes.csv\")\nprint(\"Wrote top_chroms.csv and top_genes.csv\")"
+  },
+  {
+    "objectID": "100daysofcode/Day19.html#mini-project-clinvar-cclustered-pairs-extraction-and-stats",
+    "href": "100daysofcode/Day19.html#mini-project-clinvar-cclustered-pairs-extraction-and-stats",
+    "title": "Day 19 — Mini Project - Clinvar clustered pairs: extraction and stats",
+    "section": "",
+    "text": "import pandas as pd\nimport numpy as np\nfrom pathlib import Path\nfrom datetime import datetime\nimport matplotlib.pyplot as plt\n\n\"\"\"----- 1 Load one file -----\"\"\"\ncsv_path = Path(\"clinvar_clustered_pairs_1000bp.csv\")\nDTYPES = {\n    \"chrom\": \"string\", \"pos1\": \"Int64\", \"pos2\": \"Int64\",\n    \"distance_bp\": \"Int64\", \"rs1\": \"string\", \"rs2\": \"string\",\n    \"genes1\": \"string\", \"genes2\": \"string\", \"shared_genes\": \"string\",\n}\ndf = pd.read_csv(csv_path, dtype=DTYPES, low_memory=False)\n\n# If distance not present or has NAs, recompute from pos1/pos2\nif \"distance_bp\" not in df or df[\"distance_bp\"].isna().any():\n    df[\"distance_bp\"] = (df[[\"pos1\",\"pos2\"]].max(axis=1) - df[[\"pos1\",\"pos2\"]].min(axis=1)).astype(\"Int64\")\n\n\"\"\" ----- 2 Simple stats -----\"\"\"\ndist = df[\"distance_bp\"].dropna().astype(int)\nsame_gene_frac = (df[\"shared_genes\"].fillna(\"\") != \"\").mean()\n\nsummary = {\n    \"run_time\": datetime.now().isoformat(timespec=\"seconds\"),\n    \"file\": csv_path.name,\n    \"n_pairs\": int(len(df)),\n    \"same_gene_fraction\": round(float(same_gene_frac), 4),\n    \"dist_min\": int(dist.min()) if len(dist) else None,\n    \"dist_median\": float(np.median(dist)) if len(dist) else None,\n    \"dist_mean\": round(float(dist.mean()), 2) if len(dist) else None,\n    \"dist_p95\": float(np.percentile(dist, 95)) if len(dist) else None,\n}\n# tightness thresholds\nfor thr in (10, 25, 50, 100, 250, 500, 1000):\n    summary[f\"frac_≤{thr}bp\"] = round(float((dist &lt;= thr).mean()), 4) if len(dist) else None\n\nprint(summary)\n\n\"\"\" ----- 3 Log the stats to a persistent CSV -----\"\"\"\nlog_path = Path(\"cluster_metrics_log.csv\")\nlog_df = pd.DataFrame([summary])\nif log_path.exists():\n    log_df.to_csv(log_path, mode=\"a\", header=False, index=False)\nelse:\n    log_df.to_csv(log_path, index=False)\nprint(f\"Appended metrics to {log_path}\")\n\n\"\"\" ----- 4 Tiny extra artifacts -----\"\"\"\n# Top chromosomes\ntop_chroms = df[\"chrom\"].value_counts().head(10)\ntop_chroms.to_csv(\"top_chroms.csv\")\n\n# Top genes by appearance (genes1 + genes2)\ndef split_genes(series):\n    genes = []\n    for s in series.fillna(\"\"):\n        genes.extend([g for g in str(s).split(\";\") if g])\n    return genes\n\ntop_genes = (\n    pd.Series(split_genes(df[\"genes1\"]) + split_genes(df[\"genes2\"]))\n      .value_counts()\n      .head(20)\n)\n\n# Linear (zoomed to ≤500 bp so you see the peak)\nplt.hist(dist[dist &lt;= 500], bins=50)\nplt.xlabel(\"Clustered pair distance (bp) — zoom ≤ 500\")\nplt.ylabel(\"Count\")\nplt.title(\"Cluster tightness (zoom)\")\nplt.show()\n\ntop_genes.to_csv(\"top_genes.csv\")\nprint(\"Wrote top_chroms.csv and top_genes.csv\")"
+  },
+  {
+    "objectID": "100daysofcode/Day19.html#results",
+    "href": "100daysofcode/Day19.html#results",
+    "title": "Day 19 — Mini Project - Clinvar clustered pairs: extraction and stats",
+    "section": "results",
+    "text": "results\n\nrun_time,file,n_pairs,same_gene_fraction,dist_min,dist_median,dist_mean,dist_p95,frac_≤10bp,frac_≤25bp,frac_≤50bp,frac_≤100bp,frac_≤250bp,frac_≤500bp,frac_≤1000bp\n2025-08-11T09:57:43,clinvar_clustered_pairs_1000bp.csv,77161,0.9999,0,11.0,62.02,362.0,0.4892,0.6623,0.7831,0.871,0.9333,0.9648,1.0\nn_pairs = 77,161 — big signal; lots of close pathogenic pairs.\nMedian distance = 11 bp (p95 = 362 bp) — clusters are tight.\n~49% ≤ 10 bp; ~87% ≤ 100 bp — half are ultra-tight."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html",
+    "href": "100daysofcode/Day17.html",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "",
+    "text": "Today was about expanding my bioinformatics toolkit by setting up SQL in my local Python environment, specifically for querying large biological datasets through Google BigQuery."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#overview",
+    "href": "100daysofcode/Day17.html#overview",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "",
+    "text": "Today was about expanding my bioinformatics toolkit by setting up SQL in my local Python environment, specifically for querying large biological datasets through Google BigQuery."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#what-i-did",
+    "href": "100daysofcode/Day17.html#what-i-did",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "What I Did",
+    "text": "What I Did\n\nSkimmed fundamentals of probability\nInstalled the google-cloud-bigquery Python package.\nCreated a Google Cloud project and service account.\nGenerated and downloaded a JSON key file for authentication.\nLearned two ways to authenticate:\n\nSetting GOOGLE_APPLICATION_CREDENTIALS as an environment variable.\nLoading the service account JSON directly in Python (preferred for portability).\n\nSuccessfully ran my first BigQuery query in Python.\nSwapped out the sample “USA Names” dataset for the ClinVar variants dataset, so I can directly query genetic variant data."
+  },
+  {
+    "objectID": "100daysofcode/Day17.html#key-learnings",
+    "href": "100daysofcode/Day17.html#key-learnings",
+    "title": "Day 17: Setting Up SQL + probability",
+    "section": "Key Learnings",
+    "text": "Key Learnings\n\nEnvironment setup matters: Correct authentication is essential for BigQuery access.\nDataset schema inspection: Query errors like Unrecognized name often mean column names are wrong—use client.get_table() to check the schema before writing queries.\nReusable client setup: Keeping a clean “top-half” of Python code for BigQuery connection makes new queries quick to run.\nFirst SQL in Python: Successfully SELECTed, filtered, sorted, and limited data from BigQuery."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html",
+    "href": "100daysofcode/Day15.html",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "",
+    "text": "Task: Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. Exactly one solution exists.\nclass Solution:\n    def twoSum(self, nums: list[int], target: int) -&gt; list[int]:\n        seen = {}\n        for i, num in enumerate(nums):\n            complement = target - num\n            if complement in seen:\n                return [seen[complement], i]\n            seen[num] = i\n\n\n\nHow to use a hash map for constant-time lookups.\nThe complement pattern for sum problems.\nTracking indices alongside values."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html#what-i-learned",
+    "href": "100daysofcode/Day15.html#what-i-learned",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "",
+    "text": "How to use a hash map for constant-time lookups.\nThe complement pattern for sum problems.\nTracking indices alongside values."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html#what-i-learned-1",
+    "href": "100daysofcode/Day15.html#what-i-learned-1",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "what i learned",
+    "text": "what i learned\n\nCounting frequencies in one pass per string.\nEarly exit on length mismatch and zero counts.\nUsing dict.get to simplify initialization."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html#what-i-learned-2",
+    "href": "100daysofcode/Day15.html#what-i-learned-2",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "what i learned",
+    "text": "what i learned\n\nCreating a canonical signature via sorted strings.\nUsing defaultdict(list) to collect groups.\nTrade-offs between sorting and counting approaches."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html#what-i-learned-3",
+    "href": "100daysofcode/Day15.html#what-i-learned-3",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "what i learned",
+    "text": "what i learned\n\nCenter-expansion technique for palindromes.\nHandling both odd and even centers.\nMaintaining start/end pointers efficiently."
+  },
+  {
+    "objectID": "100daysofcode/Day15.html#what-i-learned-4",
+    "href": "100daysofcode/Day15.html#what-i-learned-4",
+    "title": "Day 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr",
+    "section": "what i learned",
+    "text": "what i learned\n\nSliding-window substring comparisons.\nEdge-case handling for empty needle.\nSimple O(n·m) approach before exploring KMP."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html",
+    "href": "100daysofcode/Day13.html",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "",
+    "text": "Task: Given a protein string in FASTA format, compute the total monoisotopic mass of the protein.\nmy solution\nfrom Bio.Seq import Seq\n\n# Mass table (monoisotopic)\nmass_table = {\n  'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,\n  'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,\n  'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,\n  'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,\n  'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333\n}\n\n# Read or define protein sequence\nprotein_seq = Seq(\"CNLWGSFNIMISTLYYNP...FDGVKWA\")\n\n# Compute total mass\ntotal_mass = sum(mass_table[aa] for aa in protein_seq)\nprint(f\"Total monoisotopic mass: {total_mass:.3f}\")\n\n\n\nHow to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned",
+    "href": "100daysofcode/Day13.html#what-i-learned",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "",
+    "text": "How to parse a Seq object and iterate over residues.\nUsing a dictionary lookup for residue masses and summing with Python’s built‑in sum."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned-1",
+    "href": "100daysofcode/Day13.html#what-i-learned-1",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "what i learned",
+    "text": "what i learned\n\nHow to reverse-map the genetic code from codon→amino acid.\nThe importance of modular arithmetic to keep counts manageable.\nRemembering to include stop codon possibilities."
+  },
+  {
+    "objectID": "100daysofcode/Day13.html#what-i-learned-2",
+    "href": "100daysofcode/Day13.html#what-i-learned-2",
+    "title": "Day 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering",
+    "section": "what i learned",
+    "text": "what i learned\n\nUsing itertools.product to generate Cartesian products in lex order.\nSorting mixed-length lists with Python’s list.sort().\nA two-tiered sort: by length via generation order, then lexicographically by sort()."
+  },
+  {
+    "objectID": "100daysofcode/Day11.html",
+    "href": "100daysofcode/Day11.html",
+    "title": "Day 11: consolidation from day 1-10",
+    "section": "",
+    "text": "I attempted to complete this problem as quick as possible without looking at any literature of any formatting from any other code.\nMy new code can be seen below.\nfrom Bio.Seq import Seq\n\nString1 = \"TATAGCACGCGACCGGTACCCAGTCAATCGTTGCCCTTGACCGAGTATTCTCAATGCCCGCCCCCAGCACCGAACGTTCCACAATACACCTAAAGTTGAGAGACACGGTTGCAGCCCTGACTATCTACTGTCAGGGATAAGCTAGTCAGCAACAGACTCCTGCGTACGCTAGCGCATGAATCCAAATGGGCTCCAACTATATAGCGTTAAACCTCCGTAGCATGACTGTGGGAATGAAGCTATAGAAGGCTATGCGGCACATCCTGTTATCCGCGCCCAGCAGGCAAAGGAGGCCGGTCCAGCCCACGGACGTTTCCTGATTGCCGTTCTACAGAGTCTTACGTGCGGTAGACTGAGGTAACTCGACACGATGAGAAGTTTGTGTTATGAATGGCATGCTTTAAAGCACACAAGTTGGGCGAGGGTGTCTGACAGGGGTCCGCCAGGCCTCGTTCCAAAATAATGACGGACGAGCTAATAGATACAATACTGCAATCATATCTCTTGTAATACCGTCTAGCATCATATCCACCCAGCCAAGTCCGAGTCTAAGATAACGCTACAAAGGACAGGTACGGGAGCACGACGCTTCCGGAAAGGGCCCAACCTCCCGAGAACAAAGCGACTAAAGCGTTCATCGGCCTATGAAGCTCTTCCGTGTACGAAGAGGCAGTGATTTATATCTCTTAGAATCGCATGCCGCAACGTCGCACCATACGGTCGCAATTCAACCGTGGTCGCCATTTGCGTACCGTTTAGTACTGGTTTGGCTCCCGTCTAAGTGTAATCCCCCCGAAGGGCGCG\"\n\nfor i in range(len(String1)):\n    for length in range(4, 13):  # 4 to 12 inclusive\n        if i + length &lt;= len(String1):\n            chunk = String1[i:i+length]\n            revcomp = str(Seq(chunk).reverse_complement())\n            if chunk == revcomp:\n                print(f\"{i+1} {length}\")"
+  },
+  {
+    "objectID": "100daysofcode/Day11.html#reverse-palindrone-probllem-number-1httpsrosalind.infoproblemsrevp-from-day-3.",
+    "href": "100daysofcode/Day11.html#reverse-palindrone-probllem-number-1httpsrosalind.infoproblemsrevp-from-day-3.",
+    "title": "Day 11: consolidation from day 1-10",
+    "section": "",
+    "text": "I attempted to complete this problem as quick as possible without looking at any literature of any formatting from any other code.\nMy new code can be seen below.\nfrom Bio.Seq import Seq\n\nString1 = \"TATAGCACGCGACCGGTACCCAGTCAATCGTTGCCCTTGACCGAGTATTCTCAATGCCCGCCCCCAGCACCGAACGTTCCACAATACACCTAAAGTTGAGAGACACGGTTGCAGCCCTGACTATCTACTGTCAGGGATAAGCTAGTCAGCAACAGACTCCTGCGTACGCTAGCGCATGAATCCAAATGGGCTCCAACTATATAGCGTTAAACCTCCGTAGCATGACTGTGGGAATGAAGCTATAGAAGGCTATGCGGCACATCCTGTTATCCGCGCCCAGCAGGCAAAGGAGGCCGGTCCAGCCCACGGACGTTTCCTGATTGCCGTTCTACAGAGTCTTACGTGCGGTAGACTGAGGTAACTCGACACGATGAGAAGTTTGTGTTATGAATGGCATGCTTTAAAGCACACAAGTTGGGCGAGGGTGTCTGACAGGGGTCCGCCAGGCCTCGTTCCAAAATAATGACGGACGAGCTAATAGATACAATACTGCAATCATATCTCTTGTAATACCGTCTAGCATCATATCCACCCAGCCAAGTCCGAGTCTAAGATAACGCTACAAAGGACAGGTACGGGAGCACGACGCTTCCGGAAAGGGCCCAACCTCCCGAGAACAAAGCGACTAAAGCGTTCATCGGCCTATGAAGCTCTTCCGTGTACGAAGAGGCAGTGATTTATATCTCTTAGAATCGCATGCCGCAACGTCGCACCATACGGTCGCAATTCAACCGTGGTCGCCATTTGCGTACCGTTTAGTACTGGTTTGGCTCCCGTCTAAGTGTAATCCCCCCGAAGGGCGCG\"\n\nfor i in range(len(String1)):\n    for length in range(4, 13):  # 4 to 12 inclusive\n        if i + length &lt;= len(String1):\n            chunk = String1[i:i+length]\n            revcomp = str(Seq(chunk).reverse_complement())\n            if chunk == revcomp:\n                print(f\"{i+1} {length}\")"
+  },
+  {
+    "objectID": "100daysofcode/Day11.html#reverse-palindrone-probllem-number-1httpsrosalind.infoproblemsrevp-from-day-3.-1",
+    "href": "100daysofcode/Day11.html#reverse-palindrone-probllem-number-1httpsrosalind.infoproblemsrevp-from-day-3.-1",
+    "title": "Day 11: consolidation from day 1-10",
+    "section": "(Reverse palindrone: probllem number 1)[https://rosalind.info/problems/revp/] from day 3.",
+    "text": "(Reverse palindrone: probllem number 1)[https://rosalind.info/problems/revp/] from day 3.\nI had less struggle with this problem but my code is inneficient compared to when i first did it.\nfrom Bio import SeqIO\n\nrecord = list(SeqIO.parse(\"rosalind_orf (2).fasta\", \"fasta\"))\nDNAseq = record[0].seq\nforward_rna = DNAseq.transcribe() \nreverse_rna = DNAseq.reverse_complement().transcribe()\n\n\n    for frame in range(3):\n        protein = forward_rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                print(sub[:stop])\n                \n        protein = reverse_rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                print(sub[:stop])"
+  },
+  {
+    "objectID": "100daysofcode/Day11.html#what-i-learned",
+    "href": "100daysofcode/Day11.html#what-i-learned",
+    "title": "Day 11: consolidation from day 1-10",
+    "section": "What i learned",
+    "text": "What i learned\n\nHad to jog my memory of biopythons .translate and p\ni should have used for rna in [forward_rna, reverse_rna]"
+  },
+  {
+    "objectID": "100daysofcode/Day1.html",
+    "href": "100daysofcode/Day1.html",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day1.html#github-link",
+    "href": "100daysofcode/Day1.html#github-link",
+    "title": "Day 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability",
+    "section": "",
+    "text": "Python (pandas), Enrichr, g:Profiler The data set was used from here.\nThe CSV contains the transcriptomic data of 2 groups\n\na control group consisting of baseline C4-2B prostate cancer cell and\nan experimental group of cell line C4-2B with amplified PCP4 production via plasmid insertion.\n\nPurkinje cell protein 4 (PCP4) is a gene which plays a role in modulating of Ca²⁺/calmodulin signaling in immune cells. It downregulates proinflamatory cytokines IL-6, TNF-α, IL-1β. Cells over expressing PCP4 have disrupted calcium homeostasis, creating a calcium-rich cytosolic environment creating a vulnerability to calcium-dependent membrane and mitochondrial damage such as ACP’s (anticancer peptides).\nAlthough PCP4 upregulation would enhance ACP’s cytotoxicity its a mutation which is typically found within early-stage tumor development and downregulated once metastasis begins. Counteracting the specificity provided by Mastoparan Bs, which normally targets by products of of altered cellular metabolism (accumulation of lactate in the cellular membrane). As a result, PCP4 upregulation and metabolic vulnerabilities rarely co-occur, reducing the window for effective combination targeting.\n\n\n\n\nLoaded data using pandas.read_csv()\nCalculated mean expression per group\nComputed log2 fold change (PCP4 vs. control)\nFiltered genes with:\n\nabs(log2FC) &gt; 1\nraw expression &gt; 3 in either group\n\n\nKey problems\nErrors i encountered included only opening the VScode file within the Day 1 coding directory and not the entire folder resulting in no local acsess to CSV unless hardcoded. Fix: Open entire project in VS code. Module Not Found Error. Pandas was downloaded on native python rather than anaconda python resulting in changing VS code python directory. Fix: Changed VS Code’s Python interpreter.\n\n\n\nDifferential Gene Expression Table\n\n\n\ngene_symbol\nmean_patient\nmean_control\nlog2_fc\n\n\n\n\nH2AC19\n0.000000\n52.033333\n-35.598717\n\n\nTICAM2\n12.060000\n0.000000\n33.489511\n\n\nCTAG1B\n8.500000\n0.000000\n32.984816\n\n\nFAM47E-STBD1\n6.650000\n0.000000\n32.630707\n\n\nCORO7-PAM16\n3.986667\n0.000000\n31.892536\n\n\nFSTL4\n0.000000\n3.000000\n-31.482315\n\n\nFAP\n0.000000\n3.000000\n-31.482315\n\n\nFUNDC1\n3.000000\n0.000000\n31.482315\n\n\nPRAMEF11\n0.000000\n2.823333\n-31.394752\n\n\nRIMBP3C\n2.340000\n0.000000\n31.123861\n\n\n\nTop GO terms in upregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n340\n\n\nmolecular transducer activity\n151\n\n\nsignaling receptor activity\n151\n\n\ncell periphery\n297\n\n\nextracellular region\n219\n\n\n\nTop GO terms in downregulated genes:\n\n\n\nname\nintersection_size\n\n\n\n\nmulticellular organismal process\n424\n\n\ncell periphery\n381\n\n\ndevelopmental process\n368\n\n\nplasma membrane\n343\n\n\nmolecular transducer activity\n169\n\n\n\nThen i completed a top 200 upregulated enrichr to better characterize the genes.\nI found MYC which controls for glycotic genes LDHA, GLUT1 was upregulated link, genes which promote metabolic reprogramming towards aerobic glycolysis (fermentation) resulting in a buildup of lactate resulting in the warburg phenotype link. Development of the warburg phenotype, increases the electrostatic attraction between the cationic ACP mastoparn B and the anionic cellular membrane.\nEZH2 appeared enriched in the Enrichr analysis, so out of curiosity, I checked its expression levels in the dataset using VS Code and found it was actually downregulated. Interestingly, its known target genes were enriched and upregulated, suggesting a loss of EZH2-mediated repression. This derepression includes genes involved in suppressing mitochondrial function, potentially promoting a shift toward aerobic glycolysis.\nWithin the Top 200 downregulated genes enrichr i found that PRC2 components, particularly EZH2 and SUZ12, were strongly enriched as regulators of the downregulated gene set. These genes play a key role in energy function but dont indicate anything of interest in context to MPb.\n\n\n\nEnrichr upregulation highlighted a potential therapeutic vulnerability in PCP4-overexpressing prostate cancer cells.\n\nUpregulation of MYC and loss of EZH2-mediated repression results in Metabolic Reprogramming towards increased lactate production, resulting in increased targeting of mastoparan B.\nPCP4 over expression promotes intracellular calcium buildup, potentially decreasing membrane stability, therefore increasing mastoparan Bs cytotocicity.\n\nAlthough PCP4 is typically not expressed in metastatic castration-resistant prostate cancer (mCRPC), in cases where it is expressed, it could influence patient treatment decisions. Transcriptomic profiling, as described here, could help identify such cases and exploit PCP4-associated vulnerabilities for targeted therapy with Mastoparan B."
+  },
+  {
+    "objectID": "100daysofcode/Day10.html",
+    "href": "100daysofcode/Day10.html",
+    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
+    "section": "",
+    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
+  },
+  {
+    "objectID": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
+    "href": "100daysofcode/Day10.html#problem-1-longest-increasing-subsequence",
+    "title": "Day 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence",
+    "section": "",
+    "text": "Given: A permutation π of length 𝑛 Return: A longest increasing subsequence of π, followed by a longest decreasing subsequence of π. My solution\n\n#!/usr/bin/env python3\n\"\"\"\nLongest Increasing/Decreasing Subsequence via Dynamic Programming\n\nWe scan forward through each position `i` in the input permutation `pi`.\nAt each `i`, we look back at all earlier positions `j &lt; i` and see whether we can\nextend the best subsequence ending at `j` by adding `pi[i]`.\n\n- We maintain `L_inc[i]`: length of the longest increasing subsequence ending at `i`.\n- We maintain `P_inc[i]`: pointer to the previous index in that subsequence.\n\nSpecifically, for each `i`:\n    for each `j &lt; i`:\n        if `pi[j] &lt; pi[i]` and `L_inc[j] + 1 &gt; L_inc[i]`:\n            update `L_inc[i] = L_inc[j] + 1`\n            record `P_inc[i] = j`\n\nThis reuses previously computed `L_inc[j]` values (never recomputing them)—\nthe hallmark of dynamic programming.  Once the tables are built, we find the\nmaximum `L_inc[i]`, backtrack via `P_inc` to reconstruct the actual subsequence,\nand do the same for the decreasing case.\n\"\"\"\n\ndef lis_and_lds(pi):\n    n = len(pi)\n    # L_inc[i]: best length of increasing subsequence ending at i\n    # P_inc[i]: previous index in that subsequence\n    L_inc = [1] * n\n    P_inc = [-1] * n\n    # Similarly for decreasing\n    L_dec = [1] * n\n    P_dec = [-1] * n\n\n    # Build up subproblem solutions in a forward pass\n    for i in range(n):\n        # Look back at each earlier position j\n        for j in range(i):\n            # Can we extend an increasing subsequence?\n            if pi[j] &lt; pi[i] and L_inc[j] + 1 &gt; L_inc[i]:\n                L_inc[i] = L_inc[j] + 1  # update best length\n                P_inc[i] = j            # record pointer for backtracking\n            # Can we extend a decreasing subsequence?\n            if pi[j] &gt; pi[i] and L_dec[j] + 1 &gt; L_dec[i]:\n                L_dec[i] = L_dec[j] + 1\n                P_dec[i] = j\n\n    # Find the overall best lengths and their end positions\n    max_inc_len = max(L_inc)\n    end_inc = L_inc.index(max_inc_len)\n    max_dec_len = max(L_dec)\n    end_dec = L_dec.index(max_dec_len)\n\n    # Backtrack to reconstruct the increasing subsequence\n    inc_seq = []\n    idx = end_inc\n    while idx != -1:\n        inc_seq.append(pi[idx])\n        idx = P_inc[idx]\n    inc_seq.reverse()\n\n    # Backtrack to reconstruct the decreasing subsequence\n    dec_seq = []\n    idx = end_dec\n    while idx != -1:\n        dec_seq.append(pi[idx])\n        idx = P_dec[idx]\n    dec_seq.reverse()\n\n    return inc_seq, dec_seq\n\n# Example usage: read from a simple two-line file\nif __name__ == \"__main__\":\n    # First line: n, second line: space-separated permutation\n    with open(\"rosalind_lgis.txt\") as f:\n        n = int(f.readline().strip())\n        pi = list(map(int, f.readline().split()))\n    inc, dec = lis_and_lds(pi)\n    # Print results: increasing then decreasing\n    print(\" \".join(map(str, inc)))\n    print(\" \".join(map(str, dec)))\n\n\n\nDynamic programming: we “look back” at earlier positions and reuse stored best‐lengths (L_inc[j] / L_dec[j]) instead of recomputing.\nDP tables (L_inc, L_dec) store the longest subsequence length ending at each index; pointer arrays (P_inc, P_dec) record where to backtrack.\nReconstruction: once the tables are built, find the maximum entry, then follow the pointers backwards to rebuild the subsequence.\nDual use: the same forward‐scan/backtrack pattern yields both increasing and decreasing solutions in one pass (just flip the comparison)."
+  },
+  {
+    "objectID": "100daysofcode/Day12.html",
+    "href": "100daysofcode/Day12.html",
+    "title": "Day 12: Mini project",
+    "section": "",
+    "text": "output_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\")\n\ngenes_of_interest = [\"LDLR\", \"BCL2\", \"PCP4\", \"VDAC1\", \"ATP2B1\"]\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue  # skip header lines\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        # Parse INFO into dictionary\n        info_dict = dict(item.split('=') for item in info.split(';') if '=' in item)\n        gene_info = info_dict.get(\"GENEINFO\", \"\")\n\n        # See if any gene in the list appears in the GENEINFO field\n        for gene in genes_of_interest:\n            if gene in gene_info:\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                # Output\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Gene: {gene}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n                break  # Avoid writing the same variant twice if multiple gene names match\n\nout.close()\n\n\n\nGiven: A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n (n ≤ 10).\n\n\nReturn: All strings of length at most n formed from the alphabet, ordered lexicographically by the given ordering.\n\n\n\n\n\nUsed recursion to build up strings depth-first, following the custom lexicographic order. Each level of recursion adds one more symbol from the alphabet until the desired max length is reached.\nThis required:\n\nExpanding from the shortest strings to longest\nRespecting custom order, not ASCII\nAvoiding empty lines in output\n\nfrom itertools import product\n\ndef lexv(alphabet, max_len):\n    results = []\n\n    def build(current):\n        if current:\n            results.append(\"\".join(current))\n        if len(current) == max_len:\n            return\n        for symbol in alphabet:\n            build(current + [symbol])\n\n    build([])\n    return results\n\n# Input\nalphabet = [\"D\", \"N\", \"A\"]\nn = 3\noutput_path = \"rosalind_lexv_output.txt\"\n\n# Generate and save output\nwith open(output_path, \"w\") as out:\n    for kmer in lexv(alphabet, n):\n        out.write(kmer + \"\\n\")"
+  },
+  {
+    "objectID": "100daysofcode/Day12.html#problem-lexicographic-order-of-strings-lexv",
+    "href": "100daysofcode/Day12.html#problem-lexicographic-order-of-strings-lexv",
+    "title": "Day 12: Mini project",
+    "section": "",
+    "text": "Given: A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n (n ≤ 10).\n\n\nReturn: All strings of length at most n formed from the alphabet, ordered lexicographically by the given ordering."
+  },
+  {
+    "objectID": "100daysofcode/Day12.html#my-solution",
+    "href": "100daysofcode/Day12.html#my-solution",
+    "title": "Day 12: Mini project",
+    "section": "",
+    "text": "Used recursion to build up strings depth-first, following the custom lexicographic order. Each level of recursion adds one more symbol from the alphabet until the desired max length is reached.\nThis required:\n\nExpanding from the shortest strings to longest\nRespecting custom order, not ASCII\nAvoiding empty lines in output\n\nfrom itertools import product\n\ndef lexv(alphabet, max_len):\n    results = []\n\n    def build(current):\n        if current:\n            results.append(\"\".join(current))\n        if len(current) == max_len:\n            return\n        for symbol in alphabet:\n            build(current + [symbol])\n\n    build([])\n    return results\n\n# Input\nalphabet = [\"D\", \"N\", \"A\"]\nn = 3\noutput_path = \"rosalind_lexv_output.txt\"\n\n# Generate and save output\nwith open(output_path, \"w\") as out:\n    for kmer in lexv(alphabet, n):\n        out.write(kmer + \"\\n\")"
+  },
+  {
+    "objectID": "100daysofcode/Day14.html",
+    "href": "100daysofcode/Day14.html",
+    "title": "Day 14: consolidation from 6-10",
+    "section": "",
+    "text": "problem 1 https://rosalind.info/problems/hamm/\npseudocode for bases in zip if string[i] =/= string2[i] then hamm += 1 print hamm"
+  },
+  {
+    "objectID": "100daysofcode/Day16.html",
+    "href": "100daysofcode/Day16.html",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "",
+    "text": "Link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/\nTask: Return the max profit from one buy and one sell (sell after buy).\nApproach (One-pass): Track the minimum price so far and update best profit with price - min_price.\nclass Solution:\n    def maxProfit(self, prices):\n        if not prices:\n            return 0\n        min_price = prices[0]\n        best = 0\n        for p in prices[1:]:\n            if p - min_price &gt; best:\n                best = p - min_price\n            if p &lt; min_price:\n                min_price = p\n        return best\n\n\n\nWhy one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned",
+    "href": "100daysofcode/Day16.html#what-i-learned",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "",
+    "text": "Why one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-1",
+    "href": "100daysofcode/Day16.html#what-i-learned-1",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nClassic stack usage; LIFO ensures nearest unmatched open closes first.\nEarly exits on mismatch or premature close."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-2",
+    "href": "100daysofcode/Day16.html#what-i-learned-2",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nSkipping non-alnum in-place avoids extra space.\n.lower() is usually fine; .casefold() is stricter for Unicode.\n.isalnum() keep only letters/digits before comparing. - strip punctuation"
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-3",
+    "href": "100daysofcode/Day16.html#what-i-learned-3",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nSet membership is average O(1); simplest and fastest here.\nAlternative: len(nums) != len(set(nums))."
+  },
+  {
+    "objectID": "100daysofcode/Day16.html#what-i-learned-4",
+    "href": "100daysofcode/Day16.html#what-i-learned-4",
+    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
+    "section": "what i learned",
+    "text": "what i learned\n\nWhy the last[ch] &gt;= start check is essential (repeat inside window).\nWindow length formula: i - start + 1."
   },
   {
     "objectID": "100daysofcode/Day18.html",
@@ -271,6 +558,13 @@
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "",
     "text": "Today’s pipeline (based on my working Python file):\n\nQuery ClinVar (hg19) in BigQuery for pathogenic / likely pathogenic variants\n\nDetect clusters: consecutive variants within MAX_DIST bp (per chromosome)\n\nExport:\n\nclinvar_clustered_pairs_XXXXbp.csv (full table)\nclinvar_rs_batch_XXXXbp.txt (rsIDs for ClinVar batch search)\n\n\nI’m also collecting reusable lessons so I can copy this approach to other datasets (gnomAD, gene expression, etc)."
+  },
+  {
+    "objectID": "100daysofcode/Day18.html#what-the-code-does",
+    "href": "100daysofcode/Day18.html#what-the-code-does",
+    "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
+    "section": "what the code does",
+    "text": "what the code does\nDetects clusters of varients which are\n- regions that are functionally critical (splice sites, key protein domains),\n\n- regions that are mutationally “hot” (CpG, ssDNA exposure, repeats),\n\n- genes that are clinically important / heavily tested."
   },
   {
     "objectID": "100daysofcode/Day18.html#connect-query-your-sql-with-array-safe-bits",
@@ -301,11 +595,11 @@
     "text": "Lessons I can reuse (pattern library)\nSQL patterns\n- Schema-first: inspect table, note array vs scalar fields.\n\n- Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')\n if I just need a printable value.\n\n- Filter early: push WHERE conditions into SQL so Python handles smaller frames.\nPython patterns\n- Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).\n\n- Text parsing: split composite fields (GENEINFO) into usable tokens.\n\n- Exports for the web: create both a rich CSV and a plain TXT for batch tools.\nWorkflow patterns\n- Parametrize CHROMS, MAX_DIST, TABLE at the top.\n\n- Keep query → process → export in separate cells so debugging is easy."
   },
   {
-    "objectID": "100daysofcode/Day18.html#how-to-reuse.",
-    "href": "100daysofcode/Day18.html#how-to-reuse.",
+    "objectID": "100daysofcode/Day18.html#how-to-reuse",
+    "href": "100daysofcode/Day18.html#how-to-reuse",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
-    "section": "How to reuse.",
-    "text": "How to reuse.\nTo Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.\nFor local data"
+    "section": "How to reuse",
+    "text": "How to reuse\nTo Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets."
   },
   {
     "objectID": "100daysofcode/Day18.html#key-idea",
@@ -313,6 +607,55 @@
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "key idea",
     "text": "key idea\n1 Pick data source\nfrom google.cloud import bigquery\nfrom google.oauth2 import service_account\n\nPROJECT_ID = \"bio-sql-playground\"\nKEY_PATH   = r\"C:\\Users\\zackd\\Downloads\\bio-sql-playground-bac6463c2d62.json\"\nTABLE      = \"bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701\"\n\ncreds  = service_account.Credentials.from_service_account_file(KEY_PATH)\nclient = bigquery.Client(project=PROJECT_ID, credentials=creds)\n2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)\nSELECT\n  reference_name,\n  start_position,\n  end_position,\n  ARRAY_TO_STRING(RS, ',') AS RS,  -- flatten array\n  GENEINFO,\n  LOWER(sig) AS clnsig             -- one label per row\nFROM `bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`,\nUNNEST(CLNSIG) AS sig\n3 Filter early (shrink the dataset in SQL / when loading)\nWHERE reference_name IN ('1','2','…','22','X','Y')\n  AND LOWER(sig) LIKE '%pathogenic%'\nORDER BY reference_name, start_position\n4 Sort = find neighbors (the “consecutive pairs” trick)\ndef parse_geneinfo(x):\n    if not isinstance(x, str) or not x:\n        return []\n    return [part.split(\":\")[0] for part in x.split(\"|\") if \":\" in part]\n5 Export CSV for analysis\ncsv_path = f\"clinvar_clustered_pairs_{MAX_DIST}bp.csv\"\npairs_df.to_csv(csv_path, index=False)\nprint(\"Saved CSV →\", csv_path)"
+  },
+  {
+    "objectID": "100daysofcode/Day2.html",
+    "href": "100daysofcode/Day2.html",
+    "title": "Day 1: 4 simple rosiland problems",
+    "section": "",
+    "text": "Day 2 is a coding warmup Link provided here"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#code",
+    "href": "100daysofcode/Day21.html#code",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Code",
+    "text": "Code\nfrom Bio.Seq import Seq\n\nmass_table = {\n    'A': 71.03711,  'C': 103.00919, 'D': 115.02694, 'E': 129.04259,\n    'F': 147.06841, 'G': 57.02146,  'H': 137.05891, 'I': 113.08406,\n    'K': 128.09496, 'L': 113.08406, 'M': 131.04049, 'N': 114.04293,\n    'P': 97.05276,  'Q': 128.05858, 'R': 156.10111, 'S': 87.03203,\n    'T': 101.04768, 'V': 99.06841,  'W': 186.07931, 'Y': 163.06333\n}\n\nprotein_seq = Seq(\"SKADYEK\")\n\ndef calculate_protein_mass(protein_sequence):\n    return sum(mass_table.get(aa, 0) for aa in protein_sequence)\n\nprint(f\"{calculate_protein_mass(protein_seq):.3f}\")\n\n\n## Problem 2: [RNA → Protein](https://rosalind.info/problems/prot/)\n\n## Code\n\n```python\nfrom Bio.Seq import Seq\n\nseq = Seq(\"AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA\")\nprotein = seq.translate(table=1, to_stop=True)\n\nprint(protein)"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#problem-3-hamming-distance",
+    "href": "100daysofcode/Day21.html#problem-3-hamming-distance",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Problem 3: Hamming Distance",
+    "text": "Problem 3: Hamming Distance"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#code-1",
+    "href": "100daysofcode/Day21.html#code-1",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Code",
+    "text": "Code\nString1 = \"GAGCCTACTAACGGGAT\"\nString2 = \"CATCGTAATGACGGCCT\"\n\nzip_iterator = zip(String1, String2)\nhamming_distance = 0\n\nfor a, b in zip_iterator:\n    if a != b:\n        hamming_distance += 1\n\nprint(hamming_distance)"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#problem-4-gc-content",
+    "href": "100daysofcode/Day21.html#problem-4-gc-content",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Problem 4: GC Content",
+    "text": "Problem 4: GC Content"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#code-2",
+    "href": "100daysofcode/Day21.html#code-2",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Code",
+    "text": "Code\nfrom Bio.Seq import Seq\nfrom Bio import SeqIO\nfrom Bio.SeqUtils import gc_fraction\n\nHighest_GC_content = 0\nHighest_ID = \"\"\n\nrecord = SeqIO.parse(\"rosalind_gc.fasta\", \"fasta\")\n\nfor seq_record in record:\n    seq = seq_record.seq\n    gc_content = gc_fraction(seq)\n    if gc_content &gt; Highest_GC_content:\n        Highest_GC_content = gc_content\n        Highest_ID = seq_record.id\n\nprint(f\"{Highest_ID}\\n{Highest_GC_content:.8f}\")"
+  },
+  {
+    "objectID": "100daysofcode/Day21.html#reflection",
+    "href": "100daysofcode/Day21.html#reflection",
+    "title": "Day 21: Protein Mass, RNA Translation, GC Content & Hamming Distance",
+    "section": "Reflection",
+    "text": "Reflection\nconfidence completing basic biological processes\n-Protein → mass calculations\n-NA → protein translation\n-Mutation analysis with Hamming distance\n-GC content across multiple FASTA sequences"
   },
   {
     "objectID": "100daysofcode/Day3.html",
@@ -515,14 +858,21 @@
     "href": "index.html",
     "title": "ZackBioData",
     "section": "",
-    "text": "🔗 Logbook — Casual notes, ideas, and progress from daily work and study\n🔗 Blog — Occasional deeper dives into tools, projects, or topics I’m exploring\n🔗 Daily Coding — A dedicated journey to improve coding skills every day for 100 consecutive days\n\n\n\nLanguages & Libraries:\nPython · pandas · matplotlib · Biopython · scikit-learn · GSEApy · Enrichr · ClinVar\nComfortable with:\nTranscriptomics · Variant filtering · Gene expression analysis\nLearning next:\nSequence alignment · SnpEff · VEP · Pathway prediction"
+    "text": "This website aims to be way to track progress and reinforce learning as i go"
+  },
+  {
+    "objectID": "index.html#my-work",
+    "href": "index.html#my-work",
+    "title": "ZackBioData",
+    "section": "My work",
+    "text": "My work\nLogbook — Casual notes, ideas, and progress from daily work and study\nBlog — Occasional deeper dives into tools, projects, or topics I’m exploring\nDaily Coding — A journey to improve coding skills every day for 100 consecutive days"
   },
   {
     "objectID": "index.html#what-im-working-with",
     "href": "index.html#what-im-working-with",
     "title": "ZackBioData",
-    "section": "",
-    "text": "Languages & Libraries:\nPython · pandas · matplotlib · Biopython · scikit-learn · GSEApy · Enrichr · ClinVar\nComfortable with:\nTranscriptomics · Variant filtering · Gene expression analysis\nLearning next:\nSequence alignment · SnpEff · VEP · Pathway prediction"
+    "section": "What I’m working with",
+    "text": "What I’m working with\nLanguages & Libraries:\nPython · pandas · matplotlib · Biopython · scikit-learn · GSEApy · Enrichr · ClinVar\nComfortable with:\nTranscriptomics · Variant filtering · Gene expression analysis\nLearning next:\nSequence alignment · SnpEff · VEP · Pathway prediction"
   },
   {
     "objectID": "log/2025-08-04_MPb-geneticvariants.html",
@@ -551,54 +901,5 @@
     "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "Code Snippet",
     "text": "Code Snippet\noutput_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\", encoding=\"utf-8\")\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n    genes_of_interest = [\"PCP4\", \"BCL2\", \"ATP2B1\", \"VDAC1\", \"RYR1\"]\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        for gene in genes_of_interest:\n            if f\"GENEINFO={gene}\" in info:\n                info_dict = dict(item.split(\"=\") for item in info.split(\";\") if \"=\" in item)\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n\nout.close()\n##Output Example\n1:161284466 G&gt;A\n   Gene: PCP4\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\n\n2:111123784 C&gt;T\n   Gene: BCL2\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\nCurrent outputs only provides unreviewed untilted point mutations.\n##Interpretation and Context\nRight now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.\nVariants in calcium-buffering genes might:\nReduce calcium export or sequestration\nIncrease membrane fragility or ER stress\nAccelerate the death response after a calcium spike\nThis could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.\n##Limitations + Future Add-ons\n\nNo frame shift or missense classification yet\nDoesn’t look at protein domains (e.g. calmodulin-binding)\nNo integration with ENSEMBL VEP or SnpEff\nNo filtering by ClinVar significance beyond string match\nAdd more genes resulting in warburg effect\n\n##What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach"
-  },
-  {
-    "objectID": "100daysofcode/Day16.html",
-    "href": "100daysofcode/Day16.html",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "",
-    "text": "Link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/\nTask: Return the max profit from one buy and one sell (sell after buy).\nApproach (One-pass): Track the minimum price so far and update best profit with price - min_price.\nclass Solution:\n    def maxProfit(self, prices):\n        if not prices:\n            return 0\n        min_price = prices[0]\n        best = 0\n        for p in prices[1:]:\n            if p - min_price &gt; best:\n                best = p - min_price\n            if p &lt; min_price:\n                min_price = p\n        return best\n\n\n\nWhy one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
-  },
-  {
-    "objectID": "100daysofcode/Day16.html#what-i-learned",
-    "href": "100daysofcode/Day16.html#what-i-learned",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "",
-    "text": "Why one-pass works (buy day always ≤ sell day).\nSentinel vs first-element init for running minimum.\nEdge case: strictly decreasing prices → 0."
-  },
-  {
-    "objectID": "100daysofcode/Day16.html#what-i-learned-1",
-    "href": "100daysofcode/Day16.html#what-i-learned-1",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "what i learned",
-    "text": "what i learned\n\nClassic stack usage; LIFO ensures nearest unmatched open closes first.\nEarly exits on mismatch or premature close."
-  },
-  {
-    "objectID": "100daysofcode/Day16.html#what-i-learned-2",
-    "href": "100daysofcode/Day16.html#what-i-learned-2",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "what i learned",
-    "text": "what i learned\n\nSkipping non-alnum in-place avoids extra space.\n.lower() is usually fine; .casefold() is stricter for Unicode.\n.isalnum() keep only letters/digits before comparing. - strip punctuation"
-  },
-  {
-    "objectID": "100daysofcode/Day16.html#what-i-learned-3",
-    "href": "100daysofcode/Day16.html#what-i-learned-3",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "what i learned",
-    "text": "what i learned\n\nSet membership is average O(1); simplest and fastest here.\nAlternative: len(nums) != len(set(nums))."
-  },
-  {
-    "objectID": "100daysofcode/Day16.html#what-i-learned-4",
-    "href": "100daysofcode/Day16.html#what-i-learned-4",
-    "title": "Day 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window",
-    "section": "what i learned",
-    "text": "what i learned\n\nWhy the last[ch] &gt;= start check is essential (repeat inside window).\nWindow length formula: i - start + 1."
-  },
-  {
-    "objectID": "100daysofcode/Day18.html#how-to-reuse",
-    "href": "100daysofcode/Day18.html#how-to-reuse",
-    "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
-    "section": "How to reuse",
-    "text": "How to reuse\nTo Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets."
   }
 ]

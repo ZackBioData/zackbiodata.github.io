@@ -1,0 +1,106 @@
+---
+title: "Day 19 — Mini Project - Clinvar clustered pairs: extraction and stats"
+author: "Zack"
+date: 2025-08-11
+image: ../images/100daysofcode/sql.png
+categories: [LeetCode, Python, Pandas, Bioinformatics, ClinVar, BigQuery]
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+jupyter: python3
+---
+
+## Mini project — Clinvar cclustered pairs: extraction and stats
+
+```Python
+import pandas as pd
+import numpy as np
+from pathlib import Path
+from datetime import datetime
+import matplotlib.pyplot as plt
+
+"""----- 1 Load one file -----"""
+csv_path = Path("clinvar_clustered_pairs_1000bp.csv")
+DTYPES = {
+    "chrom": "string", "pos1": "Int64", "pos2": "Int64",
+    "distance_bp": "Int64", "rs1": "string", "rs2": "string",
+    "genes1": "string", "genes2": "string", "shared_genes": "string",
+}
+df = pd.read_csv(csv_path, dtype=DTYPES, low_memory=False)
+
+# If distance not present or has NAs, recompute from pos1/pos2
+if "distance_bp" not in df or df["distance_bp"].isna().any():
+    df["distance_bp"] = (df[["pos1","pos2"]].max(axis=1) - df[["pos1","pos2"]].min(axis=1)).astype("Int64")
+
+""" ----- 2 Simple stats -----"""
+dist = df["distance_bp"].dropna().astype(int)
+same_gene_frac = (df["shared_genes"].fillna("") != "").mean()
+
+summary = {
+    "run_time": datetime.now().isoformat(timespec="seconds"),
+    "file": csv_path.name,
+    "n_pairs": int(len(df)),
+    "same_gene_fraction": round(float(same_gene_frac), 4),
+    "dist_min": int(dist.min()) if len(dist) else None,
+    "dist_median": float(np.median(dist)) if len(dist) else None,
+    "dist_mean": round(float(dist.mean()), 2) if len(dist) else None,
+    "dist_p95": float(np.percentile(dist, 95)) if len(dist) else None,
+}
+# tightness thresholds
+for thr in (10, 25, 50, 100, 250, 500, 1000):
+    summary[f"frac_≤{thr}bp"] = round(float((dist <= thr).mean()), 4) if len(dist) else None
+
+print(summary)
+
+""" ----- 3 Log the stats to a persistent CSV -----"""
+log_path = Path("cluster_metrics_log.csv")
+log_df = pd.DataFrame([summary])
+if log_path.exists():
+    log_df.to_csv(log_path, mode="a", header=False, index=False)
+else:
+    log_df.to_csv(log_path, index=False)
+print(f"Appended metrics to {log_path}")
+
+""" ----- 4 Tiny extra artifacts -----"""
+# Top chromosomes
+top_chroms = df["chrom"].value_counts().head(10)
+top_chroms.to_csv("top_chroms.csv")
+
+# Top genes by appearance (genes1 + genes2)
+def split_genes(series):
+    genes = []
+    for s in series.fillna(""):
+        genes.extend([g for g in str(s).split(";") if g])
+    return genes
+
+top_genes = (
+    pd.Series(split_genes(df["genes1"]) + split_genes(df["genes2"]))
+      .value_counts()
+      .head(20)
+)
+
+# Linear (zoomed to ≤500 bp so you see the peak)
+plt.hist(dist[dist <= 500], bins=50)
+plt.xlabel("Clustered pair distance (bp) — zoom ≤ 500")
+plt.ylabel("Count")
+plt.title("Cluster tightness (zoom)")
+plt.show()
+
+top_genes.to_csv("top_genes.csv")
+print("Wrote top_chroms.csv and top_genes.csv")
+```
+## results 
+
+```python 
+
+run_time,file,n_pairs,same_gene_fraction,dist_min,dist_median,dist_mean,dist_p95,frac_≤10bp,frac_≤25bp,frac_≤50bp,frac_≤100bp,frac_≤250bp,frac_≤500bp,frac_≤1000bp
+2025-08-11T09:57:43,clinvar_clustered_pairs_1000bp.csv,77161,0.9999,0,11.0,62.02,362.0,0.4892,0.6623,0.7831,0.871,0.9333,0.9648,1.0
+```
+
+n_pairs = 77,161 — big signal; lots of close pathogenic pairs.
+
+Median distance = 11 bp (p95 = 362 bp) — clusters are tight.
+
+~49% ≤ 10 bp; ~87% ≤ 100 bp — half are ultra-tight.

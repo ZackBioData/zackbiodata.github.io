@@ -6,11 +6,13 @@ format:
     code-fold: true
 ---
 
-# This website aims to be way to track progress and reinforce learning as i go
+This website aims to be way to track progress and reinforce learning as i go 
 
-🔗 **[Logbook](log/index.qmd)** — Casual notes, ideas, and progress from daily work and study  
-🔗 **[Blog](blog/index.qmd)** — Occasional deeper dives into tools, projects, or topics I’m exploring  
-🔗 **[Daily Coding](100daysofcode/index.qmd)** — A dedicated journey to improve coding skills every day for 100 consecutive days
+## My work 
+
+**[Logbook](log/index.qmd)** — Casual notes, ideas, and progress from daily work and study  
+**[Blog](blog/index.qmd)** — Occasional deeper dives into tools, projects, or topics I’m exploring  
+**[Daily Coding](100daysofcode/index.qmd)** — A journey to improve coding skills every day for 100 consecutive days
 
 ---
 

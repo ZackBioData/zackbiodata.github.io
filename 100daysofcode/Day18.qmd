@@ -24,6 +24,15 @@ Today’s pipeline (based on my working Python file):
 
 I’m also collecting **reusable lessons** so I can copy this approach to other datasets (gnomAD, gene expression, etc).
 
+## what the code does 
+
+Detects clusters of varients which are 
+
+    - regions that are functionally critical (splice sites, key protein domains),
+
+    - regions that are mutationally “hot” (CpG, ssDNA exposure, repeats),
+
+    - genes that are clinically important / heavily tested.
 ---
 
 

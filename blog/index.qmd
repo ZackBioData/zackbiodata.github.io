@@ -7,9 +7,8 @@ listing:
 
 ---
 
-## What i will blog
 
-A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics, cancer research, and AI.
+A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics.
 
 
 
