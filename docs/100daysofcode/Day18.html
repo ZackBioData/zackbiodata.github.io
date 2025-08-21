@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Zack">
 <meta name="dcterms.date" content="2025-08-10">
 
 <title>Day 18 — ClinVar clustered variants (SQL → Python → Export) – Zack’s Bioinformatics</title>
@@ -155,13 +154,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#what-the-code-does" id="toc-what-the-code-does" class="nav-link" data-scroll-target="#what-the-code-does">what the code does</a></li>
-  <li><a href="#connect-query-your-sql-with-array-safe-bits" id="toc-connect-query-your-sql-with-array-safe-bits" class="nav-link" data-scroll-target="#connect-query-your-sql-with-array-safe-bits">Connect &amp; Query (your SQL, with array-safe bits)</a></li>
+  <li><a href="#connect-query" id="toc-connect-query" class="nav-link" data-scroll-target="#connect-query">Connect &amp; Query</a></li>
   <li><a href="#cluster-detection-consecutive-variants-max_dist" id="toc-cluster-detection-consecutive-variants-max_dist" class="nav-link" data-scroll-target="#cluster-detection-consecutive-variants-max_dist">Cluster Detection (consecutive variants ≤ MAX_DIST)</a></li>
-  <li><a href="#export-csv-rsids-for-browser-batch-search" id="toc-export-csv-rsids-for-browser-batch-search" class="nav-link" data-scroll-target="#export-csv-rsids-for-browser-batch-search">Export (CSV + rsIDs for browser batch search)</a>
+  <li><a href="#export-csv-rsids" id="toc-export-csv-rsids" class="nav-link" data-scroll-target="#export-csv-rsids">Export (CSV + rsIDs)</a>
   <ul class="collapse">
   <li><a href="#how-ill-use-it" id="toc-how-ill-use-it" class="nav-link" data-scroll-target="#how-ill-use-it">How I’ll use it :</a></li>
   </ul></li>
-  <li><a href="#lessons-i-can-reuse-pattern-library" id="toc-lessons-i-can-reuse-pattern-library" class="nav-link" data-scroll-target="#lessons-i-can-reuse-pattern-library">Lessons I can reuse (pattern library)</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned</a></li>
   <li><a href="#how-to-reuse" id="toc-how-to-reuse" class="nav-link" data-scroll-target="#how-to-reuse">How to reuse</a></li>
   <li><a href="#key-idea" id="toc-key-idea" class="nav-link" data-scroll-target="#key-idea">key idea</a></li>
   </ul>
@@ -186,12 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Zack </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -210,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Today’s pipeline (based on my working Python file):</p>
+<p>Today’s pipeline:</p>
 <ol type="1">
 <li><strong>Query</strong> ClinVar (hg19) in BigQuery for <strong>pathogenic / likely pathogenic</strong> variants<br>
 </li>
@@ -222,7 +215,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>clinvar_rs_batch_XXXXbp.txt</code> (rsIDs for ClinVar batch search)</li>
 </ul></li>
 </ol>
-<p>I’m also collecting <strong>reusable lessons</strong> so I can copy this approach to other datasets (gnomAD, gene expression, etc).</p>
 </section>
 <section id="what-the-code-does" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-code-does">what the code does</h2>
@@ -234,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - genes that are clinically important / heavily tested.</code></pre>
 <hr>
 </section>
-<section id="connect-query-your-sql-with-array-safe-bits" class="level2">
-<h2 class="anchored" data-anchor-id="connect-query-your-sql-with-array-safe-bits">Connect &amp; Query (your SQL, with array-safe bits)</h2>
+<section id="connect-query" class="level2">
+<h2 class="anchored" data-anchor-id="connect-query">Connect &amp; Query</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> bigquery</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
@@ -304,8 +296,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(pairs_df)<span class="sc">:,}</span><span class="ss"> clustered consecutive pairs within </span><span class="sc">{</span>MAX_DIST<span class="sc">}</span><span class="ss"> bp."</span>)</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>pairs_df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="export-csv-rsids-for-browser-batch-search" class="level2">
-<h2 class="anchored" data-anchor-id="export-csv-rsids-for-browser-batch-search">Export (CSV + rsIDs for browser batch search)</h2>
+<section id="export-csv-rsids" class="level2">
+<h2 class="anchored" data-anchor-id="export-csv-rsids">Export (CSV + rsIDs)</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> pairs_df.empty:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    pairs_df.to_csv(CSV_OUT, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved CSV → </span><span class="sc">{</span>CSV_OUT<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -320,10 +312,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code> - open the TXT → copy all → paste into ClinVar’s search → review variant pages &amp; PubMed links.</code></pre>
 </section>
 </section>
-<section id="lessons-i-can-reuse-pattern-library" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-i-can-reuse-pattern-library">Lessons I can reuse (pattern library)</h2>
+<section id="what-i-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned">What i learned</h2>
 <p>SQL patterns</p>
-<pre><code>- Schema-first: inspect table, note array vs scalar fields.
+<pre><code>- Schema-first: inspect table.
 
 - Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')
  if I just need a printable value.
@@ -331,8 +323,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - Filter early: push WHERE conditions into SQL so Python handles smaller frames.</code></pre>
 <p>Python patterns</p>
 <pre><code>- Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).
-
-- Text parsing: split composite fields (GENEINFO) into usable tokens.
 
 - Exports for the web: create both a rich CSV and a plain TXT for batch tools.</code></pre>
 <p>Workflow patterns</p>
@@ -342,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="how-to-reuse" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-reuse">How to reuse</h2>
-<p>To Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.</p>
+<p>Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.</p>
 </section>
 <section id="key-idea" class="level2">
 <h2 class="anchored" data-anchor-id="key-idea">key idea</h2>
@@ -370,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reference_name <span class="kw">IN</span> (<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'…'</span>,<span class="st">'22'</span>,<span class="st">'X'</span>,<span class="st">'Y'</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> <span class="fu">LOWER</span>(sig) <span class="kw">LIKE</span> <span class="st">'%pathogenic%'</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reference_name, start_position</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>4 Sort = find neighbors (the “consecutive pairs” trick)</strong></p>
+<p><strong>4 Sort = Project specific</strong></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_geneinfo(x):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> x:</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
@@ -838,220 +828,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Day 18 — ClinVar clustered variants (SQL → Python → Export)"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Zack"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-08-10</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> ../images/100daysofcode/sql.png</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [SQL, BigQuery, Bioinformatics, ClinVar, Python]</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>Today’s pipeline (based on my working Python file):</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Query** ClinVar (hg19) in BigQuery for **pathogenic / likely pathogenic** variants  </span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Detect clusters**: consecutive variants within <span class="in">`MAX_DIST`</span> bp (per chromosome)  </span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Export**:</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`clinvar_clustered_pairs_XXXXbp.csv`</span> (full table)</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`clinvar_rs_batch_XXXXbp.txt`</span> (rsIDs for ClinVar batch search)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-08-10</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> ../images/100daysofcode/sql.png</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [SQL, BigQuery, Bioinformatics, ClinVar, Python]</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>Today’s pipeline:</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Query** ClinVar (hg19) in BigQuery for **pathogenic / likely pathogenic** variants  </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Detect clusters**: consecutive variants within <span class="in">`MAX_DIST`</span> bp (per chromosome)  </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Export**:</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`clinvar_clustered_pairs_XXXXbp.csv`</span> (full table)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`clinvar_rs_batch_XXXXbp.txt`</span> (rsIDs for ClinVar batch search)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>I’m also collecting **reusable lessons** so I can copy this approach to other datasets (gnomAD, gene expression, etc).</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## what the code does </span></span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## what the code does </span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>Detects clusters of varients which are </span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>Detects clusters of varients which are </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="in">    - regions that are functionally critical (splice sites, key protein domains),</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="in">    - regions that are functionally critical (splice sites, key protein domains),</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="in">    - regions that are mutationally “hot” (CpG, ssDNA exposure, repeats),</span></span>
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">    - regions that are mutationally “hot” (CpG, ssDNA exposure, repeats),</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="in">    - genes that are clinically important / heavily tested.</span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">    - genes that are clinically important / heavily tested.</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Connect &amp; Query</span></span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Connect &amp; Query (your SQL, with array-safe bits)</span></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
 <span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> bigquery</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>creds <span class="op">=</span> service_account.Credentials.from_service_account_file(KEY_PATH)</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> bigquery.Client(project<span class="op">=</span>PROJECT_ID, credentials<span class="op">=</span>creds)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> bigquery</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>creds <span class="op">=</span> service_account.Credentials.from_service_account_file(KEY_PATH)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> bigquery.Client(project<span class="op">=</span>PROJECT_ID, credentials<span class="op">=</span>creds)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>chrom_list_sql <span class="op">=</span> <span class="st">","</span>.join([<span class="ss">f"'</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">'"</span> <span class="cf">for</span> c <span class="kw">in</span> CHROMS])</span>
 <span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>chrom_list_sql <span class="op">=</span> <span class="st">","</span>.join([<span class="ss">f"'</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">'"</span> <span class="cf">for</span> c <span class="kw">in</span> CHROMS])</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"""</span></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="ss">SELECT</span></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  reference_name,</span></span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  start_position,</span></span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="ss">  end_position,</span></span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="ss">  ARRAY_TO_STRING(RS, ',') AS RS,  -- handle ARRAY&lt;STRING&gt; safely</span></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="ss">  GENEINFO,</span></span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="ss">  LOWER(sig) AS clnsig</span></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="ss">FROM `</span><span class="sc">{</span>TABLE<span class="sc">}</span><span class="ss">`,</span></span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="ss">UNNEST(CLNSIG) AS sig</span></span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="ss">WHERE reference_name IN (</span><span class="sc">{</span>chrom_list_sql<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="ss">  AND LOWER(sig) LIKE '%pathogenic%'</span></span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a><span class="ss">ORDER BY reference_name, start_position</span></span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running BigQuery…"</span>)</span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> client.query(query).to_dataframe()</span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Fetched </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">:,}</span><span class="ss"> pathogenic/likely-pathogenic rows."</span>)</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>df.head()</span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="ss">SELECT</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  reference_name,</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  start_position,</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  end_position,</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  ARRAY_TO_STRING(RS, ',') AS RS,  -- handle ARRAY&lt;STRING&gt; safely</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="ss">  GENEINFO,</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="ss">  LOWER(sig) AS clnsig</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="ss">FROM `</span><span class="sc">{</span>TABLE<span class="sc">}</span><span class="ss">`,</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="ss">UNNEST(CLNSIG) AS sig</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="ss">WHERE reference_name IN (</span><span class="sc">{</span>chrom_list_sql<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="ss">  AND LOWER(sig) LIKE '%pathogenic%'</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="ss">ORDER BY reference_name, start_position</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running BigQuery…"</span>)</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> client.query(query).to_dataframe()</span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Fetched </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">:,}</span><span class="ss"> pathogenic/likely-pathogenic rows."</span>)</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>df.head()</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Cluster Detection (consecutive variants ≤ MAX_DIST)</span></span>
 <span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Cluster Detection (consecutive variants ≤ MAX_DIST)</span></span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_geneinfo(x):</span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""'BRCA1:672|NBR1:4077' -&gt; ['BRCA1','NBR1']"""</span></span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> x:</span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [part.split(<span class="st">":"</span>)[<span class="dv">0</span>] <span class="cf">for</span> part <span class="kw">in</span> x.split(<span class="st">"|"</span>) <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> part]</span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>pairs_rows <span class="op">=</span> []</span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chrom, sub <span class="kw">in</span> df.groupby(<span class="st">"reference_name"</span>, sort<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> sub.sort_values(<span class="st">"start_position"</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> sub[<span class="st">"start_position"</span>].values</span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(sub) <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="bu">int</span>(pos[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> pos[i])</span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> d <span class="op">&lt;=</span> MAX_DIST:</span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>            r1 <span class="op">=</span> sub.iloc[i]</span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>            r2 <span class="op">=</span> sub.iloc[i<span class="op">+</span><span class="dv">1</span>]</span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>            g1 <span class="op">=</span> parse_geneinfo(r1[<span class="st">"GENEINFO"</span>])</span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>            g2 <span class="op">=</span> parse_geneinfo(r2[<span class="st">"GENEINFO"</span>])</span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>            pairs_rows.append({</span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>                <span class="st">"chrom"</span>: chrom,</span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pos1"</span>: <span class="bu">int</span>(r1[<span class="st">"start_position"</span>]),</span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pos2"</span>: <span class="bu">int</span>(r2[<span class="st">"start_position"</span>]),</span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>                <span class="st">"distance_bp"</span>: d,</span>
-<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>                <span class="st">"rs1"</span>: r1[<span class="st">"RS"</span>] <span class="cf">if</span> r1[<span class="st">"RS"</span>] <span class="cf">else</span> <span class="st">""</span>,</span>
-<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>                <span class="st">"rs2"</span>: r2[<span class="st">"RS"</span>] <span class="cf">if</span> r2[<span class="st">"RS"</span>] <span class="cf">else</span> <span class="st">""</span>,</span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>                <span class="st">"clnsig1"</span>: r1[<span class="st">"clnsig"</span>],</span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>                <span class="st">"clnsig2"</span>: r2[<span class="st">"clnsig"</span>],</span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>                <span class="st">"genes1"</span>: <span class="st">";"</span>.join(g1),</span>
-<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>                <span class="st">"genes2"</span>: <span class="st">";"</span>.join(g2),</span>
-<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>                <span class="st">"shared_genes"</span>: <span class="st">";"</span>.join(<span class="bu">sorted</span>(<span class="bu">set</span>(g1).intersection(g2))),</span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>            })</span>
-<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>pairs_df <span class="op">=</span> pd.DataFrame(pairs_rows).sort_values([<span class="st">"chrom"</span>,<span class="st">"distance_bp"</span>,<span class="st">"pos1"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(pairs_df)<span class="sc">:,}</span><span class="ss"> clustered consecutive pairs within </span><span class="sc">{</span>MAX_DIST<span class="sc">}</span><span class="ss"> bp."</span>)</span>
-<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>pairs_df.head(<span class="dv">10</span>)</span>
-<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_geneinfo(x):</span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""'BRCA1:672|NBR1:4077' -&gt; ['BRCA1','NBR1']"""</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> x:</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [part.split(<span class="st">":"</span>)[<span class="dv">0</span>] <span class="cf">for</span> part <span class="kw">in</span> x.split(<span class="st">"|"</span>) <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> part]</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>pairs_rows <span class="op">=</span> []</span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chrom, sub <span class="kw">in</span> df.groupby(<span class="st">"reference_name"</span>, sort<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> sub.sort_values(<span class="st">"start_position"</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> sub[<span class="st">"start_position"</span>].values</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(sub) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="bu">int</span>(pos[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> pos[i])</span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> d <span class="op">&lt;=</span> MAX_DIST:</span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>            r1 <span class="op">=</span> sub.iloc[i]</span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>            r2 <span class="op">=</span> sub.iloc[i<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>            g1 <span class="op">=</span> parse_geneinfo(r1[<span class="st">"GENEINFO"</span>])</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>            g2 <span class="op">=</span> parse_geneinfo(r2[<span class="st">"GENEINFO"</span>])</span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>            pairs_rows.append({</span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>                <span class="st">"chrom"</span>: chrom,</span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pos1"</span>: <span class="bu">int</span>(r1[<span class="st">"start_position"</span>]),</span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pos2"</span>: <span class="bu">int</span>(r2[<span class="st">"start_position"</span>]),</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>                <span class="st">"distance_bp"</span>: d,</span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>                <span class="st">"rs1"</span>: r1[<span class="st">"RS"</span>] <span class="cf">if</span> r1[<span class="st">"RS"</span>] <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>                <span class="st">"rs2"</span>: r2[<span class="st">"RS"</span>] <span class="cf">if</span> r2[<span class="st">"RS"</span>] <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>                <span class="st">"clnsig1"</span>: r1[<span class="st">"clnsig"</span>],</span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>                <span class="st">"clnsig2"</span>: r2[<span class="st">"clnsig"</span>],</span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>                <span class="st">"genes1"</span>: <span class="st">";"</span>.join(g1),</span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>                <span class="st">"genes2"</span>: <span class="st">";"</span>.join(g2),</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>                <span class="st">"shared_genes"</span>: <span class="st">";"</span>.join(<span class="bu">sorted</span>(<span class="bu">set</span>(g1).intersection(g2))),</span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>pairs_df <span class="op">=</span> pd.DataFrame(pairs_rows).sort_values([<span class="st">"chrom"</span>,<span class="st">"distance_bp"</span>,<span class="st">"pos1"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(pairs_df)<span class="sc">:,}</span><span class="ss"> clustered consecutive pairs within </span><span class="sc">{</span>MAX_DIST<span class="sc">}</span><span class="ss"> bp."</span>)</span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>pairs_df.head(<span class="dv">10</span>)</span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Export (CSV + rsIDs)</span></span>
 <span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Export (CSV + rsIDs for browser batch search)</span></span>
-<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> pairs_df.empty:</span>
-<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>    pairs_df.to_csv(CSV_OUT, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved CSV → </span><span class="sc">{</span>CSV_OUT<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>    rs_ids <span class="op">=</span> pd.unique(pd.concat([pairs_df[<span class="st">"rs1"</span>], pairs_df[<span class="st">"rs2"</span>]]).dropna())</span>
-<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>    rs_ids <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> rs_ids <span class="cf">if</span> <span class="bu">isinstance</span>(r, <span class="bu">str</span>) <span class="kw">and</span> r.startswith(<span class="st">"rs"</span>)]</span>
-<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(TXT_OUT, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
-<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="bu">sorted</span>(<span class="bu">set</span>(rs_ids), key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">int</span>(x[<span class="dv">2</span>:]) <span class="cf">if</span> x[<span class="dv">2</span>:].isdigit() <span class="cf">else</span> <span class="dv">10</span><span class="op">**</span><span class="dv">12</span>)))</span>
-<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved RS batch list → </span><span class="sc">{</span>TXT_OUT<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### How I’ll use it :</span></span>
-<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>open the TXT → copy all → paste into ClinVar’s search → review variant pages &amp; PubMed links.</span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> pairs_df.empty:</span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>    pairs_df.to_csv(CSV_OUT, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved CSV → </span><span class="sc">{</span>CSV_OUT<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>    rs_ids <span class="op">=</span> pd.unique(pd.concat([pairs_df[<span class="st">"rs1"</span>], pairs_df[<span class="st">"rs2"</span>]]).dropna())</span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>    rs_ids <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> rs_ids <span class="cf">if</span> <span class="bu">isinstance</span>(r, <span class="bu">str</span>) <span class="kw">and</span> r.startswith(<span class="st">"rs"</span>)]</span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(TXT_OUT, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(<span class="bu">sorted</span>(<span class="bu">set</span>(rs_ids), key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">int</span>(x[<span class="dv">2</span>:]) <span class="cf">if</span> x[<span class="dv">2</span>:].isdigit() <span class="cf">else</span> <span class="dv">10</span><span class="op">**</span><span class="dv">12</span>)))</span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Saved RS batch list → </span><span class="sc">{</span>TXT_OUT<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### How I’ll use it :</span></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>open the TXT → copy all → paste into ClinVar’s search → review variant pages &amp; PubMed links.</span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## What i learned</span></span>
 <span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lessons I can reuse (pattern library)</span></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>SQL patterns</span>
 <span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>SQL patterns</span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">    - Schema-first: inspect table.</span></span>
 <span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a><span class="in">    - Schema-first: inspect table, note array vs scalar fields.</span></span>
-<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a><span class="in">    - Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')</span></span>
-<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="in">     if I just need a printable value.</span></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a><span class="in">    - Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')</span></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="in">     if I just need a printable value.</span></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="in">    - Filter early: push WHERE conditions into SQL so Python handles smaller frames.</span></span>
 <span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a><span class="in">    - Filter early: push WHERE conditions into SQL so Python handles smaller frames.</span></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>Python patterns</span>
 <span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>Python patterns</span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a><span class="in">    - Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).</span></span>
 <span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a><span class="in">    - Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).</span></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a><span class="in">    - Exports for the web: create both a rich CSV and a plain TXT for batch tools.</span></span>
 <span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a><span class="in">    - Text parsing: split composite fields (GENEINFO) into usable tokens.</span></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>Workflow patterns</span>
 <span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a><span class="in">    - Exports for the web: create both a rich CSV and a plain TXT for batch tools.</span></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a><span class="in">    - Parametrize CHROMS, MAX_DIST, TABLE at the top.</span></span>
 <span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>Workflow patterns</span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a><span class="in">    - Keep query → process → export in separate cells so debugging is easy.</span></span>
 <span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a><span class="in">    - Parametrize CHROMS, MAX_DIST, TABLE at the top.</span></span>
-<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a><span class="in">    - Keep query → process → export in separate cells so debugging is easy.</span></span>
-<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to reuse</span></span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.</span>
 <span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to reuse</span></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## key idea</span></span>
 <span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>To Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>**1 Pick data source**</span>
 <span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## key idea</span></span>
-<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>**1 Pick data source**</span>
-<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> bigquery</span>
-<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
-<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a>PROJECT_ID <span class="op">=</span> <span class="st">"bio-sql-playground"</span></span>
-<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>KEY_PATH   <span class="op">=</span> <span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="dv">\D</span><span class="vs">ownloads</span><span class="dv">\b</span><span class="vs">io-sql-playground-bac6463c2d62</span><span class="dv">.</span><span class="vs">json"</span></span>
-<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a>TABLE      <span class="op">=</span> <span class="st">"bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701"</span></span>
-<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>creds  <span class="op">=</span> service_account.Credentials.from_service_account_file(KEY_PATH)</span>
-<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> bigquery.Client(project<span class="op">=</span>PROJECT_ID, credentials<span class="op">=</span>creds)</span>
-<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>**2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)**</span>
-<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a><span class="in">```sql</span></span>
-<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>  reference_name,</span>
-<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>  start_position,</span>
-<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>  end_position,</span>
-<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>  ARRAY_TO_STRING(RS, <span class="st">','</span>) <span class="kw">AS</span> RS,  <span class="co">-- flatten array</span></span>
-<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a>  GENEINFO,</span>
-<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LOWER</span>(sig) <span class="kw">AS</span> clnsig             <span class="co">-- one label per row</span></span>
-<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">`bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`</span>,</span>
-<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>UNNEST(CLNSIG) <span class="kw">AS</span> sig</span>
-<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>**3 Filter early (shrink the dataset in SQL / when loading)**</span>
-<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a><span class="in">```sql</span></span>
-<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reference_name <span class="kw">IN</span> (<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'…'</span>,<span class="st">'22'</span>,<span class="st">'X'</span>,<span class="st">'Y'</span>)</span>
-<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> <span class="fu">LOWER</span>(sig) <span class="kw">LIKE</span> <span class="st">'%pathogenic%'</span></span>
-<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reference_name, start_position</span>
-<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>**4 Sort = find neighbors (the “consecutive pairs” trick)**</span>
-<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_geneinfo(x):</span>
-<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> x:</span>
-<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
-<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [part.split(<span class="st">":"</span>)[<span class="dv">0</span>] <span class="cf">for</span> part <span class="kw">in</span> x.split(<span class="st">"|"</span>) <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> part]</span>
-<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>**5 Export CSV for analysis**</span>
-<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a>csv_path <span class="op">=</span> <span class="ss">f"clinvar_clustered_pairs_</span><span class="sc">{</span>MAX_DIST<span class="sc">}</span><span class="ss">bp.csv"</span></span>
-<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a>pairs_df.to_csv(csv_path, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved CSV →"</span>, csv_path)</span>
-<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.cloud <span class="im">import</span> bigquery</span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.oauth2 <span class="im">import</span> service_account</span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>PROJECT_ID <span class="op">=</span> <span class="st">"bio-sql-playground"</span></span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>KEY_PATH   <span class="op">=</span> <span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="dv">\D</span><span class="vs">ownloads</span><span class="dv">\b</span><span class="vs">io-sql-playground-bac6463c2d62</span><span class="dv">.</span><span class="vs">json"</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a>TABLE      <span class="op">=</span> <span class="st">"bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701"</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>creds  <span class="op">=</span> service_account.Credentials.from_service_account_file(KEY_PATH)</span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> bigquery.Client(project<span class="op">=</span>PROJECT_ID, credentials<span class="op">=</span>creds)</span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a>**2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)**</span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a><span class="in">```sql</span></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>  reference_name,</span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>  start_position,</span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a>  end_position,</span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a>  ARRAY_TO_STRING(RS, <span class="st">','</span>) <span class="kw">AS</span> RS,  <span class="co">-- flatten array</span></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a>  GENEINFO,</span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LOWER</span>(sig) <span class="kw">AS</span> clnsig             <span class="co">-- one label per row</span></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">`bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`</span>,</span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>UNNEST(CLNSIG) <span class="kw">AS</span> sig</span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>**3 Filter early (shrink the dataset in SQL / when loading)**</span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a><span class="in">```sql</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reference_name <span class="kw">IN</span> (<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'…'</span>,<span class="st">'22'</span>,<span class="st">'X'</span>,<span class="st">'Y'</span>)</span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> <span class="fu">LOWER</span>(sig) <span class="kw">LIKE</span> <span class="st">'%pathogenic%'</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reference_name, start_position</span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a>**4 Sort = Project specific**</span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_geneinfo(x):</span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, <span class="bu">str</span>) <span class="kw">or</span> <span class="kw">not</span> x:</span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [part.split(<span class="st">":"</span>)[<span class="dv">0</span>] <span class="cf">for</span> part <span class="kw">in</span> x.split(<span class="st">"|"</span>) <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> part]</span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>**5 Export CSV for analysis**</span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>csv_path <span class="op">=</span> <span class="ss">f"clinvar_clustered_pairs_</span><span class="sc">{</span>MAX_DIST<span class="sc">}</span><span class="ss">bp.csv"</span></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>pairs_df.to_csv(csv_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved CSV →"</span>, csv_path)</span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

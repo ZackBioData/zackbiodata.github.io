@@ -1,6 +1,5 @@
 ---
 title: "Day 18 — ClinVar clustered variants (SQL → Python → Export)"
-author: "Zack"
 date: 2025-08-10
 image: ../images/100daysofcode/sql.png
 categories: [SQL, BigQuery, Bioinformatics, ClinVar, Python]
@@ -14,7 +13,7 @@ jupyter: python3
 
 ## Overview
 
-Today’s pipeline (based on my working Python file):
+Today’s pipeline:
 
 1. **Query** ClinVar (hg19) in BigQuery for **pathogenic / likely pathogenic** variants  
 2. **Detect clusters**: consecutive variants within `MAX_DIST` bp (per chromosome)  
@@ -22,7 +21,6 @@ Today’s pipeline (based on my working Python file):
    - `clinvar_clustered_pairs_XXXXbp.csv` (full table)
    - `clinvar_rs_batch_XXXXbp.txt` (rsIDs for ClinVar batch search)
 
-I’m also collecting **reusable lessons** so I can copy this approach to other datasets (gnomAD, gene expression, etc).
 
 ## what the code does 
 
@@ -36,7 +34,7 @@ Detects clusters of varients which are
 ---
 
 
-##  Connect & Query (your SQL, with array-safe bits)
+##  Connect & Query
 
 
 ```python
@@ -111,7 +109,7 @@ print(f"Found {len(pairs_df):,} clustered consecutive pairs within {MAX_DIST} bp
 pairs_df.head(10)
 ```
 
-##  Export (CSV + rsIDs for browser batch search)
+##  Export (CSV + rsIDs)
 
 ```python
 if not pairs_df.empty:
@@ -128,11 +126,11 @@ if not pairs_df.empty:
 ### How I’ll use it :
      - open the TXT → copy all → paste into ClinVar’s search → review variant pages & PubMed links.
 
-## Lessons I can reuse (pattern library)
+## What i learned
 
 SQL patterns
 
-    - Schema-first: inspect table, note array vs scalar fields.
+    - Schema-first: inspect table.
 
     - Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')
      if I just need a printable value.
@@ -142,8 +140,6 @@ SQL patterns
 Python patterns
 
     - Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).
-
-    - Text parsing: split composite fields (GENEINFO) into usable tokens.
 
     - Exports for the web: create both a rich CSV and a plain TXT for batch tools.
 
@@ -156,8 +152,7 @@ Workflow patterns
 
 ## How to reuse
 
-To Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.
-
+Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets.
 
 ## key idea
 
@@ -197,7 +192,7 @@ WHERE reference_name IN ('1','2','…','22','X','Y')
 ORDER BY reference_name, start_position
 ```
 
-**4 Sort = find neighbors (the “consecutive pairs” trick)**
+**4 Sort = Project specific**
 
 
 ```python

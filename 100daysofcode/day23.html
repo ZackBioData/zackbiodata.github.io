@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="ZackBioData">
-<meta name="dcterms.date" content="2025-08-04">
+<meta name="dcterms.date" content="2025-08-20">
 
-<title>Variant Filtering in Calcium-Regulating Genes – Zack’s Bioinformatics</title>
+<title>Day 23: Downloading and Extracting GENCODE Transcript FASTA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,136 +59,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="day23_files/libs/clipboard/clipboard.min.js"></script>
+<script src="day23_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="day23_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="day23_files/libs/quarto-html/popper.min.js"></script>
+<script src="day23_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="day23_files/libs/quarto-html/anchor.min.js"></script>
+<link href="day23_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="day23_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="day23_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="day23_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="day23_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Zack’s Bioinformatics</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../log/index.html"> 
-<span class="menu-text">Logbook</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../100daysofcode/index.html"> 
-<span class="menu-text">100 Days of Code</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">Project Summary</a></li>
-  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">Methods Overview</a>
+  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
+  <li><a href="#what-i-downloaded" id="toc-what-i-downloaded" class="nav-link" data-scroll-target="#what-i-downloaded">What I Downloaded</a></li>
+  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I Learned</a>
   <ul class="collapse">
-  <li><a href="#gene-panel-early-draft" id="toc-gene-panel-early-draft" class="nav-link" data-scroll-target="#gene-panel-early-draft">Gene panel (early draft)</a></li>
+  <li><a href="#use-requests.get...-streamtrue-for-binary-downloads" id="toc-use-requests.get...-streamtrue-for-binary-downloads" class="nav-link" data-scroll-target="#use-requests.get...-streamtrue-for-binary-downloads">1. Use <code>requests.get(..., stream=True)</code> for binary downloads</a></li>
+  <li><a href="#compressed-.gz-files-need-gzip.open...-to-extract" id="toc-compressed-.gz-files-need-gzip.open...-to-extract" class="nav-link" data-scroll-target="#compressed-.gz-files-need-gzip.open...-to-extract">2. Compressed <code>.gz</code> files need <code>gzip.open(...)</code> to extract</a></li>
+  <li><a href="#create-folders-dynamically-with-os.makedirs" id="toc-create-folders-dynamically-with-os.makedirs" class="nav-link" data-scroll-target="#create-folders-dynamically-with-os.makedirs">3. Create folders dynamically with os.makedirs()</a></li>
+  <li><a href="#use-os.path.join-to-build-safe-paths" id="toc-use-os.path.join-to-build-safe-paths" class="nav-link" data-scroll-target="#use-os.path.join-to-build-safe-paths">4. Use os.path.join() to build safe paths</a></li>
   </ul></li>
-  <li><a href="#code-snippet" id="toc-code-snippet" class="nav-link" data-scroll-target="#code-snippet">Code Snippet</a></li>
-  <li><a href="#output-example" id="toc-output-example" class="nav-link" data-scroll-target="#output-example">Output Example</a></li>
-  <li><a href="#interpretation-and-context" id="toc-interpretation-and-context" class="nav-link" data-scroll-target="#interpretation-and-context">Interpretation and Context</a></li>
-  <li><a href="#limitations-future-add-ons" id="toc-limitations-future-add-ons" class="nav-link" data-scroll-target="#limitations-future-add-ons">Limitations + Future Add-ons</a></li>
-  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned</a></li>
+  <li><a href="#final-code" id="toc-final-code" class="nav-link" data-scroll-target="#final-code">Final code</a></li>
   </ul>
 </nav>
-    </div>
-<!-- main -->
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Variant Filtering in Calcium-Regulating Genes</h1>
-<p class="subtitle lead">Exploring Mastoparan B sensitivity through loss-of-function analysis</p>
-</div>
+<h1 class="title">Day 23: Downloading and Extracting GENCODE Transcript FASTA</h1>
+<p class="subtitle lead">Handling .gz Files, Safe File Paths, and Preparing for ORF Scanning</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">FASTA</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">GENCODE</div>
+    <div class="quarto-category">Bioinformatics</div>
+    <div class="quarto-category">Learning Log</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>ZackBioData </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 4, 2025</p>
+      <p class="date">August 20, 2025</p>
     </div>
   </div>
   
@@ -201,116 +130,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
-<p>The goal of this mini-project is to identify genetic variants that might impair calcium-buffering capacity in cancer cells specifically those that could make them more vulnerable to calcium overload triggered by <strong>Mastoparan B</strong>.</p>
-<p>Mastoparan B is known to destabilise the plasma membrane, leading to a spike in intracellular calcium. If certain genes responsible for calcium homeostasis (e.g.&nbsp;<strong>PCP4</strong>, <strong>ATP2B1</strong>, <strong>BCL2</strong>) are disrupted by mutations, it could tip the balance and push the cell toward apoptosis.</p>
-<p>This is an early-stage exploration of that hypothesis.</p>
+<section id="goal" class="level2">
+<h2 class="anchored" data-anchor-id="goal">Goal</h2>
+<p>My focus today was on good practice for file parsing and data handling.</p>
+<p>Today I learned how to: - Download a compressed FASTA file (<code>.gz</code>) from a public genomics database (GENCODE) - Save it safely using <code>requests</code> and <code>os.path</code> - Extract its contents using <code>gzip</code> and <code>shutil</code> - Set up project-safe paths so the code works across platforms (Windows, Linux, etc.)</p>
+<p>This prepares me to load a <strong>real human transcriptome</strong> into my ORF-finder pipeline.</p>
 <hr>
 </section>
-<section id="methods-overview" class="level2">
-<h2 class="anchored" data-anchor-id="methods-overview">Methods Overview</h2>
-<ul>
-<li><p><strong>Input:</strong> Local ClinVar VCF file (<code>clinvar.vcf</code>)</p></li>
-<li><p><strong>Approach:</strong> String filter by <code>GENEINFO</code> for genes of interest</p></li>
-<li><p><strong>Languages:</strong> Python 3.11, basic file handling</p></li>
-<li><p><strong>Goal:</strong> Print out pathogenic or reviewed variants in relevant calcium-buffering genes</p></li>
-</ul>
-<section id="gene-panel-early-draft" class="level3">
-<h3 class="anchored" data-anchor-id="gene-panel-early-draft">Gene panel (early draft)</h3>
-<ul>
-<li><p><code>PCP4</code> — Calmodulin modulator, neuron-like buffering</p></li>
-<li><p><code>ATP2B1</code> — PMCA1 calcium efflux pump</p></li>
-<li><p><code>BCL2</code> — Anti-apoptotic, links calcium and mitochondrial integrity</p></li>
-<li><p><code>VDAC1</code> — Mitochondrial membrane permeability</p></li>
-<li><p><code>RYR1</code> — Ryanodine receptor; ER calcium release</p></li>
-<li><p><code>MYC</code> - Regulator of glycolysis - drives warburg phenotype</p></li>
-</ul>
+<section id="what-i-downloaded" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-downloaded">What I Downloaded</h2>
+<p>The file I worked with is from the GENCODE human reference:</p>
+<blockquote class="blockquote">
+<p><strong>URL:</strong> <a href="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz">https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz</a></p>
+</blockquote>
+<p>This file contains <strong>all human transcript sequences</strong>, including coding and non-coding transcripts, in <strong>FASTA format</strong>.</p>
+<p>It was compressed as a <code>.gz</code> file — so I had to handle it properly.</p>
 <hr>
-</section>
-</section>
-<section id="code-snippet" class="level2">
-<h2 class="anchored" data-anchor-id="code-snippet">Code Snippet</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">"mastoparan_variants.txt"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> <span class="bu">open</span>(output_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="dv">\B</span><span class="vs">ioinformatics</span><span class="er">\</span><span class="vs">clinvar</span><span class="dv">.</span><span class="vs">vcf"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    genes_of_interest <span class="op">=</span> [<span class="st">"PCP4"</span>, <span class="st">"BCL2"</span>, <span class="st">"ATP2B1"</span>, <span class="st">"VDAC1"</span>, <span class="st">"RYR1"</span>]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> line.startswith(<span class="st">"#"</span>):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        cols <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        chrom <span class="op">=</span> cols[<span class="dv">0</span>].replace(<span class="st">"chr"</span>, <span class="st">""</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        pos <span class="op">=</span> <span class="bu">int</span>(cols[<span class="dv">1</span>])</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        ref <span class="op">=</span> cols[<span class="dv">3</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        alt <span class="op">=</span> cols[<span class="dv">4</span>]</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        info <span class="op">=</span> cols[<span class="dv">7</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> gene <span class="kw">in</span> genes_of_interest:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="ss">f"GENEINFO=</span><span class="sc">{</span>gene<span class="sc">}</span><span class="ss">"</span> <span class="kw">in</span> info:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                info_dict <span class="op">=</span> <span class="bu">dict</span>(item.split(<span class="st">"="</span>) <span class="cf">for</span> item <span class="kw">in</span> info.split(<span class="st">";"</span>) <span class="cf">if</span> <span class="st">"="</span> <span class="kw">in</span> item)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                significance <span class="op">=</span> info_dict.get(<span class="st">"CLNSIG"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                disease <span class="op">=</span> info_dict.get(<span class="st">"CLNDN"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                review <span class="op">=</span> info_dict.get(<span class="st">"CLNREVSTAT"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"</span><span class="sc">{</span>chrom<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>pos<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>ref<span class="sc">}</span><span class="ss">&gt;</span><span class="sc">{</span>alt<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Significance: </span><span class="sc">{</span>significance<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Disease: </span><span class="sc">{</span>disease<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Review: </span><span class="sc">{</span>review<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>out.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="output-example" class="level2">
-<h2 class="anchored" data-anchor-id="output-example">Output Example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>:<span class="dv">161284466</span> G<span class="op">&gt;</span>A</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   Gene: PCP4</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   Significance: Benign</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   Disease: not_provided</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   Review: criteria_provided,_multiple_submitters,_no_conflicts</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>:<span class="dv">111123784</span> C<span class="op">&gt;</span>T</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   Gene: BCL2</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   Significance: Benign</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   Disease: not_provided</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   Review: criteria_provided,_multiple_submitters,_no_conflicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Current outputs only provides unreviewed untilted point mutations.</p>
-</section>
-<section id="interpretation-and-context" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-and-context">Interpretation and Context</h2>
-<p>Right now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g.&nbsp;domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.</p>
-<p>Variants in calcium-buffering genes might:</p>
-<p>Reduce calcium export or sequestration</p>
-<p>Increase membrane fragility or ER stress</p>
-<p>Accelerate the death response after a calcium spike</p>
-<p>This could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.</p>
-</section>
-<section id="limitations-future-add-ons" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-future-add-ons">Limitations + Future Add-ons</h2>
-<ul>
-<li><p>No frame shift or missense classification yet</p></li>
-<li><p>Doesn’t look at protein domains (e.g.&nbsp;calmodulin-binding)</p></li>
-<li><p>No integration with ENSEMBL VEP or SnpEff</p></li>
-<li><p>No filtering by ClinVar significance beyond string match</p></li>
-<li><p>Add more genes resulting in warburg effect</p></li>
-</ul>
 </section>
 <section id="what-i-learned" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-learned">What i learned</h2>
+<h2 class="anchored" data-anchor-id="what-i-learned">What I Learned</h2>
+<section id="use-requests.get...-streamtrue-for-binary-downloads" class="level3">
+<h3 class="anchored" data-anchor-id="use-requests.get...-streamtrue-for-binary-downloads">1. Use <code>requests.get(..., stream=True)</code> for binary downloads</h3>
 <ul>
-<li><p>First interactions with clinvar</p></li>
-<li><p>GENEINFO filtering is a quick but rough approach</p></li>
+<li>You must write binary files using <code>"wb"</code> mode — <code>response.content</code> gives you the raw bytes.</li>
+<li>Trying to write <code>response.text</code> on <code>.gz</code> files can cause encoding errors.</li>
 </ul>
-<p>-Learned how to filter by gene names using the GENEINFO field in ClinVar annotations</p>
-<ul>
-<li></li>
-</ul>
-
-
+</section>
+<section id="compressed-.gz-files-need-gzip.open...-to-extract" class="level3">
+<h3 class="anchored" data-anchor-id="compressed-.gz-files-need-gzip.open...-to-extract">2. Compressed <code>.gz</code> files need <code>gzip.open(...)</code> to extract</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> gzip.<span class="bu">open</span>(gz_filename, <span class="st">"rb"</span>) <span class="im">as</span> f_in, <span class="bu">open</span>(fa_filename, <span class="st">"wb"</span>) <span class="im">as</span> f_out:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    shutil.copyfileobj(f_in, f_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>-Decompresses file in memory and writes it to a clean .fa file for parsing</code></pre>
+</section>
+<section id="create-folders-dynamically-with-os.makedirs" class="level3">
+<h3 class="anchored" data-anchor-id="create-folders-dynamically-with-os.makedirs">3. Create folders dynamically with os.makedirs()</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">"data"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>-Prevents crash if folder doesnt exist
+-exist_ok=True avoids errors if it does exist already.</code></pre>
+</section>
+<section id="use-os.path.join-to-build-safe-paths" class="level3">
+<h3 class="anchored" data-anchor-id="use-os.path.join-to-build-safe-paths">4. Use os.path.join() to build safe paths</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>script_dir <span class="op">=</span> os.path.dirname(os.path.abspath(<span class="va">__file__</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> os.path.join(script_dir, <span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>-Prevents the use of hard coding path directory enabling cross platform usage.</code></pre>
+</section>
+</section>
+<section id="final-code" class="level2">
+<h2 class="anchored" data-anchor-id="final-code">Final code</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests  </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gzip</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># URL to download GENCODE FASTA</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define paths</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>script_dir <span class="op">=</span> os.path.dirname(os.path.abspath(<span class="va">__file__</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> os.path.join(script_dir, <span class="st">"data"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>os.makedirs(data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>gz_filename <span class="op">=</span> os.path.join(data_dir, <span class="st">"gencode.v44.transcripts.fa.gz"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>fa_filename <span class="op">=</span> os.path.join(data_dir, <span class="st">"gencode.v44.transcripts.fa"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the .gz file</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Downloading FASTA..."</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, stream<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(gz_filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    f.write(response.content)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: </span><span class="sc">{</span>gz_filename<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the .gz file</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Extracting..."</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> gzip.<span class="bu">open</span>(gz_filename, <span class="st">"rb"</span>) <span class="im">as</span> f_in, <span class="bu">open</span>(fa_filename, <span class="st">"wb"</span>) <span class="im">as</span> f_out:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    shutil.copyfileobj(f_in, f_out)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Extracted: </span><span class="sc">{</span>fa_filename<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -383,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/ZackBioData\.github\.io");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

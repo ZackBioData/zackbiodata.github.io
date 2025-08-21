@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="ZackBioData">
-<meta name="dcterms.date" content="2025-08-04">
+<meta name="dcterms.date" content="2025-08-21">
 
-<title>Variant Filtering in Calcium-Regulating Genes – Zack’s Bioinformatics</title>
+<title>Day 24: ORF Finder — From GENCODE Transcripts to CSV – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,15 +152,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-summary" id="toc-project-summary" class="nav-link active" data-scroll-target="#project-summary">Project Summary</a></li>
-  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">Methods Overview</a>
-  <ul class="collapse">
-  <li><a href="#gene-panel-early-draft" id="toc-gene-panel-early-draft" class="nav-link" data-scroll-target="#gene-panel-early-draft">Gene panel (early draft)</a></li>
-  </ul></li>
-  <li><a href="#code-snippet" id="toc-code-snippet" class="nav-link" data-scroll-target="#code-snippet">Code Snippet</a></li>
-  <li><a href="#output-example" id="toc-output-example" class="nav-link" data-scroll-target="#output-example">Output Example</a></li>
-  <li><a href="#interpretation-and-context" id="toc-interpretation-and-context" class="nav-link" data-scroll-target="#interpretation-and-context">Interpretation and Context</a></li>
-  <li><a href="#limitations-future-add-ons" id="toc-limitations-future-add-ons" class="nav-link" data-scroll-target="#limitations-future-add-ons">Limitations + Future Add-ons</a></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#method-todays-core-steps" id="toc-method-todays-core-steps" class="nav-link" data-scroll-target="#method-todays-core-steps">Method (Today’s Core Steps)</a></li>
+  <li><a href="#reference-code-collapsed" id="toc-reference-code-collapsed" class="nav-link" data-scroll-target="#reference-code-collapsed">Reference Code (collapsed)</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What i learned</a></li>
   </ul>
 </nav>
@@ -171,25 +166,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Variant Filtering in Calcium-Regulating Genes</h1>
-<p class="subtitle lead">Exploring Mastoparan B sensitivity through loss-of-function analysis</p>
-</div>
+<h1 class="title">Day 24: ORF Finder — From GENCODE Transcripts to CSV</h1>
+<p class="subtitle lead">6-frame translation, ORF extraction, and writing results for downstream analysis</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Biopython</div>
+    <div class="quarto-category">FASTA</div>
+    <div class="quarto-category">ORF</div>
+    <div class="quarto-category">GENCODE</div>
+    <div class="quarto-category">Learning Log</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>ZackBioData </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 4, 2025</p>
+      <p class="date">August 21, 2025</p>
     </div>
   </div>
   
@@ -201,111 +197,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="project-summary">Project Summary</h2>
-<p>The goal of this mini-project is to identify genetic variants that might impair calcium-buffering capacity in cancer cells specifically those that could make them more vulnerable to calcium overload triggered by <strong>Mastoparan B</strong>.</p>
-<p>Mastoparan B is known to destabilise the plasma membrane, leading to a spike in intracellular calcium. If certain genes responsible for calcium homeostasis (e.g.&nbsp;<strong>PCP4</strong>, <strong>ATP2B1</strong>, <strong>BCL2</strong>) are disrupted by mutations, it could tip the balance and push the cell toward apoptosis.</p>
-<p>This is an early-stage exploration of that hypothesis.</p>
+<section id="goal" class="level2">
+<h2 class="anchored" data-anchor-id="goal">Goal</h2>
+<p>Take the human <strong>GENCODE transcriptome</strong> (FASTA, gzipped), scan each transcript in <strong>all 6 reading frames</strong>, and export open reading frames (ORFs) to a <strong>CSV</strong> for later filtering, BLAST, or SQL querying.</p>
 <hr>
 </section>
-<section id="methods-overview" class="level2">
-<h2 class="anchored" data-anchor-id="methods-overview">Methods Overview</h2>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
 <ul>
-<li><p><strong>Input:</strong> Local ClinVar VCF file (<code>clinvar.vcf</code>)</p></li>
-<li><p><strong>Approach:</strong> String filter by <code>GENEINFO</code> for genes of interest</p></li>
-<li><p><strong>Languages:</strong> Python 3.11, basic file handling</p></li>
-<li><p><strong>Goal:</strong> Print out pathogenic or reviewed variants in relevant calcium-buffering genes</p></li>
+<li>Source: GENCODE v44 transcript FASTA (gzipped)<br>
+</li>
+<li>Local path: <code>Day 22 -/data/gencode.v44.transcripts.fa.gz</code><br>
+</li>
+<li>Output: <code>Day 22 -/orfs_output.csv</code></li>
 </ul>
-<section id="gene-panel-early-draft" class="level3">
-<h3 class="anchored" data-anchor-id="gene-panel-early-draft">Gene panel (early draft)</h3>
-<ul>
-<li><p><code>PCP4</code> — Calmodulin modulator, neuron-like buffering</p></li>
-<li><p><code>ATP2B1</code> — PMCA1 calcium efflux pump</p></li>
-<li><p><code>BCL2</code> — Anti-apoptotic, links calcium and mitochondrial integrity</p></li>
-<li><p><code>VDAC1</code> — Mitochondrial membrane permeability</p></li>
-<li><p><code>RYR1</code> — Ryanodine receptor; ER calcium release</p></li>
-<li><p><code>MYC</code> - Regulator of glycolysis - drives warburg phenotype</p></li>
-</ul>
+<blockquote class="blockquote">
+<p>Note: I used Biopython to parse gzipped FASTA directly (<code>gzip.open(..., "rt", encoding="utf-8")</code>).</p>
+</blockquote>
 <hr>
 </section>
-</section>
-<section id="code-snippet" class="level2">
-<h2 class="anchored" data-anchor-id="code-snippet">Code Snippet</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">"mastoparan_variants.txt"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> <span class="bu">open</span>(output_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="er">\</span><span class="vs">zackd</span><span class="dv">\B</span><span class="vs">ioinformatics</span><span class="er">\</span><span class="vs">clinvar</span><span class="dv">.</span><span class="vs">vcf"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    genes_of_interest <span class="op">=</span> [<span class="st">"PCP4"</span>, <span class="st">"BCL2"</span>, <span class="st">"ATP2B1"</span>, <span class="st">"VDAC1"</span>, <span class="st">"RYR1"</span>]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> line.startswith(<span class="st">"#"</span>):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        cols <span class="op">=</span> line.strip().split(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        chrom <span class="op">=</span> cols[<span class="dv">0</span>].replace(<span class="st">"chr"</span>, <span class="st">""</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        pos <span class="op">=</span> <span class="bu">int</span>(cols[<span class="dv">1</span>])</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        ref <span class="op">=</span> cols[<span class="dv">3</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        alt <span class="op">=</span> cols[<span class="dv">4</span>]</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        info <span class="op">=</span> cols[<span class="dv">7</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> gene <span class="kw">in</span> genes_of_interest:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="ss">f"GENEINFO=</span><span class="sc">{</span>gene<span class="sc">}</span><span class="ss">"</span> <span class="kw">in</span> info:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                info_dict <span class="op">=</span> <span class="bu">dict</span>(item.split(<span class="st">"="</span>) <span class="cf">for</span> item <span class="kw">in</span> info.split(<span class="st">";"</span>) <span class="cf">if</span> <span class="st">"="</span> <span class="kw">in</span> item)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                significance <span class="op">=</span> info_dict.get(<span class="st">"CLNSIG"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                disease <span class="op">=</span> info_dict.get(<span class="st">"CLNDN"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                review <span class="op">=</span> info_dict.get(<span class="st">"CLNREVSTAT"</span>, <span class="st">"NA"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"</span><span class="sc">{</span>chrom<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>pos<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>ref<span class="sc">}</span><span class="ss">&gt;</span><span class="sc">{</span>alt<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Significance: </span><span class="sc">{</span>significance<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Disease: </span><span class="sc">{</span>disease<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                out.write(<span class="ss">f"   Review: </span><span class="sc">{</span>review<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>out.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="output-example" class="level2">
-<h2 class="anchored" data-anchor-id="output-example">Output Example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>:<span class="dv">161284466</span> G<span class="op">&gt;</span>A</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   Gene: PCP4</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   Significance: Benign</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   Disease: not_provided</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   Review: criteria_provided,_multiple_submitters,_no_conflicts</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>:<span class="dv">111123784</span> C<span class="op">&gt;</span>T</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   Gene: BCL2</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   Significance: Benign</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   Disease: not_provided</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   Review: criteria_provided,_multiple_submitters,_no_conflicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Current outputs only provides unreviewed untilted point mutations.</p>
-</section>
-<section id="interpretation-and-context" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-and-context">Interpretation and Context</h2>
-<p>Right now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g.&nbsp;domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.</p>
-<p>Variants in calcium-buffering genes might:</p>
-<p>Reduce calcium export or sequestration</p>
-<p>Increase membrane fragility or ER stress</p>
-<p>Accelerate the death response after a calcium spike</p>
-<p>This could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.</p>
-</section>
-<section id="limitations-future-add-ons" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-future-add-ons">Limitations + Future Add-ons</h2>
+<section id="method-todays-core-steps" class="level2">
+<h2 class="anchored" data-anchor-id="method-todays-core-steps">Method (Today’s Core Steps)</h2>
+<ol type="1">
+<li><strong>Parse</strong> gzipped FASTA with <code>SeqIO.parse</code>.</li>
+<li>For each transcript, generate <strong>6 reading frames</strong>:
 <ul>
-<li><p>No frame shift or missense classification yet</p></li>
-<li><p>Doesn’t look at protein domains (e.g.&nbsp;calmodulin-binding)</p></li>
-<li><p>No integration with ENSEMBL VEP or SnpEff</p></li>
-<li><p>No filtering by ClinVar significance beyond string match</p></li>
-<li><p>Add more genes resulting in warburg effect</p></li>
-</ul>
+<li>Forward: F0, F1, F2<br>
+</li>
+<li>Reverse complement: R0, R1, R2<br>
+</li>
+</ul></li>
+<li><strong>Trim</strong> frame slices so length is a multiple of 3 before translating (removes “partial codon” warnings).</li>
+<li><strong>Translate</strong> without stopping (<code>to_stop=False</code>).</li>
+<li><strong>Extract ORFs</strong> that <strong>start at <code>M</code></strong> and <strong>end at <code>*</code></strong>, with length ≥ <strong>30 aa</strong>.</li>
+<li><strong>Write CSV</strong> rows: <code>transcript_id, frame, orf_length_aa, protein_seq, gene_symbol, biotype</code>.</li>
+</ol>
+<hr>
 </section>
-<section id="what-i-learned" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-learned">What i learned</h2>
-<ul>
-<li><p>First interactions with clinvar</p></li>
-<li><p>GENEINFO filtering is a quick but rough approach</p></li>
-</ul>
-<p>-Learned how to filter by gene names using the GENEINFO field in ClinVar annotations</p>
-<ul>
-<li></li>
-</ul>
+<section id="reference-code-collapsed" class="level2">
+<h2 class="anchored" data-anchor-id="reference-code-collapsed">Reference Code (collapsed)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ORF scan + CSV write </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, gzip, csv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio.Seq <span class="im">import</span> Seq</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>FASTA_GZ <span class="op">=</span> os.path.join(os.path.dirname(os.path.abspath(<span class="va">__file__</span>)), <span class="st">"data"</span>, <span class="st">"gencode.v44.transcripts.fa.gz"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>OUT_CSV  <span class="op">=</span> os.path.join(os.path.dirname(os.path.abspath(<span class="va">__file__</span>)), <span class="st">"orfs_output.csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MIN_LEN_AA          <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ONLY_PROTEIN_CODING <span class="op">=</span> <span class="va">False</span>   <span class="co"># set True to restrict to coding transcripts</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>MAX_TRANSCRIPTS     <span class="op">=</span> <span class="dv">200</span>     <span class="co"># bump as desired</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_gencode_header(desc: <span class="bu">str</span>):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> desc.split(<span class="st">"|"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"transcript_id"</span>: p[<span class="dv">0</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">0</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"gene_id"</span>:       p[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">1</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"tx_name"</span>:       p[<span class="dv">4</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">4</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"gene_symbol"</span>:   p[<span class="dv">5</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">5</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"length_nt"</span>:     p[<span class="dv">6</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">6</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"biotype"</span>:       p[<span class="dv">7</span>] <span class="cf">if</span> <span class="bu">len</span>(p)<span class="op">&gt;</span><span class="dv">7</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_frame(nuc: Seq, frame: <span class="bu">int</span>) <span class="op">-&gt;</span> Seq:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> nuc[frame:]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> sub[:<span class="bu">len</span>(sub) <span class="op">-</span> (<span class="bu">len</span>(sub) <span class="op">%</span> <span class="dv">3</span>)] <span class="cf">if</span> <span class="bu">len</span>(sub) <span class="op">&gt;=</span> <span class="dv">3</span> <span class="cf">else</span> Seq(<span class="st">""</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sub.translate(to_stop<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> six_frame_proteins(dna: Seq):</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    rc <span class="op">=</span> dna.reverse_complement()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    prots <span class="op">=</span> []</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> frame <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        prots <span class="op">+=</span> [translate_frame(dna, frame), translate_frame(rc, frame)]</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prots  <span class="co"># F0,F1,F2,R0,R1,R2</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_orfs_in_protein(prot: <span class="bu">str</span>, min_len_aa: <span class="bu">int</span> <span class="op">=</span> <span class="dv">30</span>):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    orfs, cur <span class="op">=</span> [], <span class="va">None</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> aa <span class="kw">in</span> prot:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> aa <span class="op">==</span> <span class="st">"M"</span>:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            cur <span class="op">=</span> <span class="st">"M"</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> aa <span class="op">==</span> <span class="st">"*"</span>:</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> cur <span class="kw">and</span> <span class="bu">len</span>(cur) <span class="op">&gt;=</span> min_len_aa:</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                orfs.append(cur)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            cur <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> cur:</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            cur <span class="op">+=</span> aa</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> orfs</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scan_one_transcript(record, min_len_aa<span class="op">=</span><span class="dv">30</span>):</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> [<span class="st">"F0"</span>,<span class="st">"F1"</span>,<span class="st">"F2"</span>,<span class="st">"R0"</span>,<span class="st">"R1"</span>,<span class="st">"R2"</span>]</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> []</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, prot <span class="kw">in</span> <span class="bu">enumerate</span>(six_frame_proteins(record.seq)):</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> orf <span class="kw">in</span> find_orfs_in_protein(<span class="bu">str</span>(prot), min_len_aa<span class="op">=</span>min_len_aa):</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>            out.append((record.<span class="bu">id</span>, names[i], <span class="bu">len</span>(orf), orf))</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Write CSV</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>rows_written <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> gzip.<span class="bu">open</span>(FASTA_GZ, <span class="st">"rt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> handle, <span class="bu">open</span>(OUT_CSV, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> out_f:</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> csv.writer(out_f)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    w.writerow([<span class="st">"transcript_id"</span>,<span class="st">"frame"</span>,<span class="st">"orf_length_aa"</span>,<span class="st">"protein_seq"</span>,<span class="st">"gene_symbol"</span>,<span class="st">"biotype"</span>])</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    processed <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> rec <span class="kw">in</span> SeqIO.parse(handle, <span class="st">"fasta"</span>):</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        meta <span class="op">=</span> parse_gencode_header(rec.description)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ONLY_PROTEIN_CODING <span class="kw">and</span> meta.get(<span class="st">"biotype"</span>,<span class="st">""</span>).strip() <span class="op">!=</span> <span class="st">"protein_coding"</span>:</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>        rows <span class="op">=</span> scan_one_transcript(rec, min_len_aa<span class="op">=</span>MIN_LEN_AA)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rows:</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>            w.writerows([(<span class="op">*</span>r, meta.get(<span class="st">"gene_symbol"</span>,<span class="st">""</span>), meta.get(<span class="st">"biotype"</span>,<span class="st">""</span>)) <span class="cf">for</span> r <span class="kw">in</span> rows])</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>            rows_written <span class="op">+=</span> <span class="bu">len</span>(rows)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        processed <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> processed <span class="op">&gt;=</span> MAX_TRANSCRIPTS:</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wrote </span><span class="sc">{</span>rows_written<span class="sc">}</span><span class="ss"> ORFs to: </span><span class="sc">{</span>OUT_CSV<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<pre><code>-CSV created with ORFs ≥ 30 aa</code></pre>
+</section>
+<section id="what-i-learned" class="level1">
+<h1>What i learned</h1>
+<pre><code>-Reading gzipped FASTA directly: gzip.open(..., "rt", encoding="utf-8")
+-Trimming frames to exclusively fit frames of 3 to prevent partial codons
+-Debugging approach: checking file size, stepping through one transcript at a time was key.
+-Encoding pitfalls: must specify UTF-8 when parsing large FASTA files on Windows.
+-Compressed FASTA: I don’t need to extract .gz—just read directly with gzip.open</code></pre>
 
 
 </section>

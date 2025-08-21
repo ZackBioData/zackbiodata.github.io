@@ -1,0 +1,125 @@
+---
+title: "Day 24: ORF Finder — From GENCODE Transcripts to CSV"
+subtitle: "6-frame translation, ORF extraction, and writing results for downstream analysis"
+date: 2025-08-21
+image: ../images/100daysofcode/orf.png
+categories: [Biopython, FASTA, ORF, GENCODE, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Goal
+Take the human **GENCODE transcriptome** (FASTA, gzipped), scan each transcript in **all 6 reading frames**, and export open reading frames (ORFs) to a **CSV** for later filtering, BLAST, or SQL querying.
+
+---
+
+## Data
+- Source: GENCODE v44 transcript FASTA (gzipped)  
+- Local path: `Day 22 -/data/gencode.v44.transcripts.fa.gz`  
+- Output: `Day 22 -/orfs_output.csv`
+
+> Note: I used Biopython to parse gzipped FASTA directly (`gzip.open(..., "rt", encoding="utf-8")`).
+
+---
+
+##  Method (Today’s Core Steps)
+1. **Parse** gzipped FASTA with `SeqIO.parse`.
+2. For each transcript, generate **6 reading frames**:
+   - Forward: F0, F1, F2  
+   - Reverse complement: R0, R1, R2  
+3. **Trim** frame slices so length is a multiple of 3 before translating (removes “partial codon” warnings).
+4. **Translate** without stopping (`to_stop=False`).
+5. **Extract ORFs** that **start at `M`** and **end at `*`**, with length ≥ **30 aa**.
+6. **Write CSV** rows: `transcript_id, frame, orf_length_aa, protein_seq, gene_symbol, biotype`.
+
+---
+
+##  Reference Code (collapsed)
+```python
+# ORF scan + CSV write 
+import os, gzip, csv
+from Bio import SeqIO
+from Bio.Seq import Seq
+
+FASTA_GZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "gencode.v44.transcripts.fa.gz")
+OUT_CSV  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "orfs_output.csv")
+
+MIN_LEN_AA          = 30
+ONLY_PROTEIN_CODING = False   # set True to restrict to coding transcripts
+MAX_TRANSCRIPTS     = 200     # bump as desired
+
+def parse_gencode_header(desc: str):
+    p = desc.split("|")
+    return {
+        "transcript_id": p[0] if len(p)>0 else "",
+        "gene_id":       p[1] if len(p)>1 else "",
+        "tx_name":       p[4] if len(p)>4 else "",
+        "gene_symbol":   p[5] if len(p)>5 else "",
+        "length_nt":     p[6] if len(p)>6 else "",
+        "biotype":       p[7] if len(p)>7 else "",
+    }
+
+def translate_frame(nuc: Seq, frame: int) -> Seq:
+    sub = nuc[frame:]
+    sub = sub[:len(sub) - (len(sub) % 3)] if len(sub) >= 3 else Seq("")
+    return sub.translate(to_stop=False)
+
+def six_frame_proteins(dna: Seq):
+    rc = dna.reverse_complement()
+    prots = []
+    for frame in range(3):
+        prots += [translate_frame(dna, frame), translate_frame(rc, frame)]
+    return prots  # F0,F1,F2,R0,R1,R2
+
+def find_orfs_in_protein(prot: str, min_len_aa: int = 30):
+    orfs, cur = [], None
+    for aa in prot:
+        if aa == "M":
+            cur = "M"
+        elif aa == "*":
+            if cur and len(cur) >= min_len_aa:
+                orfs.append(cur)
+            cur = None
+        elif cur:
+            cur += aa
+    return orfs
+
+def scan_one_transcript(record, min_len_aa=30):
+    names = ["F0","F1","F2","R0","R1","R2"]
+    out = []
+    for i, prot in enumerate(six_frame_proteins(record.seq)):
+        for orf in find_orfs_in_protein(str(prot), min_len_aa=min_len_aa):
+            out.append((record.id, names[i], len(orf), orf))
+    return out
+
+# Write CSV
+rows_written = 0
+with gzip.open(FASTA_GZ, "rt", encoding="utf-8") as handle, open(OUT_CSV, "w", newline="", encoding="utf-8") as out_f:
+    w = csv.writer(out_f)
+    w.writerow(["transcript_id","frame","orf_length_aa","protein_seq","gene_symbol","biotype"])
+    processed = 0
+    for rec in SeqIO.parse(handle, "fasta"):
+        meta = parse_gencode_header(rec.description)
+        if ONLY_PROTEIN_CODING and meta.get("biotype","").strip() != "protein_coding":
+            continue
+        rows = scan_one_transcript(rec, min_len_aa=MIN_LEN_AA)
+        if rows:
+            w.writerows([(*r, meta.get("gene_symbol",""), meta.get("biotype","")) for r in rows])
+            rows_written += len(rows)
+        processed += 1
+        if processed >= MAX_TRANSCRIPTS:
+            break
+
+print(f"Wrote {rows_written} ORFs to: {OUT_CSV}")
+```
+# Results
+    -CSV created with ORFs ≥ 30 aa
+
+# What i learned
+    -Reading gzipped FASTA directly: gzip.open(..., "rt", encoding="utf-8")
+    -Trimming frames to exclusively fit frames of 3 to prevent partial codons
+    -Debugging approach: checking file size, stepping through one transcript at a time was key.
+    -Encoding pitfalls: must specify UTF-8 when parsing large FASTA files on Windows.
+    -Compressed FASTA: I don’t need to extract .gz—just read directly with gzip.open

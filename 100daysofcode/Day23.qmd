@@ -1,0 +1,100 @@
+---
+title: "Day 23: Downloading and Extracting GENCODE Transcript FASTA"
+subtitle: "Handling .gz Files, Safe File Paths, and Preparing for ORF Scanning"
+date: 2025-08-20
+image: ../images/100daysofcode/orf.png
+categories: [FASTA, Python, GENCODE, Bioinformatics, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Goal
+My focus today was on good practice for file parsing and data handling.
+
+Today I learned how to:
+- Download a compressed FASTA file (`.gz`) from a public genomics database (GENCODE)
+- Save it safely using `requests` and `os.path`
+- Extract its contents using `gzip` and `shutil`
+- Set up project-safe paths so the code works across platforms (Windows, Linux, etc.)
+
+This prepares me to load a **real human transcriptome** into my ORF-finder pipeline.
+
+---
+
+## What I Downloaded
+
+The file I worked with is from the GENCODE human reference:
+
+> **URL:** [https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz)
+
+This file contains **all human transcript sequences**, including coding and non-coding transcripts, in **FASTA format**.
+
+It was compressed as a `.gz` file — so I had to handle it properly.
+
+---
+
+## What I Learned
+
+### 1. Use `requests.get(..., stream=True)` for binary downloads
+
+- You must write binary files using `"wb"` mode — `response.content` gives you the raw bytes.
+- Trying to write `response.text` on `.gz` files can cause encoding errors.
+
+### 2. Compressed `.gz` files need `gzip.open(...)` to extract
+
+```python
+with gzip.open(gz_filename, "rb") as f_in, open(fa_filename, "wb") as f_out:
+    shutil.copyfileobj(f_in, f_out)
+```
+    -Decompresses file in memory and writes it to a clean .fa file for parsing
+
+###  3. Create folders dynamically with os.makedirs()
+
+```python
+os.makedirs("data", exist_ok=True)
+```
+    -Prevents crash if folder doesnt exist
+    -exist_ok=True avoids errors if it does exist already.
+
+### 4. Use os.path.join() to build safe paths
+```python
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(script_dir, "data")
+```
+    -Prevents the use of hard coding path directory enabling cross platform usage.
+
+## Final code
+
+```python
+import requests  
+import gzip
+import shutil
+import os
+
+# URL to download GENCODE FASTA
+url = "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz"
+
+# Define paths
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(script_dir, "data")
+os.makedirs(data_dir, exist_ok=True)
+
+gz_filename = os.path.join(data_dir, "gencode.v44.transcripts.fa.gz")
+fa_filename = os.path.join(data_dir, "gencode.v44.transcripts.fa")
+
+# Download the .gz file
+print("Downloading FASTA...")
+response = requests.get(url, stream=True)
+
+with open(gz_filename, "wb") as f:
+    f.write(response.content)
+print(f"Saved: {gz_filename}")
+
+# Extract the .gz file
+print("Extracting...")
+with gzip.open(gz_filename, "rb") as f_in, open(fa_filename, "wb") as f_out:
+    shutil.copyfileobj(f_in, f_out)
+print(f"Extracted: {fa_filename}")
+```

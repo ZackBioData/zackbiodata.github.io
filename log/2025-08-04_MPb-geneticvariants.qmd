@@ -81,7 +81,7 @@ out.close()
 ```
 
 
-##Output Example
+## Output Example
 
 ```python
 1:161284466 G>A
@@ -100,7 +100,7 @@ Current outputs only provides unreviewed untilted point mutations.
 
 
 
-##Interpretation and Context
+## Interpretation and Context
 
 Right now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it's a good starting point.
 
@@ -116,7 +116,7 @@ This could improve Mastoparan B’s selective cytotoxicity via triggering calciu
 
 
 
-##Limitations + Future Add-ons
+## Limitations + Future Add-ons
 
 - No frame shift or missense classification yet
 
@@ -128,8 +128,12 @@ This could improve Mastoparan B’s selective cytotoxicity via triggering calciu
 
 - Add more genes resulting in warburg effect 
 
-##What i learned
+## What i learned
 
 - First interactions with clinvar
 
 - GENEINFO filtering is a quick but rough approach
+
+-Learned how to filter by gene names using the GENEINFO field in ClinVar annotations
+
+-

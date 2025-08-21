@@ -1,0 +1,12 @@
+---
+title: "Day 24: ORF Finder — From GENCODE Transcripts to CSV"
+subtitle: "6-frame translation, ORF extraction, and writing results for downstream analysis"
+date: 2025-08-21
+image: ../images/100daysofcode/orf.png
+categories: [Biopython, FASTA, ORF, GENCODE, Learning Log]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+asdas

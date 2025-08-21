@@ -8,6 +8,10 @@ format:
 
 This website aims to be way to track progress and reinforce learning as i go 
 
+<a href="https://www.linkedin.com/in/zack-davis-bioinformatics123/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
+<a href="https://rosalind.info/users/Zackbiodata/" target="_blank" rel="noopener" class="btn btn-secondary">Rosalind</a>
+<a href="https://leetcode.com/u/Zackbiodata/" target="_blank" rel="noopener" class="btn btn-secondary">LeetCode</a>
+
 ## My work 
 
 **[Logbook](log/index.qmd)** — Casual notes, ideas, and progress from daily work and study  
@@ -15,7 +19,6 @@ This website aims to be way to track progress and reinforce learning as i go
 **[Daily Coding](100daysofcode/index.qmd)** — A journey to improve coding skills every day for 100 consecutive days
 
 ---
-
 ## What I’m working with
 
 **Languages & Libraries:**  
@@ -26,4 +29,7 @@ Transcriptomics · Variant filtering · Gene expression analysis
 
 **Learning next:**  
 Sequence alignment · SnpEff · VEP · Pathway prediction  
+
+## Current Focus
+Working through Rosalind + LeetCode in parallel with my 100 Days of Code streak.
 

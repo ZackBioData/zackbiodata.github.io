@@ -172,7 +172,7 @@
     "href": "100daysofcode/index.html",
     "title": "100 days of code",
     "section": "",
-    "text": "This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 22: SQL Fundamentals for Bioinformatics\n\n\n\nSQL\n\nData Wrangling\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 21: Protein Mass, RNA Translation, GC Content & Hamming Distance\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 19 — Mini Project - Clinvar clustered pairs: extraction and stats\n\n\n\nLeetCode\n\nPython\n\nPandas\n\nBioinformatics\n\nClinVar\n\nBigQuery\n\n\n\n\n\n\n\nZack\n\n\nAug 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 18 — ClinVar clustered variants (SQL → Python → Export)\n\n\n\nSQL\n\nBigQuery\n\nBioinformatics\n\nClinVar\n\nPython\n\n\n\n\n\n\n\nZack\n\n\nAug 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 17: Setting Up SQL + probability\n\n\n\nSQL\n\nBigQuery\n\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window\n\n\n\nLeetCode\n\nPython\n\nAlgorithms\n\n\n\n\n\n\n\n\n\n\nAug 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr\n\n\n\nLeetCode\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 14: consolidation from 6-10\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering\n\n\n\nRosaland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 12: Mini project\n\n\n\nRMini project\n\nBiopython\n\nPython\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11: consolidation from day 1-10\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Rosalind Problems – Overlap Graphs &\n\n\n\nBiopython\n\nAlgorithm Design\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA\n\n\n\nBiopython\n\nRosiland\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: Rosalind Problems – GC Content & Hamming Distance\n\n\n\nBiopython\n\nSequence Comparison\n\nProbability\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Rosalind Problem – Open Reading Frames\n\n\n\nBiopython\n\nFASTA Parsing\n\nORFs\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: 3 Rosiland problems: FASTA and Biopython\n\n\n\nBiopython\n\nFASTA Parsing\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability\n\n\n\nTranscriptomics\n\nGene Expression\n\nPathway Enrichment\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: 4 simple rosiland problems\n\n\n\nPython\n\n\n\n\n\n\n\n\n\n\nJul 13, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 24: ORF Finder — From GENCODE Transcripts to CSV\n\n\n\nBiopython\n\nFASTA\n\nORF\n\nGENCODE\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 22: SQL Fundamentals for Bioinformatics\n\n\n\nSQL\n\nData Wrangling\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 21: Protein Mass, RNA Translation, GC Content & Hamming Distance\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 19 — Mini Project - Clinvar clustered pairs: extraction and stats\n\n\n\nLeetCode\n\nPython\n\nPandas\n\nBioinformatics\n\nClinVar\n\nBigQuery\n\n\n\n\n\n\n\nZack\n\n\nAug 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 18 — ClinVar clustered variants (SQL → Python → Export)\n\n\n\nSQL\n\nBigQuery\n\nBioinformatics\n\nClinVar\n\nPython\n\n\n\n\n\n\n\n\n\n\nAug 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 17: Setting Up SQL + probability\n\n\n\nSQL\n\nBigQuery\n\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window\n\n\n\nLeetCode\n\nPython\n\nAlgorithms\n\n\n\n\n\n\n\n\n\n\nAug 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr\n\n\n\nLeetCode\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 14: consolidation from 6-10\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering\n\n\n\nRosaland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 12: Mini project\n\n\n\nRMini project\n\nBiopython\n\nPython\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11: consolidation from day 1-10\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Rosalind Problems – Overlap Graphs &\n\n\n\nBiopython\n\nAlgorithm Design\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA\n\n\n\nBiopython\n\nRosiland\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: Rosalind Problems – GC Content & Hamming Distance\n\n\n\nBiopython\n\nSequence Comparison\n\nProbability\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Rosalind Problem – Open Reading Frames\n\n\n\nBiopython\n\nFASTA Parsing\n\nORFs\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: 3 Rosiland problems: FASTA and Biopython\n\n\n\nBiopython\n\nFASTA Parsing\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability\n\n\n\nTranscriptomics\n\nGene Expression\n\nPathway Enrichment\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: 4 simple rosiland problems\n\n\n\nPython\n\n\n\n\n\n\n\n\n\n\nJul 13, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "100daysofcode/Day8.html",
@@ -236,6 +236,41 @@
     "title": "Day 4: Rosalind Problem – Open Reading Frames",
     "section": "",
     "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
+  },
+  {
+    "objectID": "100daysofcode/Day24.html",
+    "href": "100daysofcode/Day24.html",
+    "title": "Day 24: ORF Finder — From GENCODE Transcripts to CSV",
+    "section": "",
+    "text": "Take the human GENCODE transcriptome (FASTA, gzipped), scan each transcript in all 6 reading frames, and export open reading frames (ORFs) to a CSV for later filtering, BLAST, or SQL querying."
+  },
+  {
+    "objectID": "100daysofcode/Day24.html#goal",
+    "href": "100daysofcode/Day24.html#goal",
+    "title": "Day 24: ORF Finder — From GENCODE Transcripts to CSV",
+    "section": "",
+    "text": "Take the human GENCODE transcriptome (FASTA, gzipped), scan each transcript in all 6 reading frames, and export open reading frames (ORFs) to a CSV for later filtering, BLAST, or SQL querying."
+  },
+  {
+    "objectID": "100daysofcode/Day24.html#data",
+    "href": "100daysofcode/Day24.html#data",
+    "title": "Day 24: ORF Finder — From GENCODE Transcripts to CSV",
+    "section": "Data",
+    "text": "Data\n\nSource: GENCODE v44 transcript FASTA (gzipped)\n\nLocal path: Day 22 -/data/gencode.v44.transcripts.fa.gz\n\nOutput: Day 22 -/orfs_output.csv\n\n\nNote: I used Biopython to parse gzipped FASTA directly (gzip.open(..., \"rt\", encoding=\"utf-8\"))."
+  },
+  {
+    "objectID": "100daysofcode/Day24.html#method-todays-core-steps",
+    "href": "100daysofcode/Day24.html#method-todays-core-steps",
+    "title": "Day 24: ORF Finder — From GENCODE Transcripts to CSV",
+    "section": "Method (Today’s Core Steps)",
+    "text": "Method (Today’s Core Steps)\n\nParse gzipped FASTA with SeqIO.parse.\nFor each transcript, generate 6 reading frames:\n\nForward: F0, F1, F2\n\nReverse complement: R0, R1, R2\n\n\nTrim frame slices so length is a multiple of 3 before translating (removes “partial codon” warnings).\nTranslate without stopping (to_stop=False).\nExtract ORFs that start at M and end at *, with length ≥ 30 aa.\nWrite CSV rows: transcript_id, frame, orf_length_aa, protein_seq, gene_symbol, biotype."
+  },
+  {
+    "objectID": "100daysofcode/Day24.html#reference-code-collapsed",
+    "href": "100daysofcode/Day24.html#reference-code-collapsed",
+    "title": "Day 24: ORF Finder — From GENCODE Transcripts to CSV",
+    "section": "Reference Code (collapsed)",
+    "text": "Reference Code (collapsed)\n# ORF scan + CSV write \nimport os, gzip, csv\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nFASTA_GZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), \"data\", \"gencode.v44.transcripts.fa.gz\")\nOUT_CSV  = os.path.join(os.path.dirname(os.path.abspath(__file__)), \"orfs_output.csv\")\n\nMIN_LEN_AA          = 30\nONLY_PROTEIN_CODING = False   # set True to restrict to coding transcripts\nMAX_TRANSCRIPTS     = 200     # bump as desired\n\ndef parse_gencode_header(desc: str):\n    p = desc.split(\"|\")\n    return {\n        \"transcript_id\": p[0] if len(p)&gt;0 else \"\",\n        \"gene_id\":       p[1] if len(p)&gt;1 else \"\",\n        \"tx_name\":       p[4] if len(p)&gt;4 else \"\",\n        \"gene_symbol\":   p[5] if len(p)&gt;5 else \"\",\n        \"length_nt\":     p[6] if len(p)&gt;6 else \"\",\n        \"biotype\":       p[7] if len(p)&gt;7 else \"\",\n    }\n\ndef translate_frame(nuc: Seq, frame: int) -&gt; Seq:\n    sub = nuc[frame:]\n    sub = sub[:len(sub) - (len(sub) % 3)] if len(sub) &gt;= 3 else Seq(\"\")\n    return sub.translate(to_stop=False)\n\ndef six_frame_proteins(dna: Seq):\n    rc = dna.reverse_complement()\n    prots = []\n    for frame in range(3):\n        prots += [translate_frame(dna, frame), translate_frame(rc, frame)]\n    return prots  # F0,F1,F2,R0,R1,R2\n\ndef find_orfs_in_protein(prot: str, min_len_aa: int = 30):\n    orfs, cur = [], None\n    for aa in prot:\n        if aa == \"M\":\n            cur = \"M\"\n        elif aa == \"*\":\n            if cur and len(cur) &gt;= min_len_aa:\n                orfs.append(cur)\n            cur = None\n        elif cur:\n            cur += aa\n    return orfs\n\ndef scan_one_transcript(record, min_len_aa=30):\n    names = [\"F0\",\"F1\",\"F2\",\"R0\",\"R1\",\"R2\"]\n    out = []\n    for i, prot in enumerate(six_frame_proteins(record.seq)):\n        for orf in find_orfs_in_protein(str(prot), min_len_aa=min_len_aa):\n            out.append((record.id, names[i], len(orf), orf))\n    return out\n\n# Write CSV\nrows_written = 0\nwith gzip.open(FASTA_GZ, \"rt\", encoding=\"utf-8\") as handle, open(OUT_CSV, \"w\", newline=\"\", encoding=\"utf-8\") as out_f:\n    w = csv.writer(out_f)\n    w.writerow([\"transcript_id\",\"frame\",\"orf_length_aa\",\"protein_seq\",\"gene_symbol\",\"biotype\"])\n    processed = 0\n    for rec in SeqIO.parse(handle, \"fasta\"):\n        meta = parse_gencode_header(rec.description)\n        if ONLY_PROTEIN_CODING and meta.get(\"biotype\",\"\").strip() != \"protein_coding\":\n            continue\n        rows = scan_one_transcript(rec, min_len_aa=MIN_LEN_AA)\n        if rows:\n            w.writerows([(*r, meta.get(\"gene_symbol\",\"\"), meta.get(\"biotype\",\"\")) for r in rows])\n            rows_written += len(rows)\n        processed += 1\n        if processed &gt;= MAX_TRANSCRIPTS:\n            break\n\nprint(f\"Wrote {rows_written} ORFs to: {OUT_CSV}\")"
   },
   {
     "objectID": "100daysofcode/Day22.html",
@@ -550,14 +585,14 @@
     "href": "100daysofcode/Day18.html",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "",
-    "text": "Today’s pipeline (based on my working Python file):\n\nQuery ClinVar (hg19) in BigQuery for pathogenic / likely pathogenic variants\n\nDetect clusters: consecutive variants within MAX_DIST bp (per chromosome)\n\nExport:\n\nclinvar_clustered_pairs_XXXXbp.csv (full table)\nclinvar_rs_batch_XXXXbp.txt (rsIDs for ClinVar batch search)\n\n\nI’m also collecting reusable lessons so I can copy this approach to other datasets (gnomAD, gene expression, etc)."
+    "text": "Today’s pipeline:\n\nQuery ClinVar (hg19) in BigQuery for pathogenic / likely pathogenic variants\n\nDetect clusters: consecutive variants within MAX_DIST bp (per chromosome)\n\nExport:\n\nclinvar_clustered_pairs_XXXXbp.csv (full table)\nclinvar_rs_batch_XXXXbp.txt (rsIDs for ClinVar batch search)"
   },
   {
     "objectID": "100daysofcode/Day18.html#overview",
     "href": "100daysofcode/Day18.html#overview",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "",
-    "text": "Today’s pipeline (based on my working Python file):\n\nQuery ClinVar (hg19) in BigQuery for pathogenic / likely pathogenic variants\n\nDetect clusters: consecutive variants within MAX_DIST bp (per chromosome)\n\nExport:\n\nclinvar_clustered_pairs_XXXXbp.csv (full table)\nclinvar_rs_batch_XXXXbp.txt (rsIDs for ClinVar batch search)\n\n\nI’m also collecting reusable lessons so I can copy this approach to other datasets (gnomAD, gene expression, etc)."
+    "text": "Today’s pipeline:\n\nQuery ClinVar (hg19) in BigQuery for pathogenic / likely pathogenic variants\n\nDetect clusters: consecutive variants within MAX_DIST bp (per chromosome)\n\nExport:\n\nclinvar_clustered_pairs_XXXXbp.csv (full table)\nclinvar_rs_batch_XXXXbp.txt (rsIDs for ClinVar batch search)"
   },
   {
     "objectID": "100daysofcode/Day18.html#what-the-code-does",
@@ -567,11 +602,11 @@
     "text": "what the code does\nDetects clusters of varients which are\n- regions that are functionally critical (splice sites, key protein domains),\n\n- regions that are mutationally “hot” (CpG, ssDNA exposure, repeats),\n\n- genes that are clinically important / heavily tested."
   },
   {
-    "objectID": "100daysofcode/Day18.html#connect-query-your-sql-with-array-safe-bits",
-    "href": "100daysofcode/Day18.html#connect-query-your-sql-with-array-safe-bits",
+    "objectID": "100daysofcode/Day18.html#connect-query",
+    "href": "100daysofcode/Day18.html#connect-query",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
-    "section": "Connect & Query (your SQL, with array-safe bits)",
-    "text": "Connect & Query (your SQL, with array-safe bits)\n\nfrom google.cloud import bigquery\nfrom google.oauth2 import service_account\nimport pandas as pd\nimport numpy as np\n\ncreds = service_account.Credentials.from_service_account_file(KEY_PATH)\nclient = bigquery.Client(project=PROJECT_ID, credentials=creds)\n\nchrom_list_sql = \",\".join([f\"'{c}'\" for c in CHROMS])\n\nquery = f\"\"\"\nSELECT\n  reference_name,\n  start_position,\n  end_position,\n  ARRAY_TO_STRING(RS, ',') AS RS,  -- handle ARRAY&lt;STRING&gt; safely\n  GENEINFO,\n  LOWER(sig) AS clnsig\nFROM `{TABLE}`,\nUNNEST(CLNSIG) AS sig\nWHERE reference_name IN ({chrom_list_sql})\n  AND LOWER(sig) LIKE '%pathogenic%'\nORDER BY reference_name, start_position\n\"\"\"\n\nprint(\"Running BigQuery…\")\ndf = client.query(query).to_dataframe()\nprint(f\"Fetched {len(df):,} pathogenic/likely-pathogenic rows.\")\ndf.head()"
+    "section": "Connect & Query",
+    "text": "Connect & Query\n\nfrom google.cloud import bigquery\nfrom google.oauth2 import service_account\nimport pandas as pd\nimport numpy as np\n\ncreds = service_account.Credentials.from_service_account_file(KEY_PATH)\nclient = bigquery.Client(project=PROJECT_ID, credentials=creds)\n\nchrom_list_sql = \",\".join([f\"'{c}'\" for c in CHROMS])\n\nquery = f\"\"\"\nSELECT\n  reference_name,\n  start_position,\n  end_position,\n  ARRAY_TO_STRING(RS, ',') AS RS,  -- handle ARRAY&lt;STRING&gt; safely\n  GENEINFO,\n  LOWER(sig) AS clnsig\nFROM `{TABLE}`,\nUNNEST(CLNSIG) AS sig\nWHERE reference_name IN ({chrom_list_sql})\n  AND LOWER(sig) LIKE '%pathogenic%'\nORDER BY reference_name, start_position\n\"\"\"\n\nprint(\"Running BigQuery…\")\ndf = client.query(query).to_dataframe()\nprint(f\"Fetched {len(df):,} pathogenic/likely-pathogenic rows.\")\ndf.head()"
   },
   {
     "objectID": "100daysofcode/Day18.html#cluster-detection-consecutive-variants-max_dist",
@@ -581,32 +616,32 @@
     "text": "Cluster Detection (consecutive variants ≤ MAX_DIST)\ndef parse_geneinfo(x):\n    \"\"\"'BRCA1:672|NBR1:4077' -&gt; ['BRCA1','NBR1']\"\"\"\n    if not isinstance(x, str) or not x:\n        return []\n    return [part.split(\":\")[0] for part in x.split(\"|\") if \":\" in part]\n\npairs_rows = []\nfor chrom, sub in df.groupby(\"reference_name\", sort=False):\n    sub = sub.sort_values(\"start_position\").reset_index(drop=True)\n    pos = sub[\"start_position\"].values\n    for i in range(len(sub) - 1):\n        d = int(pos[i+1] - pos[i])\n        if d &lt;= MAX_DIST:\n            r1 = sub.iloc[i]\n            r2 = sub.iloc[i+1]\n            g1 = parse_geneinfo(r1[\"GENEINFO\"])\n            g2 = parse_geneinfo(r2[\"GENEINFO\"])\n            pairs_rows.append({\n                \"chrom\": chrom,\n                \"pos1\": int(r1[\"start_position\"]),\n                \"pos2\": int(r2[\"start_position\"]),\n                \"distance_bp\": d,\n                \"rs1\": r1[\"RS\"] if r1[\"RS\"] else \"\",\n                \"rs2\": r2[\"RS\"] if r2[\"RS\"] else \"\",\n                \"clnsig1\": r1[\"clnsig\"],\n                \"clnsig2\": r2[\"clnsig\"],\n                \"genes1\": \";\".join(g1),\n                \"genes2\": \";\".join(g2),\n                \"shared_genes\": \";\".join(sorted(set(g1).intersection(g2))),\n            })\n\npairs_df = pd.DataFrame(pairs_rows).sort_values([\"chrom\",\"distance_bp\",\"pos1\"]).reset_index(drop=True)\nprint(f\"Found {len(pairs_df):,} clustered consecutive pairs within {MAX_DIST} bp.\")\npairs_df.head(10)"
   },
   {
-    "objectID": "100daysofcode/Day18.html#export-csv-rsids-for-browser-batch-search",
-    "href": "100daysofcode/Day18.html#export-csv-rsids-for-browser-batch-search",
+    "objectID": "100daysofcode/Day18.html#export-csv-rsids",
+    "href": "100daysofcode/Day18.html#export-csv-rsids",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
-    "section": "Export (CSV + rsIDs for browser batch search)",
-    "text": "Export (CSV + rsIDs for browser batch search)\nif not pairs_df.empty:\n    pairs_df.to_csv(CSV_OUT, index=False)\n    print(f\"Saved CSV → {CSV_OUT}\")\n\n    rs_ids = pd.unique(pd.concat([pairs_df[\"rs1\"], pairs_df[\"rs2\"]]).dropna())\n    rs_ids = [r for r in rs_ids if isinstance(r, str) and r.startswith(\"rs\")]\n    with open(TXT_OUT, \"w\") as f:\n        f.write(\"\\n\".join(sorted(set(rs_ids), key=lambda x: int(x[2:]) if x[2:].isdigit() else 10**12)))\n    print(f\"Saved RS batch list → {TXT_OUT}\")\n\nHow I’ll use it :\n - open the TXT → copy all → paste into ClinVar’s search → review variant pages & PubMed links."
+    "section": "Export (CSV + rsIDs)",
+    "text": "Export (CSV + rsIDs)\nif not pairs_df.empty:\n    pairs_df.to_csv(CSV_OUT, index=False)\n    print(f\"Saved CSV → {CSV_OUT}\")\n\n    rs_ids = pd.unique(pd.concat([pairs_df[\"rs1\"], pairs_df[\"rs2\"]]).dropna())\n    rs_ids = [r for r in rs_ids if isinstance(r, str) and r.startswith(\"rs\")]\n    with open(TXT_OUT, \"w\") as f:\n        f.write(\"\\n\".join(sorted(set(rs_ids), key=lambda x: int(x[2:]) if x[2:].isdigit() else 10**12)))\n    print(f\"Saved RS batch list → {TXT_OUT}\")\n\nHow I’ll use it :\n - open the TXT → copy all → paste into ClinVar’s search → review variant pages & PubMed links."
   },
   {
-    "objectID": "100daysofcode/Day18.html#lessons-i-can-reuse-pattern-library",
-    "href": "100daysofcode/Day18.html#lessons-i-can-reuse-pattern-library",
+    "objectID": "100daysofcode/Day18.html#what-i-learned",
+    "href": "100daysofcode/Day18.html#what-i-learned",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
-    "section": "Lessons I can reuse (pattern library)",
-    "text": "Lessons I can reuse (pattern library)\nSQL patterns\n- Schema-first: inspect table, note array vs scalar fields.\n\n- Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')\n if I just need a printable value.\n\n- Filter early: push WHERE conditions into SQL so Python handles smaller frames.\nPython patterns\n- Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).\n\n- Text parsing: split composite fields (GENEINFO) into usable tokens.\n\n- Exports for the web: create both a rich CSV and a plain TXT for batch tools.\nWorkflow patterns\n- Parametrize CHROMS, MAX_DIST, TABLE at the top.\n\n- Keep query → process → export in separate cells so debugging is easy."
+    "section": "What i learned",
+    "text": "What i learned\nSQL patterns\n- Schema-first: inspect table.\n\n- Array handling: use UNNEST(array) AS alias or convert with ARRAY_TO_STRING(array, ',')\n if I just need a printable value.\n\n- Filter early: push WHERE conditions into SQL so Python handles smaller frames.\nPython patterns\n- Consecutive diffs: sort by position, compare i and i+1 (simple clustering metric).\n\n- Exports for the web: create both a rich CSV and a plain TXT for batch tools.\nWorkflow patterns\n- Parametrize CHROMS, MAX_DIST, TABLE at the top.\n\n- Keep query → process → export in separate cells so debugging is easy."
   },
   {
     "objectID": "100daysofcode/Day18.html#how-to-reuse",
     "href": "100daysofcode/Day18.html#how-to-reuse",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "How to reuse",
-    "text": "How to reuse\nTo Same query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets."
+    "text": "How to reuse\nSame query, same clustering, same exports on a different clinvar data set just change table name as all the columns are the same throughout all sets."
   },
   {
     "objectID": "100daysofcode/Day18.html#key-idea",
     "href": "100daysofcode/Day18.html#key-idea",
     "title": "Day 18 — ClinVar clustered variants (SQL → Python → Export)",
     "section": "key idea",
-    "text": "key idea\n1 Pick data source\nfrom google.cloud import bigquery\nfrom google.oauth2 import service_account\n\nPROJECT_ID = \"bio-sql-playground\"\nKEY_PATH   = r\"C:\\Users\\zackd\\Downloads\\bio-sql-playground-bac6463c2d62.json\"\nTABLE      = \"bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701\"\n\ncreds  = service_account.Credentials.from_service_account_file(KEY_PATH)\nclient = bigquery.Client(project=PROJECT_ID, credentials=creds)\n2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)\nSELECT\n  reference_name,\n  start_position,\n  end_position,\n  ARRAY_TO_STRING(RS, ',') AS RS,  -- flatten array\n  GENEINFO,\n  LOWER(sig) AS clnsig             -- one label per row\nFROM `bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`,\nUNNEST(CLNSIG) AS sig\n3 Filter early (shrink the dataset in SQL / when loading)\nWHERE reference_name IN ('1','2','…','22','X','Y')\n  AND LOWER(sig) LIKE '%pathogenic%'\nORDER BY reference_name, start_position\n4 Sort = find neighbors (the “consecutive pairs” trick)\ndef parse_geneinfo(x):\n    if not isinstance(x, str) or not x:\n        return []\n    return [part.split(\":\")[0] for part in x.split(\"|\") if \":\" in part]\n5 Export CSV for analysis\ncsv_path = f\"clinvar_clustered_pairs_{MAX_DIST}bp.csv\"\npairs_df.to_csv(csv_path, index=False)\nprint(\"Saved CSV →\", csv_path)"
+    "text": "key idea\n1 Pick data source\nfrom google.cloud import bigquery\nfrom google.oauth2 import service_account\n\nPROJECT_ID = \"bio-sql-playground\"\nKEY_PATH   = r\"C:\\Users\\zackd\\Downloads\\bio-sql-playground-bac6463c2d62.json\"\nTABLE      = \"bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701\"\n\ncreds  = service_account.Credentials.from_service_account_file(KEY_PATH)\nclient = bigquery.Client(project=PROJECT_ID, credentials=creds)\n2 Flatten arrays early (UNNEST or ARRAY_TO_STRING)\nSELECT\n  reference_name,\n  start_position,\n  end_position,\n  ARRAY_TO_STRING(RS, ',') AS RS,  -- flatten array\n  GENEINFO,\n  LOWER(sig) AS clnsig             -- one label per row\nFROM `bigquery-public-data.human_variant_annotation.ncbi_clinvar_hg19_20180701`,\nUNNEST(CLNSIG) AS sig\n3 Filter early (shrink the dataset in SQL / when loading)\nWHERE reference_name IN ('1','2','…','22','X','Y')\n  AND LOWER(sig) LIKE '%pathogenic%'\nORDER BY reference_name, start_position\n4 Sort = Project specific\ndef parse_geneinfo(x):\n    if not isinstance(x, str) or not x:\n        return []\n    return [part.split(\":\")[0] for part in x.split(\"|\") if \":\" in part]\n5 Export CSV for analysis\ncsv_path = f\"clinvar_clustered_pairs_{MAX_DIST}bp.csv\"\npairs_df.to_csv(csv_path, index=False)\nprint(\"Saved CSV →\", csv_path)"
   },
   {
     "objectID": "100daysofcode/Day2.html",
@@ -858,7 +893,7 @@
     "href": "index.html",
     "title": "ZackBioData",
     "section": "",
-    "text": "This website aims to be way to track progress and reinforce learning as i go"
+    "text": "This website aims to be way to track progress and reinforce learning as i go\nLinkedIn Rosalind LeetCode"
   },
   {
     "objectID": "index.html#my-work",
@@ -873,6 +908,13 @@
     "title": "ZackBioData",
     "section": "What I’m working with",
     "text": "What I’m working with\nLanguages & Libraries:\nPython · pandas · matplotlib · Biopython · scikit-learn · GSEApy · Enrichr · ClinVar\nComfortable with:\nTranscriptomics · Variant filtering · Gene expression analysis\nLearning next:\nSequence alignment · SnpEff · VEP · Pathway prediction"
+  },
+  {
+    "objectID": "index.html#current-focus",
+    "href": "index.html#current-focus",
+    "title": "ZackBioData",
+    "section": "Current Focus",
+    "text": "Current Focus\nWorking through Rosalind + LeetCode in parallel with my 100 Days of Code streak."
   },
   {
     "objectID": "log/2025-08-04_MPb-geneticvariants.html",
@@ -900,6 +942,69 @@
     "href": "log/2025-08-04_MPb-geneticvariants.html#code-snippet",
     "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "Code Snippet",
-    "text": "Code Snippet\noutput_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\", encoding=\"utf-8\")\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n    genes_of_interest = [\"PCP4\", \"BCL2\", \"ATP2B1\", \"VDAC1\", \"RYR1\"]\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        for gene in genes_of_interest:\n            if f\"GENEINFO={gene}\" in info:\n                info_dict = dict(item.split(\"=\") for item in info.split(\";\") if \"=\" in item)\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n\nout.close()\n##Output Example\n1:161284466 G&gt;A\n   Gene: PCP4\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\n\n2:111123784 C&gt;T\n   Gene: BCL2\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\nCurrent outputs only provides unreviewed untilted point mutations.\n##Interpretation and Context\nRight now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.\nVariants in calcium-buffering genes might:\nReduce calcium export or sequestration\nIncrease membrane fragility or ER stress\nAccelerate the death response after a calcium spike\nThis could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot.\n##Limitations + Future Add-ons\n\nNo frame shift or missense classification yet\nDoesn’t look at protein domains (e.g. calmodulin-binding)\nNo integration with ENSEMBL VEP or SnpEff\nNo filtering by ClinVar significance beyond string match\nAdd more genes resulting in warburg effect\n\n##What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach"
+    "text": "Code Snippet\noutput_path = \"mastoparan_variants.txt\"\nout = open(output_path, \"w\", encoding=\"utf-8\")\n\nwith open(r\"C:\\Users\\zackd\\Bioinformatics\\clinvar.vcf\", \"r\") as f:\n    genes_of_interest = [\"PCP4\", \"BCL2\", \"ATP2B1\", \"VDAC1\", \"RYR1\"]\n\n    for line in f:\n        if line.startswith(\"#\"):\n            continue\n\n        cols = line.strip().split(\"\\t\")\n        chrom = cols[0].replace(\"chr\", \"\")\n        pos = int(cols[1])\n        ref = cols[3]\n        alt = cols[4]\n        info = cols[7]\n\n        for gene in genes_of_interest:\n            if f\"GENEINFO={gene}\" in info:\n                info_dict = dict(item.split(\"=\") for item in info.split(\";\") if \"=\" in item)\n                significance = info_dict.get(\"CLNSIG\", \"NA\")\n                disease = info_dict.get(\"CLNDN\", \"NA\")\n                review = info_dict.get(\"CLNREVSTAT\", \"NA\")\n\n                out.write(f\"{chrom}:{pos} {ref}&gt;{alt}\\n\")\n                out.write(f\"   Significance: {significance}\\n\")\n                out.write(f\"   Disease: {disease}\\n\")\n                out.write(f\"   Review: {review}\\n\\n\")\n\nout.close()"
+  },
+  {
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#output-example",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#output-example",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "Output Example",
+    "text": "Output Example\n1:161284466 G&gt;A\n   Gene: PCP4\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\n\n2:111123784 C&gt;T\n   Gene: BCL2\n   Significance: Benign\n   Disease: not_provided\n   Review: criteria_provided,_multiple_submitters,_no_conflicts\nCurrent outputs only provides unreviewed untilted point mutations."
+  },
+  {
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#interpretation-and-context",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#interpretation-and-context",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "Interpretation and Context",
+    "text": "Interpretation and Context\nRight now the code just checks if any known variant touches one of the genes above. It doesn’t check where in the protein the variant lands (e.g. domain, exon, transmembrane), nor does it interpret the functional consequence. But it’s a good starting point.\nVariants in calcium-buffering genes might:\nReduce calcium export or sequestration\nIncrease membrane fragility or ER stress\nAccelerate the death response after a calcium spike\nThis could improve Mastoparan B’s selective cytotoxicity via triggering calcium overload, so any inherent loss-of-buffering could be a weak spot."
+  },
+  {
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#limitations-future-add-ons",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#limitations-future-add-ons",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "Limitations + Future Add-ons",
+    "text": "Limitations + Future Add-ons\n\nNo frame shift or missense classification yet\nDoesn’t look at protein domains (e.g. calmodulin-binding)\nNo integration with ENSEMBL VEP or SnpEff\nNo filtering by ClinVar significance beyond string match\nAdd more genes resulting in warburg effect"
+  },
+  {
+    "objectID": "log/2025-08-04_MPb-geneticvariants.html#what-i-learned",
+    "href": "log/2025-08-04_MPb-geneticvariants.html#what-i-learned",
+    "title": "Variant Filtering in Calcium-Regulating Genes",
+    "section": "What i learned",
+    "text": "What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach\n\n-Learned how to filter by gene names using the GENEINFO field in ClinVar annotations"
+  },
+  {
+    "objectID": "100daysofcode/Day23.html",
+    "href": "100daysofcode/Day23.html",
+    "title": "Day 23: Downloading and Extracting GENCODE Transcript FASTA",
+    "section": "",
+    "text": "My focus today was on good practice for file parsing and data handling.\nToday I learned how to: - Download a compressed FASTA file (.gz) from a public genomics database (GENCODE) - Save it safely using requests and os.path - Extract its contents using gzip and shutil - Set up project-safe paths so the code works across platforms (Windows, Linux, etc.)\nThis prepares me to load a real human transcriptome into my ORF-finder pipeline."
+  },
+  {
+    "objectID": "100daysofcode/Day23.html#goal",
+    "href": "100daysofcode/Day23.html#goal",
+    "title": "Day 23: Downloading and Extracting GENCODE Transcript FASTA",
+    "section": "",
+    "text": "My focus today was on good practice for file parsing and data handling.\nToday I learned how to: - Download a compressed FASTA file (.gz) from a public genomics database (GENCODE) - Save it safely using requests and os.path - Extract its contents using gzip and shutil - Set up project-safe paths so the code works across platforms (Windows, Linux, etc.)\nThis prepares me to load a real human transcriptome into my ORF-finder pipeline."
+  },
+  {
+    "objectID": "100daysofcode/Day23.html#what-i-downloaded",
+    "href": "100daysofcode/Day23.html#what-i-downloaded",
+    "title": "Day 23: Downloading and Extracting GENCODE Transcript FASTA",
+    "section": "What I Downloaded",
+    "text": "What I Downloaded\nThe file I worked with is from the GENCODE human reference:\n\nURL: https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz\n\nThis file contains all human transcript sequences, including coding and non-coding transcripts, in FASTA format.\nIt was compressed as a .gz file — so I had to handle it properly."
+  },
+  {
+    "objectID": "100daysofcode/Day23.html#what-i-learned",
+    "href": "100daysofcode/Day23.html#what-i-learned",
+    "title": "Day 23: Downloading and Extracting GENCODE Transcript FASTA",
+    "section": "What I Learned",
+    "text": "What I Learned\n\n1. Use requests.get(..., stream=True) for binary downloads\n\nYou must write binary files using \"wb\" mode — response.content gives you the raw bytes.\nTrying to write response.text on .gz files can cause encoding errors.\n\n\n\n2. Compressed .gz files need gzip.open(...) to extract\nwith gzip.open(gz_filename, \"rb\") as f_in, open(fa_filename, \"wb\") as f_out:\n    shutil.copyfileobj(f_in, f_out)\n-Decompresses file in memory and writes it to a clean .fa file for parsing\n\n\n3. Create folders dynamically with os.makedirs()\nos.makedirs(\"data\", exist_ok=True)\n-Prevents crash if folder doesnt exist\n-exist_ok=True avoids errors if it does exist already.\n\n\n4. Use os.path.join() to build safe paths\nscript_dir = os.path.dirname(os.path.abspath(__file__))\ndata_dir = os.path.join(script_dir, \"data\")\n-Prevents the use of hard coding path directory enabling cross platform usage."
+  },
+  {
+    "objectID": "100daysofcode/Day23.html#final-code",
+    "href": "100daysofcode/Day23.html#final-code",
+    "title": "Day 23: Downloading and Extracting GENCODE Transcript FASTA",
+    "section": "Final code",
+    "text": "Final code\nimport requests  \nimport gzip\nimport shutil\nimport os\n\n# URL to download GENCODE FASTA\nurl = \"https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz\"\n\n# Define paths\nscript_dir = os.path.dirname(os.path.abspath(__file__))\ndata_dir = os.path.join(script_dir, \"data\")\nos.makedirs(data_dir, exist_ok=True)\n\ngz_filename = os.path.join(data_dir, \"gencode.v44.transcripts.fa.gz\")\nfa_filename = os.path.join(data_dir, \"gencode.v44.transcripts.fa\")\n\n# Download the .gz file\nprint(\"Downloading FASTA...\")\nresponse = requests.get(url, stream=True)\n\nwith open(gz_filename, \"wb\") as f:\n    f.write(response.content)\nprint(f\"Saved: {gz_filename}\")\n\n# Extract the .gz file\nprint(\"Extracting...\")\nwith gzip.open(gz_filename, \"rb\") as f_in, open(fa_filename, \"wb\") as f_out:\n    shutil.copyfileobj(f_in, f_out)\nprint(f\"Extracted: {fa_filename}\")"
   }
 ]
