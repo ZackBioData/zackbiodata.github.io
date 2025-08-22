@@ -3,7 +3,7 @@ title: "Day 23: Downloading and Extracting GENCODE Transcript FASTA"
 subtitle: "Handling .gz Files, Safe File Paths, and Preparing for ORF Scanning"
 date: 2025-08-20
 image: ../images/100daysofcode/orf.png
-categories: [FASTA, Python, GENCODE, Bioinformatics, Learning Log]
+categories: [Biopython, FASTA, ORF, GENCODE, Learning Log]
 format:
   html:
     toc: true
@@ -27,7 +27,7 @@ This prepares me to load a **real human transcriptome** into my ORF-finder pipel
 
 The file I worked with is from the GENCODE human reference:
 
-> **URL:** [https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz)
+**URL:** [https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz](https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gencode.v44.transcripts.fa.gz)
 
 This file contains **all human transcript sequences**, including coding and non-coding transcripts, in **FASTA format**.
 

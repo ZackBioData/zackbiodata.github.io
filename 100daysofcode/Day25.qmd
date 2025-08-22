@@ -1,0 +1,82 @@
+---
+title: "Day 25 Rosalind Problem: LCSQ — Longest Common Subsequence"
+subtitle: "Dynamic programming table + backtracking"
+date: 2025-08-22
+image: ../images/100daysofcode/rosiland.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+
+## Problem
+Given two DNA strings in FASTA, return **one** longest common subsequence (LCS).
+
+**Key idea (DP):**
+- Build a table `dp[i][j]` = LCS length for `s[:i]` vs `t[:j]`.
+- Recurrence:
+  - If `s[i-1] == t[j-1]`: `dp[i][j] = dp[i-1][j-1] + 1`
+  - Else: `dp[i][j] = max(dp[i-1][j], dp[i][j-1])`
+- Backtrack from `(m,n)` to reconstruct one valid LCS.
+
+Time/space: `O(m·n)`.
+
+## Code
+```python
+"""https://rosalind.info/problems/lcsq/"""
+from Bio import SeqIO
+
+"""1Read the two strings from FASTA"""
+
+records = list(SeqIO.parse("rosalind_lcsq.fasta", "fasta"))
+s = str(records[0].seq)
+t = str(records[1].seq)
+
+m, n = len(s), len(t)
+
+"""2 Building the DP table (m+1) x (n+1)(length of s and t) intially all 0s"""
+
+dp = [[0]*(n+1) for _ in range(m+1)]
+
+
+for i in range(1, m+1):
+    for j in range(1, n+1):
+        if s[i-1] == t[j-1]:
+            dp[i][j] = dp[i-1][j-1] + 1
+            """Fill the DP table if previous diagonal left was a match"""
+            
+        else:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+            """Fill the DP table if previous diagonal left was not a match"""
+            """ this cannot be +1 as it was be reusing the same base 2 times"""
+
+"""3 Backtrack to recover one LCS"""
+i, j = m, n
+lcs_chars = []
+
+while i > 0 and j > 0:
+    if s[i-1] == t[j-1]:
+        """when characters match, add to LCS"""
+        lcs_chars.append(s[i-1])
+        i -= 1
+        j -= 1
+    elif dp[i-1][j] >= dp[i][j-1]:
+        """Deciding route up or down based on DP table values"""
+        i -= 1
+    else:
+        j -= 1
+
+lcs = "".join(reversed(lcs_chars))
+print(lcs)
+```
+## What I Learned
+
+    -I recognised it was a DP problem but struggled to remember how to structure the solution.
+    -Building the `dp` table row by row made me see how each subproblem builds on smaller ones.  
+    -The rule `dp[i][j] = dp[i-1][j-1] + 1` for matches is basically saying: *“extend the LCS found so far diagonally.”*  
+    -For mismatches, taking `max(dp[i-1][j], dp[i][j-1])` ensures we don’t “lose” progress — we inherit the best subsequence length from either skipping a char in `s` or in `t`.  
+    -Backtracking was the easiest part:  
+        -When characters match, move diagonally and add to the LCS.  
+        -Otherwise, move in the direction of the larger value (up or left).  
+        -This guarantees we reconstruct a valid subsequence of maximum length.  
