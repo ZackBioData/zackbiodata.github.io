@@ -1,0 +1,81 @@
+---
+title: "Rosalind SCSP — Shortest Common Supersequence"
+subtitle: "Using the LCS DP table + backtracking to build one SCS"
+date: 2025-08-23
+image: ../images/100daysofcode/rosiland.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Problem (SCSP)
+Given two DNA strings `s` and `t`, return **a shortest common supersequence (SCS)** — the shortest string that contains both `s` and `t` as subsequences.
+
+Key relationship with LCS:
+
+\text{len(SCS)} = \text{len}(s) + \text{len}(t) - \text{len(LCS)}
+
+
+We first compute the **LCS length table** (`dp`) and then **backtrack** to construct one SCS:
+- **Match (diagonal):** append the shared base **once** and move ↖
+- **Mismatch (choose path):**
+  - If `dp[i-1][j] >= dp[i][j-1]`: move ↑ and append `s[i-1]`
+  - Else: move ← and append `t[j-1]`
+- After the main walk, append any **remaining tail** of `s` or `t`
+- Reverse the accumulated characters at the end
+
+---
+
+## Code (DP build → SCS backtrack)
+
+```python
+"""https://rosalind.info/problems/scsp/"""
+
+s = "AACCTTAGACTCTCGTGCTGCTACCGCTCCCTTACCAAAGGCAGTCTGGAGCTAATATCAGATGATGCAGGGTAGTATAAACAAAC"
+t = "TTGGCCCCCTCAAAGAAGTAGAGGCTGTGTTATCTGATAATAGAGACATTGTTACAGCAGACAATGTCATTTATTACTGATCAGCGTGTACCGAT"
+
+m, n = len(s), len(t)
+
+# 1 Build LCS length table dp[i][j] for s[:i] vs t[:j]
+dp = [[0]*(n+1) for _ in range(m+1)]
+for i in range(1, m+1):
+    for j in range(1, n+1):
+        if s[i-1] == t[j-1]:
+            dp[i][j] = dp[i-1][j-1] + 1        # extend common subsequence
+        else:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1])  # inherit best so far
+
+# 2 Backtrack to construct one SCS
+i, j = m, n
+scs_chars = []
+while i > 0 and j > 0:
+    if s[i-1] == t[j-1]:
+        scs_chars.append(s[i-1])  # take the shared base once
+        i -= 1; j -= 1
+    elif dp[i-1][j] >= dp[i][j-1]:
+        scs_chars.append(s[i-1])  # move up: consume from s
+        i -= 1
+    else:
+        scs_chars.append(t[j-1])  # move left: consume from t
+        j -= 1
+
+# 3 Append any remaining tail (only one of these will run)
+while i > 0:
+    scs_chars.append(s[i-1]); i -= 1
+while j > 0:
+    scs_chars.append(t[j-1]); j -= 1
+
+# 4 Reverse to get SCS in forward order
+scs = "".join(reversed(scs_chars))
+print(scs)
+
+# Sanity check: length formula
+print("len SCS =", len(scs), " expected =", len(s) + len(t) - dp[m][n])
+
+
+## What i learned
+
+    -Order of appends: append the character before decrementing i/j when moving up/left.
+    -Don’t forget tails: after the main loop, append the leftover of s or t.
+    -LCS vs SCS backtrack: LCS adds only on diagonals; SCS adds on every move (diagonal/left/up), but diagonal adds one shared base.
