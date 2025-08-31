@@ -2,6 +2,7 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/2025-08-28_RNA in neuroblastoma.qmd.html",
       "/blog/C4Biopython.html",
       "/blog/2025-07-24_biopython-reading.html",
       "/blog/C5Biopython.html",
@@ -13,6 +14,9 @@
   {
     "listing": "/100daysofcode/index.html",
     "items": [
+      "/100daysofcode/Day28.html",
+      "/100daysofcode/Day27.html",
+      "/100daysofcode/Day26.html",
       "/100daysofcode/Day25.html",
       "/100daysofcode/Day24.html",
       "/100daysofcode/Day23.html",

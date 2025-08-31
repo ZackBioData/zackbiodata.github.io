@@ -1,5 +1,5 @@
 ---
-title: "Rosalind SCSP — Shortest Common Supersequence"
+title: "Day 26 Rosaland problem — Shortest Common Supersequence"
 subtitle: "Using the LCS DP table + backtracking to build one SCS"
 date: 2025-08-23
 image: ../images/100daysofcode/rosiland.png

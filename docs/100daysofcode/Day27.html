@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-22">
+<meta name="dcterms.date" content="2025-08-25">
 
-<title>Day 25 Rosalind Problem: LCSQ — Longest Common Subsequence – Zack’s Bioinformatics</title>
+<title>Rosalind EDIT &amp; EDTA — Reverse Dynamic Programming (Reverse DP) – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,8 +152,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#edit-edit-distance-reverse-dp-no-alignment" id="toc-edit-edit-distance-reverse-dp-no-alignment" class="nav-link" data-scroll-target="#edit-edit-distance-reverse-dp-no-alignment">EDIT — Edit Distance (reverse DP, no alignment)</a>
+  <ul class="collapse">
+  <li><a href="#how-it-works-edit" id="toc-how-it-works-edit" class="nav-link" data-scroll-target="#how-it-works-edit">How it works (EDIT)</a></li>
+  </ul></li>
+  <li><a href="#edta-edit-distance-and-global-alignment-reverse-dp-traceback" id="toc-edta-edit-distance-and-global-alignment-reverse-dp-traceback" class="nav-link" data-scroll-target="#edta-edit-distance-and-global-alignment-reverse-dp-traceback">EDTA — Edit Distance <strong>and</strong> Global Alignment (reverse DP + traceback)</a>
+  <ul class="collapse">
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note</a></li>
+  <li><a href="#traceback-rules" id="toc-traceback-rules" class="nav-link" data-scroll-target="#traceback-rules">Traceback rules</a></li>
+  </ul></li>
   <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I Learned</a></li>
   </ul>
 </nav>
@@ -163,9 +171,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 25 Rosalind Problem: LCSQ — Longest Common Subsequence</h1>
-<p class="subtitle lead">Dynamic programming table + backtracking</p>
-</div>
+<h1 class="title">Rosalind EDIT &amp; EDTA — Reverse Dynamic Programming (Reverse DP)</h1>
+<p class="subtitle lead">Edit Distance and Global Alignment with a bottom-right → top-left DP</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Rosalind</div>
+    <div class="quarto-category">Bioinformatics</div>
+    <div class="quarto-category">Dynamic Programming</div>
+    <div class="quarto-category">Biopython</div>
+  </div>
+  </div>
 
 
 
@@ -175,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 22, 2025</p>
+      <p class="date">August 25, 2025</p>
     </div>
   </div>
   
@@ -187,70 +201,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>Given two DNA strings in FASTA, return <strong>one</strong> longest common subsequence (LCS).</p>
-<p><strong>Key idea (DP):</strong> - Build a table <code>dp[i][j]</code> = LCS length for <code>s[:i]</code> vs <code>t[:j]</code>. - Recurrence: - If <code>s[i-1] == t[j-1]</code>: <code>dp[i][j] = dp[i-1][j-1] + 1</code> - Else: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code> - Backtrack from <code>(m,n)</code> to reconstruct one valid LCS.</p>
-<p>Time/space: <code>O(m·n)</code>.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<ul>
+<li><strong>EDIT</strong> — minimum <strong>edit distance</strong> only (no alignment string output).</li>
+<li><strong>EDTA</strong> — edit distance <strong>and</strong> one optimal <strong>global alignment</strong> (with <code>-</code> gaps).</li>
+</ul>
+<p>I had to learn Reverse DP as future interactions affect edit choices not past.</p>
+<p>Why reverse DP? It’s equivalent to the standard forward DP but sometimes simplifies <strong>traceback</strong> when you prefer to start decisions from <code>(0,0)</code> while having all future costs precomputed in the “south/east” cells.</p>
+<hr>
 </section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code">Code</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""https://rosalind.info/problems/lcsq/"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<section id="edit-edit-distance-reverse-dp-no-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="edit-edit-distance-reverse-dp-no-alignment">EDIT — <a href="https://rosalind.info/problems/edit/">Edit Distance (reverse DP, no alignment)</a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDIT — reverse DP to compute Levenshtein edit distance only</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Problem: https://rosalind.info/problems/edit/</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""1Read the two strings from FASTA"""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(<span class="st">"rosalind_lcsq.fasta"</span>, <span class="st">"fasta"</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">0</span>].seq)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">1</span>].seq)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="bu">len</span>(s), <span class="bu">len</span>(t)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">"""2 Building the DP table (m+1) x (n+1)(length of s and t) intially all 0s"""</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> [[<span class="dv">0</span>]<span class="op">*</span>(n<span class="op">+</span><span class="dv">1</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(m<span class="op">+</span><span class="dv">1</span>)]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Input FASTA file with two records</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(<span class="st">"rosalind_edit.fasta"</span>, <span class="st">"fasta"</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">0</span>].seq)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">1</span>].seq)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="bu">len</span>(s), <span class="bu">len</span>(t)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># DP table: dp[i][j] = min cost to convert s[i:] -&gt; t[j:]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> [[<span class="dv">0</span>] <span class="op">*</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">+</span> <span class="dv">1</span>)]</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, m<span class="op">+</span><span class="dv">1</span>):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>):</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s[i<span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> t[j<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            dp[i][j] <span class="op">=</span> dp[i<span class="op">-</span><span class="dv">1</span>][j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""Fill the DP table if previous diagonal left was a match"""</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            dp[i][j] <span class="op">=</span> <span class="bu">max</span>(dp[i<span class="op">-</span><span class="dv">1</span>][j], dp[i][j<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""Fill the DP table if previous diagonal left was not a match"""</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="co">""" this cannot be +1 as it was be reusing the same base 2 times"""</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">"""3 Backtrack to recover one LCS"""</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> m, n</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>lcs_chars <span class="op">=</span> []</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> j <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s[i<span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> t[j<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""when characters match, add to LCS"""</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        lcs_chars.append(s[i<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        i <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        j <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> dp[i<span class="op">-</span><span class="dv">1</span>][j] <span class="op">&gt;=</span> dp[i][j<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Deciding route up or down based on DP table values"""</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        i <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        j <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>lcs <span class="op">=</span> <span class="st">""</span>.join(<span class="bu">reversed</span>(lcs_chars))</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lcs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize outer boundary for reverse DP (base cases)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    dp[m][j] <span class="op">=</span> n <span class="op">-</span> j</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Rightmost column: converting s[i:] to empty t[n:] needs (m - i) deletions</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    dp[i][n] <span class="op">=</span> m <span class="op">-</span> i</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill from bottom-right to top-left</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">-</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> <span class="dv">0</span> <span class="cf">if</span> s[i] <span class="op">==</span> t[j] <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        dp[i][j] <span class="op">=</span> <span class="bu">min</span>(</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            dp[i <span class="op">+</span> <span class="dv">1</span>][j] <span class="op">+</span> <span class="dv">1</span>,        <span class="co"># delete s[i]</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            dp[i][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>,        <span class="co"># insert t[j]</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            dp[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> cost  <span class="co"># substitute (or match)</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dp[<span class="dv">0</span>][<span class="dv">0</span>])  <span class="co"># minimum edit distance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="how-it-works-edit" class="level3">
+<h3 class="anchored" data-anchor-id="how-it-works-edit">How it works (EDIT)</h3>
+<ul>
+<li><strong>State:</strong> <code>dp[i][j]</code> stores the minimal cost to transform <strong>suffix</strong> <code>s[i:]</code> into <code>t[j:]</code>.</li>
+<li><strong>Transition:</strong> Choose the cheapest among <strong>delete</strong>, <strong>insert</strong>, <strong>substitute/match</strong>.</li>
+<li><strong>Answer:</strong> <code>dp[0][0]</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="edta-edit-distance-and-global-alignment-reverse-dp-traceback" class="level2">
+<h2 class="anchored" data-anchor-id="edta-edit-distance-and-global-alignment-reverse-dp-traceback">EDTA — <a href="https://rosalind.info/problems/edta/">Edit Distance <strong>and</strong> Global Alignment (reverse DP + traceback)</a></h2>
+<section id="note" class="level3">
+<h3 class="anchored" data-anchor-id="note">Note</h3>
+<p>This builds on edit distance by adding a traceback loop on top the build DP structure, using 2 unique arrays for each i and j to tally deletions and insertions as -.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Problem: https://rosalind.info/problems/edta/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read input (two FASTA records)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> <span class="bu">list</span>(SeqIO.parse(<span class="st">"rosalind_edta.fasta"</span>, <span class="st">"fasta"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">0</span>].seq)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">str</span>(records[<span class="dv">1</span>].seq)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="bu">len</span>(s), <span class="bu">len</span>(t)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># dp[i][j] = min cost to convert s[i:] -&gt; t[j:]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> [[<span class="dv">0</span>] <span class="op">*</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize boundaries for reverse DP</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    dp[m][j] <span class="op">=</span> n <span class="op">-</span> j        <span class="co"># empty s to t[j:] needs inserts</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    dp[i][n] <span class="op">=</span> m <span class="op">-</span> i        <span class="co"># s[i:] to empty t needs deletes</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill bottom-right -&gt; top-left</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m <span class="op">-</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> <span class="dv">0</span> <span class="cf">if</span> s[i] <span class="op">==</span> t[j] <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        dp[i][j] <span class="op">=</span> <span class="bu">min</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            dp[i <span class="op">+</span> <span class="dv">1</span>][j] <span class="op">+</span> <span class="dv">1</span>,        <span class="co"># delete s[i]</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            dp[i][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>,        <span class="co"># insert t[j]</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            dp[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> cost  <span class="co"># substitute (or match)</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Distance</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dp[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Traceback to build one optimal alignment</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>aln_s, aln_t <span class="op">=</span> [], []</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> m <span class="kw">or</span> j <span class="op">&lt;</span> n:</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prefer diagonal when it matches the optimal cost</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&lt;</span> m <span class="kw">and</span> j <span class="op">&lt;</span> n <span class="kw">and</span> dp[i][j] <span class="op">==</span> dp[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> (<span class="dv">0</span> <span class="cf">if</span> s[i] <span class="op">==</span> t[j] <span class="cf">else</span> <span class="dv">1</span>):</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        aln_s.append(s[i])</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        aln_t.append(t[j])</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Otherwise, delete from s (move down)</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> i <span class="op">&lt;</span> m <span class="kw">and</span> dp[i][j] <span class="op">==</span> dp[i <span class="op">+</span> <span class="dv">1</span>][j] <span class="op">+</span> <span class="dv">1</span>:</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        aln_s.append(s[i])</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        aln_t.append(<span class="st">'-'</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Otherwise, insert t[j] (move right)</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        aln_s.append(<span class="st">'-'</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        aln_t.append(t[j])</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>aln_s <span class="op">=</span> <span class="st">''</span>.join(aln_s)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>aln_t <span class="op">=</span> <span class="st">''</span>.join(aln_t)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aln_s)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aln_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="traceback-rules" class="level3">
+<h3 class="anchored" data-anchor-id="traceback-rules">Traceback rules</h3>
+<p>At each <code>(i, j)</code> we choose the move consistent with the <strong>optimal</strong> value stored at <code>dp[i][j]</code>:</p>
+<ol type="1">
+<li><strong>Diagonal (match/substitute):</strong> if <code>dp[i][j] == dp[i+1][j+1] + (0 or 1)</code>.</li>
+<li><strong>Delete (from s):</strong> if <code>dp[i][j] == dp[i+1][j] + 1</code> → alignment gets <code>(s[i], '-')</code>.</li>
+<li><strong>Insert (into s):</strong> if <code>dp[i][j] == dp[i][j+1] + 1</code> → alignment gets <code>('-', t[j])</code>.</li>
+</ol>
+<p>The implemented tie-breaker prefers <strong>diagonal</strong>, then <strong>delete</strong>, then <strong>insert</strong>, which yields <strong>one</strong> optimal alignment (others may exist with equal cost).</p>
+<hr>
+</section>
 </section>
 <section id="what-i-learned" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-learned">What I Learned</h2>
-<pre><code>-I recognised it was a DP problem but struggled to remember how to structure the solution.
--Building the `dp` table row by row made me see how each subproblem builds on smaller ones.  
--The rule `dp[i][j] = dp[i-1][j-1] + 1` for matches is basically saying: *“extend the LCS found so far diagonally.”*  
--For mismatches, taking `max(dp[i-1][j], dp[i][j-1])` ensures we don’t “lose” progress — we inherit the best subsequence length from either skipping a char in `s` or in `t`.  
--Backtracking was the easiest part:  
-    -When characters match, move diagonally and add to the LCS.  
-    -Otherwise, move in the direction of the larger value (up or left).  
-    -This guarantees we reconstruct a valid subsequence of maximum length.  </code></pre>
+<pre><code>-Reverse DP actually makes a lot of sense once I got used to it — you’re filling the table starting from the “end state” (empty suffixes) and then working back toward the start. It felt weird at first but the traceback becomes pretty natural.
+-Initializing the last row/col was a good reminder that these boundaries represent “how many edits it takes if one string is already finished.”
+-The traceback rules clicked once I saw how each move (diagonal / delete / insert) is tied directly to which DP transition gave the optimal score.
+-There can be multiple optimal alignments, and which one you get depends on how you break ties. My code leans toward diagonal first, which feels intuitive (match/substitute &gt; delete &gt; insert).
+-Doing both EDIT (just distance) and EDTA (distance + alignment) side by side really helped me connect how edit distance alone is just the “score,” and EDTA shows you the actual path of edits as an alignment.
+-Overall: building the whole thing from scratch gave me way more confidence in DP logic than just memorizing the recurrence formula.</code></pre>
 
 
 </section>

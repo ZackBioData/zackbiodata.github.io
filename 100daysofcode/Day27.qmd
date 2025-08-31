@@ -1,0 +1,161 @@
+---
+title: "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)"
+subtitle: "Edit Distance and Global Alignment with a bottom-right → top-left DP"
+date: 2025-08-25
+categories: [Rosalind, Bioinformatics, Dynamic Programming, Biopython]
+image: ../images/100daysofcode/rosilind.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Overview
+
+* **EDIT** — minimum **edit distance** only (no alignment string output).
+* **EDTA** — edit distance **and** one optimal **global alignment** (with `-` gaps).
+
+I had to learn Reverse DP as future interactions affect edit choices not past.
+
+Why reverse DP? It’s equivalent to the standard forward DP but sometimes simplifies **traceback** when you prefer to start decisions from `(0,0)` while having all future costs precomputed in the “south/east” cells.
+
+
+---
+
+## EDIT — [Edit Distance (reverse DP, no alignment)](https://rosalind.info/problems/edit/)
+
+```python
+# EDIT — reverse DP to compute Levenshtein edit distance only
+# Problem: https://rosalind.info/problems/edit/
+
+from Bio import SeqIO
+
+# Input FASTA file with two records
+records = list(SeqIO.parse("rosalind_edit.fasta", "fasta"))
+s = str(records[0].seq)
+t = str(records[1].seq)
+
+m, n = len(s), len(t)
+
+# DP table: dp[i][j] = min cost to convert s[i:] -> t[j:]
+
+dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+# Initialize outer boundary for reverse DP (base cases)
+
+for j in range(n + 1):
+    dp[m][j] = n - j
+
+# Rightmost column: converting s[i:] to empty t[n:] needs (m - i) deletions
+for i in range(m + 1):
+    dp[i][n] = m - i
+
+# Fill from bottom-right to top-left
+for i in range(m - 1, -1, -1):
+    for j in range(n - 1, -1, -1):
+        cost = 0 if s[i] == t[j] else 1
+        dp[i][j] = min(
+            dp[i + 1][j] + 1,        # delete s[i]
+            dp[i][j + 1] + 1,        # insert t[j]
+            dp[i + 1][j + 1] + cost  # substitute (or match)
+        )
+
+print(dp[0][0])  # minimum edit distance
+```
+
+### How it works (EDIT)
+
+* **State:** `dp[i][j]` stores the minimal cost to transform **suffix** `s[i:]` into `t[j:]`.
+* **Transition:** Choose the cheapest among **delete**, **insert**, **substitute/match**.
+* **Answer:** `dp[0][0]`.
+
+---
+
+## EDTA — [Edit Distance **and** Global Alignment (reverse DP + traceback)](https://rosalind.info/problems/edta/)
+### Note
+This builds on edit distance by adding a traceback loop on top the build DP structure, using 2 unique arrays for each i and j to tally deletions and insertions as -.
+
+```python
+# Problem: https://rosalind.info/problems/edta/
+
+from Bio import SeqIO
+
+# Read input (two FASTA records)
+records = list(SeqIO.parse("rosalind_edta.fasta", "fasta"))
+s = str(records[0].seq)
+t = str(records[1].seq)
+
+m, n = len(s), len(t)
+
+# dp[i][j] = min cost to convert s[i:] -> t[j:]
+dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+# Initialize boundaries for reverse DP
+for j in range(n + 1):
+    dp[m][j] = n - j        # empty s to t[j:] needs inserts
+for i in range(m + 1):
+    dp[i][n] = m - i        # s[i:] to empty t needs deletes
+
+# Fill bottom-right -> top-left
+for i in range(m - 1, -1, -1):
+    for j in range(n - 1, -1, -1):
+        cost = 0 if s[i] == t[j] else 1
+        dp[i][j] = min(
+            dp[i + 1][j] + 1,        # delete s[i]
+            dp[i][j + 1] + 1,        # insert t[j]
+            dp[i + 1][j + 1] + cost  # substitute (or match)
+        )
+
+# Distance
+print(dp[0][0])
+
+# Traceback to build one optimal alignment
+i, j = 0, 0
+aln_s, aln_t = [], []
+
+while i < m or j < n:
+    # Prefer diagonal when it matches the optimal cost
+    if i < m and j < n and dp[i][j] == dp[i + 1][j + 1] + (0 if s[i] == t[j] else 1):
+        aln_s.append(s[i])
+        aln_t.append(t[j])
+        i += 1
+        j += 1
+    # Otherwise, delete from s (move down)
+    elif i < m and dp[i][j] == dp[i + 1][j] + 1:
+        aln_s.append(s[i])
+        aln_t.append('-')
+        i += 1
+    # Otherwise, insert t[j] (move right)
+    else:
+        aln_s.append('-')
+        aln_t.append(t[j])
+        j += 1
+
+aln_s = ''.join(aln_s)
+aln_t = ''.join(aln_t)
+
+print(aln_s)
+print(aln_t)
+```
+
+### Traceback rules
+
+At each `(i, j)` we choose the move consistent with the **optimal** value stored at `dp[i][j]`:
+
+1. **Diagonal (match/substitute):** if `dp[i][j] == dp[i+1][j+1] + (0 or 1)`.
+2. **Delete (from s):** if `dp[i][j] == dp[i+1][j] + 1` → alignment gets `(s[i], '-')`.
+3. **Insert (into s):** if `dp[i][j] == dp[i][j+1] + 1` → alignment gets `('-', t[j])`.
+
+The implemented tie-breaker prefers **diagonal**, then **delete**, then **insert**, which yields **one** optimal alignment (others may exist with equal cost).
+
+---
+
+
+## What I Learned
+
+    -Reverse DP actually makes a lot of sense once I got used to it — you’re filling the table starting from the “end state” (empty suffixes) and then working back toward the start. It felt weird at first but the traceback becomes pretty natural.
+    -Initializing the last row/col was a good reminder that these boundaries represent “how many edits it takes if one string is already finished.”
+    -The traceback rules clicked once I saw how each move (diagonal / delete / insert) is tied directly to which DP transition gave the optimal score.
+    -There can be multiple optimal alignments, and which one you get depends on how you break ties. My code leans toward diagonal first, which feels intuitive (match/substitute > delete > insert).
+    -Doing both EDIT (just distance) and EDTA (distance + alignment) side by side really helped me connect how edit distance alone is just the “score,” and EDTA shows you the actual path of edits as an alignment.
+    -Overall: building the whole thing from scratch gave me way more confidence in DP logic than just memorizing the recurrence formula.

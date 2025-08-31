@@ -1,0 +1,129 @@
+---
+title: "Day 28: AWS Cloud Concepts"
+subtitle: "Cloud Practitioner Exam Prep"
+date: 2025-08-28
+ategories: [AWS, Cloud, Certification, Study Log]
+image: ../images/100daysofcode/aws.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 1 of learning AWS for my AWS Certified Cloud Practitioner exam.
+Today i covered 
+    -✅ Evolution of computing (Dedicated → VM → Containers → Serverless)  
+    -✅ Service models: IaaS, PaaS, SaaS 
+    -✅ Compute models: EC2 (VMs), Containers (ECS/EKS), Serverless (Lambda)  
+
+------
+
+# Exam Domains (Weighting)  
+- **Cloud Concepts (28%)** 
+  - ✅ Evolution of computing (Dedicated → VM → Containers → Serverless)  
+  - ✅ Service models: IaaS, PaaS, SaaS  
+  - ⬜ Benefits of cloud  
+       - ⬜ **Elasticity**, **Scalability**, Agility, Pay-as-you-go  
+  - ⬜ AWS global infrastructure  
+       - ⬜ **Regions**, **Availability Zones (AZs)**, Edge Locations, Local Zones  
+  - ⬜ **Shared Responsibility Model (overview)**  
+
+- **Security & Compliance (24%)**  
+  - ⬜ **Identity & Access Management (IAM)**  
+       - ⬜ **Users, Groups, Roles, Policies**, **MFA (Multi-Factor Authentication)**  
+  - ⬜ Encryption basics  
+       - ⬜ **KMS (Key Management Service)**, **S3 Server-Side Encryption (SSE)**, Encryption in transit vs at rest  
+  - ⬜ Compliance programs  
+       - ⬜ HIPAA, **GDPR**, SOC, ISO, PCI-DSS  
+  - ⬜ **Shared Responsibility Model (detailed)**  
+
+- **Technology (36%)**  
+  - ✅ Compute models  
+       - ✅ **EC2 (VMs)**, **Containers (ECS/EKS)**, **Serverless (Lambda)**  
+  - ⬜ Storage  
+       - ⬜ **S3 (storage classes, lifecycle, versioning)**, EBS (block storage), EFS (elastic file system), Glacier (archival)  
+  - ⬜ Databases  
+       - ⬜ **RDS (SQL)**, **DynamoDB (NoSQL)**, Aurora basics  
+  - ⬜ Networking  
+       - ⬜ **VPC basics**, Subnets, **Security Groups vs NACLs**, VPN vs Direct Connect  
+  - ⬜ Deployment models  
+       - ⬜ Public Cloud, Private Cloud, **Hybrid Cloud**  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Pricing models  
+       - ⬜ **On-Demand**, **Reserved**, **Spot**, Dedicated Hosts  
+  - ⬜ Free Tier  
+  - ⬜ Cost Management Tools  
+       - ⬜ **AWS Pricing Calculator**, **Cost Explorer**, Budgets, Trusted Advisor  
+  - ⬜ Support plans  
+       - ⬜ Basic, Developer, **Business**, **Enterprise**  
+
+---
+
+# Evolution of Computing
+
+### Dedicated Servers  
+- A **physical server** allocated to a single client (single-node cluster).  
+- **Limitations:**  
+  - No ability to resize or scale virtually.  
+  - Expensive (often overpaying for unused capacity).  
+  - Cannot easily replace or repurpose.  
+  - Typically limited to one application.  
+- **Advantage:** Potentially very secure — if you manage security yourself.  
+
+---
+
+### Virtual Machines (VMs)  
+- Use a **hypervisor** to run multiple VMs on a shared physical server.  
+- **Pros:**  
+  - Fraction of the cost of dedicated servers.  
+  - Easier to scale compared to bare metal.  
+  - Multiple apps can run across VMs.  
+- **Cons:**  
+  - Still overpaying if underutilised.  
+  - Bound by the guest operating system.  
+
+---
+
+### Containers  
+- Containers run **on top of VMs**, managed by a **Docker daemon** (or similar).  
+- **Pros:**  
+  - Cost-effective, maximise server capacity.  
+  - Shared OS between multiple containers → efficient.  
+  - Multiple apps per container image.  
+- **Cons:**  
+  - Can be harder to maintain at scale without orchestration (e.g., Kubernetes).  
+
+---
+
+### Functions (Serverless)  
+- Managed VMs running managed containers (AWS Lambda).  
+- **Serverless computing**: upload code, choose memory, AWS handles the rest.  
+- **Pros:**  
+  - Minimal setup required.  
+  - Cost-effective (pay only for execution time).  
+- **Cons:**  
+  - **Cold starts**: first run can be slow as the VM/container initializes.  
+
+---
+
+# Types of Cloud Computing (for Customers)
+
+### Software as a Service (SaaS)  
+- A complete product run and managed by the provider.  
+- Example: Gmail, Office 365.  
+
+### Platform as a Service (PaaS)  
+- For developers → focus on app deployment and management.  
+- Example: Heroku, Google App Engine, Azure App Service.  
+
+### Infrastructure as a Service (IaaS)  
+- Basic building blocks of cloud: networking, compute, storage.  
+- Example: AWS, Microsoft Azure, Oracle Cloud.  
+
+---
+
+# Key Takeaways
+- Cloud computing evolved from **dedicated → VMs → containers → serverless functions**, each step improving efficiency and scalability.  
+- Service models progress from **IaaS → PaaS → SaaS**, with decreasing customer management responsibility.  
+- For the exam: focus on **trade-offs** (cost, scalability, responsibility, security).  
