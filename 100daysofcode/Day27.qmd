@@ -1,5 +1,5 @@
 ---
-title: "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)"
+title: "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)"
 subtitle: "Edit Distance and Global Alignment with a bottom-right → top-left DP"
 date: 2025-08-25
 categories: [Rosalind, Bioinformatics, Dynamic Programming, Biopython]

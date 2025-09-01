@@ -1,0 +1,137 @@
+---
+title: "Day 29: Cloud Deployment Models"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: 2025-08-29
+categories: [AWS, Cloud, Certification, Study Log]
+image: ../images/100daysofcode/aws.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 2 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ Deployment models: Public, Private, Hybrid, Cross-Cloud  
+  - ✅ AWS account setup basics (root/IAM, billing support)  
+  - ✅ Innovation waves & burning platform concepts  
+  - ✅ Evolution of computing (general → GPU → quantum)  
+
+---
+
+# Exam Domains (Weighting)  
+**bold = high frequency in exam**  
+
+- **Cloud Concepts (28%)**  
+  - ✅ Evolution of computing (Dedicated → VM → Containers → Serverless)  
+  - ✅ Service models: IaaS, PaaS, SaaS  
+  - ✅ Deployment models: **Public Cloud**, Private Cloud, **Hybrid Cloud**, Cross-Cloud  
+  - ⬜ Benefits of cloud  
+       - ⬜ **Elasticity**, **Scalability**, Agility, Pay-as-you-go  
+  - ⬜ AWS global infrastructure  
+       - ⬜ **Regions**, **Availability Zones (AZs)**, Edge Locations, Local Zones  
+  - ⬜ **Shared Responsibility Model (overview)**  
+
+- **Security & Compliance (24%)**  
+  - ⬜ **Identity & Access Management (IAM)**  
+       - ⬜ **Users, Groups, Roles, Policies**, **MFA (Multi-Factor Authentication)**  
+  - ⬜ Encryption basics  
+       - ⬜ **KMS (Key Management Service)**, **S3 Server-Side Encryption (SSE)**, Encryption in transit vs at rest  
+  - ⬜ Compliance programs  
+       - ⬜ HIPAA, **GDPR**, SOC, ISO, PCI-DSS  
+  - ⬜ **Shared Responsibility Model (detailed)**  
+
+- **Technology (36%)**  
+  - ✅ Compute models  
+       - ✅ **EC2 (VMs)**, **Containers (ECS/EKS)**, **Serverless (Lambda)**  
+  - ✅ Deployment models  
+       - ✅ **Public Cloud**, Private Cloud, **Hybrid Cloud**, Cross-Cloud  
+  - ⬜ Storage  
+       - ⬜ **S3 (storage classes, lifecycle, versioning)**, EBS, EFS, Glacier  
+  - ⬜ Databases  
+       - ⬜ **RDS (SQL)**, **DynamoDB (NoSQL)**, Aurora basics  
+  - ⬜ Networking  
+       - ⬜ **VPC basics**, Subnets, **Security Groups vs NACLs**, VPN vs Direct Connect  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Pricing models  
+       - ⬜ **On-Demand**, **Reserved**, **Spot**, Dedicated Hosts  
+  - ⬜ Free Tier  
+  - ⬜ Cost Management Tools  
+       - ⬜ **AWS Pricing Calculator**, **Cost Explorer**, Budgets, Trusted Advisor  
+  - ⬜ Support plans  
+       - ⬜ Basic, Developer, **Business**, **Enterprise**  
+
+---
+
+# Deployment Models
+
+### Public Cloud  
+- All workloads/projects hosted on a **cloud service provider (CSP)** such as AWS.  
+- **Cloud-native** model: infrastructure fully managed in the provider’s environment.  
+- Examples: startups, SaaS products (Dropbox, etc.).  
+- **Networking:** typically mix of public + private subnets within AWS VPC.  
+
+---
+
+### Private Cloud  
+- Infrastructure hosted **on-premises** (datacenter owned by organisation).  
+- Can be managed using **OpenStack** or similar.  
+- Suitable for **sensitive workloads**:  
+  - Hospitals (patient data).  
+  - Government (classified systems).  
+
+---
+
+### Hybrid Cloud  
+- Mix of on-prem + cloud.  
+- Linked with **VPNs** or **Direct Connect**.  
+- Common when organisations already own a datacenter but want to expand into cloud.  
+- Example: Legacy finance/government platforms.  
+
+---
+
+### Cross-Cloud (Multi-Cloud)  
+- Using **multiple cloud providers** for one project.  
+- Examples: Amazon EKS ↔ Azure Arc ↔ GCP Kubernetes Engine.  
+- Avoids vendor lock-in, increases resilience.  
+- Complex to manage but increasingly common in enterprise IT.  
+
+---
+
+# AWS Accounts & Permissions
+
+- **Root account**: Created when signing up for AWS (used rarely, high risk). ✅ Made.  
+- **IAM accounts**: Best practice → create IAM users with least-privilege permissions. ✅ Made.  
+- **Permissions & policies**: Assign roles and groups instead of using root.  
+- If billing mistakes happen, **AWS Support** can reduce or refund charges.  
+
+---
+
+# Innovation & Transformation
+
+### Kondratiev Waves  
+- Concept of long-term **innovation cycles** (waves of technological change).  
+- Cloud adoption seen as part of the most recent “digital” wave.  
+
+### Burning Platform  
+- Business strategy term: abandoning outdated systems (“on-prem”) for survival.  
+- In cloud: moving from legacy infrastructure → cloud-native.  
+- Digital transformation guides highlight how to manage this change and mitigate resistance.  
+
+---
+
+# Evolution of Computing
+
+- **General-purpose computing**: Intel Xeon processors, traditional CPUs.  
+- **Elastic Compute Cloud (EC2)**: AWS on-demand compute service.  
+- **GPU computing**: AWS Inferentia, EC2 GPU instances for ML/AI workloads.  
+- **Quantum computing**: AWS Braket (managed service for quantum simulators + hardware).  
+
+---
+
+# Key Takeaways
+- Deployment models: **Public = cloud-native, Private = on-prem, Hybrid = bridge, Multi-Cloud = multiple CSPs**.  
+- IAM setup is critical → root account should NOT be used beyond initial setup.  
+- Cloud adoption framed as part of larger **innovation waves** and often driven by **burning platform fear**.  
+- Compute evolution continues beyond EC2 → GPU and quantum workloads.  
