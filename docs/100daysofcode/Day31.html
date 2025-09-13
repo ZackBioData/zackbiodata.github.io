@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-08-31">
 
-<title>rna-in-neuroblastoma.qmd – Zack's Bioinformatics</title>
+<title>Day 31: AWS Availability Zones &amp; Global Network – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,17 +112,329 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exam-domains-weighting" id="toc-exam-domains-weighting" class="nav-link active" data-scroll-target="#exam-domains-weighting">Exam Domains (Weighting)</a></li>
+  <li><a href="#availability-zones-azs" id="toc-availability-zones-azs" class="nav-link" data-scroll-target="#availability-zones-azs">Availability Zones (AZs)</a></li>
+  <li><a href="#fault-tolerance-fault-domains" id="toc-fault-tolerance-fault-domains" class="nav-link" data-scroll-target="#fault-tolerance-fault-domains">Fault Tolerance &amp; Fault Domains</a></li>
+  <li><a href="#aws-global-network" id="toc-aws-global-network" class="nav-link" data-scroll-target="#aws-global-network">AWS Global Network</a>
+  <ul class="collapse">
+  <li><a href="#edge-locations" id="toc-edge-locations" class="nav-link" data-scroll-target="#edge-locations">Edge Locations</a></li>
+  <li><a href="#points-of-presence-pops" id="toc-points-of-presence-pops" class="nav-link" data-scroll-target="#points-of-presence-pops">Points of Presence (PoPs)</a></li>
+  <li><a href="#local-zones" id="toc-local-zones" class="nav-link" data-scroll-target="#local-zones">Local Zones</a></li>
+  <li><a href="#wavelength-zones" id="toc-wavelength-zones" class="nav-link" data-scroll-target="#wavelength-zones">Wavelength Zones</a></li>
+  </ul></li>
+  <li><a href="#data-residency-sovereignty" id="toc-data-residency-sovereignty" class="nav-link" data-scroll-target="#data-residency-sovereignty">Data Residency &amp; Sovereignty</a></li>
+  <li><a href="#aws-outposts" id="toc-aws-outposts" class="nav-link" data-scroll-target="#aws-outposts">AWS Outposts</a></li>
+  <li><a href="#aws-for-government" id="toc-aws-for-government" class="nav-link" data-scroll-target="#aws-for-government">AWS for Government</a>
+  <ul class="collapse">
+  <li><a href="#public-sector" id="toc-public-sector" class="nav-link" data-scroll-target="#public-sector">Public Sector</a></li>
+  <li><a href="#govcloud-us" id="toc-govcloud-us" class="nav-link" data-scroll-target="#govcloud-us">GovCloud (US)</a></li>
+  <li><a href="#aws-in-china" id="toc-aws-in-china" class="nav-link" data-scroll-target="#aws-in-china">AWS in China</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Day 31: AWS Availability Zones &amp; Global Network</h1>
+<p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Cloud</div>
+    <div class="quarto-category">Certification</div>
+    <div class="quarto-category">Study Log</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<p>Day 4 of learning AWS for my Cloud Practitioner exam.<br>
+Today I covered:<br>
+- ✅ Availability Zones and Fault Domains<br>
+- ✅ AWS Global Network (Edge, PoPs, Local/Wavelength Zones)<br>
+- ✅ Data Residency &amp; Sovereignty<br>
+- ✅ AWS GovCloud and China regions</p>
+<hr>
+<section id="exam-domains-weighting" class="level1">
+<h1>Exam Domains (Weighting)</h1>
+<p><strong>bold = high frequency in exam</strong></p>
+<ul>
+<li><strong>Cloud Concepts (28%)</strong>
+<ul>
+<li>✅ Evolution of computing (Dedicated → VM → Containers → Serverless)<br>
+</li>
+<li>✅ Service models: IaaS, PaaS, SaaS<br>
+</li>
+<li>✅ Benefits of cloud<br>
+</li>
+<li>✅ AWS global infrastructure
+<ul>
+<li>✅ <strong>Regions</strong>, <strong>Availability Zones (AZs)</strong>, Local Zones, Edge Locations, Wavelength Zones<br>
+</li>
+</ul></li>
+<li>⬜ <strong>Shared Responsibility Model (overview)</strong></li>
+</ul></li>
+<li><strong>Security &amp; Compliance (24%)</strong>
+<ul>
+<li>⬜ <strong>Identity &amp; Access Management (IAM)</strong>
+<ul>
+<li>⬜ <strong>Users, Groups, Roles, Policies</strong>, <strong>MFA (Multi-Factor Authentication)</strong><br>
+</li>
+</ul></li>
+<li>⬜ Encryption basics
+<ul>
+<li>⬜ <strong>KMS (Key Management Service)</strong>, <strong>S3 Server-Side Encryption (SSE)</strong>, Encryption in transit vs at rest<br>
+</li>
+</ul></li>
+<li>⬜ Compliance programs
+<ul>
+<li>⬜ HIPAA, <strong>GDPR</strong>, SOC, ISO, PCI-DSS<br>
+</li>
+</ul></li>
+<li>⬜ <strong>Shared Responsibility Model (detailed)</strong></li>
+</ul></li>
+<li><strong>Technology (36%)</strong>
+<ul>
+<li>✅ Compute models
+<ul>
+<li>✅ <strong>EC2 (VMs)</strong>, <strong>Containers (ECS/EKS)</strong>, <strong>Serverless (Lambda)</strong><br>
+</li>
+</ul></li>
+<li>✅ Deployment models
+<ul>
+<li>✅ <strong>Public Cloud</strong>, Private Cloud, <strong>Hybrid Cloud</strong>, Cross-Cloud<br>
+</li>
+</ul></li>
+<li>✅ Availability &amp; Fault Tolerance
+<ul>
+<li>✅ <strong>Availability Zones</strong>, Subnets, Fault Domains<br>
+</li>
+</ul></li>
+<li>⬜ Storage
+<ul>
+<li>⬜ <strong>S3</strong>, EBS, EFS, Glacier<br>
+</li>
+</ul></li>
+<li>⬜ Databases
+<ul>
+<li>⬜ <strong>RDS (SQL)</strong>, <strong>DynamoDB (NoSQL)</strong>, Aurora basics<br>
+</li>
+</ul></li>
+<li>⬜ Networking
+<ul>
+<li>⬜ <strong>VPC basics</strong>, <strong>Security Groups vs NACLs</strong>, VPN vs Direct Connect</li>
+</ul></li>
+</ul></li>
+<li><strong>Billing &amp; Pricing (12%)</strong>
+<ul>
+<li>⬜ Pricing models
+<ul>
+<li>⬜ <strong>On-Demand</strong>, <strong>Reserved</strong>, <strong>Spot</strong>, Dedicated Hosts<br>
+</li>
+</ul></li>
+<li>⬜ Free Tier<br>
+</li>
+<li>⬜ Cost Management Tools
+<ul>
+<li>⬜ <strong>AWS Pricing Calculator</strong>, <strong>Cost Explorer</strong>, Budgets, Trusted Advisor<br>
+</li>
+</ul></li>
+<li>⬜ Support plans
+<ul>
+<li>⬜ Basic, Developer, <strong>Business</strong>, <strong>Enterprise</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="availability-zones-azs" class="level1">
+<h1>Availability Zones (AZs)</h1>
+<ul>
+<li><strong>AZ = one or more data centers</strong> in a <strong>secured building</strong> with hundreds of thousands of servers.<br>
+</li>
+<li>A <strong>region</strong> typically contains <strong>3 AZs</strong>.<br>
+</li>
+<li>AZs are <strong>physically isolated</strong> (different buildings, power, cooling) but <strong>close enough</strong> for low-latency communication.<br>
+</li>
+<li>Best practice: run workloads across <strong>≥3 AZs</strong> for <strong>high uptime</strong>.<br>
+</li>
+<li><strong>Subnets</strong> are tied to an AZ → when you create a VM (EC2 instance), it is associated with a subnet within that AZ.</li>
+</ul>
+<hr>
+</section>
+<section id="fault-tolerance-fault-domains" class="level1">
+<h1>Fault Tolerance &amp; Fault Domains</h1>
+<ul>
+<li><strong>Fault tolerance</strong> = system’s ability to continue operating despite component failures.<br>
+</li>
+<li><strong>Fault domain</strong>: A logical boundary that limits the impact of failures.
+<ul>
+<li>Example: contamination zone analogy.<br>
+</li>
+<li>In <strong>Azure</strong>: you define fault domains manually.<br>
+</li>
+<li>In <strong>AWS</strong>: handled automatically.<br>
+</li>
+</ul></li>
+<li>AWS mapping:
+<ul>
+<li><strong>Region = fault level</strong>.<br>
+</li>
+<li><strong>AZ = fault domain</strong>.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="aws-global-network" class="level1">
+<h1>AWS Global Network</h1>
+<ul>
+<li>AWS global backbone infrastructure = connects all regions worldwide.<br>
+</li>
+<li>Supports low-latency communication and high availability.</li>
+</ul>
+<section id="edge-locations" class="level3">
+<h3 class="anchored" data-anchor-id="edge-locations">Edge Locations</h3>
+<ul>
+<li>Used for <strong>CloudFront CDN caching</strong> and <strong>AWS Global Accelerator</strong>.<br>
+</li>
+<li>Improves latency by routing user requests to the nearest PoP.</li>
+</ul>
+</section>
+<section id="points-of-presence-pops" class="level3">
+<h3 class="anchored" data-anchor-id="points-of-presence-pops">Points of Presence (PoPs)</h3>
+<ul>
+<li>Intermediate network locations between AWS data centers and users.<br>
+</li>
+<li>Two types:
+<ul>
+<li><strong>Edge Locations</strong>: cache popular content.<br>
+</li>
+<li><strong>Regional Edge Caches</strong>: hold larger and less frequently accessed content.</li>
+</ul></li>
+</ul>
+</section>
+<section id="local-zones" class="level3">
+<h3 class="anchored" data-anchor-id="local-zones">Local Zones</h3>
+<ul>
+<li>Data centers placed <strong>close to major population centers</strong>.<br>
+</li>
+<li>Provide <strong>low ms latency</strong> for workloads (gaming, video, AR/VR).<br>
+</li>
+<li>Must request access via AWS Support.</li>
+</ul>
+</section>
+<section id="wavelength-zones" class="level3">
+<h3 class="anchored" data-anchor-id="wavelength-zones">Wavelength Zones</h3>
+<ul>
+<li>Provide <strong>edge computing</strong> for <strong>5G networks</strong>.<br>
+</li>
+<li>Enables ultra-low latency for mobile applications.<br>
+</li>
+<li>AWS partnerships: Vodafone, Verizon, SK Telecom.<br>
+</li>
+<li>Architecture: AWS Cloud ↔︎ 5G Tower ↔︎ End User Device.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="data-residency-sovereignty" class="level1">
+<h1>Data Residency &amp; Sovereignty</h1>
+<ul>
+<li><strong>Data residency</strong> = physical/geographic location where resources or data are stored.<br>
+</li>
+<li><strong>Compliance boundaries</strong> = regulatory restrictions on where data can reside.<br>
+</li>
+<li><strong>Data sovereignty</strong> = legal jurisdiction or authority that governs data.<br>
+</li>
+<li>Example: EU GDPR vs US HIPAA requirements.</li>
+</ul>
+<hr>
+</section>
+<section id="aws-outposts" class="level1">
+<h1>AWS Outposts</h1>
+<ul>
+<li>Physical <strong>rack of AWS servers</strong> installed <strong>on-premises</strong> at customer sites.<br>
+</li>
+<li>Provides AWS services locally while remaining managed by AWS.<br>
+</li>
+<li>Supports workloads needing <strong>low latency</strong> or <strong>data residency compliance</strong>.<br>
+</li>
+<li><strong>AWS Config</strong> can enforce compliance rules (e.g., explicit IAM policies to restrict region access).</li>
+</ul>
+<hr>
+</section>
+<section id="aws-for-government" class="level1">
+<h1>AWS for Government</h1>
+<section id="public-sector" class="level3">
+<h3 class="anchored" data-anchor-id="public-sector">Public Sector</h3>
+<ul>
+<li>Includes: military, law enforcement, healthcare, public education, transportation.<br>
+</li>
+<li>Must meet strict <strong>regulatory compliance standards</strong>.</li>
+</ul>
+</section>
+<section id="govcloud-us" class="level3">
+<h3 class="anchored" data-anchor-id="govcloud-us">GovCloud (US)</h3>
+<ul>
+<li><strong>Isolated AWS regions</strong> designed for sensitive government workloads.<br>
+</li>
+<li>Supports <strong>FedRAMP</strong> compliance.<br>
+</li>
+<li>Accessible only to vetted US government customers and contractors.</li>
+</ul>
+</section>
+<section id="aws-in-china" class="level3">
+<h3 class="anchored" data-anchor-id="aws-in-china">AWS in China</h3>
+<ul>
+<li>Operates as <strong>isolated service regions</strong>.<br>
+</li>
+<li>Cannot connect directly to the <strong>global AWS network</strong>.<br>
+</li>
+<li>Complies with local regulatory requirements.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
+<ul>
+<li><strong>Availability Zones = fault domains</strong>, designed for high availability and low latency.<br>
+</li>
+<li><strong>Global Network</strong> includes Edge Locations, Regional Edge Caches, Local Zones, and Wavelength Zones.<br>
+</li>
+<li><strong>Data residency and sovereignty</strong> are crucial for compliance.<br>
+</li>
+<li><strong>Outposts</strong> and <strong>GovCloud/China regions</strong> provide specialised solutions for regulated workloads.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

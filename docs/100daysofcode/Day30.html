@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-08-30">
 
-<title>Blog – Zack’s Bioinformatics</title>
+<title>Day 30: Benefits of Cloud &amp; Global Infrastructure – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +31,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,65 +68,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -153,7 +94,7 @@ window.Quarto = {
 <span class="menu-text">Logbook</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../blog/index.html" aria-current="page"> 
+    <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
@@ -176,23 +117,56 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recent-posts" id="toc-recent-posts" class="nav-link active" data-scroll-target="#recent-posts">Recent Posts</a></li>
+  <li><a href="#exam-domains-weighting" id="toc-exam-domains-weighting" class="nav-link active" data-scroll-target="#exam-domains-weighting">Exam Domains (Weighting)</a></li>
+  <li><a href="#benefits-of-cloud-computing" id="toc-benefits-of-cloud-computing" class="nav-link" data-scroll-target="#benefits-of-cloud-computing">Benefits of Cloud Computing</a>
+  <ul class="collapse">
+  <li><a href="#agility" id="toc-agility" class="nav-link" data-scroll-target="#agility">Agility</a></li>
+  <li><a href="#pay-as-you-go" id="toc-pay-as-you-go" class="nav-link" data-scroll-target="#pay-as-you-go">Pay-as-you-go</a></li>
+  <li><a href="#economy-of-scale" id="toc-economy-of-scale" class="nav-link" data-scroll-target="#economy-of-scale">Economy of Scale</a></li>
+  <li><a href="#global-reach" id="toc-global-reach" class="nav-link" data-scroll-target="#global-reach">Global Reach</a></li>
+  <li><a href="#security" id="toc-security" class="nav-link" data-scroll-target="#security">Security</a></li>
+  <li><a href="#reliability" id="toc-reliability" class="nav-link" data-scroll-target="#reliability">Reliability</a></li>
+  <li><a href="#high-availability" id="toc-high-availability" class="nav-link" data-scroll-target="#high-availability">High Availability</a></li>
+  <li><a href="#scalability" id="toc-scalability" class="nav-link" data-scroll-target="#scalability">Scalability</a></li>
+  <li><a href="#elasticity" id="toc-elasticity" class="nav-link" data-scroll-target="#elasticity">Elasticity</a></li>
+  <li><a href="#fault-tolerance" id="toc-fault-tolerance" class="nav-link" data-scroll-target="#fault-tolerance">Fault Tolerance</a></li>
+  <li><a href="#disaster-recovery" id="toc-disaster-recovery" class="nav-link" data-scroll-target="#disaster-recovery">Disaster Recovery</a></li>
+  </ul></li>
+  <li><a href="#aws-global-infrastructure" id="toc-aws-global-infrastructure" class="nav-link" data-scroll-target="#aws-global-infrastructure">AWS Global Infrastructure</a>
+  <ul class="collapse">
+  <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
+  </ul></li>
+  <li><a href="#regions" id="toc-regions" class="nav-link" data-scroll-target="#regions">Regions</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="QUklMjBpbiUyMEJpb2xvZ3k=">AI in Biology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmlvcHl0aG9u">biopython <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmlvcHl0aG9u">Biopython <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZG9jdW1lbnRhdGlvbg==">documentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RG9jdW1lbnRhdGlvbg==">Documentation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RkFTVEE=">FASTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RkFTVEElMjBQYXJzaW5n">FASTA Parsing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VuQmFuaw==">GenBank <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VuZSUyMEVkaXRpbmc=">Gene Editing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGVhcm5pbmclMjBMb2c=">Learning Log <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bTZB">m6A <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUVUVEwz">METTL3 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TVlDTg==">MYCN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmV1cm9ibGFzdG9tYQ==">Neuroblastoma <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Uk5BJTIwTW9kaWZpY2F0aW9ucw==">RNA Modifications <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VtaW5hcg==">Seminar <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U2VxdWVuY2UlMjBBbGlnbm1lbnQ=">Sequence Alignment <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
-</div>
+<h1 class="title">Day 30: Benefits of Cloud &amp; Global Infrastructure</h1>
+<p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Cloud</div>
+    <div class="quarto-category">Certification</div>
+    <div class="quarto-category">Study Log</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -202,277 +176,219 @@ window.Quarto = {
 </header>
 
 
-<p>A collection of occasional deep dives into the tools, topics, and techniques I’m exploring in bioinformatics.</p>
-<section id="recent-posts" class="level2">
-<h2 class="anchored" data-anchor-id="recent-posts">Recent Posts</h2>
-
+<p>Day 3 of learning AWS for my Cloud Practitioner exam.<br>
+Today I covered:<br>
+- ✅ Benefits of cloud computing<br>
+- ✅ AWS Global Infrastructure (Regions, AZs, Local Zones)</p>
+<hr>
+<section id="exam-domains-weighting" class="level1">
+<h1>Exam Domains (Weighting)</h1>
+<p><strong>bold = high frequency in exam</strong></p>
+<ul>
+<li><strong>Cloud Concepts (28%)</strong>
+<ul>
+<li>✅ Evolution of computing (Dedicated → VM → Containers → Serverless)<br>
+</li>
+<li>✅ Service models: IaaS, PaaS, SaaS<br>
+</li>
+<li>✅ Benefits of cloud
+<ul>
+<li>✅ <strong>Agility</strong>, <strong>Pay-as-you-go</strong>, <strong>Economy of scale</strong>, <strong>Global reach</strong>, <strong>Security</strong>, <strong>Reliability</strong>, <strong>High availability</strong>, <strong>Scalability</strong>, <strong>Elasticity</strong>, <strong>Fault tolerance</strong>, <strong>Disaster recovery</strong><br>
+</li>
+</ul></li>
+<li>✅ AWS global infrastructure
+<ul>
+<li>✅ <strong>Regions</strong>, <strong>Availability Zones (AZs)</strong>, Local Zones, Edge Locations<br>
+</li>
+</ul></li>
+<li>⬜ <strong>Shared Responsibility Model (overview)</strong></li>
+</ul></li>
+<li><strong>Security &amp; Compliance (24%)</strong>
+<ul>
+<li>⬜ <strong>Identity &amp; Access Management (IAM)</strong>
+<ul>
+<li>⬜ <strong>Users, Groups, Roles, Policies</strong>, <strong>MFA (Multi-Factor Authentication)</strong><br>
+</li>
+</ul></li>
+<li>⬜ Encryption basics
+<ul>
+<li>⬜ <strong>KMS (Key Management Service)</strong>, <strong>S3 Server-Side Encryption (SSE)</strong>, Encryption in transit vs at rest<br>
+</li>
+</ul></li>
+<li>⬜ Compliance programs
+<ul>
+<li>⬜ HIPAA, <strong>GDPR</strong>, SOC, ISO, PCI-DSS<br>
+</li>
+</ul></li>
+<li>⬜ <strong>Shared Responsibility Model (detailed)</strong></li>
+</ul></li>
+<li><strong>Technology (36%)</strong>
+<ul>
+<li>✅ Compute models
+<ul>
+<li>✅ <strong>EC2 (VMs)</strong>, <strong>Containers (ECS/EKS)</strong>, <strong>Serverless (Lambda)</strong><br>
+</li>
+</ul></li>
+<li>✅ Deployment models
+<ul>
+<li>✅ <strong>Public Cloud</strong>, Private Cloud, <strong>Hybrid Cloud</strong>, Cross-Cloud<br>
+</li>
+</ul></li>
+<li>⬜ Storage
+<ul>
+<li>⬜ <strong>S3 (storage classes, lifecycle, versioning)</strong>, EBS, EFS, Glacier<br>
+</li>
+</ul></li>
+<li>⬜ Databases
+<ul>
+<li>⬜ <strong>RDS (SQL)</strong>, <strong>DynamoDB (NoSQL)</strong>, Aurora basics<br>
+</li>
+</ul></li>
+<li>⬜ Networking
+<ul>
+<li>⬜ <strong>VPC basics</strong>, Subnets, <strong>Security Groups vs NACLs</strong>, VPN vs Direct Connect</li>
+</ul></li>
+</ul></li>
+<li><strong>Billing &amp; Pricing (12%)</strong>
+<ul>
+<li>⬜ Pricing models
+<ul>
+<li>⬜ <strong>On-Demand</strong>, <strong>Reserved</strong>, <strong>Spot</strong>, Dedicated Hosts<br>
+</li>
+</ul></li>
+<li>⬜ Free Tier<br>
+</li>
+<li>⬜ Cost Management Tools
+<ul>
+<li>⬜ <strong>AWS Pricing Calculator</strong>, <strong>Cost Explorer</strong>, Budgets, Trusted Advisor<br>
+</li>
+</ul></li>
+<li>⬜ Support plans
+<ul>
+<li>⬜ Basic, Developer, <strong>Business</strong>, <strong>Enterprise</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="benefits-of-cloud-computing" class="level1">
+<h1>Benefits of Cloud Computing</h1>
+<section id="agility" class="level3">
+<h3 class="anchored" data-anchor-id="agility">Agility</h3>
+<ul>
+<li>Quickly deploy, test, and iterate on new ideas.</li>
+</ul>
+</section>
+<section id="pay-as-you-go" class="level3">
+<h3 class="anchored" data-anchor-id="pay-as-you-go">Pay-as-you-go</h3>
+<ul>
+<li>No upfront cost, pay only for what you use.<br>
+</li>
+<li>Stop guessing capacity — scale up/down as needed.</li>
+</ul>
+</section>
+<section id="economy-of-scale" class="level3">
+<h3 class="anchored" data-anchor-id="economy-of-scale">Economy of Scale</h3>
+<ul>
+<li>Shared resources reduce overall cost.</li>
+</ul>
+</section>
+<section id="global-reach" class="level3">
+<h3 class="anchored" data-anchor-id="global-reach">Global Reach</h3>
+<ul>
+<li>Access AWS services anywhere in the world.</li>
+</ul>
+</section>
+<section id="security" class="level3">
+<h3 class="anchored" data-anchor-id="security">Security</h3>
+<ul>
+<li>Built-in security features + compliance support.</li>
+</ul>
+</section>
+<section id="reliability" class="level3">
+<h3 class="anchored" data-anchor-id="reliability">Reliability</h3>
+<ul>
+<li>Consistent performance across infrastructure.</li>
+</ul>
+</section>
+<section id="high-availability" class="level3">
+<h3 class="anchored" data-anchor-id="high-availability">High Availability</h3>
+<ul>
+<li>Services designed to run across multiple AZs.</li>
+</ul>
+</section>
+<section id="scalability" class="level3">
+<h3 class="anchored" data-anchor-id="scalability">Scalability</h3>
+<ul>
+<li>Add/remove resources to meet demand.</li>
+</ul>
+</section>
+<section id="elasticity" class="level3">
+<h3 class="anchored" data-anchor-id="elasticity">Elasticity</h3>
+<ul>
+<li>Automate scaling during spikes and drops.</li>
+</ul>
+</section>
+<section id="fault-tolerance" class="level3">
+<h3 class="anchored" data-anchor-id="fault-tolerance">Fault Tolerance</h3>
+<ul>
+<li>Systems designed to continue operating when components fail.</li>
+</ul>
+</section>
+<section id="disaster-recovery" class="level3">
+<h3 class="anchored" data-anchor-id="disaster-recovery">Disaster Recovery</h3>
+<ul>
+<li>Backup, restore, and multi-region recovery solutions.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="aws-global-infrastructure" class="level1">
+<h1>AWS Global Infrastructure</h1>
+<p>AWS global infrastructure = <strong>network of physical data centers</strong> designed for scalability, availability, and resilience.</p>
+<section id="components" class="level3">
+<h3 class="anchored" data-anchor-id="components">Components</h3>
+<ul>
+<li><strong>Regions</strong>: Geographically distinct clusters of data centers.<br>
+</li>
+<li><strong>Availability Zones (AZs)</strong>: One or more isolated data centers within a region.<br>
+</li>
+<li><strong>Local Zones</strong>: Closer to end-users for low-latency workloads.<br>
+</li>
+<li><strong>Edge Locations</strong>: Support caching (CloudFront).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="regions" class="level1">
+<h1>Regions</h1>
+<ul>
+<li>Geographically distinct locations with <strong>one or more AZs</strong>.<br>
+</li>
+<li>Each region is <strong>physically isolated</strong> with its own power and water supply.<br>
+</li>
+<li><strong>Pricing</strong>: Cost of services varies by region.<br>
+</li>
+<li><strong>Regulations</strong>: Each region has its own compliance requirements.<br>
+</li>
+<li><strong>Performance</strong>: Latency varies by region for end-users.</li>
+</ul>
+<hr>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
+<ul>
+<li>Cloud benefits = <strong>agility, scalability, elasticity, pay-as-you-go, global reach, reliability, security, fault tolerance, disaster recovery.</strong><br>
+</li>
+<li>AWS global infrastructure = <strong>Regions, AZs, Local Zones, Edge Locations</strong>, designed for high availability and compliance.<br>
+</li>
+<li>Regions are physically isolated, but connected through AWS’s global backbone for resilience and performance.</li>
+</ul>
 
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1757001712600">
-<a href="../blog/CAR T-Cell Therapy Development .html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<div class="card-text listing-description delink">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="TmV1cm9ibGFzdG9tYSUyQ1JOQSUyME1vZGlmaWNhdGlvbnMlMkNtNkElMkNNRVRUTDMlMkNNWUNOJTJDTGVhcm5pbmclMjBMb2c=" data-listing-date-sort="1756162800000" data-listing-file-modified-sort="1756924241668" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238">
-<a href="../blog/2025-08-28_RNA in neuroblastoma.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/seminar.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Role of m6A and METTL3 in Neuroblastoma: TERRA, MYCN, and Therapeutic Implications
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TmV1cm9ibGFzdG9tYQ=='); return false;">Neuroblastoma</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Uk5BJTIwTW9kaWZpY2F0aW9ucw=='); return false;">RNA Modifications</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bTZB'); return false;">m6A</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUVUVEwz'); return false;">METTL3</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TVlDTg=='); return false;">MYCN</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmclMjBMb2c='); return false;">Learning Log</div>
-
-</div>
-<div class="card-text listing-description delink">
-Is <strong>MYCN expression</strong> constant across branching cell lineages, or does it vary depending on its <strong>genomic locus</strong>?
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 26, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="RkFTVEElMkNHZW5CYW5rJTJDYmlvcHl0aG9uJTJDZG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1753398000000" data-listing-file-modified-sort="1753464575219" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="211">
-<a href="../blog/C4Biopython.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reading C4 of the Official Biopython Documentation
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEE='); return false;">FASTA</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2VuQmFuaw=='); return false;">GenBank</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YmlvcHl0aG9u'); return false;">biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZG9jdW1lbnRhdGlvbg=='); return false;">documentation</div>
-
-</div>
-<div class="card-text listing-description delink">
-This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
-Focus: <strong>Chapter 4</strong> — covering the core functionality of working with annotated…<code></code>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 25, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="QmlvcHl0aG9uJTJDRG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1753311600000" data-listing-file-modified-sort="1753464585753" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="184">
-<a href="../blog/2025-07-24_biopython-reading.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reading C3 of the official Biopython documentation
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
-
-</div>
-<div class="card-text listing-description delink">
-This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
-Focus: <strong>Chapter 3</strong> — covering the core functionality of working with sequences using…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 24, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="RkFTVEElMjBQYXJzaW5nJTJDQmlvcHl0aG9uJTJDRG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1753641031808" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
-<a href="../blog/C5Biopython.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reading the Official Biopython Documentation
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RkFTVEElMjBQYXJzaW5n'); return false;">FASTA Parsing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
-
-</div>
-<div class="card-text listing-description delink">
-This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
-Focus: <strong>Chapter 5</strong> — covering sequence file input/output using <code>SeqIO</code>.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 11, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="U2VxdWVuY2UlMjBBbGlnbm1lbnQlMkNCaW9weXRob24lMkNEb2N1bWVudGF0aW9u" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1753378926990" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
-<a href="../blog/C6Biopython.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/biopython.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reading the Official Biopython Documentation
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VxdWVuY2UlMjBBbGlnbm1lbnQ='); return false;">Sequence Alignment</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmlvcHl0aG9u'); return false;">Biopython</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
-
-</div>
-<div class="card-text listing-description delink">
-This notebook documents my guided reading of the official Biopython Tutorial &amp; Cookbook.<br>
-Focus: <strong>Chapter 6</strong> — a preview of handling multiple sequence alignments using <code>AlignIO</code>.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jul 11, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="U2VtaW5hciUyQ0dlbmUlMjBFZGl0aW5nJTJDTWFjaGluZSUyMExlYXJuaW5n" data-listing-date-sort="1749596400000" data-listing-file-modified-sort="1753430174429" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="204">
-<a href="../blog/2025-06-11_Crispr.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/seminar.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Engineering to improve the precision and flexibility of crispr editing
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VtaW5hcg=='); return false;">Seminar</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2VuZSUyMEVkaXRpbmc='); return false;">Gene Editing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
-
-</div>
-<div class="card-text listing-description delink">
-This log summarizes key insights from the webinar <em>The Future of CRISPR</em>, hosted by <strong>The Scientist</strong> in June 2025.<br>
-Watch the webinar<br>
-In this blog im going talk about Ben…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jun 11, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="U2VtaW5hciUyQ0FJJTIwaW4lMjBCaW9sb2d5" data-listing-date-sort="1747868400000" data-listing-file-modified-sort="1753430167053" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
-<a href="../blog/2025-05-23_AI in Life Sciences.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="../images/blog/seminar.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-AI in Life Sciences: What’s Changing and What’s Holding Us Back
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VtaW5hcg=='); return false;">Seminar</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QUklMjBpbiUyMEJpb2xvZ3k='); return false;">AI in Biology</div>
-
-</div>
-<div class="card-text listing-description delink">
-This log summarizes key insights from the webinar <em>Inside the Minds of Scientists: How AI is Changing Life Science Research</em>, hosted by <strong>Bioinformatics</strong> in May 2025.<br>
-🎥 Watch…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-May 22, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

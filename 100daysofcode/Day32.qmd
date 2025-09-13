@@ -1,0 +1,206 @@
+---
+title: "Day 32: AWS Global Infrastructure and Resilience"
+date: "2025-09-13"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format: html
+toc: true
+code-fold: true
+---
+
+Day 5 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ AWS Global Infrastructure and Climate Pledge  
+  - ✅ AWS Ground Station & Outposts  
+  - ✅ Cloud Architecture Principles (Availability, Scalability, Elasticity, Fault Tolerance, Durability)  
+  - ✅ Disaster Recovery & Business Continuity Planning  
+  - ✅ Practice Exam Review (21 wrong Qs)  
+
+---
+
+# Exam Domains (Weighting)  
+**bold = high frequency in exam**  
+
+- **Cloud Concepts (28%)**  
+  - ✅ Benefits of cloud  
+  - ✅ AWS global infrastructure  
+       - ✅ **Regions**, **Availability Zones (AZs)**, Local Zones, Edge Locations, Wavelength Zones  
+  - ✅ Hybrid solutions (Outposts)  
+  - ⬜ **Shared Responsibility Model**  
+
+- **Security & Compliance (24%)**  
+  - ⬜ IAM basics (Users, Groups, Roles, Policies)  
+  - ⬜ Encryption at rest vs in transit  
+  - ⬜ Compliance programs (HIPAA, GDPR, SOC, ISO)  
+
+- **Technology (36%)**  
+  - ✅ Resilience design principles  
+       - ✅ **High Availability, Scalability, Elasticity, Fault Tolerance, Durability**  
+  - ✅ Disaster Recovery strategies  
+       - ✅ **Backup & Restore, Pilot Light, Warm Standby, Multi-Site Active/Active**  
+  - ✅ AWS Ground Station use cases  
+  - ✅ AWS Outposts (Hybrid Cloud)  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Pricing models (On-Demand, Reserved, Spot)  
+  - ⬜ Cost Management Tools (Budgets, Cost Explorer, Trusted Advisor)  
+  - ⬜ Support plans  
+
+---
+
+
+
+# Notes on AWS Global Infrastructure and Climate Pledge
+
+- Amazon co-founded the **Climate Pledge** → net zero carbon by **2040**.  
+- **Regions** = clusters of Availability Zones.  
+- **AZs** = one or more physical datacenters with independent power/cooling.  
+
+---
+
+# AWS Ground Station
+
+- Fully managed service to **control satellite communications**, process data, and scale operations without building ground stations.  
+- **Use cases**: weather monitoring, surface imaging, communications.  
+
+---
+
+# AWS Outposts
+
+- **AWS-managed hardware rack** delivered to customer premises.  
+- Brings AWS infrastructure and services **on-premises** for low-latency or compliance requirements.  
+- Options:  
+  - **42U rack** (full rack, delivered + installed).  
+  - **1U server** (individual server you can rack).  
+
+---
+
+# Cloud Architecture Principles
+
+- **High Availability** → no single point of failure, distribute with ELB.  
+- **High Scalability** → vertical (bigger server) vs horizontal (more servers).  
+- **High Elasticity** → auto-scale capacity up/down with demand (ASG).  
+- **High Fault Tolerance** → tolerate failures (e.g., RDS Multi-AZ).  
+- **High Durability** → protect data from loss (backups, replication, CloudEndure DR).  
+
+---
+
+# Business Continuity & Disaster Recovery
+
+- **BCP** = plan to keep operating during unplanned disruption.  
+- Disaster recovery strategies (in order of increasing cost/reduced downtime):  
+  - **Backup & Restore** → hours.  
+  - **Pilot Light** → ~10 mins, minimal services pre-running.  
+  - **Warm Standby** → scaled-down copy running, minutes to switch.  
+  - **Multi-Site Active/Active** → fully scaled duplicate, real-time failover.  
+
+---
+
+#  Practice Exam Wrong Questions – Review  
+
+**1. Terminated EC2 instances**  
+- Correct: **B. CloudTrail**  
+- CloudTrail records all API calls (who did what).  
+ Rule: “Who did what?” → CloudTrail.  
+
+**2. Consolidated billing & Reserved Instances**  
+- Correct: **B. All accounts share RI discounts**  
+- Discounts flow across all linked accounts.  
+
+**3. AWS Snowball provides (2 answers)**  
+- Correct: **A. Local compute, E. Secure transfer**  
+- Snowball = petabyte-scale, not exabyte (that’s Snowmobile).  
+
+**4. Enterprise Support billing guidance**  
+- Correct: **B. Support Concierge**  
+- Concierge = account/billing experts for Enterprise plan.  
+
+**5. Migrating Oracle DB with minimal downtime**  
+- Correct: **B. Database Migration Service (DMS)**  
+- DMS = low-downtime live DB replication.  
+
+**6. Keeping EBS data safe (2 answers)**  
+- Correct: **B. Snapshots, C. Encrypt at rest**  
+- Backups + encryption are best practice.  
+
+**7. Elasticity principle**  
+- Correct: **D. Auto-provisioning resources on demand**  
+- Elastic = auto stretch/shrink capacity.  
+
+**8. Not a cloud model**  
+- Correct: **D. Networking as a Service (NaaS)**  
+- Only IaaS, PaaS, SaaS are standard.  
+
+**9. Storing rarely accessed legal videos**  
+- Correct: **C. Glacier Deep Archive**  
+- Cheapest long-term cold storage.  
+
+**10. DDoS protection (2 answers)**  
+- Correct: **A. AWS Shield, D. AWS WAF**  
+- Shield = infra DDoS protection, WAF = filters malicious traffic.  
+
+**11. Fastest data retrieval for web app**  
+- Correct: **D. ElastiCache**  
+- In-memory caching beats EBS/DB.  
+
+**12. Global CDN service**  
+- Correct: **D. CloudFront**  
+- CloudFront = AWS CDN, global PoPs.  
+
+**13. AWS-Managed Services (2 answers)**  
+- Correct: **B. DynamoDB, C. EMR**  
+- Fully managed, AWS handles ops.  
+
+**14. IAM CLI authentication**  
+- Correct: **A. Access keys**  
+- CLI uses access key ID + secret key.  
+
+**15. Shared controls (2 answers)**  
+- Correct: **A. Patch Management, D. Config Management**  
+- AWS = infra, customer = IAM/VPC, shared = patch/config.  
+
+**16. Avoiding Single Point of Failure (2 answers)**  
+- Correct: **A. ELB, B. Auto Scaling**  
+- ELB distributes traffic, Auto Scaling replaces failed instances.  
+
+**17. DB backups for two-tier web app**  
+- Correct: **B. Amazon Aurora**  
+- Aurora automates backups.  
+
+**18. Shared Responsibility – AWS role**  
+- Correct: **B. Configuring infrastructure devices**  
+- AWS manages physical infra.  
+
+**19. Non-benefits of S3 (2 answers)**  
+- Correct: **B. Run apps, D. Manual scaling**  
+- S3 = storage only, scaling is auto.  
+
+**20. Quick deployment of IBM MQ**  
+- Correct: **C. AWS Quick Start**  
+- Pre-built templates for rapid deployment.  
+
+**21. Flexible Reserved Instance type**  
+- Correct: **D. Convertible RI**  
+- Convertible = exchange to different instance family.  
+
+---
+
+#  Score  
+
+- Total questions = 50  
+- Wrong = 21  
+- Correct = 29  
+- **Score = 58%**  
+
+---
+
+# Key Takeaways
+- **CloudTrail** = “who did what” logs.  
+- **RI discounts** share across linked accounts.  
+- **Snowball** = petabyte-scale data transfer, not exabyte.  
+- **Glacier Deep Archive** = cheapest long-term storage.  
+- **Shield + WAF** = DDoS protection stack.  
+- **ElastiCache** = fastest retrieval.  
+- **DynamoDB & EMR** = fully AWS-managed.  
+- **Convertible RIs** = flexibility to exchange instance types.  
+- Focus: Shared responsibility, managed services, storage tiers, cost optimisation.  

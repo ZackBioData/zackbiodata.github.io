@@ -1,0 +1,127 @@
+---
+title: "Day 30: Benefits of Cloud & Global Infrastructure"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: 2025-08-30
+categories: [AWS, Cloud, Certification, Study Log]
+image: ../images/100daysofcode/aws.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 3 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ Benefits of cloud computing  
+  - ✅ AWS Global Infrastructure (Regions, AZs, Local Zones)  
+
+---
+
+# Exam Domains (Weighting)  
+**bold = high frequency in exam**  
+
+- **Cloud Concepts (28%)**  
+  - ✅ Evolution of computing (Dedicated → VM → Containers → Serverless)  
+  - ✅ Service models: IaaS, PaaS, SaaS  
+  - ✅ Benefits of cloud  
+       - ✅ **Agility**, **Pay-as-you-go**, **Economy of scale**, **Global reach**, **Security**, **Reliability**, **High availability**, **Scalability**, **Elasticity**, **Fault tolerance**, **Disaster recovery**  
+  - ✅ AWS global infrastructure  
+       - ✅ **Regions**, **Availability Zones (AZs)**, Local Zones, Edge Locations  
+  - ⬜ **Shared Responsibility Model (overview)**  
+
+- **Security & Compliance (24%)**  
+  - ⬜ **Identity & Access Management (IAM)**  
+       - ⬜ **Users, Groups, Roles, Policies**, **MFA (Multi-Factor Authentication)**  
+  - ⬜ Encryption basics  
+       - ⬜ **KMS (Key Management Service)**, **S3 Server-Side Encryption (SSE)**, Encryption in transit vs at rest  
+  - ⬜ Compliance programs  
+       - ⬜ HIPAA, **GDPR**, SOC, ISO, PCI-DSS  
+  - ⬜ **Shared Responsibility Model (detailed)**  
+
+- **Technology (36%)**  
+  - ✅ Compute models  
+       - ✅ **EC2 (VMs)**, **Containers (ECS/EKS)**, **Serverless (Lambda)**  
+  - ✅ Deployment models  
+       - ✅ **Public Cloud**, Private Cloud, **Hybrid Cloud**, Cross-Cloud  
+  - ⬜ Storage  
+       - ⬜ **S3 (storage classes, lifecycle, versioning)**, EBS, EFS, Glacier  
+  - ⬜ Databases  
+       - ⬜ **RDS (SQL)**, **DynamoDB (NoSQL)**, Aurora basics  
+  - ⬜ Networking  
+       - ⬜ **VPC basics**, Subnets, **Security Groups vs NACLs**, VPN vs Direct Connect  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Pricing models  
+       - ⬜ **On-Demand**, **Reserved**, **Spot**, Dedicated Hosts  
+  - ⬜ Free Tier  
+  - ⬜ Cost Management Tools  
+       - ⬜ **AWS Pricing Calculator**, **Cost Explorer**, Budgets, Trusted Advisor  
+  - ⬜ Support plans  
+       - ⬜ Basic, Developer, **Business**, **Enterprise**  
+
+---
+
+# Benefits of Cloud Computing
+
+### Agility  
+- Quickly deploy, test, and iterate on new ideas.  
+
+### Pay-as-you-go  
+- No upfront cost, pay only for what you use.  
+- Stop guessing capacity — scale up/down as needed.  
+
+### Economy of Scale  
+- Shared resources reduce overall cost.  
+
+### Global Reach  
+- Access AWS services anywhere in the world.  
+
+### Security  
+- Built-in security features + compliance support.  
+
+### Reliability  
+- Consistent performance across infrastructure.  
+
+### High Availability  
+- Services designed to run across multiple AZs.  
+
+### Scalability  
+- Add/remove resources to meet demand.  
+
+### Elasticity  
+- Automate scaling during spikes and drops.  
+
+### Fault Tolerance  
+- Systems designed to continue operating when components fail.  
+
+### Disaster Recovery  
+- Backup, restore, and multi-region recovery solutions.  
+
+---
+
+# AWS Global Infrastructure
+
+AWS global infrastructure = **network of physical data centers** designed for scalability, availability, and resilience.  
+
+### Components  
+- **Regions**: Geographically distinct clusters of data centers.  
+- **Availability Zones (AZs)**: One or more isolated data centers within a region.  
+- **Local Zones**: Closer to end-users for low-latency workloads.  
+- **Edge Locations**: Support caching (CloudFront).  
+
+---
+
+# Regions
+
+- Geographically distinct locations with **one or more AZs**.  
+- Each region is **physically isolated** with its own power and water supply.  
+- **Pricing**: Cost of services varies by region.  
+- **Regulations**: Each region has its own compliance requirements.  
+- **Performance**: Latency varies by region for end-users.  
+
+---
+
+# Key Takeaways
+- Cloud benefits = **agility, scalability, elasticity, pay-as-you-go, global reach, reliability, security, fault tolerance, disaster recovery.**  
+- AWS global infrastructure = **Regions, AZs, Local Zones, Edge Locations**, designed for high availability and compliance.  
+- Regions are physically isolated, but connected through AWS’s global backbone for resilience and performance.  

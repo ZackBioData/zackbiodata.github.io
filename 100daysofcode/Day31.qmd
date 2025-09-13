@@ -1,0 +1,158 @@
+---
+title: "Day 31: AWS Availability Zones & Global Network"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: 2025-08-31
+categories: [AWS, Cloud, Certification, Study Log]
+image: ../images/100daysofcode/aws.png
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 4 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ Availability Zones and Fault Domains  
+  - ✅ AWS Global Network (Edge, PoPs, Local/Wavelength Zones)  
+  - ✅ Data Residency & Sovereignty  
+  - ✅ AWS GovCloud and China regions  
+
+---
+
+# Exam Domains (Weighting)  
+**bold = high frequency in exam**  
+
+- **Cloud Concepts (28%)**  
+  - ✅ Evolution of computing (Dedicated → VM → Containers → Serverless)  
+  - ✅ Service models: IaaS, PaaS, SaaS  
+  - ✅ Benefits of cloud  
+  - ✅ AWS global infrastructure  
+       - ✅ **Regions**, **Availability Zones (AZs)**, Local Zones, Edge Locations, Wavelength Zones  
+  - ⬜ **Shared Responsibility Model (overview)**  
+
+- **Security & Compliance (24%)**  
+  - ⬜ **Identity & Access Management (IAM)**  
+       - ⬜ **Users, Groups, Roles, Policies**, **MFA (Multi-Factor Authentication)**  
+  - ⬜ Encryption basics  
+       - ⬜ **KMS (Key Management Service)**, **S3 Server-Side Encryption (SSE)**, Encryption in transit vs at rest  
+  - ⬜ Compliance programs  
+       - ⬜ HIPAA, **GDPR**, SOC, ISO, PCI-DSS  
+  - ⬜ **Shared Responsibility Model (detailed)**  
+
+- **Technology (36%)**  
+  - ✅ Compute models  
+       - ✅ **EC2 (VMs)**, **Containers (ECS/EKS)**, **Serverless (Lambda)**  
+  - ✅ Deployment models  
+       - ✅ **Public Cloud**, Private Cloud, **Hybrid Cloud**, Cross-Cloud  
+  - ✅ Availability & Fault Tolerance  
+       - ✅ **Availability Zones**, Subnets, Fault Domains  
+  - ⬜ Storage  
+       - ⬜ **S3**, EBS, EFS, Glacier  
+  - ⬜ Databases  
+       - ⬜ **RDS (SQL)**, **DynamoDB (NoSQL)**, Aurora basics  
+  - ⬜ Networking  
+       - ⬜ **VPC basics**, **Security Groups vs NACLs**, VPN vs Direct Connect  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Pricing models  
+       - ⬜ **On-Demand**, **Reserved**, **Spot**, Dedicated Hosts  
+  - ⬜ Free Tier  
+  - ⬜ Cost Management Tools  
+       - ⬜ **AWS Pricing Calculator**, **Cost Explorer**, Budgets, Trusted Advisor  
+  - ⬜ Support plans  
+       - ⬜ Basic, Developer, **Business**, **Enterprise**  
+
+---
+
+# Availability Zones (AZs)
+
+- **AZ = one or more data centers** in a **secured building** with hundreds of thousands of servers.  
+- A **region** typically contains **3 AZs**.  
+- AZs are **physically isolated** (different buildings, power, cooling) but **close enough** for low-latency communication.  
+- Best practice: run workloads across **≥3 AZs** for **high uptime**.  
+- **Subnets** are tied to an AZ → when you create a VM (EC2 instance), it is associated with a subnet within that AZ.  
+
+---
+
+# Fault Tolerance & Fault Domains
+
+- **Fault tolerance** = system’s ability to continue operating despite component failures.  
+- **Fault domain**: A logical boundary that limits the impact of failures.  
+  - Example: contamination zone analogy.  
+  - In **Azure**: you define fault domains manually.  
+  - In **AWS**: handled automatically.  
+- AWS mapping:  
+  - **Region = fault level**.  
+  - **AZ = fault domain**.  
+
+---
+
+# AWS Global Network
+
+- AWS global backbone infrastructure = connects all regions worldwide.  
+- Supports low-latency communication and high availability.  
+
+### Edge Locations  
+- Used for **CloudFront CDN caching** and **AWS Global Accelerator**.  
+- Improves latency by routing user requests to the nearest PoP.  
+
+### Points of Presence (PoPs)  
+- Intermediate network locations between AWS data centers and users.  
+- Two types:  
+  - **Edge Locations**: cache popular content.  
+  - **Regional Edge Caches**: hold larger and less frequently accessed content.  
+
+### Local Zones  
+- Data centers placed **close to major population centers**.  
+- Provide **low ms latency** for workloads (gaming, video, AR/VR).  
+- Must request access via AWS Support.  
+
+### Wavelength Zones  
+- Provide **edge computing** for **5G networks**.  
+- Enables ultra-low latency for mobile applications.  
+- AWS partnerships: Vodafone, Verizon, SK Telecom.  
+- Architecture: AWS Cloud ↔ 5G Tower ↔ End User Device.  
+
+---
+
+# Data Residency & Sovereignty
+
+- **Data residency** = physical/geographic location where resources or data are stored.  
+- **Compliance boundaries** = regulatory restrictions on where data can reside.  
+- **Data sovereignty** = legal jurisdiction or authority that governs data.  
+- Example: EU GDPR vs US HIPAA requirements.  
+
+---
+
+# AWS Outposts
+
+- Physical **rack of AWS servers** installed **on-premises** at customer sites.  
+- Provides AWS services locally while remaining managed by AWS.  
+- Supports workloads needing **low latency** or **data residency compliance**.  
+- **AWS Config** can enforce compliance rules (e.g., explicit IAM policies to restrict region access).  
+
+---
+
+# AWS for Government
+
+### Public Sector  
+- Includes: military, law enforcement, healthcare, public education, transportation.  
+- Must meet strict **regulatory compliance standards**.  
+
+### GovCloud (US)  
+- **Isolated AWS regions** designed for sensitive government workloads.  
+- Supports **FedRAMP** compliance.  
+- Accessible only to vetted US government customers and contractors.  
+
+### AWS in China  
+- Operates as **isolated service regions**.  
+- Cannot connect directly to the **global AWS network**.  
+- Complies with local regulatory requirements.  
+
+---
+
+# Key Takeaways
+- **Availability Zones = fault domains**, designed for high availability and low latency.  
+- **Global Network** includes Edge Locations, Regional Edge Caches, Local Zones, and Wavelength Zones.  
+- **Data residency and sovereignty** are crucial for compliance.  
+- **Outposts** and **GovCloud/China regions** provide specialised solutions for regulated workloads.  

@@ -3,7 +3,7 @@ title: "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)"
 subtitle: "Edit Distance and Global Alignment with a bottom-right → top-left DP"
 date: 2025-08-25
 categories: [Rosalind, Bioinformatics, Dynamic Programming, Biopython]
-image: ../images/100daysofcode/rosilind.png
+image: ../images/100daysofcode/rosiland.png
 format:
   html:
     toc: true

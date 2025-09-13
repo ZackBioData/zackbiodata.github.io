@@ -1,0 +1,47 @@
+---
+title: "Role of m6A and METTL3 in Neuroblastoma: TERRA, MYCN, and Therapeutic Implications"
+subtitle: "Notes from Webinar on RNA Modifications in Cancer"
+image: ../images/blog/seminar.png
+categories: [Neuroblastoma, RNA Modifications, m6A, METTL3, MYCN, Learning Log]
+date: 2025-08-26
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# Background
+
+- **TERRA (Telomeric Repeat-containing RNA)**  
+  - Undergoes altered **m⁶A modification**.  
+  - Localised specifically to **telomeres**.  
+  - Functions in maintaining telomere integrity.  
+
+- **m⁶A methylation and METTL3**  
+  - METTL3 is essential for **telomere maintenance in ALT⁺ cells**.  
+  - Required for **neuroblastoma growth** in models where alternative lengthening of telomeres is active.  
+  - Also implicated in repressing **HOX gene expression**, linking epitranscriptomic control to developmental programs.  
+
+# MYCN and High-Risk Neuroblastoma
+
+- **MYCN amplification (MNA)** is a hallmark of **high-risk neuroblastoma**.  
+- MYCN expression is regulated by **m⁶A-dependent mechanisms**.  
+- METTL3 activity supports MYCN-driven oncogenesis.  
+
+# Therapeutic Angle
+
+- Inhibition of **METTL3**, particularly in combination with MYCN targeting, may offer a promising approach in **MNA high-risk neuroblastoma**.  
+- This highlights the METTL3–MYCN axis as a potential **synthetic vulnerability**.  
+
+# Open Question
+
+> Is **MYCN expression** constant across branching cell lineages, or does it vary depending on its **genomic locus**?
+
+Understanding this will clarify whether MYCN dependence is uniform across tumour subclones, or context-specific, which has major implications for therapeutic targeting.
+
+# Key Takeaways
+
+- TERRA is m⁶A-modified and localised at telomeres.  
+- METTL3 is essential in ALT⁺ neuroblastoma for growth and telomere stability.  
+- METTL3 represses HOX genes and supports MYCN expression.  
+- Combining METTL3 inhibition with MYCN-directed therapy could be effective against MNA high-risk neuroblastoma.  

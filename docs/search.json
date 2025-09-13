@@ -70,151 +70,200 @@
     "text": "Recent Posts"
   },
   {
-    "objectID": "blog/C5Biopython.html",
-    "href": "blog/C5Biopython.html",
+    "objectID": "blog/C6Biopython.html",
+    "href": "blog/C6Biopython.html",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
   },
   {
-    "objectID": "blog/C5Biopython.html#introduction",
-    "href": "blog/C5Biopython.html#introduction",
+    "objectID": "blog/C6Biopython.html#introduction",
+    "href": "blog/C6Biopython.html#introduction",
     "title": "Reading the Official Biopython Documentation",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
   },
   {
-    "objectID": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
-    "href": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "objectID": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
+    "href": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
     "title": "Reading the Official Biopython Documentation",
+    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
+    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
+  },
+  {
+    "objectID": "blog/C4Biopython.html",
+    "href": "blog/C4Biopython.html",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#introduction",
+    "href": "blog/C4Biopython.html#introduction",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
+  },
+  {
+    "objectID": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "href": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
+    "title": "Reading C4 of the Official Biopython Documentation",
+    "section": "Chapter 4 – Sequence Records (SeqRecord)",
+    "text": "Chapter 4 – Sequence Records (SeqRecord)\nyou can interact with meta data using\nfrom Bio.SeqRecord import SeqRecord\n\nsimple_seq_r.id = \"AC12345\"\nsimple_seq_r.description = \"Made up sequence I wish I could write a paper about\"\nprint(simple_seq_r.description)\nannotations. is used for any miscellaneous annotations\nfrom Bio import SeqIO record = SeqIO.read(“NC_005816.fna”, “fasta”) record.description ‘gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence’\nfeature positions within biopython have a few options,\n\nExactPosition as described\nBeforePosition a range of bases before a feature\nWithinPosition between two specified nucleotides\nOneOfPosition one of 2 exact positions\nUnknownPosition as described\n\nLocation testing for SNPs\nfrom Bio import SeqIO\nmy_snp = 4350\nrecord = SeqIO.read(\"NC_005816.gb\", \"genbank\")\nfor feature in record.features:\n    if my_snp in feature:\n        print(\"%s %s\" % (feature.type, feature.qualifiers.get(\"db_xref\")))\n\nsource ['taxon:229193']\ngene ['GeneID:2767712']\nCDS ['GI:45478716', 'GeneID:2767712']\nfrom Bio.Seq import Seq from Bio.SeqRecord import SeqRecord record = SeqRecord( Seq( “MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD” “GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK” “NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM” “SSAC” ), id=“gi|14150838|gb|AAK54648.1|AF376133_1”, description=“chalcone synthase [Cucumis sativus]”, ) print(record.format(“fasta”))"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html",
+    "href": "blog/2025-07-24_biopython-reading.html",
+    "title": "Reading C3 of the official Biopython documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 3 — covering the core functionality of working with sequences using Biopython."
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#introduction",
+    "href": "blog/2025-07-24_biopython-reading.html#introduction",
+    "title": "Reading C3 of the official Biopython documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 3 — covering the core functionality of working with sequences using Biopython."
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
+    "title": "Reading C3 of the official Biopython documentation",
+    "section": "Chapter 3 – Working with Sequences (Seq)",
+    "text": "Chapter 3 – Working with Sequences (Seq)\nI used this code on day 3 Rosiland problems, link here\ndef reverse_complement(seq):\n    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}\n    return ''.join(complement[base] for base in reversed(seq))\ninstead i could have used built in biopython function\nprint(s.reverse_complement()) \nBio.SeqUtils has many built in functions such as GC%.\nYou can set reading frames with my_seq[0::3] every 3rd base starting at 0 codon frame 1\nTwo Seq objects can be concatenated by adding them:\nfrom Bio.Seq import Seq\nlist_of_seqs = [Seq(\"ACGT\"), Seq(\"AACC\"), Seq(\"GGTT\")]\nconcatenated = Seq(\"\")\nfor s in list_of_seqs:\n    concatenated += s\n\nconcatenated\nSeq('ACGTAACCGGTT')\nalternatively\nspacer.join(contigs)\nTo make a seq mutable\nfrom Bio.Seq import MutableSeq\nmutable_seq = MutableSeq(my_seq)\nmutable_seq\nMutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')\nAn easy way to search a sequence\nfor index, sub in seq.search([\"CC\", \"GGG\", \"CC\"]):\n    print(index, sub)\n\n1 CC\n11 GGG\n14 CC\n23 GGG\n28 CC\n29 CC"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
+    "title": "Reading C3 of the official Biopython documentation",
+    "section": "Chapter 4 – Sequence Records (SeqRecord)",
+    "text": "Chapter 4 – Sequence Records (SeqRecord)"
+  },
+  {
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
+    "title": "Reading C3 of the official Biopython documentation",
     "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
-    "text": "Chapter 5 – Sequence Input/Output (SeqIO)\nrecord_iterator = SeqIO.parse(\"ls_orchid.gbk\", \"genbank\")\nfirst_record = next(record_iterator)\nprint(first_record)\nPython supports negative indexing for lists: 0 first element -1 last element -2 second-to-last\nalso useful\nfrom Bio import SeqIO record_iterator = SeqIO.parse(“ls_orchid.gbk”, “genbank”) first_record = next(record_iterator) print(first_record)"
+    "text": "Chapter 5 – Sequence Input/Output (SeqIO)"
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html",
-    "href": "blog/2025-06-11_Crispr.html",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
+    "href": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
+    "title": "Reading C3 of the official Biopython documentation",
+    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
+    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
+  },
+  {
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html",
+    "href": "blog/2025-05-23_AI in Life Sciences.html",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
     "section": "",
-    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html#about",
-    "href": "blog/2025-06-11_Crispr.html#about",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#about",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
     "section": "",
-    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
+    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html#background",
-    "href": "blog/2025-06-11_Crispr.html#background",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Background",
-    "text": "Background\n\nCas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands\nCas9 can only bind and cut DNA at sites adjacent to a PAM sequence.\nWild-type enzymes are naturally occurring enzymes"
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Key Trends",
+    "text": "Key Trends\n\nAI is moving from discovery to development.\nAI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.\nPharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making)."
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
-    "href": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "What they created https://pammla.streamlit.app/",
-    "text": "What they created https://pammla.streamlit.app/\n\nPAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.\nThey trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS\nThey then Sequenced the specific domains, And expressed its biological activity against each AA sequence.\nThis was the data that PAMmla was trained on."
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "What’s Holding AI Back in Biology?",
+    "text": "What’s Holding AI Back in Biology?\n\nCurrent issues with Ai in biosciences:\n\n\nReproducibility issues — hard to trust models without transparent workflows.\nLearning curve and training — lack of experience with AI was a significant pain point for many users.\n\nThis resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs."
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html#significance",
-    "href": "blog/2025-06-11_Crispr.html#significance",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Significance",
-    "text": "Significance\n\nPAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development."
+    "objectID": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "href": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
+    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "section": "Changes for future adoption",
+    "text": "Changes for future adoption\n\nTransparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.\nTools need to be built with their actual users in mind (biologists)."
   },
   {
-    "objectID": "blog/2025-06-11_Crispr.html#questions",
-    "href": "blog/2025-06-11_Crispr.html#questions",
-    "title": "Engineering to improve the precision and flexibility of crispr editing",
-    "section": "Questions",
-    "text": "Questions\n\nI wonder if this technology could be used within oncology on multiple gene targets to design combinatorial editing strategies."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "100daysofcode/index.html",
+    "href": "100daysofcode/index.html",
+    "title": "100 days of code",
     "section": "",
-    "text": "About this site"
+    "text": "This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 32: AWS Global Infrastructure and Resilience\n\n\n\nAWS\n\nCloud\n\nCertification\n\nStudy Log\n\n\n\n\n\n\n\n\n\n\nSep 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 31: AWS Availability Zones & Global Network\n\n\n\nAWS\n\nCloud\n\nCertification\n\nStudy Log\n\n\n\n\n\n\n\n\n\n\nAug 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 30: Benefits of Cloud & Global Infrastructure\n\n\n\nAWS\n\nCloud\n\nCertification\n\nStudy Log\n\n\n\n\n\n\n\n\n\n\nAug 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 29: Cloud Deployment Models\n\n\n\nAWS\n\nCloud\n\nCertification\n\nStudy Log\n\n\n\n\n\n\n\n\n\n\nAug 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 28: AWS Cloud Concepts\n\n\n\n\n\n\n\n\n\nAug 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)\n\n\n\nRosalind\n\nBioinformatics\n\nDynamic Programming\n\nBiopython\n\n\n\n\n\n\n\n\n\n\nAug 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 26 Rosaland problem — Shortest Common Supersequence\n\n\n\n\n\n\n\n\n\nAug 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 25 Rosalind Problem: LCSQ — Longest Common Subsequence\n\n\n\n\n\n\n\n\n\nAug 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 24: ORF Finder — From GENCODE Transcripts to CSV\n\n\n\nBiopython\n\nFASTA\n\nORF\n\nGENCODE\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 23: Downloading and Extracting GENCODE Transcript FASTA\n\n\n\nBiopython\n\nFASTA\n\nORF\n\nGENCODE\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 20, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 22: SQL Fundamentals for Bioinformatics\n\n\n\nSQL\n\nData Wrangling\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 21: Protein Mass, RNA Translation, GC Content & Hamming Distance\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 19 — Mini Project - Clinvar clustered pairs: extraction and stats\n\n\n\nLeetCode\n\nPython\n\nPandas\n\nBioinformatics\n\nClinVar\n\nBigQuery\n\n\n\n\n\n\n\nZack\n\n\nAug 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 18 — ClinVar clustered variants (SQL → Python → Export)\n\n\n\nSQL\n\nBigQuery\n\nBioinformatics\n\nClinVar\n\nPython\n\n\n\n\n\n\n\n\n\n\nAug 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 17: Setting Up SQL + probability\n\n\n\nSQL\n\nBigQuery\n\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window\n\n\n\nLeetCode\n\nPython\n\nAlgorithms\n\n\n\n\n\n\n\n\n\n\nAug 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr\n\n\n\nLeetCode\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 14: consolidation from 6-10\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering\n\n\n\nRosaland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 12: Mini project\n\n\n\nRMini project\n\nBiopython\n\nPython\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11: consolidation from day 1-10\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Rosalind Problems – Overlap Graphs &\n\n\n\nBiopython\n\nAlgorithm Design\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA\n\n\n\nBiopython\n\nRosiland\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: Rosalind Problems – GC Content & Hamming Distance\n\n\n\nBiopython\n\nSequence Comparison\n\nProbability\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Rosalind Problem – Open Reading Frames\n\n\n\nBiopython\n\nFASTA Parsing\n\nORFs\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: 3 Rosiland problems: FASTA and Biopython\n\n\n\nBiopython\n\nFASTA Parsing\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability\n\n\n\nTranscriptomics\n\nGene Expression\n\nPathway Enrichment\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: 4 simple rosiland problems\n\n\n\nPython\n\n\n\n\n\n\n\n\n\n\nJul 13, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "100daysofcode/Day9.html",
-    "href": "100daysofcode/Day9.html",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "objectID": "100daysofcode/Day8.html",
+    "href": "100daysofcode/Day8.html",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
     "section": "",
-    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
+    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
   },
   {
-    "objectID": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
-    "href": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "objectID": "100daysofcode/Day8.html#problem-1-independent-alleles",
+    "href": "100daysofcode/Day8.html#problem-1-independent-alleles",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
     "section": "",
-    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
+    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
   },
   {
-    "objectID": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
-    "href": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
-    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
-    "section": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)",
-    "text": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)\n\nGiven: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\n\nimport itertools  # for generating permutations and all sign combinations\nimport math\n\n\"\"\" Core analogy: signed permutations are like an onion.\n# - The outer layer is the ordering (permutation) of the numbers.\n# - The inner layers are the signs applied to each position (±) for that ordering.\n# Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.\n\"\"\"\ndef main():\n    n = 3  # length of the base permutation (1..n)\n    numbers = list(range(1, n + 1))  # [1, 2, ..., n]\n    output_path = \"signed_permutations.txt\"  # output file for results\n\n    # Open the file once for writing; the 'with' ensures it closes automatically\n    with open(output_path, \"w\") as f:\n        # Compute total number of signed permutations:\n        # n! permutations times 2^n choices of sign assignments\n        total = math.factorial(n) * (2 ** n)\n        f.write(f\"{total}\\n\")  # write the count on the first line\n\n        # Outer loop: iterate over all orderings of [1..n] (the outer onion layer)\n        for perm in itertools.permutations(numbers):  # all orderings (n! of them)\n            # Inner loop: for each ordering, apply every combination of +/− to each position\n            for sign_choice in itertools.product([1, -1], repeat=n):  # 2^n sign vectors\n                # Apply sign to each element of the permutation (elementwise multiplication)\n                signed_perm = [sign_choice[i] * perm[i] for i in range(n)]\n                # Format the signed permutation: include '+' explicitly for positives\n                line = \" \".join(f\"{'+' if x &gt; 0 else ''}{x}\" for x in signed_perm)\n                f.write(line + \"\\n\")  # write one signed permutation per line\n\n    # Confirmation output to console\n    print(f\"Wrote {total} signed permutations to {output_path}\")\n\n# Immediately invoke main when script runs\nmain()\n\nWhat I learned:\n\nSigned permutations structure: n!x2^n = Total permutations = n! independent sign flips = 2^n\nAnalogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.\nFormatting: Explicitly include “+” for positive values to make orientation clear.\nuse of intertools"
+    "objectID": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
+    "href": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "Problem 2: Finding a Protein Motif",
+    "text": "Problem 2: Finding a Protein Motif\nLocate every occurrence (including overlaps) of the N‑glycosylation motif N{P}[ST]{P} in a set of UniProt sequences.\nMy solution\nfrom Bio import SeqIO\n\ndef get_substrings(s):\n    \"\"\"\n    Generate all possible substrings of the input string s,\n    returning them from longest to shortest.\n\n    Parameters:\n        s (str): The string from which to generate substrings.\n\n    Returns:\n        List[str]: A list of every substring of s, ordered by decreasing length.\n    \"\"\"\n    substrs = []             # Will hold all substrings\n    n = len(s)               # Total length of the string\n\n    # For each possible substring length L from n down to 1\n    for L in range(n, 0, -1):\n        # Slide a window of length L along the string\n        # i goes from 0 up to n - L\n        for i in range(n - L + 1):\n            # Extract the substring of length L starting at i\n            substrs.append(s[i:i + L])\n    return substrs          # Return all substrings, longest first\n\ndef longest_common_substring_bruteforce(records):\n    \"\"\"\n    Find the longest substring common to all sequences in the provided SeqRecord list,\n    using a brute‑force approach.\n\n    \"\"\"\n    # Convert each SeqRecord to a plain Python string\n    seqs = [str(rec.seq) for rec in records]\n\n    # Sort by length so the shortest sequence is first\n    # We only need to generate substrings from the shortest one\n    seqs.sort(key=len)\n    shortest = seqs[0]       # The sequence to pull substrings from\n    others = seqs[1:]        # The rest of the sequences\n\n    # Generate substrings from longest to shortest\n    for sub in get_substrings(shortest):\n        # Check if this substring appears in every other sequence\n        if all(sub in seq for seq in others):\n            return sub       # As soon as one matches all, it's the LCS\n\n    return \"\"  # If no common substring is found (edge case), return empty\n\n\n\n\nif __name__ == \"__main__\":\n    # Parse the FASTA file (make sure the filename matches exactly)\n    records = list(SeqIO.parse(\"rosalind_lcsm (2).fasta\", \"fasta\"))\n\n    # Compute the longest common substring\n    result = longest_common_substring_bruteforce(records)\n\n    # Output the result\n    print(\"Brute‑force LCS:\", result)\n\nWhat I learned:\n\nZero‑width look‑ahead ((?=…)) lets the engine test every offset without skipping—so overlapping motifs (e.g. positions 276 and 278) are both found.\nTranslating PROSITE shorthand (N{P}[ST]{P}) to regex (N[^P][ST][^P]).\nRobust HTTP fetch with raise_for_status() to catch bad accessions early."
   },
   {
-    "objectID": "100daysofcode/Day7.html",
-    "href": "100daysofcode/Day7.html",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "objectID": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
+    "href": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
+    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "section": "Problem 3: Finding a Shared Motif",
+    "text": "Problem 3: Finding a Shared Motif\nIdentify the longest substring common to all sequences in a FASTA file (brute‑force approach).\nMy solution\nimport re\nimport requests\n\"\"\"\n    this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\n\n    \"\"\"\n# Compile the PROSITE motif using a look‑ahead so we catch overlaps\n# (?=(…)) is zero‑width, so the regex engine checks at every position without skipping\nmotif = re.compile(r\"(?=(N[^P][ST][^P]))\")\n\ndef fetch_sequence(accession: str) -&gt; str:\n    \"\"\"\n    Given a UniProt accession (optionally with \"_NAME\" suffix),\n    fetch its protein FASTA from UniProt and return the concatenated sequence.\n    \"\"\"\n    # Strip off anything after the first underscore\n    acc = accession.split(\"_\", 1)[0]\n    url = f\"https://www.uniprot.org/uniprot/{acc}.fasta\"\n    resp = requests.get(url)\n    resp.raise_for_status()\n    lines = resp.text.splitlines()\n    # Skip the header (first line) and join the rest into one sequence string\n    return \"\".join(lines[1:])\n\ndef find_motif_positions(seq: str) -&gt; list[str]:\n    \"\"\"\n    Scan `seq` for the N‑glycosylation motif N{P}[ST]{P},\n    returning all 1‑based start positions (including overlaps).\n    \"\"\"\n    # m.start() is 0‑based, so add 1 for Rosalind’s 1‑based indexing\n    return [str(m.start() + 1) for m in motif.finditer(seq)]\n\ndef main():\n    # Read your list of raw UniProt IDs (one per line) from ids_mprt.txt\n    with open(\"ids_mprt.txt\") as f:\n        raw_ids = [line.strip() for line in f if line.strip()]\n\n    for raw in raw_ids:\n        seq = fetch_sequence(raw)\n        positions = find_motif_positions(seq)\n        if positions:\n            # Print the original raw ID, then the space‑separated positions\n            print(raw)\n            print(\" \".join(positions))\n\nif __name__ == \"__main__\":\n    main()\n\nWhat I learned:\n\nSorting by length ensures we find the longest common substring early and exit."
+  },
+  {
+    "objectID": "100daysofcode/Day6.html",
+    "href": "100daysofcode/Day6.html",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
     "section": "",
-    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
+    "text": "This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA records."
   },
   {
-    "objectID": "100daysofcode/Day7.html#problem-1-overlap-graphs",
-    "href": "100daysofcode/Day7.html#problem-1-overlap-graphs",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "objectID": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
+    "href": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "section": "Problem 1: Mortal Fibonacci Rabbits",
+    "text": "Problem 1: Mortal Fibonacci Rabbits\nSimulated rabbit population growth over 89 months with a fixed lifespan of 18 months.\nmy solution\nn = 89  # Total months\nm = 18  # Lifespan in months\n\ndef mortal_fibonacci(n, m):\n    ages = [1] + [0] * (m - 1) # max array length = m\n\n    for month in range(1, n):\n        new_borns = sum(ages[1:])  # rabbits of age ≥1 can reproduce\n        # Age rabbits: shift right, oldest dies\n        ages = [new_borns] + ages[:-1]\n\n    return sum(ages)\nprint(mortal_fibonacci(n, m))\n\nWhat I learned:\n\nages[1:] ensures only mature rabbits reproduce.\narrays have an interesting usecase due to its max capacity."
+  },
+  {
+    "objectID": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
+    "href": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
+    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "section": "Problem 2: Consensus and Profile",
+    "text": "Problem 2: Consensus and Profile\nGiven multiple DNA sequences in FASTA format, construct a profile matrix showing the count of each base at each position, and build a consensus string using the most frequent base at each position. My solution\nfrom Bio import SeqIO\nfrom collections import Counter, defaultdict\n\nrecords = list(SeqIO.parse(\"rosalind_cons1.fasta\", \"fasta\"))\nfull_dna = list(zip(*[str(record.seq) for record in records]))\n\n\nprofile = {\n    'A': [],\n    'C': [],\n    'G': [],\n    'T': []\n}\n\nfor col in full_dna:\n    counts = Counter(col)\n    for base in \"ACGT\":\n        profile[base].append(counts.get(base, 0))\n\nconsensus = \"\"\nfor i in range(len(full_dna)):\n    max_base = max(\"ACGT\", key=lambda base: profile[base][i])\n    consensus += max_base\n\nprint(consensus)\n\nWhat I learned:\n\nzip(*sequences) is a clean Python trick to transpose a matrix (get columns).\nCounter helps efficiently count nucleotides at each position.\nBuilding a consensus string is just choosing the max-count base per column.\nHandling multi-record FASTA files is smoother using SeqIO.parse()."
+  },
+  {
+    "objectID": "100daysofcode/Day4.html",
+    "href": "100daysofcode/Day4.html",
+    "title": "Day 4: Rosalind Problem – Open Reading Frames",
     "section": "",
-    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
+    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
   },
   {
-    "objectID": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
-    "href": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
-    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
-    "section": "Problem 2: Mortal Fibonacci Rabbits",
-    "text": "Problem 2: Mortal Fibonacci Rabbits\nMy solution\ncounts = [1, 0, 0, 1, 0, 1]\nweights = [1.0, 1.0, 1.0, 0.75, 0.5, 0.0]\n\nexpected_dominant_offspring = sum(2 * count * prob for count, prob in zip(counts, weights))\nprint(expected_dominant_offspring)\n\nWhat I learned:\n\nzip(counts, weights) combines both lists for pairwise computation in the list comprehension."
-  },
-  {
-    "objectID": "100daysofcode/Day5.html",
-    "href": "100daysofcode/Day5.html",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "objectID": "100daysofcode/Day4.html#problem-1-open-reading-frames",
+    "href": "100daysofcode/Day4.html#problem-1-open-reading-frames",
+    "title": "Day 4: Rosalind Problem – Open Reading Frames",
     "section": "",
-    "text": "his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython"
+    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
   },
   {
-    "objectID": "100daysofcode/Day5.html#problem-1-gc-content",
-    "href": "100daysofcode/Day5.html#problem-1-gc-content",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 1: GC Content",
-    "text": "Problem 1: GC Content\nCalculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.\nMy solution\n#https://rosalind.info/problems/gc/\n\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\nfrom Bio.SeqUtils import gc_fraction\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_gc.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\n# Track highest GC content and ID\nmax_gc = 0\nmax_id = \"\"\n# Loop over each record and calculate GC content\nfor record in records:\n    gc = gc_fraction(record.seq) * 100  # get % value\n    if gc &gt; max_gc:\n        max_gc = gc\n        max_id = record.id\n\n# Print results\nprint(max_id)\nprint(f\"{max_gc:.6f}\")\n\nWhat I learned:\n\ngc_fraction from Bio.SeqUtils gives clean GC percentages.\nLooping through SeqIO records helps to process multiple sequences efficiently.\nComparing and tracking values is easy using standard if logic"
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-2-hamming-distance",
-    "href": "100daysofcode/Day5.html#problem-2-hamming-distance",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 2: Hamming Distance",
-    "text": "Problem 2: Hamming Distance\nCompute the number of differing characters between two DNA strings of equal length.\nMy solution\n# https://rosalind.info/problems/hamm/\n\nfrom Bio import SeqIO\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_hamm.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\nfor i in range(len(records)):\n    for j in range(i + 1, len(records)):\n        # Calculate Hamming distance\n        seq1 = records[i].seq\n        seq2 = records[j].seq\n        hamming_distance = sum(el1 != el2 for el1, el2 in zip(seq1, seq2))\n        print(hamming_distance)\n\nWhat I learned:\n\nzip(seq1, seq2) lets you pair corresponding elements.\nThe comparison el1 != el2 returns True for mismatches (which equals 1 when summed).\nsum(...) neatly counts total differences without explicit loops."
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-3-hamming-distance",
-    "href": "100daysofcode/Day5.html#problem-3-hamming-distance",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 3: Hamming Distance",
-    "text": "Problem 3: Hamming Distance\nGiven the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population, compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.\nMy solution\n# https://rosalind.info/problems/iprb/\nAApop = 29\nAapop = 17\naapop = 22\n\ntotalpop = AApop + Aapop + aapop\n\n#                             aA                                          AA                                                 aa                                                   Aa\naaoutcome = ((aapop/totalpop) * ((Aapop)/(totalpop-1))*0.5) + ((Aapop/totalpop) * ((Aapop-1)/(totalpop-1))*0.25) + ((aapop/totalpop) * ((aapop-1)/(totalpop-1))) + ((Aapop/totalpop) * ((aapop)/(totalpop-1))*0.5)\n\n\n\n\nAoutcome = (1 - aaoutcome) * 100\n\n\nprint(f\"{Aoutcome:.2f}% of the offspring will have a dominant allele\")\n\nWhat I learned:\n\nProbability trees help remove errors.\nThe cleanest solution subtracts P(recessive) from 1 to get P(dominant)"
-  },
-  {
-    "objectID": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
-    "href": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
-    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
-    "section": "Problem 3: Rabbits and Recurrence Relations",
-    "text": "Problem 3: Rabbits and Recurrence Relations\nMy solution\nmonths = 36\nlitter_size = 2\n\nprev = 1  # F(n-2)\ncurr = 1  # F(n-1)\n\nfor _ in range(3, months + 1):\n    next_rabbits = curr + litter_size * prev\n    prev, curr = curr, next_rabbits\n\nprint(months, curr)\n#curr = number of pairs last month (F(n−1)).\n#prev = number of pairs two months ago (F(n−2)).\n\nWhat I learned:\n\nClean recurrence: F(n) = F(n−1) + k * F(n−2)."
+    "objectID": "100daysofcode/Day31.html",
+    "href": "100daysofcode/Day31.html",
+    "title": "Day 31: AWS Availability Zones & Global Network",
+    "section": "",
+    "text": "Day 4 of learning AWS for my Cloud Practitioner exam.\nToday I covered:\n- ✅ Availability Zones and Fault Domains\n- ✅ AWS Global Network (Edge, PoPs, Local/Wavelength Zones)\n- ✅ Data Residency & Sovereignty\n- ✅ AWS GovCloud and China regions\n\n\nExam Domains (Weighting)\nbold = high frequency in exam\n\nCloud Concepts (28%)\n\n✅ Evolution of computing (Dedicated → VM → Containers → Serverless)\n\n✅ Service models: IaaS, PaaS, SaaS\n\n✅ Benefits of cloud\n\n✅ AWS global infrastructure\n\n✅ Regions, Availability Zones (AZs), Local Zones, Edge Locations, Wavelength Zones\n\n\n⬜ Shared Responsibility Model (overview)\n\nSecurity & Compliance (24%)\n\n⬜ Identity & Access Management (IAM)\n\n⬜ Users, Groups, Roles, Policies, MFA (Multi-Factor Authentication)\n\n\n⬜ Encryption basics\n\n⬜ KMS (Key Management Service), S3 Server-Side Encryption (SSE), Encryption in transit vs at rest\n\n\n⬜ Compliance programs\n\n⬜ HIPAA, GDPR, SOC, ISO, PCI-DSS\n\n\n⬜ Shared Responsibility Model (detailed)\n\nTechnology (36%)\n\n✅ Compute models\n\n✅ EC2 (VMs), Containers (ECS/EKS), Serverless (Lambda)\n\n\n✅ Deployment models\n\n✅ Public Cloud, Private Cloud, Hybrid Cloud, Cross-Cloud\n\n\n✅ Availability & Fault Tolerance\n\n✅ Availability Zones, Subnets, Fault Domains\n\n\n⬜ Storage\n\n⬜ S3, EBS, EFS, Glacier\n\n\n⬜ Databases\n\n⬜ RDS (SQL), DynamoDB (NoSQL), Aurora basics\n\n\n⬜ Networking\n\n⬜ VPC basics, Security Groups vs NACLs, VPN vs Direct Connect\n\n\nBilling & Pricing (12%)\n\n⬜ Pricing models\n\n⬜ On-Demand, Reserved, Spot, Dedicated Hosts\n\n\n⬜ Free Tier\n\n⬜ Cost Management Tools\n\n⬜ AWS Pricing Calculator, Cost Explorer, Budgets, Trusted Advisor\n\n\n⬜ Support plans\n\n⬜ Basic, Developer, Business, Enterprise\n\n\n\n\n\n\nAvailability Zones (AZs)\n\nAZ = one or more data centers in a secured building with hundreds of thousands of servers.\n\nA region typically contains 3 AZs.\n\nAZs are physically isolated (different buildings, power, cooling) but close enough for low-latency communication.\n\nBest practice: run workloads across ≥3 AZs for high uptime.\n\nSubnets are tied to an AZ → when you create a VM (EC2 instance), it is associated with a subnet within that AZ.\n\n\n\n\nFault Tolerance & Fault Domains\n\nFault tolerance = system’s ability to continue operating despite component failures.\n\nFault domain: A logical boundary that limits the impact of failures.\n\nExample: contamination zone analogy.\n\nIn Azure: you define fault domains manually.\n\nIn AWS: handled automatically.\n\n\nAWS mapping:\n\nRegion = fault level.\n\nAZ = fault domain.\n\n\n\n\n\nAWS Global Network\n\nAWS global backbone infrastructure = connects all regions worldwide.\n\nSupports low-latency communication and high availability.\n\n\nEdge Locations\n\nUsed for CloudFront CDN caching and AWS Global Accelerator.\n\nImproves latency by routing user requests to the nearest PoP.\n\n\n\nPoints of Presence (PoPs)\n\nIntermediate network locations between AWS data centers and users.\n\nTwo types:\n\nEdge Locations: cache popular content.\n\nRegional Edge Caches: hold larger and less frequently accessed content.\n\n\n\n\nLocal Zones\n\nData centers placed close to major population centers.\n\nProvide low ms latency for workloads (gaming, video, AR/VR).\n\nMust request access via AWS Support.\n\n\n\nWavelength Zones\n\nProvide edge computing for 5G networks.\n\nEnables ultra-low latency for mobile applications.\n\nAWS partnerships: Vodafone, Verizon, SK Telecom.\n\nArchitecture: AWS Cloud ↔︎ 5G Tower ↔︎ End User Device.\n\n\n\n\n\nData Residency & Sovereignty\n\nData residency = physical/geographic location where resources or data are stored.\n\nCompliance boundaries = regulatory restrictions on where data can reside.\n\nData sovereignty = legal jurisdiction or authority that governs data.\n\nExample: EU GDPR vs US HIPAA requirements.\n\n\n\n\nAWS Outposts\n\nPhysical rack of AWS servers installed on-premises at customer sites.\n\nProvides AWS services locally while remaining managed by AWS.\n\nSupports workloads needing low latency or data residency compliance.\n\nAWS Config can enforce compliance rules (e.g., explicit IAM policies to restrict region access).\n\n\n\n\nAWS for Government\n\nPublic Sector\n\nIncludes: military, law enforcement, healthcare, public education, transportation.\n\nMust meet strict regulatory compliance standards.\n\n\n\nGovCloud (US)\n\nIsolated AWS regions designed for sensitive government workloads.\n\nSupports FedRAMP compliance.\n\nAccessible only to vetted US government customers and contractors.\n\n\n\nAWS in China\n\nOperates as isolated service regions.\n\nCannot connect directly to the global AWS network.\n\nComplies with local regulatory requirements.\n\n\n\n\n\nKey Takeaways\n\nAvailability Zones = fault domains, designed for high availability and low latency.\n\nGlobal Network includes Edge Locations, Regional Edge Caches, Local Zones, and Wavelength Zones.\n\nData residency and sovereignty are crucial for compliance.\n\nOutposts and GovCloud/China regions provide specialised solutions for regulated workloads."
   },
   {
     "objectID": "100daysofcode/Day3.html",
@@ -800,35 +849,35 @@
   {
     "objectID": "100daysofcode/Day27.html",
     "href": "100daysofcode/Day27.html",
-    "title": "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)",
+    "title": "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)",
     "section": "",
     "text": "EDIT — minimum edit distance only (no alignment string output).\nEDTA — edit distance and one optimal global alignment (with - gaps).\n\nI had to learn Reverse DP as future interactions affect edit choices not past.\nWhy reverse DP? It’s equivalent to the standard forward DP but sometimes simplifies traceback when you prefer to start decisions from (0,0) while having all future costs precomputed in the “south/east” cells."
   },
   {
     "objectID": "100daysofcode/Day27.html#overview",
     "href": "100daysofcode/Day27.html#overview",
-    "title": "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)",
+    "title": "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)",
     "section": "",
     "text": "EDIT — minimum edit distance only (no alignment string output).\nEDTA — edit distance and one optimal global alignment (with - gaps).\n\nI had to learn Reverse DP as future interactions affect edit choices not past.\nWhy reverse DP? It’s equivalent to the standard forward DP but sometimes simplifies traceback when you prefer to start decisions from (0,0) while having all future costs precomputed in the “south/east” cells."
   },
   {
     "objectID": "100daysofcode/Day27.html#edit-edit-distance-reverse-dp-no-alignment",
     "href": "100daysofcode/Day27.html#edit-edit-distance-reverse-dp-no-alignment",
-    "title": "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)",
+    "title": "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)",
     "section": "EDIT — Edit Distance (reverse DP, no alignment)",
     "text": "EDIT — Edit Distance (reverse DP, no alignment)\n# EDIT — reverse DP to compute Levenshtein edit distance only\n# Problem: https://rosalind.info/problems/edit/\n\nfrom Bio import SeqIO\n\n# Input FASTA file with two records\nrecords = list(SeqIO.parse(\"rosalind_edit.fasta\", \"fasta\"))\ns = str(records[0].seq)\nt = str(records[1].seq)\n\nm, n = len(s), len(t)\n\n# DP table: dp[i][j] = min cost to convert s[i:] -&gt; t[j:]\n\ndp = [[0] * (n + 1) for _ in range(m + 1)]\n\n# Initialize outer boundary for reverse DP (base cases)\n\nfor j in range(n + 1):\n    dp[m][j] = n - j\n\n# Rightmost column: converting s[i:] to empty t[n:] needs (m - i) deletions\nfor i in range(m + 1):\n    dp[i][n] = m - i\n\n# Fill from bottom-right to top-left\nfor i in range(m - 1, -1, -1):\n    for j in range(n - 1, -1, -1):\n        cost = 0 if s[i] == t[j] else 1\n        dp[i][j] = min(\n            dp[i + 1][j] + 1,        # delete s[i]\n            dp[i][j + 1] + 1,        # insert t[j]\n            dp[i + 1][j + 1] + cost  # substitute (or match)\n        )\n\nprint(dp[0][0])  # minimum edit distance\n\nHow it works (EDIT)\n\nState: dp[i][j] stores the minimal cost to transform suffix s[i:] into t[j:].\nTransition: Choose the cheapest among delete, insert, substitute/match.\nAnswer: dp[0][0]."
   },
   {
     "objectID": "100daysofcode/Day27.html#edta-edit-distance-and-global-alignment-reverse-dp-traceback",
     "href": "100daysofcode/Day27.html#edta-edit-distance-and-global-alignment-reverse-dp-traceback",
-    "title": "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)",
+    "title": "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)",
     "section": "EDTA — Edit Distance and Global Alignment (reverse DP + traceback)",
     "text": "EDTA — Edit Distance and Global Alignment (reverse DP + traceback)\n\nNote\nThis builds on edit distance by adding a traceback loop on top the build DP structure, using 2 unique arrays for each i and j to tally deletions and insertions as -.\n# Problem: https://rosalind.info/problems/edta/\n\nfrom Bio import SeqIO\n\n# Read input (two FASTA records)\nrecords = list(SeqIO.parse(\"rosalind_edta.fasta\", \"fasta\"))\ns = str(records[0].seq)\nt = str(records[1].seq)\n\nm, n = len(s), len(t)\n\n# dp[i][j] = min cost to convert s[i:] -&gt; t[j:]\ndp = [[0] * (n + 1) for _ in range(m + 1)]\n\n# Initialize boundaries for reverse DP\nfor j in range(n + 1):\n    dp[m][j] = n - j        # empty s to t[j:] needs inserts\nfor i in range(m + 1):\n    dp[i][n] = m - i        # s[i:] to empty t needs deletes\n\n# Fill bottom-right -&gt; top-left\nfor i in range(m - 1, -1, -1):\n    for j in range(n - 1, -1, -1):\n        cost = 0 if s[i] == t[j] else 1\n        dp[i][j] = min(\n            dp[i + 1][j] + 1,        # delete s[i]\n            dp[i][j + 1] + 1,        # insert t[j]\n            dp[i + 1][j + 1] + cost  # substitute (or match)\n        )\n\n# Distance\nprint(dp[0][0])\n\n# Traceback to build one optimal alignment\ni, j = 0, 0\naln_s, aln_t = [], []\n\nwhile i &lt; m or j &lt; n:\n    # Prefer diagonal when it matches the optimal cost\n    if i &lt; m and j &lt; n and dp[i][j] == dp[i + 1][j + 1] + (0 if s[i] == t[j] else 1):\n        aln_s.append(s[i])\n        aln_t.append(t[j])\n        i += 1\n        j += 1\n    # Otherwise, delete from s (move down)\n    elif i &lt; m and dp[i][j] == dp[i + 1][j] + 1:\n        aln_s.append(s[i])\n        aln_t.append('-')\n        i += 1\n    # Otherwise, insert t[j] (move right)\n    else:\n        aln_s.append('-')\n        aln_t.append(t[j])\n        j += 1\n\naln_s = ''.join(aln_s)\naln_t = ''.join(aln_t)\n\nprint(aln_s)\nprint(aln_t)\n\n\nTraceback rules\nAt each (i, j) we choose the move consistent with the optimal value stored at dp[i][j]:\n\nDiagonal (match/substitute): if dp[i][j] == dp[i+1][j+1] + (0 or 1).\nDelete (from s): if dp[i][j] == dp[i+1][j] + 1 → alignment gets (s[i], '-').\nInsert (into s): if dp[i][j] == dp[i][j+1] + 1 → alignment gets ('-', t[j]).\n\nThe implemented tie-breaker prefers diagonal, then delete, then insert, which yields one optimal alignment (others may exist with equal cost)."
   },
   {
     "objectID": "100daysofcode/Day27.html#what-i-learned",
     "href": "100daysofcode/Day27.html#what-i-learned",
-    "title": "Rosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)",
+    "title": "Day 27 Rosaand problems — Reverse Dynamic Programming (Reverse DP)",
     "section": "What I Learned",
     "text": "What I Learned\n-Reverse DP actually makes a lot of sense once I got used to it — you’re filling the table starting from the “end state” (empty suffixes) and then working back toward the start. It felt weird at first but the traceback becomes pretty natural.\n-Initializing the last row/col was a good reminder that these boundaries represent “how many edits it takes if one string is already finished.”\n-The traceback rules clicked once I saw how each move (diagonal / delete / insert) is tied directly to which DP transition gave the optimal score.\n-There can be multiple optimal alignments, and which one you get depends on how you break ties. My code leans toward diagonal first, which feels intuitive (match/substitute &gt; delete &gt; insert).\n-Doing both EDIT (just distance) and EDTA (distance + alignment) side by side really helped me connect how edit distance alone is just the “score,” and EDTA shows you the actual path of edits as an alignment.\n-Overall: building the whole thing from scratch gave me way more confidence in DP logic than just memorizing the recurrence formula."
   },
@@ -840,193 +889,172 @@
     "text": "Day 2 of learning AWS for my Cloud Practitioner exam.\nToday I covered:\n- ✅ Deployment models: Public, Private, Hybrid, Cross-Cloud\n- ✅ AWS account setup basics (root/IAM, billing support)\n- ✅ Innovation waves & burning platform concepts\n- ✅ Evolution of computing (general → GPU → quantum)\n\n\nExam Domains (Weighting)\nbold = high frequency in exam\n\nCloud Concepts (28%)\n\n✅ Evolution of computing (Dedicated → VM → Containers → Serverless)\n\n✅ Service models: IaaS, PaaS, SaaS\n\n✅ Deployment models: Public Cloud, Private Cloud, Hybrid Cloud, Cross-Cloud\n\n⬜ Benefits of cloud\n\n⬜ Elasticity, Scalability, Agility, Pay-as-you-go\n\n\n⬜ AWS global infrastructure\n\n⬜ Regions, Availability Zones (AZs), Edge Locations, Local Zones\n\n\n⬜ Shared Responsibility Model (overview)\n\nSecurity & Compliance (24%)\n\n⬜ Identity & Access Management (IAM)\n\n⬜ Users, Groups, Roles, Policies, MFA (Multi-Factor Authentication)\n\n\n⬜ Encryption basics\n\n⬜ KMS (Key Management Service), S3 Server-Side Encryption (SSE), Encryption in transit vs at rest\n\n\n⬜ Compliance programs\n\n⬜ HIPAA, GDPR, SOC, ISO, PCI-DSS\n\n\n⬜ Shared Responsibility Model (detailed)\n\nTechnology (36%)\n\n✅ Compute models\n\n✅ EC2 (VMs), Containers (ECS/EKS), Serverless (Lambda)\n\n\n✅ Deployment models\n\n✅ Public Cloud, Private Cloud, Hybrid Cloud, Cross-Cloud\n\n\n⬜ Storage\n\n⬜ S3 (storage classes, lifecycle, versioning), EBS, EFS, Glacier\n\n\n⬜ Databases\n\n⬜ RDS (SQL), DynamoDB (NoSQL), Aurora basics\n\n\n⬜ Networking\n\n⬜ VPC basics, Subnets, Security Groups vs NACLs, VPN vs Direct Connect\n\n\nBilling & Pricing (12%)\n\n⬜ Pricing models\n\n⬜ On-Demand, Reserved, Spot, Dedicated Hosts\n\n\n⬜ Free Tier\n\n⬜ Cost Management Tools\n\n⬜ AWS Pricing Calculator, Cost Explorer, Budgets, Trusted Advisor\n\n\n⬜ Support plans\n\n⬜ Basic, Developer, Business, Enterprise\n\n\n\n\n\n\nDeployment Models\n\nPublic Cloud\n\nAll workloads/projects hosted on a cloud service provider (CSP) such as AWS.\n\nCloud-native model: infrastructure fully managed in the provider’s environment.\n\nExamples: startups, SaaS products (Dropbox, etc.).\n\nNetworking: typically mix of public + private subnets within AWS VPC.\n\n\n\n\nPrivate Cloud\n\nInfrastructure hosted on-premises (datacenter owned by organisation).\n\nCan be managed using OpenStack or similar.\n\nSuitable for sensitive workloads:\n\nHospitals (patient data).\n\nGovernment (classified systems).\n\n\n\n\n\nHybrid Cloud\n\nMix of on-prem + cloud.\n\nLinked with VPNs or Direct Connect.\n\nCommon when organisations already own a datacenter but want to expand into cloud.\n\nExample: Legacy finance/government platforms.\n\n\n\n\nCross-Cloud (Multi-Cloud)\n\nUsing multiple cloud providers for one project.\n\nExamples: Amazon EKS ↔︎ Azure Arc ↔︎ GCP Kubernetes Engine.\n\nAvoids vendor lock-in, increases resilience.\n\nComplex to manage but increasingly common in enterprise IT.\n\n\n\n\n\nAWS Accounts & Permissions\n\nRoot account: Created when signing up for AWS (used rarely, high risk). ✅ Made.\n\nIAM accounts: Best practice → create IAM users with least-privilege permissions. ✅ Made.\n\nPermissions & policies: Assign roles and groups instead of using root.\n\nIf billing mistakes happen, AWS Support can reduce or refund charges.\n\n\n\n\nInnovation & Transformation\n\nKondratiev Waves\n\nConcept of long-term innovation cycles (waves of technological change).\n\nCloud adoption seen as part of the most recent “digital” wave.\n\n\n\nBurning Platform\n\nBusiness strategy term: abandoning outdated systems (“on-prem”) for survival.\n\nIn cloud: moving from legacy infrastructure → cloud-native.\n\nDigital transformation guides highlight how to manage this change and mitigate resistance.\n\n\n\n\n\nEvolution of Computing\n\nGeneral-purpose computing: Intel Xeon processors, traditional CPUs.\n\nElastic Compute Cloud (EC2): AWS on-demand compute service.\n\nGPU computing: AWS Inferentia, EC2 GPU instances for ML/AI workloads.\n\nQuantum computing: AWS Braket (managed service for quantum simulators + hardware).\n\n\n\n\nKey Takeaways\n\nDeployment models: Public = cloud-native, Private = on-prem, Hybrid = bridge, Multi-Cloud = multiple CSPs.\n\nIAM setup is critical → root account should NOT be used beyond initial setup.\n\nCloud adoption framed as part of larger innovation waves and often driven by burning platform fear.\n\nCompute evolution continues beyond EC2 → GPU and quantum workloads."
   },
   {
-    "objectID": "100daysofcode/Day4.html",
-    "href": "100daysofcode/Day4.html",
-    "title": "Day 4: Rosalind Problem – Open Reading Frames",
+    "objectID": "100daysofcode/Day30.html",
+    "href": "100daysofcode/Day30.html",
+    "title": "Day 30: Benefits of Cloud & Global Infrastructure",
     "section": "",
-    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
+    "text": "Day 3 of learning AWS for my Cloud Practitioner exam.\nToday I covered:\n- ✅ Benefits of cloud computing\n- ✅ AWS Global Infrastructure (Regions, AZs, Local Zones)\n\n\nExam Domains (Weighting)\nbold = high frequency in exam\n\nCloud Concepts (28%)\n\n✅ Evolution of computing (Dedicated → VM → Containers → Serverless)\n\n✅ Service models: IaaS, PaaS, SaaS\n\n✅ Benefits of cloud\n\n✅ Agility, Pay-as-you-go, Economy of scale, Global reach, Security, Reliability, High availability, Scalability, Elasticity, Fault tolerance, Disaster recovery\n\n\n✅ AWS global infrastructure\n\n✅ Regions, Availability Zones (AZs), Local Zones, Edge Locations\n\n\n⬜ Shared Responsibility Model (overview)\n\nSecurity & Compliance (24%)\n\n⬜ Identity & Access Management (IAM)\n\n⬜ Users, Groups, Roles, Policies, MFA (Multi-Factor Authentication)\n\n\n⬜ Encryption basics\n\n⬜ KMS (Key Management Service), S3 Server-Side Encryption (SSE), Encryption in transit vs at rest\n\n\n⬜ Compliance programs\n\n⬜ HIPAA, GDPR, SOC, ISO, PCI-DSS\n\n\n⬜ Shared Responsibility Model (detailed)\n\nTechnology (36%)\n\n✅ Compute models\n\n✅ EC2 (VMs), Containers (ECS/EKS), Serverless (Lambda)\n\n\n✅ Deployment models\n\n✅ Public Cloud, Private Cloud, Hybrid Cloud, Cross-Cloud\n\n\n⬜ Storage\n\n⬜ S3 (storage classes, lifecycle, versioning), EBS, EFS, Glacier\n\n\n⬜ Databases\n\n⬜ RDS (SQL), DynamoDB (NoSQL), Aurora basics\n\n\n⬜ Networking\n\n⬜ VPC basics, Subnets, Security Groups vs NACLs, VPN vs Direct Connect\n\n\nBilling & Pricing (12%)\n\n⬜ Pricing models\n\n⬜ On-Demand, Reserved, Spot, Dedicated Hosts\n\n\n⬜ Free Tier\n\n⬜ Cost Management Tools\n\n⬜ AWS Pricing Calculator, Cost Explorer, Budgets, Trusted Advisor\n\n\n⬜ Support plans\n\n⬜ Basic, Developer, Business, Enterprise\n\n\n\n\n\n\nBenefits of Cloud Computing\n\nAgility\n\nQuickly deploy, test, and iterate on new ideas.\n\n\n\nPay-as-you-go\n\nNo upfront cost, pay only for what you use.\n\nStop guessing capacity — scale up/down as needed.\n\n\n\nEconomy of Scale\n\nShared resources reduce overall cost.\n\n\n\nGlobal Reach\n\nAccess AWS services anywhere in the world.\n\n\n\nSecurity\n\nBuilt-in security features + compliance support.\n\n\n\nReliability\n\nConsistent performance across infrastructure.\n\n\n\nHigh Availability\n\nServices designed to run across multiple AZs.\n\n\n\nScalability\n\nAdd/remove resources to meet demand.\n\n\n\nElasticity\n\nAutomate scaling during spikes and drops.\n\n\n\nFault Tolerance\n\nSystems designed to continue operating when components fail.\n\n\n\nDisaster Recovery\n\nBackup, restore, and multi-region recovery solutions.\n\n\n\n\n\nAWS Global Infrastructure\nAWS global infrastructure = network of physical data centers designed for scalability, availability, and resilience.\n\nComponents\n\nRegions: Geographically distinct clusters of data centers.\n\nAvailability Zones (AZs): One or more isolated data centers within a region.\n\nLocal Zones: Closer to end-users for low-latency workloads.\n\nEdge Locations: Support caching (CloudFront).\n\n\n\n\n\nRegions\n\nGeographically distinct locations with one or more AZs.\n\nEach region is physically isolated with its own power and water supply.\n\nPricing: Cost of services varies by region.\n\nRegulations: Each region has its own compliance requirements.\n\nPerformance: Latency varies by region for end-users.\n\n\n\n\nKey Takeaways\n\nCloud benefits = agility, scalability, elasticity, pay-as-you-go, global reach, reliability, security, fault tolerance, disaster recovery.\n\nAWS global infrastructure = Regions, AZs, Local Zones, Edge Locations, designed for high availability and compliance.\n\nRegions are physically isolated, but connected through AWS’s global backbone for resilience and performance."
   },
   {
-    "objectID": "100daysofcode/Day4.html#problem-1-open-reading-frames",
-    "href": "100daysofcode/Day4.html#problem-1-open-reading-frames",
-    "title": "Day 4: Rosalind Problem – Open Reading Frames",
+    "objectID": "100daysofcode/Day32.html",
+    "href": "100daysofcode/Day32.html",
+    "title": "Day 32: AWS Global Infrastructure and Resilience",
     "section": "",
-    "text": "Open Reading Frames (ORF) Identify all distinct protein sequences that can be translated from six possible reading frames of a DNA strand (including its reverse complement). This involves transcribing DNA to RNA, translating in all frames, and extracting sequences that start with a start codon (M) and end at the first stop codon. The solution demonstrates use of Biopython’s Seq and SeqRecord objects, along with custom logic to capture valid ORFs from both strands.my solution\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\n\nrecord = SeqIO.read(r\"C:\\Users\\zackd\\Coding challenge\\Day 4 -\\rosalind_orf (2).fasta\", \"fasta\")\n\ndna = record.seq\n# First record is the DNA\nreverse_dna = dna.reverse_complement()\n\n# Transcribe to RNA\nforward_rna = dna.transcribe()\nreverse_rna = reverse_dna.transcribe()\nprint(dna)\n\ndef get_proteins(rna):\n    proteins = set()\n    for frame in range(3):\n        protein = rna[frame:].translate(to_stop=False)\n        aa_seq = str(protein)\n        starts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\n        for start in starts:\n            sub = aa_seq[start:]\n            stop = sub.find(\"*\")\n            if stop != -1:\n                proteins.add(sub[:stop])\n    return proteins\n\n\n\n# Get proteins from all 6 frames\nforward_proteins = get_proteins(forward_rna)\nreverse_proteins = get_proteins(reverse_rna)\n\n# Combine all and print unique\nall_proteins = forward_proteins.union(reverse_proteins)\nprint(\"\\n\".join(all_proteins))\n\n\nThe first half of the challenge was intuative until i arrived at the get proteins function heres my breakdown.\nI couldnt work out the logic for the 3 reading frames\nprotein = rna[frame:].translate(to_stop=False)\nI found similar problem online and this solution works to generate all protein sequences for all frames.\nstarts = [i for i in range(len(aa_seq)) if aa_seq[i] == 'M']\nLoops through my AA string and finds every index where there is a M (start codon)\nThen i looked for all stop codons within the string generated above. now i have M-&gt;*\nfor start in starts:\n    sub = aa_seq[start:]\nThen i removed the stop codon and added it to a protein sequence and returned them\nif stop != -1:\n    proteins.add(sub[:stop])\nMy solution feels abit crude but it works."
+    "text": "Day 5 of learning AWS for my Cloud Practitioner exam.\nToday I covered:\n- ✅ AWS Global Infrastructure and Climate Pledge\n- ✅ AWS Ground Station & Outposts\n- ✅ Cloud Architecture Principles (Availability, Scalability, Elasticity, Fault Tolerance, Durability)\n- ✅ Disaster Recovery & Business Continuity Planning\n- ✅ Practice Exam Review (21 wrong Qs)\n\n\nExam Domains (Weighting)\nbold = high frequency in exam\n\nCloud Concepts (28%)\n\n✅ Benefits of cloud\n\n✅ AWS global infrastructure\n\n✅ Regions, Availability Zones (AZs), Local Zones, Edge Locations, Wavelength Zones\n\n\n✅ Hybrid solutions (Outposts)\n\n⬜ Shared Responsibility Model\n\nSecurity & Compliance (24%)\n\n⬜ IAM basics (Users, Groups, Roles, Policies)\n\n⬜ Encryption at rest vs in transit\n\n⬜ Compliance programs (HIPAA, GDPR, SOC, ISO)\n\nTechnology (36%)\n\n✅ Resilience design principles\n\n✅ High Availability, Scalability, Elasticity, Fault Tolerance, Durability\n\n\n✅ Disaster Recovery strategies\n\n✅ Backup & Restore, Pilot Light, Warm Standby, Multi-Site Active/Active\n\n\n✅ AWS Ground Station use cases\n\n✅ AWS Outposts (Hybrid Cloud)\n\nBilling & Pricing (12%)\n\n⬜ Pricing models (On-Demand, Reserved, Spot)\n\n⬜ Cost Management Tools (Budgets, Cost Explorer, Trusted Advisor)\n\n⬜ Support plans\n\n\n\n\n\nAWS Global Infrastructure and Climate Pledge\n\nAmazon co-founded the Climate Pledge → net zero carbon by 2040.\n\nRegions = clusters of Availability Zones.\n\nAZs = one or more physical datacenters with independent power/cooling.\n\n\n\n\nAWS Ground Station\n\nFully managed service to control satellite communications, process data, and scale operations without building ground stations.\n\nUse cases: weather monitoring, surface imaging, communications.\n\n\n\n\nAWS Outposts\n\nAWS-managed hardware rack delivered to customer premises.\n\nBrings AWS infrastructure and services on-premises for low-latency or compliance requirements.\n\nOptions:\n\n42U rack (full rack, delivered + installed).\n\n1U server (individual server you can rack).\n\n\n\n\n\nCloud Architecture Principles\n\nHigh Availability → no single point of failure, distribute with ELB.\n\nHigh Scalability → vertical (bigger server) vs horizontal (more servers).\n\nHigh Elasticity → auto-scale capacity up/down with demand (ASG).\n\nHigh Fault Tolerance → tolerate failures (e.g., RDS Multi-AZ).\n\nHigh Durability → protect data from loss (backups, replication, CloudEndure DR).\n\n\n\n\nBusiness Continuity & Disaster Recovery\n\nBCP = plan to keep operating during unplanned disruption.\n\nDisaster recovery strategies (in order of increasing cost/reduced downtime):\n\nBackup & Restore → hours.\n\nPilot Light → ~10 mins, minimal services pre-running.\n\nWarm Standby → scaled-down copy running, minutes to switch.\n\nMulti-Site Active/Active → fully scaled duplicate, real-time failover.\n\n\n\n\n\nPractice Exam Wrong Questions – Review\n1. Terminated EC2 instances\n- Correct: B. CloudTrail\n- CloudTrail records all API calls (who did what).\nRule: “Who did what?” → CloudTrail.\n2. Consolidated billing & Reserved Instances\n- Correct: B. All accounts share RI discounts\n- Discounts flow across all linked accounts.\n3. AWS Snowball provides (2 answers)\n- Correct: A. Local compute, E. Secure transfer\n- Snowball = petabyte-scale, not exabyte (that’s Snowmobile).\n4. Enterprise Support billing guidance\n- Correct: B. Support Concierge\n- Concierge = account/billing experts for Enterprise plan.\n5. Migrating Oracle DB with minimal downtime\n- Correct: B. Database Migration Service (DMS)\n- DMS = low-downtime live DB replication.\n6. Keeping EBS data safe (2 answers)\n- Correct: B. Snapshots, C. Encrypt at rest\n- Backups + encryption are best practice.\n7. Elasticity principle\n- Correct: D. Auto-provisioning resources on demand\n- Elastic = auto stretch/shrink capacity.\n8. Not a cloud model\n- Correct: D. Networking as a Service (NaaS)\n- Only IaaS, PaaS, SaaS are standard.\n9. Storing rarely accessed legal videos\n- Correct: C. Glacier Deep Archive\n- Cheapest long-term cold storage.\n10. DDoS protection (2 answers)\n- Correct: A. AWS Shield, D. AWS WAF\n- Shield = infra DDoS protection, WAF = filters malicious traffic.\n11. Fastest data retrieval for web app\n- Correct: D. ElastiCache\n- In-memory caching beats EBS/DB.\n12. Global CDN service\n- Correct: D. CloudFront\n- CloudFront = AWS CDN, global PoPs.\n13. AWS-Managed Services (2 answers)\n- Correct: B. DynamoDB, C. EMR\n- Fully managed, AWS handles ops.\n14. IAM CLI authentication\n- Correct: A. Access keys\n- CLI uses access key ID + secret key.\n15. Shared controls (2 answers)\n- Correct: A. Patch Management, D. Config Management\n- AWS = infra, customer = IAM/VPC, shared = patch/config.\n16. Avoiding Single Point of Failure (2 answers)\n- Correct: A. ELB, B. Auto Scaling\n- ELB distributes traffic, Auto Scaling replaces failed instances.\n17. DB backups for two-tier web app\n- Correct: B. Amazon Aurora\n- Aurora automates backups.\n18. Shared Responsibility – AWS role\n- Correct: B. Configuring infrastructure devices\n- AWS manages physical infra.\n19. Non-benefits of S3 (2 answers)\n- Correct: B. Run apps, D. Manual scaling\n- S3 = storage only, scaling is auto.\n20. Quick deployment of IBM MQ\n- Correct: C. AWS Quick Start\n- Pre-built templates for rapid deployment.\n21. Flexible Reserved Instance type\n- Correct: D. Convertible RI\n- Convertible = exchange to different instance family.\n\n\n\nScore\n\nTotal questions = 50\n\nWrong = 21\n\nCorrect = 29\n\nScore = 58%\n\n\n\n\nKey Takeaways\n\nCloudTrail = “who did what” logs.\n\nRI discounts share across linked accounts.\n\nSnowball = petabyte-scale data transfer, not exabyte.\n\nGlacier Deep Archive = cheapest long-term storage.\n\nShield + WAF = DDoS protection stack.\n\nElastiCache = fastest retrieval.\n\nDynamoDB & EMR = fully AWS-managed.\n\nConvertible RIs = flexibility to exchange instance types.\n\nFocus: Shared responsibility, managed services, storage tiers, cost optimisation."
   },
   {
-    "objectID": "100daysofcode/Day6.html",
-    "href": "100daysofcode/Day6.html",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
+    "objectID": "100daysofcode/Day5.html",
+    "href": "100daysofcode/Day5.html",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
     "section": "",
-    "text": "This session tackled two core bioinformatics problems from Rosalind: population modeling with lifespan constraints and nucleotide consensus building across multiple FASTA records."
+    "text": "his post covers four foundational problems from rosiand, exploring GC content, Hamming distance, Mendelian inheritance, and Fibonacci-style recurrence relations. All problems were solved using Biopython"
   },
   {
-    "objectID": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
-    "href": "100daysofcode/Day6.html#problem-1-mortal-fibonacci-rabbits",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
-    "section": "Problem 1: Mortal Fibonacci Rabbits",
-    "text": "Problem 1: Mortal Fibonacci Rabbits\nSimulated rabbit population growth over 89 months with a fixed lifespan of 18 months.\nmy solution\nn = 89  # Total months\nm = 18  # Lifespan in months\n\ndef mortal_fibonacci(n, m):\n    ages = [1] + [0] * (m - 1) # max array length = m\n\n    for month in range(1, n):\n        new_borns = sum(ages[1:])  # rabbits of age ≥1 can reproduce\n        # Age rabbits: shift right, oldest dies\n        ages = [new_borns] + ages[:-1]\n\n    return sum(ages)\nprint(mortal_fibonacci(n, m))\n\nWhat I learned:\n\nages[1:] ensures only mature rabbits reproduce.\narrays have an interesting usecase due to its max capacity."
+    "objectID": "100daysofcode/Day5.html#problem-1-gc-content",
+    "href": "100daysofcode/Day5.html#problem-1-gc-content",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 1: GC Content",
+    "text": "Problem 1: GC Content\nCalculate the GC content of multiple DNA strings in FASTA format and identify the one with the highest GC percentage.\nMy solution\n#https://rosalind.info/problems/gc/\n\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\nfrom Bio.SeqUtils import gc_fraction\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_gc.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\n# Track highest GC content and ID\nmax_gc = 0\nmax_id = \"\"\n# Loop over each record and calculate GC content\nfor record in records:\n    gc = gc_fraction(record.seq) * 100  # get % value\n    if gc &gt; max_gc:\n        max_gc = gc\n        max_id = record.id\n\n# Print results\nprint(max_id)\nprint(f\"{max_gc:.6f}\")\n\nWhat I learned:\n\ngc_fraction from Bio.SeqUtils gives clean GC percentages.\nLooping through SeqIO records helps to process multiple sequences efficiently.\nComparing and tracking values is easy using standard if logic"
   },
   {
-    "objectID": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
-    "href": "100daysofcode/Day6.html#problem-2-consensus-and-profile",
-    "title": "Day 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA",
-    "section": "Problem 2: Consensus and Profile",
-    "text": "Problem 2: Consensus and Profile\nGiven multiple DNA sequences in FASTA format, construct a profile matrix showing the count of each base at each position, and build a consensus string using the most frequent base at each position. My solution\nfrom Bio import SeqIO\nfrom collections import Counter, defaultdict\n\nrecords = list(SeqIO.parse(\"rosalind_cons1.fasta\", \"fasta\"))\nfull_dna = list(zip(*[str(record.seq) for record in records]))\n\n\nprofile = {\n    'A': [],\n    'C': [],\n    'G': [],\n    'T': []\n}\n\nfor col in full_dna:\n    counts = Counter(col)\n    for base in \"ACGT\":\n        profile[base].append(counts.get(base, 0))\n\nconsensus = \"\"\nfor i in range(len(full_dna)):\n    max_base = max(\"ACGT\", key=lambda base: profile[base][i])\n    consensus += max_base\n\nprint(consensus)\n\nWhat I learned:\n\nzip(*sequences) is a clean Python trick to transpose a matrix (get columns).\nCounter helps efficiently count nucleotides at each position.\nBuilding a consensus string is just choosing the max-count base per column.\nHandling multi-record FASTA files is smoother using SeqIO.parse()."
+    "objectID": "100daysofcode/Day5.html#problem-2-hamming-distance",
+    "href": "100daysofcode/Day5.html#problem-2-hamming-distance",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 2: Hamming Distance",
+    "text": "Problem 2: Hamming Distance\nCompute the number of differing characters between two DNA strings of equal length.\nMy solution\n# https://rosalind.info/problems/hamm/\n\nfrom Bio import SeqIO\nimport os\n\n\n# Get directory of the current script\nscript_dir = os.path.dirname(os.path.realpath(__file__))\nfasta_path = os.path.join(script_dir, \"rosalind_hamm.fasta\")\nrecords = list(SeqIO.parse(fasta_path, \"fasta\"))\n\nfor i in range(len(records)):\n    for j in range(i + 1, len(records)):\n        # Calculate Hamming distance\n        seq1 = records[i].seq\n        seq2 = records[j].seq\n        hamming_distance = sum(el1 != el2 for el1, el2 in zip(seq1, seq2))\n        print(hamming_distance)\n\nWhat I learned:\n\nzip(seq1, seq2) lets you pair corresponding elements.\nThe comparison el1 != el2 returns True for mismatches (which equals 1 when summed).\nsum(...) neatly counts total differences without explicit loops."
   },
   {
-    "objectID": "100daysofcode/Day8.html",
-    "href": "100daysofcode/Day8.html",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "objectID": "100daysofcode/Day5.html#problem-3-hamming-distance",
+    "href": "100daysofcode/Day5.html#problem-3-hamming-distance",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 3: Hamming Distance",
+    "text": "Problem 3: Hamming Distance\nGiven the number of homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa) individuals in a population, compute the probability that two randomly selected mating organisms will produce an individual possessing a dominant allele.\nMy solution\n# https://rosalind.info/problems/iprb/\nAApop = 29\nAapop = 17\naapop = 22\n\ntotalpop = AApop + Aapop + aapop\n\n#                             aA                                          AA                                                 aa                                                   Aa\naaoutcome = ((aapop/totalpop) * ((Aapop)/(totalpop-1))*0.5) + ((Aapop/totalpop) * ((Aapop-1)/(totalpop-1))*0.25) + ((aapop/totalpop) * ((aapop-1)/(totalpop-1))) + ((Aapop/totalpop) * ((aapop)/(totalpop-1))*0.5)\n\n\n\n\nAoutcome = (1 - aaoutcome) * 100\n\n\nprint(f\"{Aoutcome:.2f}% of the offspring will have a dominant allele\")\n\nWhat I learned:\n\nProbability trees help remove errors.\nThe cleanest solution subtracts P(recessive) from 1 to get P(dominant)"
+  },
+  {
+    "objectID": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
+    "href": "100daysofcode/Day5.html#problem-3-rabbits-and-recurrence-relations",
+    "title": "Day 5: Rosalind Problems – GC Content & Hamming Distance",
+    "section": "Problem 3: Rabbits and Recurrence Relations",
+    "text": "Problem 3: Rabbits and Recurrence Relations\nMy solution\nmonths = 36\nlitter_size = 2\n\nprev = 1  # F(n-2)\ncurr = 1  # F(n-1)\n\nfor _ in range(3, months + 1):\n    next_rabbits = curr + litter_size * prev\n    prev, curr = curr, next_rabbits\n\nprint(months, curr)\n#curr = number of pairs last month (F(n−1)).\n#prev = number of pairs two months ago (F(n−2)).\n\nWhat I learned:\n\nClean recurrence: F(n) = F(n−1) + k * F(n−2)."
+  },
+  {
+    "objectID": "100daysofcode/Day7.html",
+    "href": "100daysofcode/Day7.html",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
     "section": "",
-    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
+    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
   },
   {
-    "objectID": "100daysofcode/Day8.html#problem-1-independent-alleles",
-    "href": "100daysofcode/Day8.html#problem-1-independent-alleles",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
+    "objectID": "100daysofcode/Day7.html#problem-1-overlap-graphs",
+    "href": "100daysofcode/Day7.html#problem-1-overlap-graphs",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
     "section": "",
-    "text": "Compute the probability that at least (N) of the (2^k) offspring have genotype Aa Bb, given every parent is Aa Bb.\nMy solution\nimport math\n\ndef independent_assortment(k: int, N: int) -&gt; float:\n    \"\"\"\n    P(X ≥ N) where X ~ Binomial(n = 2**k, p = 1/4).\n    Each of the 2**k offspring has p = 1/4 chance of Aa Bb.\n    \"\"\"\n    n = 2**k\n    p = 1/4\n    prob = 0.0\n    # sum the right‐hand tail of the binomial distribution\n    for i in range(N, n+1):\n        prob += math.comb(n, i) * p**i * (1-p)**(n-i)\n    return prob\n\nif __name__ == \"__main__\":\n    k, N = 5, 8\n    print(f\"{independent_assortment(k, N):.6f}\")\n\n\nBinomial “tail” sums The probability of getting at least (N) successes out of (n) trials with success rate (p) is \\[\n    P(X \\ge N)\n    \\;=\\;\n    \\sum_{i=N}^{n} \\binom{n}{i}\\,p^i\\,(1-p)^{\\,n-i}\\,.\n  \\] Implemented in Python by summing from i = N to n of math.comb(n, i) * p**i * (1-p)**(n-i).\n\nExact binomial coefficients\nPython 3.8+’s math.comb(n, i) computes () directly and exactly.\nOff‑by‑one vigilance\nTranslating between 0‑based loops (Python) and 1‑based math notation (Rosalind) requires adding or subtracting 1 at the right spots."
+    "text": "Given a collection of DNA strings in FASTA format, construct the overlap graph where each edge represents a suffix-prefix match of length k.\nMy solution\nfrom Bio import SeqIO\n\nk = 3\nrecords = list(SeqIO.parse(\"rosalind_grph (1).fasta\", \"fasta\"))\nfor record in records:\n    record_suffix = str(record.seq)[-k:]\n    for other_record in records:\n        if record.id == other_record.id:\n            continue\n        other_prefix = str(other_record.seq)[:k]\n        if record_suffix == other_prefix:\n            print(record.id, other_record.id)\n\n\n\nOverlap graphs are generated by comparing the last k bases of one sequence to the first k of another.\nUse of continue avoids redundant self-comparisons.\nstr(record.seq) converts Biopython Seq objects for string slicing."
   },
   {
-    "objectID": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
-    "href": "100daysofcode/Day8.html#problem-2-finding-a-protein-motif",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "Problem 2: Finding a Protein Motif",
-    "text": "Problem 2: Finding a Protein Motif\nLocate every occurrence (including overlaps) of the N‑glycosylation motif N{P}[ST]{P} in a set of UniProt sequences.\nMy solution\nfrom Bio import SeqIO\n\ndef get_substrings(s):\n    \"\"\"\n    Generate all possible substrings of the input string s,\n    returning them from longest to shortest.\n\n    Parameters:\n        s (str): The string from which to generate substrings.\n\n    Returns:\n        List[str]: A list of every substring of s, ordered by decreasing length.\n    \"\"\"\n    substrs = []             # Will hold all substrings\n    n = len(s)               # Total length of the string\n\n    # For each possible substring length L from n down to 1\n    for L in range(n, 0, -1):\n        # Slide a window of length L along the string\n        # i goes from 0 up to n - L\n        for i in range(n - L + 1):\n            # Extract the substring of length L starting at i\n            substrs.append(s[i:i + L])\n    return substrs          # Return all substrings, longest first\n\ndef longest_common_substring_bruteforce(records):\n    \"\"\"\n    Find the longest substring common to all sequences in the provided SeqRecord list,\n    using a brute‑force approach.\n\n    \"\"\"\n    # Convert each SeqRecord to a plain Python string\n    seqs = [str(rec.seq) for rec in records]\n\n    # Sort by length so the shortest sequence is first\n    # We only need to generate substrings from the shortest one\n    seqs.sort(key=len)\n    shortest = seqs[0]       # The sequence to pull substrings from\n    others = seqs[1:]        # The rest of the sequences\n\n    # Generate substrings from longest to shortest\n    for sub in get_substrings(shortest):\n        # Check if this substring appears in every other sequence\n        if all(sub in seq for seq in others):\n            return sub       # As soon as one matches all, it's the LCS\n\n    return \"\"  # If no common substring is found (edge case), return empty\n\n\n\n\nif __name__ == \"__main__\":\n    # Parse the FASTA file (make sure the filename matches exactly)\n    records = list(SeqIO.parse(\"rosalind_lcsm (2).fasta\", \"fasta\"))\n\n    # Compute the longest common substring\n    result = longest_common_substring_bruteforce(records)\n\n    # Output the result\n    print(\"Brute‑force LCS:\", result)\n\nWhat I learned:\n\nZero‑width look‑ahead ((?=…)) lets the engine test every offset without skipping—so overlapping motifs (e.g. positions 276 and 278) are both found.\nTranslating PROSITE shorthand (N{P}[ST]{P}) to regex (N[^P][ST][^P]).\nRobust HTTP fetch with raise_for_status() to catch bad accessions early."
+    "objectID": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
+    "href": "100daysofcode/Day7.html#problem-2-mortal-fibonacci-rabbits",
+    "title": "Day 7: Rosalind Problems – Overlap Graphs &",
+    "section": "Problem 2: Mortal Fibonacci Rabbits",
+    "text": "Problem 2: Mortal Fibonacci Rabbits\nMy solution\ncounts = [1, 0, 0, 1, 0, 1]\nweights = [1.0, 1.0, 1.0, 0.75, 0.5, 0.0]\n\nexpected_dominant_offspring = sum(2 * count * prob for count, prob in zip(counts, weights))\nprint(expected_dominant_offspring)\n\nWhat I learned:\n\nzip(counts, weights) combines both lists for pairwise computation in the list comprehension."
   },
   {
-    "objectID": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
-    "href": "100daysofcode/Day8.html#problem-3-finding-a-shared-motif",
-    "title": "Day 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif",
-    "section": "Problem 3: Finding a Shared Motif",
-    "text": "Problem 3: Finding a Shared Motif\nIdentify the longest substring common to all sequences in a FASTA file (brute‑force approach).\nMy solution\nimport re\nimport requests\n\"\"\"\n    this projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\nthis projecct is abandoned, untill further skills are acquired i cannot complete this project yet.\n\n    \"\"\"\n# Compile the PROSITE motif using a look‑ahead so we catch overlaps\n# (?=(…)) is zero‑width, so the regex engine checks at every position without skipping\nmotif = re.compile(r\"(?=(N[^P][ST][^P]))\")\n\ndef fetch_sequence(accession: str) -&gt; str:\n    \"\"\"\n    Given a UniProt accession (optionally with \"_NAME\" suffix),\n    fetch its protein FASTA from UniProt and return the concatenated sequence.\n    \"\"\"\n    # Strip off anything after the first underscore\n    acc = accession.split(\"_\", 1)[0]\n    url = f\"https://www.uniprot.org/uniprot/{acc}.fasta\"\n    resp = requests.get(url)\n    resp.raise_for_status()\n    lines = resp.text.splitlines()\n    # Skip the header (first line) and join the rest into one sequence string\n    return \"\".join(lines[1:])\n\ndef find_motif_positions(seq: str) -&gt; list[str]:\n    \"\"\"\n    Scan `seq` for the N‑glycosylation motif N{P}[ST]{P},\n    returning all 1‑based start positions (including overlaps).\n    \"\"\"\n    # m.start() is 0‑based, so add 1 for Rosalind’s 1‑based indexing\n    return [str(m.start() + 1) for m in motif.finditer(seq)]\n\ndef main():\n    # Read your list of raw UniProt IDs (one per line) from ids_mprt.txt\n    with open(\"ids_mprt.txt\") as f:\n        raw_ids = [line.strip() for line in f if line.strip()]\n\n    for raw in raw_ids:\n        seq = fetch_sequence(raw)\n        positions = find_motif_positions(seq)\n        if positions:\n            # Print the original raw ID, then the space‑separated positions\n            print(raw)\n            print(\" \".join(positions))\n\nif __name__ == \"__main__\":\n    main()\n\nWhat I learned:\n\nSorting by length ensures we find the longest common substring early and exit."
-  },
-  {
-    "objectID": "100daysofcode/index.html",
-    "href": "100daysofcode/index.html",
-    "title": "100 days of code",
+    "objectID": "100daysofcode/Day9.html",
+    "href": "100daysofcode/Day9.html",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
     "section": "",
-    "text": "This section is part journal, part learning log. I’m using the #100DaysOfCode challenge to build consistent coding habits and sharpen my skills. Each entry will either be a quick write-up of what I’ve coded that day, or a summary of something I’ve read or practiced.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 29: Cloud Deployment Models\n\n\n\nAWS\n\nCloud\n\nCertification\n\nStudy Log\n\n\n\n\n\n\n\n\n\n\nAug 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 28: AWS Cloud Concepts\n\n\n\n\n\n\n\n\n\nAug 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRosalind EDIT & EDTA — Reverse Dynamic Programming (Reverse DP)\n\n\n\nRosalind\n\nBioinformatics\n\nDynamic Programming\n\nBiopython\n\n\n\n\n\n\n\n\n\n\nAug 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 26 Rosaland problem — Shortest Common Supersequence\n\n\n\n\n\n\n\n\n\nAug 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 25 Rosalind Problem: LCSQ — Longest Common Subsequence\n\n\n\n\n\n\n\n\n\nAug 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 24: ORF Finder — From GENCODE Transcripts to CSV\n\n\n\nBiopython\n\nFASTA\n\nORF\n\nGENCODE\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 23: Downloading and Extracting GENCODE Transcript FASTA\n\n\n\nBiopython\n\nFASTA\n\nORF\n\nGENCODE\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 20, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 22: SQL Fundamentals for Bioinformatics\n\n\n\nSQL\n\nData Wrangling\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 21: Protein Mass, RNA Translation, GC Content & Hamming Distance\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 20: Rosalind Problems – DNA, RNA, Hamming Distance, and Reverse Complements\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZack Davis\n\n\nAug 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 19 — Mini Project - Clinvar clustered pairs: extraction and stats\n\n\n\nLeetCode\n\nPython\n\nPandas\n\nBioinformatics\n\nClinVar\n\nBigQuery\n\n\n\n\n\n\n\nZack\n\n\nAug 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 18 — ClinVar clustered variants (SQL → Python → Export)\n\n\n\nSQL\n\nBigQuery\n\nBioinformatics\n\nClinVar\n\nPython\n\n\n\n\n\n\n\n\n\n\nAug 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 17: Setting Up SQL + probability\n\n\n\nSQL\n\nBigQuery\n\n\n\n\n\n\n\n\n\n\nAug 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 16: LeetCode – Stock, Parentheses, Palindrome, Duplicates, Sliding Window\n\n\n\nLeetCode\n\nPython\n\nAlgorithms\n\n\n\n\n\n\n\n\n\n\nAug 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 15: LeetCode Challenges – Two Sum, Valid Anagram, Group Anagrams, Longest Palindrome, strStr\n\n\n\nLeetCode\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 14: consolidation from 6-10\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 13: Rosalind Problems – Protein Mass, Inferring mRNA from Protein and Lexicographic k-mer Ordering\n\n\n\nRosaland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\n\n\n\nAug 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 12: Mini project\n\n\n\nRMini project\n\nBiopython\n\nPython\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11: consolidation from day 1-10\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10: Rosalind Problems – Longest Increasing/Decreasing Subsequence\n\n\n\nRosiland\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nAug 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8: Rosalind Problems – Independent Alleles, Protein Motif & Shared Motif\n\n\n\nRosalind\n\nBiopython\n\nPython\n\nLearning Log\n\n\n\n\n\n\n\nZackBioData\n\n\nJul 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Rosalind Problems – Overlap Graphs &\n\n\n\nBiopython\n\nAlgorithm Design\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Rosalind Problems – Mortal Fibonacci & Consensus DNA\n\n\n\nBiopython\n\nRosiland\n\nFASTA Parsing\n\n\n\n\n\n\n\n\n\n\nJul 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: Rosalind Problems – GC Content & Hamming Distance\n\n\n\nBiopython\n\nSequence Comparison\n\nProbability\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Rosalind Problem – Open Reading Frames\n\n\n\nBiopython\n\nFASTA Parsing\n\nORFs\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: 3 Rosiland problems: FASTA and Biopython\n\n\n\nBiopython\n\nFASTA Parsing\n\nRosiland\n\n\n\n\n\n\n\n\n\n\nJul 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1-3: Using Python to Identify Gene Expression Linked to Membrane Instability\n\n\n\nTranscriptomics\n\nGene Expression\n\nPathway Enrichment\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: 4 simple rosiland problems\n\n\n\nPython\n\n\n\n\n\n\n\n\n\n\nJul 13, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
   },
   {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html",
-    "href": "blog/2025-05-23_AI in Life Sciences.html",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "objectID": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
+    "href": "100daysofcode/Day9.html#problem-1-enumerating-gene-orders",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
     "section": "",
-    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+    "text": "Given: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\nfrom itertools import permutations\nimport math\n\ndef main():\n    n = 5\n    # Print the total number of permutations (n!)\n    print(math.factorial(n))\n    # Generate and print each permutation of 1..n\n    with open(\"rosalind_perm.txt\", \"w\") as f:\n        for perm in permutations(range(1, n+1)):\n            f.write(\" \".join(map(str, perm)) + \"\\n\")\n    print(f\"All {math.factorial(n)} permutations written to {'rosalind_perm.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n\n\n\nTotal count A permutation of length (n) is an ordering of ({1,,n}). There are [ n! = 1 n ] such orderings.\nGeneration strategy\n\nBuilt-in: Python’s itertools.permutations returns all (n!) tuples.\nRecursive: Fix each element in turn at the front, recurse on the remaining (n-1)."
   },
   {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#about",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#about",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
+    "objectID": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
+    "href": "100daysofcode/Day9.html#problem-2-synteny-blocks-have-orientations-signed-permutationshttpsrosalind.infoproblemssign",
+    "title": "Day 9: Rosalind Problems – Enumerating Gene Orders,Synteny Blocks Have Orientations",
+    "section": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)",
+    "text": "Problem 2: [Synteny Blocks Have Orientations] (Signed Permutations)(https://rosalind.info/problems/sign/)\n\nGiven: A positive integer (n ).\nReturn: First, the total number of permutations of length (n). Then list every permutation of ({1,2,,n}) (in any order), one per line.\n\nMy solution\n\nimport itertools  # for generating permutations and all sign combinations\nimport math\n\n\"\"\" Core analogy: signed permutations are like an onion.\n# - The outer layer is the ordering (permutation) of the numbers.\n# - The inner layers are the signs applied to each position (±) for that ordering.\n# Peel one layer at a time: fix an ordering, then explore all sign combinations beneath it.\n\"\"\"\ndef main():\n    n = 3  # length of the base permutation (1..n)\n    numbers = list(range(1, n + 1))  # [1, 2, ..., n]\n    output_path = \"signed_permutations.txt\"  # output file for results\n\n    # Open the file once for writing; the 'with' ensures it closes automatically\n    with open(output_path, \"w\") as f:\n        # Compute total number of signed permutations:\n        # n! permutations times 2^n choices of sign assignments\n        total = math.factorial(n) * (2 ** n)\n        f.write(f\"{total}\\n\")  # write the count on the first line\n\n        # Outer loop: iterate over all orderings of [1..n] (the outer onion layer)\n        for perm in itertools.permutations(numbers):  # all orderings (n! of them)\n            # Inner loop: for each ordering, apply every combination of +/− to each position\n            for sign_choice in itertools.product([1, -1], repeat=n):  # 2^n sign vectors\n                # Apply sign to each element of the permutation (elementwise multiplication)\n                signed_perm = [sign_choice[i] * perm[i] for i in range(n)]\n                # Format the signed permutation: include '+' explicitly for positives\n                line = \" \".join(f\"{'+' if x &gt; 0 else ''}{x}\" for x in signed_perm)\n                f.write(line + \"\\n\")  # write one signed permutation per line\n\n    # Confirmation output to console\n    print(f\"Wrote {total} signed permutations to {output_path}\")\n\n# Immediately invoke main when script runs\nmain()\n\nWhat I learned:\n\nSigned permutations structure: n!x2^n = Total permutations = n! independent sign flips = 2^n\nAnalogy (onion): Fix a permutation (outer layer), then peel through all sign combinations underneath.\nFormatting: Explicitly include “+” for positive values to make orientation clear.\nuse of intertools"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "This log summarizes key insights from the webinar Inside the Minds of Scientists: How AI is Changing Life Science Research, hosted by Bioinformatics in May 2025.\n🎥 Watch the webinar on Vimeo"
+    "text": "About this site"
   },
   {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#key-trends",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "Key Trends",
-    "text": "Key Trends\n\nAI is moving from discovery to development.\nAI appears to be shifting from predictions to decisions — Y Combinator is investing heavily in companies fully run by AI agents.\nPharma is integrating AI across more stages of R&D (e.g., target ID, trial design, decision-making)."
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#whats-holding-ai-back-in-biology",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "What’s Holding AI Back in Biology?",
-    "text": "What’s Holding AI Back in Biology?\n\nCurrent issues with Ai in biosciences:\n\n\nReproducibility issues — hard to trust models without transparent workflows.\nLearning curve and training — lack of experience with AI was a significant pain point for many users.\n\nThis resonated with me. I’ve already seen how messy biological data can be, which leads to a steep learning curve and difficulty managing AI outputs."
-  },
-  {
-    "objectID": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
-    "href": "blog/2025-05-23_AI in Life Sciences.html#changes-for-future-adoption",
-    "title": "AI in Life Sciences: What’s Changing and What’s Holding Us Back",
-    "section": "Changes for future adoption",
-    "text": "Changes for future adoption\n\nTransparency is important for scientists to adopt and understand AI tools — they need to know how and what models were trained with.\nTools need to be built with their actual users in mind (biologists)."
-  },
-  {
-    "objectID": "blog/2025-07-24_biopython-reading.html",
-    "href": "blog/2025-07-24_biopython-reading.html",
-    "title": "Reading C3 of the official Biopython documentation",
+    "objectID": "blog/2025-06-11_Crispr.html",
+    "href": "blog/2025-06-11_Crispr.html",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 3 — covering the core functionality of working with sequences using Biopython."
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
   },
   {
-    "objectID": "blog/2025-07-24_biopython-reading.html#introduction",
-    "href": "blog/2025-07-24_biopython-reading.html#introduction",
-    "title": "Reading C3 of the official Biopython documentation",
+    "objectID": "blog/2025-06-11_Crispr.html#about",
+    "href": "blog/2025-06-11_Crispr.html#about",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
     "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 3 — covering the core functionality of working with sequences using Biopython."
+    "text": "This log summarizes key insights from the webinar The Future of CRISPR, hosted by The Scientist in June 2025.\nWatch the webinar\nIn this blog im going talk about Ben Kleinstivers contribution as it is the most interesting to me."
   },
   {
-    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
-    "href": "blog/2025-07-24_biopython-reading.html#chapter-3-working-with-sequences-seq",
-    "title": "Reading C3 of the official Biopython documentation",
-    "section": "Chapter 3 – Working with Sequences (Seq)",
-    "text": "Chapter 3 – Working with Sequences (Seq)\nI used this code on day 3 Rosiland problems, link here\ndef reverse_complement(seq):\n    complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}\n    return ''.join(complement[base] for base in reversed(seq))\ninstead i could have used built in biopython function\nprint(s.reverse_complement()) \nBio.SeqUtils has many built in functions such as GC%.\nYou can set reading frames with my_seq[0::3] every 3rd base starting at 0 codon frame 1\nTwo Seq objects can be concatenated by adding them:\nfrom Bio.Seq import Seq\nlist_of_seqs = [Seq(\"ACGT\"), Seq(\"AACC\"), Seq(\"GGTT\")]\nconcatenated = Seq(\"\")\nfor s in list_of_seqs:\n    concatenated += s\n\nconcatenated\nSeq('ACGTAACCGGTT')\nalternatively\nspacer.join(contigs)\nTo make a seq mutable\nfrom Bio.Seq import MutableSeq\nmutable_seq = MutableSeq(my_seq)\nmutable_seq\nMutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')\nAn easy way to search a sequence\nfor index, sub in seq.search([\"CC\", \"GGG\", \"CC\"]):\n    print(index, sub)\n\n1 CC\n11 GGG\n14 CC\n23 GGG\n28 CC\n29 CC"
+    "objectID": "blog/2025-06-11_Crispr.html#background",
+    "href": "blog/2025-06-11_Crispr.html#background",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Background",
+    "text": "Background\n\nCas9 is bacteria’s adaptive defense against Bacteriophages and cleaves invading DNA strands\nCas9 can only bind and cut DNA at sites adjacent to a PAM sequence.\nWild-type enzymes are naturally occurring enzymes"
   },
   {
-    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
-    "href": "blog/2025-07-24_biopython-reading.html#chapter-4-sequence-records-seqrecord",
-    "title": "Reading C3 of the official Biopython documentation",
-    "section": "Chapter 4 – Sequence Records (SeqRecord)",
-    "text": "Chapter 4 – Sequence Records (SeqRecord)"
+    "objectID": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "href": "blog/2025-06-11_Crispr.html#what-they-created-httpspammla.streamlit.app",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "What they created https://pammla.streamlit.app/",
+    "text": "What they created https://pammla.streamlit.app/\n\nPAMmlla is a ML tool that predicts which Cas9 variant is optimal for that sequence’s PAM recognition to minimize off target activation.\nThey trained PAMmla on a library of cas9 proteins with 6 altered proteins. Expressed them in bacteria and created a selective pressure that required a specific SpCas9 against 1 of 16 different PAMS\nThey then Sequenced the specific domains, And expressed its biological activity against each AA sequence.\nThis was the data that PAMmla was trained on."
   },
   {
-    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
-    "href": "blog/2025-07-24_biopython-reading.html#chapter-5-sequence-inputoutput-seqio",
-    "title": "Reading C3 of the official Biopython documentation",
+    "objectID": "blog/2025-06-11_Crispr.html#significance",
+    "href": "blog/2025-06-11_Crispr.html#significance",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Significance",
+    "text": "Significance\n\nPAMla has enabled gene editing into previously inaccessible regions of the genome, and reduces trial-and-error in therapeutic development."
+  },
+  {
+    "objectID": "blog/2025-06-11_Crispr.html#questions",
+    "href": "blog/2025-06-11_Crispr.html#questions",
+    "title": "Engineering to improve the precision and flexibility of crispr editing",
+    "section": "Questions",
+    "text": "Questions\n\nI wonder if this technology could be used within oncology on multiple gene targets to design combinatorial editing strategies."
+  },
+  {
+    "objectID": "blog/2025-08-28_RNA in neuroblastoma.html",
+    "href": "blog/2025-08-28_RNA in neuroblastoma.html",
+    "title": "Role of m6A and METTL3 in Neuroblastoma: TERRA, MYCN, and Therapeutic Implications",
+    "section": "",
+    "text": "Background\n\nTERRA (Telomeric Repeat-containing RNA)\n\nUndergoes altered m⁶A modification.\n\nLocalised specifically to telomeres.\n\nFunctions in maintaining telomere integrity.\n\nm⁶A methylation and METTL3\n\nMETTL3 is essential for telomere maintenance in ALT⁺ cells.\n\nRequired for neuroblastoma growth in models where alternative lengthening of telomeres is active.\n\nAlso implicated in repressing HOX gene expression, linking epitranscriptomic control to developmental programs.\n\n\n\n\nMYCN and High-Risk Neuroblastoma\n\nMYCN amplification (MNA) is a hallmark of high-risk neuroblastoma.\n\nMYCN expression is regulated by m⁶A-dependent mechanisms.\n\nMETTL3 activity supports MYCN-driven oncogenesis.\n\n\n\nTherapeutic Angle\n\nInhibition of METTL3, particularly in combination with MYCN targeting, may offer a promising approach in MNA high-risk neuroblastoma.\n\nThis highlights the METTL3–MYCN axis as a potential synthetic vulnerability.\n\n\n\nOpen Question\n\nIs MYCN expression constant across branching cell lineages, or does it vary depending on its genomic locus?\n\nUnderstanding this will clarify whether MYCN dependence is uniform across tumour subclones, or context-specific, which has major implications for therapeutic targeting.\n\n\nKey Takeaways\n\nTERRA is m⁶A-modified and localised at telomeres.\n\nMETTL3 is essential in ALT⁺ neuroblastoma for growth and telomere stability.\n\nMETTL3 represses HOX genes and supports MYCN expression.\n\nCombining METTL3 inhibition with MYCN-directed therapy could be effective against MNA high-risk neuroblastoma."
+  },
+  {
+    "objectID": "blog/C5Biopython.html",
+    "href": "blog/C5Biopython.html",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+  },
+  {
+    "objectID": "blog/C5Biopython.html#introduction",
+    "href": "blog/C5Biopython.html#introduction",
+    "title": "Reading the Official Biopython Documentation",
+    "section": "",
+    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 5 — covering sequence file input/output using SeqIO."
+  },
+  {
+    "objectID": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "href": "blog/C5Biopython.html#chapter-5-sequence-inputoutput-seqio",
+    "title": "Reading the Official Biopython Documentation",
     "section": "Chapter 5 – Sequence Input/Output (SeqIO)",
-    "text": "Chapter 5 – Sequence Input/Output (SeqIO)"
-  },
-  {
-    "objectID": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
-    "href": "blog/2025-07-24_biopython-reading.html#chapter-6-sequence-alignments-alignio",
-    "title": "Reading C3 of the official Biopython documentation",
-    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
-    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
-  },
-  {
-    "objectID": "blog/C4Biopython.html",
-    "href": "blog/C4Biopython.html",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
-  },
-  {
-    "objectID": "blog/C4Biopython.html#introduction",
-    "href": "blog/C4Biopython.html#introduction",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 4 — covering the core functionality of working with annotated sequence records using SeqRecord."
-  },
-  {
-    "objectID": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
-    "href": "blog/C4Biopython.html#chapter-4-sequence-records-seqrecord",
-    "title": "Reading C4 of the Official Biopython Documentation",
-    "section": "Chapter 4 – Sequence Records (SeqRecord)",
-    "text": "Chapter 4 – Sequence Records (SeqRecord)\nyou can interact with meta data using\nfrom Bio.SeqRecord import SeqRecord\n\nsimple_seq_r.id = \"AC12345\"\nsimple_seq_r.description = \"Made up sequence I wish I could write a paper about\"\nprint(simple_seq_r.description)\nannotations. is used for any miscellaneous annotations\nfrom Bio import SeqIO record = SeqIO.read(“NC_005816.fna”, “fasta”) record.description ‘gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence’\nfeature positions within biopython have a few options,\n\nExactPosition as described\nBeforePosition a range of bases before a feature\nWithinPosition between two specified nucleotides\nOneOfPosition one of 2 exact positions\nUnknownPosition as described\n\nLocation testing for SNPs\nfrom Bio import SeqIO\nmy_snp = 4350\nrecord = SeqIO.read(\"NC_005816.gb\", \"genbank\")\nfor feature in record.features:\n    if my_snp in feature:\n        print(\"%s %s\" % (feature.type, feature.qualifiers.get(\"db_xref\")))\n\nsource ['taxon:229193']\ngene ['GeneID:2767712']\nCDS ['GI:45478716', 'GeneID:2767712']\nfrom Bio.Seq import Seq from Bio.SeqRecord import SeqRecord record = SeqRecord( Seq( “MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD” “GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK” “NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM” “SSAC” ), id=“gi|14150838|gb|AAK54648.1|AF376133_1”, description=“chalcone synthase [Cucumis sativus]”, ) print(record.format(“fasta”))"
-  },
-  {
-    "objectID": "blog/C6Biopython.html",
-    "href": "blog/C6Biopython.html",
-    "title": "Reading the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
-  },
-  {
-    "objectID": "blog/C6Biopython.html#introduction",
-    "href": "blog/C6Biopython.html#introduction",
-    "title": "Reading the Official Biopython Documentation",
-    "section": "",
-    "text": "This notebook documents my guided reading of the official Biopython Tutorial & Cookbook.\nFocus: Chapter 6 — a preview of handling multiple sequence alignments using AlignIO."
-  },
-  {
-    "objectID": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
-    "href": "blog/C6Biopython.html#chapter-6-sequence-alignments-alignio",
-    "title": "Reading the Official Biopython Documentation",
-    "section": "Chapter 6 – Sequence Alignments (AlignIO)",
-    "text": "Chapter 6 – Sequence Alignments (AlignIO)"
+    "text": "Chapter 5 – Sequence Input/Output (SeqIO)\nrecord_iterator = SeqIO.parse(\"ls_orchid.gbk\", \"genbank\")\nfirst_record = next(record_iterator)\nprint(first_record)\nPython supports negative indexing for lists: 0 first element -1 last element -2 second-to-last\nalso useful\nfrom Bio import SeqIO record_iterator = SeqIO.parse(“ls_orchid.gbk”, “genbank”) first_record = next(record_iterator) print(first_record)"
   },
   {
     "objectID": "index.html",
@@ -1111,5 +1139,12 @@
     "title": "Variant Filtering in Calcium-Regulating Genes",
     "section": "What i learned",
     "text": "What i learned\n\nFirst interactions with clinvar\nGENEINFO filtering is a quick but rough approach\n\n-Learned how to filter by gene names using the GENEINFO field in ClinVar annotations"
+  },
+  {
+    "objectID": "100daysofcode/Day32.html#notes",
+    "href": "100daysofcode/Day32.html#notes",
+    "title": "Day 32: AWS Global Infrastructure and Resilience",
+    "section": "Notes",
+    "text": "Notes"
   }
 ]
