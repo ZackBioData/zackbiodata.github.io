@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-13">
+<meta name="dcterms.date" content="2025-09-15">
 
-<title>Day 32: AWS Global Infrastructure and Resilience – Zack’s Bioinformatics</title>
+<title>Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,14 +117,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exam-domains-weighting" id="toc-exam-domains-weighting" class="nav-link active" data-scroll-target="#exam-domains-weighting">Exam Domains (Weighting)</a></li>
-  <li><a href="#notes-on-aws-global-infrastructure-and-climate-pledge" id="toc-notes-on-aws-global-infrastructure-and-climate-pledge" class="nav-link" data-scroll-target="#notes-on-aws-global-infrastructure-and-climate-pledge">Notes on AWS Global Infrastructure and Climate Pledge</a></li>
-  <li><a href="#aws-ground-station" id="toc-aws-ground-station" class="nav-link" data-scroll-target="#aws-ground-station">AWS Ground Station</a></li>
-  <li><a href="#aws-outposts" id="toc-aws-outposts" class="nav-link" data-scroll-target="#aws-outposts">AWS Outposts</a></li>
-  <li><a href="#cloud-architecture-principles" id="toc-cloud-architecture-principles" class="nav-link" data-scroll-target="#cloud-architecture-principles">Cloud Architecture Principles</a></li>
-  <li><a href="#business-continuity-disaster-recovery" id="toc-business-continuity-disaster-recovery" class="nav-link" data-scroll-target="#business-continuity-disaster-recovery">Business Continuity &amp; Disaster Recovery</a></li>
-  <li><a href="#practice-exam-wrong-questions-review" id="toc-practice-exam-wrong-questions-review" class="nav-link" data-scroll-target="#practice-exam-wrong-questions-review">Practice Exam Wrong Questions – Review</a></li>
-  <li><a href="#score" id="toc-score" class="nav-link" data-scroll-target="#score">Score</a></li>
+  <li><a href="#aws-accounts-account-id" id="toc-aws-accounts-account-id" class="nav-link active" data-scroll-target="#aws-accounts-account-id">AWS Accounts &amp; Account ID</a></li>
+  <li><a href="#aws-tools-for-powershell" id="toc-aws-tools-for-powershell" class="nav-link" data-scroll-target="#aws-tools-for-powershell">AWS Tools for PowerShell</a></li>
+  <li><a href="#amazon-resource-names-arns" id="toc-amazon-resource-names-arns" class="nav-link" data-scroll-target="#amazon-resource-names-arns">Amazon Resource Names (ARNs)</a></li>
+  <li><a href="#aws-cloudshell" id="toc-aws-cloudshell" class="nav-link" data-scroll-target="#aws-cloudshell">AWS CloudShell</a></li>
+  <li><a href="#infrastructure-as-code-iac" id="toc-infrastructure-as-code-iac" class="nav-link" data-scroll-target="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a>
+  <ul class="collapse">
+  <li><a href="#two-main-iac-options-on-aws" id="toc-two-main-iac-options-on-aws" class="nav-link" data-scroll-target="#two-main-iac-options-on-aws">Two main IaC options on AWS</a>
+  <ul class="collapse">
+  <li><a href="#aws-cloudformation" id="toc-aws-cloudformation" class="nav-link" data-scroll-target="#aws-cloudformation">AWS CloudFormation</a></li>
+  <li><a href="#aws-cloud-development-kit-cdk" id="toc-aws-cloud-development-kit-cdk" class="nav-link" data-scroll-target="#aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#shared-responsibility-model" id="toc-shared-responsibility-model" class="nav-link" data-scroll-target="#shared-responsibility-model">Shared Responsibility Model</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul>
 </nav>
@@ -134,7 +139,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 32: AWS Global Infrastructure and Resilience</h1>
+<h1 class="title">Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility</h1>
+<p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
     <div class="quarto-category">Cloud</div>
@@ -151,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 13, 2025</p>
+      <p class="date">September 15, 2025</p>
     </div>
   </div>
   
@@ -163,236 +169,131 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Day 5 of learning AWS for my Cloud Practitioner exam.<br>
+<p>Day 6 of learning AWS for my Cloud Practitioner exam.<br>
 Today I covered:<br>
-- ✅ AWS Global Infrastructure and Climate Pledge<br>
-- ✅ AWS Ground Station &amp; Outposts<br>
-- ✅ Cloud Architecture Principles (Availability, Scalability, Elasticity, Fault Tolerance, Durability)<br>
-- ✅ Disaster Recovery &amp; Business Continuity Planning<br>
-- ✅ Practice Exam Review (21 wrong Qs)</p>
+- ✅ AWS account IDs and where to find them<br>
+- ✅ AWS Tools for PowerShell<br>
+- ✅ Amazon Resource Names (ARNs)<br>
+- ✅ AWS CloudShell<br>
+- ✅ Infrastructure as Code (IaC): CloudFormation vs CDK<br>
+- ✅ Shared Responsibility Model</p>
 <hr>
-<section id="exam-domains-weighting" class="level1">
-<h1>Exam Domains (Weighting)</h1>
-<p><strong>bold = high frequency in exam</strong></p>
+<section id="aws-accounts-account-id" class="level1">
+<h1>AWS Accounts &amp; Account ID</h1>
 <ul>
-<li><strong>Cloud Concepts (28%)</strong>
+<li>Every AWS account has a <strong>unique 12-digit Account ID</strong>.<br>
+</li>
+<li>You can find it in the <strong>AWS Management Console</strong> (top-right account menu → “Account ID”), or in <strong>Support Center / My Account</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="aws-tools-for-powershell" class="level1">
+<h1>AWS Tools for PowerShell</h1>
 <ul>
-<li>✅ Benefits of cloud<br>
+<li><strong>AWS Tools for PowerShell</strong> exposes AWS APIs as <strong>PowerShell cmdlets</strong>.<br>
 </li>
-<li>✅ AWS global infrastructure
+<li>Because PowerShell runs on <strong>.NET</strong>, you can script AWS operations (create S3 buckets, manage EC2, IAM, etc.) using familiar cmdlet patterns:
 <ul>
-<li>✅ <strong>Regions</strong>, <strong>Availability Zones (AZs)</strong>, Local Zones, Edge Locations, Wavelength Zones<br>
-</li>
-</ul></li>
-<li>✅ Hybrid solutions (Outposts)<br>
-</li>
-<li>⬜ <strong>Shared Responsibility Model</strong></li>
-</ul></li>
-<li><strong>Security &amp; Compliance (24%)</strong>
-<ul>
-<li>⬜ IAM basics (Users, Groups, Roles, Policies)<br>
-</li>
-<li>⬜ Encryption at rest vs in transit<br>
-</li>
-<li>⬜ Compliance programs (HIPAA, GDPR, SOC, ISO)</li>
-</ul></li>
-<li><strong>Technology (36%)</strong>
-<ul>
-<li>✅ Resilience design principles
-<ul>
-<li>✅ <strong>High Availability, Scalability, Elasticity, Fault Tolerance, Durability</strong><br>
-</li>
-</ul></li>
-<li>✅ Disaster Recovery strategies
-<ul>
-<li>✅ <strong>Backup &amp; Restore, Pilot Light, Warm Standby, Multi-Site Active/Active</strong><br>
-</li>
-</ul></li>
-<li>✅ AWS Ground Station use cases<br>
-</li>
-<li>✅ AWS Outposts (Hybrid Cloud)</li>
-</ul></li>
-<li><strong>Billing &amp; Pricing (12%)</strong>
-<ul>
-<li>⬜ Pricing models (On-Demand, Reserved, Spot)<br>
-</li>
-<li>⬜ Cost Management Tools (Budgets, Cost Explorer, Trusted Advisor)<br>
-</li>
-<li>⬜ Support plans</li>
+<li><code>Get-</code>, <code>New-</code>, <code>Remove-</code>, <code>Set-</code>, <code>Write-</code> against AWS services.</li>
 </ul></li>
 </ul>
 <hr>
 </section>
-<section id="notes-on-aws-global-infrastructure-and-climate-pledge" class="level1">
-<h1>Notes on AWS Global Infrastructure and Climate Pledge</h1>
+<section id="amazon-resource-names-arns" class="level1">
+<h1>Amazon Resource Names (ARNs)</h1>
 <ul>
-<li>Amazon co-founded the <strong>Climate Pledge</strong> → net zero carbon by <strong>2040</strong>.<br>
+<li><strong>ARNs uniquely identify AWS resources</strong> across all regions and accounts.<br>
 </li>
-<li><strong>Regions</strong> = clusters of Availability Zones.<br>
+<li>Format: <code>arn:partition:service:region:account-id:resourcetype/resource</code> (varies by service).<br>
 </li>
-<li><strong>AZs</strong> = one or more physical datacenters with independent power/cooling.</li>
+<li>You use ARNs in <strong>IAM policies</strong>, <strong>resource references</strong>, <strong>EventBridge rules</strong>, etc., to unambiguously specify the exact target.</li>
 </ul>
 <hr>
 </section>
-<section id="aws-ground-station" class="level1">
-<h1>AWS Ground Station</h1>
+<section id="aws-cloudshell" class="level1">
+<h1>AWS CloudShell</h1>
 <ul>
-<li>Fully managed service to <strong>control satellite communications</strong>, process data, and scale operations without building ground stations.<br>
+<li><strong>Browser-based shell</strong> inside the <strong>AWS Management Console</strong>.<br>
 </li>
-<li><strong>Use cases</strong>: weather monitoring, surface imaging, communications.</li>
+<li>Uses your <strong>current console credentials</strong> and is <strong>scoped per region</strong>.<br>
+</li>
+<li>Persists files in your <strong>home directory</strong> across sessions (per region).<br>
+</li>
+<li>Preinstalled with common tools (AWS CLI, Python, Git) for quick admin and scripting.</li>
 </ul>
 <hr>
 </section>
-<section id="aws-outposts" class="level1">
-<h1>AWS Outposts</h1>
+<section id="infrastructure-as-code-iac" class="level1">
+<h1>Infrastructure as Code (IaC)</h1>
 <ul>
-<li><strong>AWS-managed hardware rack</strong> delivered to customer premises.<br>
+<li>IaC = <strong>define infrastructure in code</strong> to <strong>create/update/delete</strong> cloud resources repeatably.<br>
 </li>
-<li>Brings AWS infrastructure and services <strong>on-premises</strong> for low-latency or compliance requirements.<br>
+<li>Benefits: version control, review, sharing, drift detection, reproducible environments, faster automation.<br>
 </li>
-<li>Options:
+<li>Think of it as a <strong>blueprint</strong> of your cloud architecture.</li>
+</ul>
+<hr>
+<section id="two-main-iac-options-on-aws" class="level2">
+<h2 class="anchored" data-anchor-id="two-main-iac-options-on-aws">Two main IaC options on AWS</h2>
+<section id="aws-cloudformation" class="level3">
+<h3 class="anchored" data-anchor-id="aws-cloudformation">AWS CloudFormation</h3>
 <ul>
-<li><strong>42U rack</strong> (full rack, delivered + installed).<br>
+<li><strong>Declarative templates</strong> in <strong>JSON or YAML</strong> (no XML).<br>
 </li>
-<li><strong>1U server</strong> (individual server you can rack).</li>
-</ul></li>
+<li>“What you declare is what gets built.”<br>
+</li>
+<li>Great for <strong>explicit</strong>, auditable infrastructure definitions.</li>
+</ul>
+</section>
+<section id="aws-cloud-development-kit-cdk" class="level3">
+<h3 class="anchored" data-anchor-id="aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</h3>
+<ul>
+<li><strong>Imperative</strong> code in familiar languages (TypeScript/JavaScript, <strong>Python</strong>, <strong>Java</strong>, <strong>C#/.NET</strong>, <strong>Go</strong>) that <strong>synthesizes</strong> to CloudFormation templates.<br>
+</li>
+<li>Less verbose than raw templates; higher-level constructs can reduce boilerplate.<br>
+</li>
+<li>Because logic is code, <strong>be mindful</strong> of implicit defaults and ensure reviews to avoid misconfiguration.</li>
 </ul>
 <hr>
 </section>
-<section id="cloud-architecture-principles" class="level1">
-<h1>Cloud Architecture Principles</h1>
-<ul>
-<li><strong>High Availability</strong> → no single point of failure, distribute with ELB.<br>
-</li>
-<li><strong>High Scalability</strong> → vertical (bigger server) vs horizontal (more servers).<br>
-</li>
-<li><strong>High Elasticity</strong> → auto-scale capacity up/down with demand (ASG).<br>
-</li>
-<li><strong>High Fault Tolerance</strong> → tolerate failures (e.g., RDS Multi-AZ).<br>
-</li>
-<li><strong>High Durability</strong> → protect data from loss (backups, replication, CloudEndure DR).</li>
-</ul>
-<hr>
 </section>
-<section id="business-continuity-disaster-recovery" class="level1">
-<h1>Business Continuity &amp; Disaster Recovery</h1>
-<ul>
-<li><strong>BCP</strong> = plan to keep operating during unplanned disruption.<br>
-</li>
-<li>Disaster recovery strategies (in order of increasing cost/reduced downtime):
-<ul>
-<li><strong>Backup &amp; Restore</strong> → hours.<br>
-</li>
-<li><strong>Pilot Light</strong> → ~10 mins, minimal services pre-running.<br>
-</li>
-<li><strong>Warm Standby</strong> → scaled-down copy running, minutes to switch.<br>
-</li>
-<li><strong>Multi-Site Active/Active</strong> → fully scaled duplicate, real-time failover.</li>
-</ul></li>
-</ul>
-<hr>
 </section>
-<section id="practice-exam-wrong-questions-review" class="level1">
-<h1>Practice Exam Wrong Questions – Review</h1>
-<p><strong>1. Terminated EC2 instances</strong><br>
-- Correct: <strong>B. CloudTrail</strong><br>
-- CloudTrail records all API calls (who did what).<br>
-Rule: “Who did what?” → CloudTrail.</p>
-<p><strong>2. Consolidated billing &amp; Reserved Instances</strong><br>
-- Correct: <strong>B. All accounts share RI discounts</strong><br>
-- Discounts flow across all linked accounts.</p>
-<p><strong>3. AWS Snowball provides (2 answers)</strong><br>
-- Correct: <strong>A. Local compute, E. Secure transfer</strong><br>
-- Snowball = petabyte-scale, not exabyte (that’s Snowmobile).</p>
-<p><strong>4. Enterprise Support billing guidance</strong><br>
-- Correct: <strong>B. Support Concierge</strong><br>
-- Concierge = account/billing experts for Enterprise plan.</p>
-<p><strong>5. Migrating Oracle DB with minimal downtime</strong><br>
-- Correct: <strong>B. Database Migration Service (DMS)</strong><br>
-- DMS = low-downtime live DB replication.</p>
-<p><strong>6. Keeping EBS data safe (2 answers)</strong><br>
-- Correct: <strong>B. Snapshots, C. Encrypt at rest</strong><br>
-- Backups + encryption are best practice.</p>
-<p><strong>7. Elasticity principle</strong><br>
-- Correct: <strong>D. Auto-provisioning resources on demand</strong><br>
-- Elastic = auto stretch/shrink capacity.</p>
-<p><strong>8. Not a cloud model</strong><br>
-- Correct: <strong>D. Networking as a Service (NaaS)</strong><br>
-- Only IaaS, PaaS, SaaS are standard.</p>
-<p><strong>9. Storing rarely accessed legal videos</strong><br>
-- Correct: <strong>C. Glacier Deep Archive</strong><br>
-- Cheapest long-term cold storage.</p>
-<p><strong>10. DDoS protection (2 answers)</strong><br>
-- Correct: <strong>A. AWS Shield, D. AWS WAF</strong><br>
-- Shield = infra DDoS protection, WAF = filters malicious traffic.</p>
-<p><strong>11. Fastest data retrieval for web app</strong><br>
-- Correct: <strong>D. ElastiCache</strong><br>
-- In-memory caching beats EBS/DB.</p>
-<p><strong>12. Global CDN service</strong><br>
-- Correct: <strong>D. CloudFront</strong><br>
-- CloudFront = AWS CDN, global PoPs.</p>
-<p><strong>13. AWS-Managed Services (2 answers)</strong><br>
-- Correct: <strong>B. DynamoDB, C. EMR</strong><br>
-- Fully managed, AWS handles ops.</p>
-<p><strong>14. IAM CLI authentication</strong><br>
-- Correct: <strong>A. Access keys</strong><br>
-- CLI uses access key ID + secret key.</p>
-<p><strong>15. Shared controls (2 answers)</strong><br>
-- Correct: <strong>A. Patch Management, D. Config Management</strong><br>
-- AWS = infra, customer = IAM/VPC, shared = patch/config.</p>
-<p><strong>16. Avoiding Single Point of Failure (2 answers)</strong><br>
-- Correct: <strong>A. ELB, B. Auto Scaling</strong><br>
-- ELB distributes traffic, Auto Scaling replaces failed instances.</p>
-<p><strong>17. DB backups for two-tier web app</strong><br>
-- Correct: <strong>B. Amazon Aurora</strong><br>
-- Aurora automates backups.</p>
-<p><strong>18. Shared Responsibility – AWS role</strong><br>
-- Correct: <strong>B. Configuring infrastructure devices</strong><br>
-- AWS manages physical infra.</p>
-<p><strong>19. Non-benefits of S3 (2 answers)</strong><br>
-- Correct: <strong>B. Run apps, D. Manual scaling</strong><br>
-- S3 = storage only, scaling is auto.</p>
-<p><strong>20. Quick deployment of IBM MQ</strong><br>
-- Correct: <strong>C. AWS Quick Start</strong><br>
-- Pre-built templates for rapid deployment.</p>
-<p><strong>21. Flexible Reserved Instance type</strong><br>
-- Correct: <strong>D. Convertible RI</strong><br>
-- Convertible = exchange to different instance family.</p>
-<hr>
-</section>
-<section id="score" class="level1">
-<h1>Score</h1>
-<ul>
-<li>Total questions = 50<br>
-</li>
-<li>Wrong = 21<br>
-</li>
-<li>Correct = 29<br>
-</li>
-<li><strong>Score = 58%</strong></li>
-</ul>
+<section id="shared-responsibility-model" class="level1">
+<h1>Shared Responsibility Model</h1>
+<p><strong>AWS (Security <em>of</em> the Cloud):</strong><br>
+- <strong>Global infrastructure &amp; hardware</strong><br>
+- Physical datacenters, <strong>Regions</strong>, <strong>AZs</strong>, edge locations<br>
+- Physical security, power, networking<br>
+- <strong>Managed software layers</strong> (for managed services)<br>
+- Underlying <strong>compute</strong>, <strong>storage</strong>, <strong>databases</strong>, <strong>networking</strong> fabric</p>
+<p><strong>Customer (Security <em>in</em> the Cloud):</strong><br>
+- <strong>Configuration of services</strong> (service controls, settings)<br>
+- <strong>Platforms &amp; applications</strong> you run<br>
+- <strong>Identity &amp; Access Management (IAM)</strong> (users, roles, policies, MFA)<br>
+- <strong>OS configuration</strong> (for EC2/self-managed)<br>
+- <strong>Network controls</strong> (Security Groups, NACLs, firewalls)<br>
+- <strong>Data protection</strong><br>
+- Client-side encryption, <strong>server-side encryption options</strong>,<br>
+- <strong>In-transit</strong> protection (TLS), <strong>key management</strong>, data classification and lifecycle</p>
+<p><strong>TL;DR</strong><br>
+- <strong>Customer</strong> is responsible for <strong>security <em>in</em> the cloud</strong> (your data, identity, configs).<br>
+- <strong>AWS</strong> is responsible for <strong>security <em>of</em> the cloud</strong> (the infrastructure and managed service underpinnings).</p>
 <hr>
 </section>
 <section id="key-takeaways" class="level1">
 <h1>Key Takeaways</h1>
 <ul>
-<li><strong>CloudTrail</strong> = “who did what” logs.<br>
+<li><strong>Account ID</strong> uniquely identifies your AWS account; check it from the console menu.<br>
 </li>
-<li><strong>RI discounts</strong> share across linked accounts.<br>
+<li><strong>AWS Tools for PowerShell</strong> lets you script AWS with cmdlets over .NET.<br>
 </li>
-<li><strong>Snowball</strong> = petabyte-scale data transfer, not exabyte.<br>
+<li><strong>ARNs</strong> = the precise way to reference resources across accounts/regions.<br>
 </li>
-<li><strong>Glacier Deep Archive</strong> = cheapest long-term storage.<br>
+<li><strong>CloudShell</strong> gives you a ready-to-use, credentialed shell in-browser with per-region persistence.<br>
 </li>
-<li><strong>Shield + WAF</strong> = DDoS protection stack.<br>
+<li><strong>CloudFormation (declarative) vs CDK (imperative)</strong>: choose based on team preference and control; both end in CFN templates.<br>
 </li>
-<li><strong>ElastiCache</strong> = fastest retrieval.<br>
-</li>
-<li><strong>DynamoDB &amp; EMR</strong> = fully AWS-managed.<br>
-</li>
-<li><strong>Convertible RIs</strong> = flexibility to exchange instance types.<br>
-</li>
-<li>Focus: Shared responsibility, managed services, storage tiers, cost optimisation.</li>
+<li><strong>Shared Responsibility</strong>: AWS secures the platform; <strong>you</strong> secure configurations, identities, networks, and data.</li>
 </ul>
 
 

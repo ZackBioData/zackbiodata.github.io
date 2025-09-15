@@ -1,0 +1,101 @@
+---
+title: "Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-15"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 6 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ AWS account IDs and where to find them  
+  - ✅ AWS Tools for PowerShell  
+  - ✅ Amazon Resource Names (ARNs)  
+  - ✅ AWS CloudShell  
+  - ✅ Infrastructure as Code (IaC): CloudFormation vs CDK  
+  - ✅ Shared Responsibility Model  
+
+---
+
+# AWS Accounts & Account ID
+
+- Every AWS account has a **unique 12-digit Account ID**.  
+- You can find it in the **AWS Management Console** (top-right account menu → “Account ID”), or in **Support Center / My Account**.
+
+---
+
+# AWS Tools for PowerShell
+
+- **AWS Tools for PowerShell** exposes AWS APIs as **PowerShell cmdlets**.  
+- Because PowerShell runs on **.NET**, you can script AWS operations (create S3 buckets, manage EC2, IAM, etc.) using familiar cmdlet patterns:  
+  - `Get-`, `New-`, `Remove-`, `Set-`, `Write-` against AWS services.
+
+---
+
+# Amazon Resource Names (ARNs)
+
+- **ARNs uniquely identify AWS resources** across all regions and accounts.  
+- Format: `arn:partition:service:region:account-id:resourcetype/resource` (varies by service).  
+- You use ARNs in **IAM policies**, **resource references**, **EventBridge rules**, etc., to unambiguously specify the exact target.
+
+---
+
+# AWS CloudShell
+
+- **Browser-based shell** inside the **AWS Management Console**.  
+- Uses your **current console credentials** and is **scoped per region**.  
+- Persists files in your **home directory** across sessions (per region).  
+- Preinstalled with common tools (AWS CLI, Python, Git) for quick admin and scripting.
+
+---
+
+# Infrastructure as Code (IaC)
+
+- IaC = **define infrastructure in code** to **create/update/delete** cloud resources repeatably.  
+- Benefits: version control, review, sharing, drift detection, reproducible environments, faster automation.  
+- Think of it as a **blueprint** of your cloud architecture.
+
+---
+
+## Two main IaC options on AWS
+
+### AWS CloudFormation
+- **Declarative templates** in **JSON or YAML** (no XML).  
+- “What you declare is what gets built.”  
+- Great for **explicit**, auditable infrastructure definitions.
+
+### AWS Cloud Development Kit (CDK)
+- **Imperative** code in familiar languages (TypeScript/JavaScript, **Python**, **Java**, **C#/.NET**, **Go**) that **synthesizes** to CloudFormation templates.  
+- Less verbose than raw templates; higher-level constructs can reduce boilerplate.  
+- Because logic is code, **be mindful** of implicit defaults and ensure reviews to avoid misconfiguration.
+
+---
+
+# Shared Responsibility Model
+
+**AWS (Security *of* the Cloud):**  
+- **Global infrastructure & hardware**  
+  - Physical datacenters, **Regions**, **AZs**, edge locations  
+  - Physical security, power, networking  
+- **Managed software layers** (for managed services)  
+  - Underlying **compute**, **storage**, **databases**, **networking** fabric
+
+**Customer (Security *in* the Cloud):**  
+- **Configuration of services** (service controls, settings)  
+- **Platforms & applications** you run  
+- **Identity & Access Management (IAM)** (users, roles, policies, MFA)  
+- **OS configuration** (for EC2/self-managed)  
+- **Network controls** (Security Groups, NACLs, firewalls)  
+- **Data protection**  
+  - Client-side encryption, **server-side encryption options**,  
+  - **In-transit** protection (TLS), **key management**, data classification and lifecycle
+
+**TL;DR**  
+- **Customer** is responsible for **security *in* the cloud** (your data, identity, configs).  
+- **AWS** is responsible for **security *of* the cloud** (the infrastructure and managed service underpinnings).
+
+---
