@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-15">
+<meta name="dcterms.date" content="2025-09-16">
 
-<title>Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility – Zack’s Bioinformatics</title>
+<title>Day 34: Kubernetes &amp; Database Fundamentals – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,19 +117,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aws-accounts-account-id" id="toc-aws-accounts-account-id" class="nav-link active" data-scroll-target="#aws-accounts-account-id">AWS Accounts &amp; Account ID</a></li>
-  <li><a href="#aws-tools-for-powershell" id="toc-aws-tools-for-powershell" class="nav-link" data-scroll-target="#aws-tools-for-powershell">AWS Tools for PowerShell</a></li>
-  <li><a href="#amazon-resource-names-arns" id="toc-amazon-resource-names-arns" class="nav-link" data-scroll-target="#amazon-resource-names-arns">Amazon Resource Names (ARNs)</a></li>
+  <li><a href="#aws-accounts-arns" id="toc-aws-accounts-arns" class="nav-link active" data-scroll-target="#aws-accounts-arns">AWS Accounts &amp; ARNs</a></li>
   <li><a href="#aws-cloudshell" id="toc-aws-cloudshell" class="nav-link" data-scroll-target="#aws-cloudshell">AWS CloudShell</a></li>
   <li><a href="#infrastructure-as-code-iac" id="toc-infrastructure-as-code-iac" class="nav-link" data-scroll-target="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a>
-  <ul class="collapse">
-  <li><a href="#two-main-iac-options-on-aws" id="toc-two-main-iac-options-on-aws" class="nav-link" data-scroll-target="#two-main-iac-options-on-aws">Two main IaC options on AWS</a>
   <ul class="collapse">
   <li><a href="#aws-cloudformation" id="toc-aws-cloudformation" class="nav-link" data-scroll-target="#aws-cloudformation">AWS CloudFormation</a></li>
   <li><a href="#aws-cloud-development-kit-cdk" id="toc-aws-cloud-development-kit-cdk" class="nav-link" data-scroll-target="#aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</a></li>
   </ul></li>
+  <li><a href="#kubernetes-k8s-fundamentals" id="toc-kubernetes-k8s-fundamentals" class="nav-link" data-scroll-target="#kubernetes-k8s-fundamentals">Kubernetes (K8s) Fundamentals</a>
+  <ul class="collapse">
+  <li><a href="#example-architecture" id="toc-example-architecture" class="nav-link" data-scroll-target="#example-architecture">Example Architecture</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key Concepts</a></li>
   </ul></li>
-  <li><a href="#shared-responsibility-model" id="toc-shared-responsibility-model" class="nav-link" data-scroll-target="#shared-responsibility-model">Shared Responsibility Model</a></li>
+  <li><a href="#database-fundamentals" id="toc-database-fundamentals" class="nav-link" data-scroll-target="#database-fundamentals">Database Fundamentals</a>
+  <ul class="collapse">
+  <li><a href="#relational-databases-sql" id="toc-relational-databases-sql" class="nav-link" data-scroll-target="#relational-databases-sql">Relational Databases (SQL)</a></li>
+  <li><a href="#non-relational-databases-nosql" id="toc-non-relational-databases-nosql" class="nav-link" data-scroll-target="#non-relational-databases-nosql">Non-Relational Databases (NoSQL)</a></li>
+  <li><a href="#data-warehouses" id="toc-data-warehouses" class="nav-link" data-scroll-target="#data-warehouses">Data Warehouses</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul>
 </nav>
     </div>
@@ -138,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility</h1>
+<h1 class="title">Day 34: Kubernetes &amp; Database Fundamentals</h1>
 <p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
@@ -156,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 15, 2025</p>
+      <p class="date">September 16, 2025</p>
     </div>
   </div>
   
@@ -170,114 +176,164 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Day 6 of learning AWS for my Cloud Practitioner exam.<br>
 Today I covered:<br>
-- ✅ AWS account IDs and where to find them<br>
-- ✅ AWS Tools for PowerShell<br>
-- ✅ Amazon Resource Names (ARNs)<br>
-- ✅ AWS CloudShell<br>
-- ✅ Infrastructure as Code (IaC): CloudFormation vs CDK<br>
-- ✅ Shared Responsibility Model</p>
+- ✅ AWS Account IDs &amp; ARNs<br>
+- ✅ AWS CloudShell basics<br>
+- ✅ Infrastructure as Code (CloudFormation vs CDK)<br>
+- ✅ Kubernetes fundamentals (pods, autoscaling, services)<br>
+- ✅ Database models (relational, non-relational, warehouses, key-value, document stores)</p>
 <hr>
-<section id="aws-accounts-account-id" class="level1">
-<h1>AWS Accounts &amp; Account ID</h1>
+<section id="aws-accounts-arns" class="level1">
+<h1>AWS Accounts &amp; ARNs</h1>
 <ul>
 <li>Every AWS account has a <strong>unique 12-digit Account ID</strong>.<br>
 </li>
-<li>You can find it in the <strong>AWS Management Console</strong> (top-right account menu → “Account ID”), or in <strong>Support Center / My Account</strong>.</li>
-</ul>
-<hr>
-</section>
-<section id="aws-tools-for-powershell" class="level1">
-<h1>AWS Tools for PowerShell</h1>
-<ul>
-<li><strong>AWS Tools for PowerShell</strong> exposes AWS APIs as <strong>PowerShell cmdlets</strong>.<br>
+<li>Found in the AWS Console dropdown (current user → Account ID).<br>
 </li>
-<li>Because PowerShell runs on <strong>.NET</strong>, you can script AWS operations (create S3 buckets, manage EC2, IAM, etc.) using familiar cmdlet patterns:
+<li><strong>Amazon Resource Names (ARNs)</strong> uniquely identify resources across AWS.
 <ul>
-<li><code>Get-</code>, <code>New-</code>, <code>Remove-</code>, <code>Set-</code>, <code>Write-</code> against AWS services.</li>
+<li>Format: <code>arn:partition:service:region:account-id:resource</code>.<br>
+</li>
+<li>Required in IAM policies and cross-service references.</li>
 </ul></li>
-</ul>
-<hr>
-</section>
-<section id="amazon-resource-names-arns" class="level1">
-<h1>Amazon Resource Names (ARNs)</h1>
-<ul>
-<li><strong>ARNs uniquely identify AWS resources</strong> across all regions and accounts.<br>
-</li>
-<li>Format: <code>arn:partition:service:region:account-id:resourcetype/resource</code> (varies by service).<br>
-</li>
-<li>You use ARNs in <strong>IAM policies</strong>, <strong>resource references</strong>, <strong>EventBridge rules</strong>, etc., to unambiguously specify the exact target.</li>
 </ul>
 <hr>
 </section>
 <section id="aws-cloudshell" class="level1">
 <h1>AWS CloudShell</h1>
 <ul>
-<li><strong>Browser-based shell</strong> inside the <strong>AWS Management Console</strong>.<br>
+<li><strong>Browser-based shell</strong> integrated into AWS Console.<br>
 </li>
-<li>Uses your <strong>current console credentials</strong> and is <strong>scoped per region</strong>.<br>
+<li>Scoped per region, same credentials as your AWS login.<br>
 </li>
-<li>Persists files in your <strong>home directory</strong> across sessions (per region).<br>
+<li>Files persist in home directory (per region).<br>
 </li>
-<li>Preinstalled with common tools (AWS CLI, Python, Git) for quick admin and scripting.</li>
+<li>Preinstalled with AWS CLI, Python, Git, etc.</li>
 </ul>
 <hr>
 </section>
 <section id="infrastructure-as-code-iac" class="level1">
 <h1>Infrastructure as Code (IaC)</h1>
 <ul>
-<li>IaC = <strong>define infrastructure in code</strong> to <strong>create/update/delete</strong> cloud resources repeatably.<br>
+<li>Define infra with config scripts to <strong>create, update, delete resources automatically</strong>.<br>
 </li>
-<li>Benefits: version control, review, sharing, drift detection, reproducible environments, faster automation.<br>
+<li>Benefits: reproducibility, version control, collaboration.<br>
 </li>
-<li>Think of it as a <strong>blueprint</strong> of your cloud architecture.</li>
+<li>Think of IaC as a <strong>blueprint</strong> for infra.</li>
 </ul>
-<hr>
-<section id="two-main-iac-options-on-aws" class="level2">
-<h2 class="anchored" data-anchor-id="two-main-iac-options-on-aws">Two main IaC options on AWS</h2>
 <section id="aws-cloudformation" class="level3">
 <h3 class="anchored" data-anchor-id="aws-cloudformation">AWS CloudFormation</h3>
 <ul>
-<li><strong>Declarative templates</strong> in <strong>JSON or YAML</strong> (no XML).<br>
+<li>Declarative templates (JSON or YAML).<br>
 </li>
-<li>“What you declare is what gets built.”<br>
-</li>
-<li>Great for <strong>explicit</strong>, auditable infrastructure definitions.</li>
+<li>“What you declare is what you get.”</li>
 </ul>
 </section>
 <section id="aws-cloud-development-kit-cdk" class="level3">
 <h3 class="anchored" data-anchor-id="aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</h3>
 <ul>
-<li><strong>Imperative</strong> code in familiar languages (TypeScript/JavaScript, <strong>Python</strong>, <strong>Java</strong>, <strong>C#/.NET</strong>, <strong>Go</strong>) that <strong>synthesizes</strong> to CloudFormation templates.<br>
+<li>Imperative code (Python, JavaScript, TypeScript, etc.) that compiles to CloudFormation.<br>
 </li>
-<li>Less verbose than raw templates; higher-level constructs can reduce boilerplate.<br>
-</li>
-<li>Because logic is code, <strong>be mindful</strong> of implicit defaults and ensure reviews to avoid misconfiguration.</li>
+<li>Less verbose, but defaults can hide misconfigurations.</li>
 </ul>
 <hr>
 </section>
 </section>
+<section id="kubernetes-k8s-fundamentals" class="level1">
+<h1>Kubernetes (K8s) Fundamentals</h1>
+<ul>
+<li><strong>Kubernetes</strong> = orchestrates containers at scale.<br>
+</li>
+<li><strong>Containers</strong> = lightweight environments to run apps, sharing underlying infra.<br>
+</li>
+<li>Benefits: standardisation, portability, resource efficiency.</li>
+</ul>
+<section id="example-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="example-architecture">Example Architecture</h3>
+<ul>
+<li><strong>Frontend container</strong> (UI)<br>
+</li>
+<li><strong>Backend container</strong> (API logic)<br>
+</li>
+<li><strong>Data container</strong> (DB or cache)</li>
+</ul>
 </section>
-<section id="shared-responsibility-model" class="level1">
-<h1>Shared Responsibility Model</h1>
-<p><strong>AWS (Security <em>of</em> the Cloud):</strong><br>
-- <strong>Global infrastructure &amp; hardware</strong><br>
-- Physical datacenters, <strong>Regions</strong>, <strong>AZs</strong>, edge locations<br>
-- Physical security, power, networking<br>
-- <strong>Managed software layers</strong> (for managed services)<br>
-- Underlying <strong>compute</strong>, <strong>storage</strong>, <strong>databases</strong>, <strong>networking</strong> fabric</p>
-<p><strong>Customer (Security <em>in</em> the Cloud):</strong><br>
-- <strong>Configuration of services</strong> (service controls, settings)<br>
-- <strong>Platforms &amp; applications</strong> you run<br>
-- <strong>Identity &amp; Access Management (IAM)</strong> (users, roles, policies, MFA)<br>
-- <strong>OS configuration</strong> (for EC2/self-managed)<br>
-- <strong>Network controls</strong> (Security Groups, NACLs, firewalls)<br>
-- <strong>Data protection</strong><br>
-- Client-side encryption, <strong>server-side encryption options</strong>,<br>
-- <strong>In-transit</strong> protection (TLS), <strong>key management</strong>, data classification and lifecycle</p>
-<p><strong>TL;DR</strong><br>
-- <strong>Customer</strong> is responsible for <strong>security <em>in</em> the cloud</strong> (your data, identity, configs).<br>
-- <strong>AWS</strong> is responsible for <strong>security <em>of</em> the cloud</strong> (the infrastructure and managed service underpinnings).</p>
+<section id="key-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="key-concepts">Key Concepts</h3>
+<ul>
+<li><strong>Scheduling</strong> → finds optimal nodes for pods.<br>
+</li>
+<li><strong>Pods</strong> → smallest deployable unit (1+ containers).<br>
+</li>
+<li><strong>Self-repair</strong> → automatically restarts failed pods.<br>
+</li>
+<li><strong>Autoscaling</strong> → scales pods vertically/horizontally by thresholds (e.g., CPU &gt; 50%).<br>
+</li>
+<li><strong>Services</strong> → stable networking between pods, built-in load balancing.<br>
+</li>
+<li><strong>Control loop</strong> → Kubernetes constantly enforces desired vs actual state.</li>
+</ul>
 <hr>
+</section>
+</section>
+<section id="database-fundamentals" class="level1">
+<h1>Database Fundamentals</h1>
+<section id="relational-databases-sql" class="level3">
+<h3 class="anchored" data-anchor-id="relational-databases-sql">Relational Databases (SQL)</h3>
+<ul>
+<li>Structured, tabular rows &amp; columns.<br>
+</li>
+<li>Good for transactional workloads.<br>
+</li>
+<li>Examples: Amazon RDS, Aurora.</li>
+</ul>
+</section>
+<section id="non-relational-databases-nosql" class="level3">
+<h3 class="anchored" data-anchor-id="non-relational-databases-nosql">Non-Relational Databases (NoSQL)</h3>
+<ul>
+<li>Semi/unstructured data.<br>
+</li>
+<li>Subtypes:
+<ul>
+<li><strong>Key-value store</strong> → associative array/hash map (e.g., DynamoDB).<br>
+</li>
+<li><strong>Document store</strong> → JSON/XML documents, subclass of key-value but more structured.</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-warehouses" class="level3">
+<h3 class="anchored" data-anchor-id="data-warehouses">Data Warehouses</h3>
+<ul>
+<li>Relational DB optimised for <strong>analytics</strong>.<br>
+</li>
+<li>Column-oriented storage = fast aggregations.<br>
+</li>
+<li>Always “hot” for query performance.<br>
+</li>
+<li>Example: Amazon Redshift.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
+<ul>
+<li><strong>ARNs</strong> = unique resource identifiers.<br>
+</li>
+<li><strong>CloudShell</strong> = browser-based CLI, per region, preloaded tools.<br>
+</li>
+<li><strong>IaC</strong> = infra defined as code → CloudFormation (declarative) vs CDK (imperative).<br>
+</li>
+<li><strong>Kubernetes</strong> = container orchestration → pods, scaling, self-healing, services.<br>
+</li>
+<li><strong>Databases</strong>:
+<ul>
+<li>Relational (SQL) = structured, transactions.<br>
+</li>
+<li>Non-relational (NoSQL) = flexible, key-value, docs.<br>
+</li>
+<li>Data warehouse = columnar, optimized for analytics.</li>
+</ul></li>
+</ul>
 
 
 </section>

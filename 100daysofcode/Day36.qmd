@@ -1,0 +1,80 @@
+---
+title: "Day 35: Networking & Single-Cell visual Explorer"
+subtitle: "AWS Cloud Practitioner Exam Prep + Bioinformatics Project"
+date: "2025-09-19"
+categories: ["AWS", "Cloud", "Bioinformatics", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 7 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ Direct Connect vs VPN  
+  - ✅ VPCs, Subnets, and CIDR ranges  
+  - ✅ Security Groups vs NACLs  
+  - ✅ Drafted a Mini Project (Single-cell Atlas Explorer on AWS)  
+
+---
+
+# AWS Networking Basics
+
+### AWS Direct Connect
+- Dedicated **gigabit connection** from an **on-premise data center** to AWS.  
+- Provides low latency, private connectivity.  
+- Use cases: finance, healthcare, large data transfers.  
+
+### AWS Virtual Private Network (VPN)
+- Secure, encrypted connection between **on-premise networks** and AWS.  
+- Runs over the public internet (unlike Direct Connect).  
+- Cheaper, but higher latency.  
+
+---
+
+# Virtual Private Cloud (VPC) & Subnets
+
+### Virtual Private Cloud (VPC)
+- A **logically isolated section** of the AWS network.  
+- You choose a **CIDR IP range** for your VPC.  
+- Launch AWS resources (EC2, RDS, etc.) inside.  
+
+### Subnets
+- Partition of the VPC IP range into **smaller segments**.  
+- Each subnet has a **smaller CIDR range** than the parent VPC.  
+- Route traffic to the appropriate subnet (e.g., public vs private).  
+
+---
+
+# Security Groups vs NACLs
+
+### Network Access Control Lists (NACLs)
+- Firewall at the **subnet level**.  
+- Can create **allow and deny rules** (e.g., block IP ranges).  
+
+### Security Groups
+- Firewall at the **instance level**.  
+- **Allow-only rules** (cannot block IPs).  
+- Default deny all, then explicitly allow traffic.  
+
+---
+
+# Mini Project Idea – *Cloud Single-Cell visual Explorer*
+
+**Description:**  
+A containerized **Streamlit + Scanpy** app deployed on AWS that serves **precomputed single-cell embeddings** (UMAP/t-SNE).  
+
+- **Functionality:**  
+  - Users can type a **gene symbol**.  
+  - The embedding recolors to show **expression across tissues/clusters**.  
+
+- **Extension (future):**  
+  - Build an **ML model** to analyze expression maps.  
+  - Detect **patterns in colors/locations** (gene modules, trajectories).  
+
+**Why it’s valuable:**  
+- Shows **bioinformatics + cloud integration**.  
+- SaaS-style interface for exploring scRNA-seq without coding.  
+- Proof of **AWS deployment, security, and cost management**.  
+

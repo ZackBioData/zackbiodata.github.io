@@ -1,0 +1,108 @@
+---
+title: "Day 34: Kubernetes & Database Fundamentals"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-16"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 6 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ AWS Account IDs & ARNs  
+  - ✅ AWS CloudShell basics  
+  - ✅ Infrastructure as Code (CloudFormation vs CDK)  
+  - ✅ Kubernetes fundamentals (pods, autoscaling, services)  
+  - ✅ Database models (relational, non-relational, warehouses, key-value, document stores)  
+
+---
+
+# AWS Accounts & ARNs
+
+- Every AWS account has a **unique 12-digit Account ID**.  
+- Found in the AWS Console dropdown (current user → Account ID).  
+- **Amazon Resource Names (ARNs)** uniquely identify resources across AWS.  
+  - Format: `arn:partition:service:region:account-id:resource`.  
+  - Required in IAM policies and cross-service references.  
+
+---
+
+# AWS CloudShell
+
+- **Browser-based shell** integrated into AWS Console.  
+- Scoped per region, same credentials as your AWS login.  
+- Files persist in home directory (per region).  
+- Preinstalled with AWS CLI, Python, Git, etc.  
+
+---
+
+# Infrastructure as Code (IaC)
+
+- Define infra with config scripts to **create, update, delete resources automatically**.  
+- Benefits: reproducibility, version control, collaboration.  
+- Think of IaC as a **blueprint** for infra.  
+
+### AWS CloudFormation
+- Declarative templates (JSON or YAML).  
+- “What you declare is what you get.”  
+
+### AWS Cloud Development Kit (CDK)
+- Imperative code (Python, JavaScript, TypeScript, etc.) that compiles to CloudFormation.  
+- Less verbose, but defaults can hide misconfigurations.  
+
+---
+
+# Kubernetes (K8s) Fundamentals
+
+- **Kubernetes** = orchestrates containers at scale.  
+- **Containers** = lightweight environments to run apps, sharing underlying infra.  
+- Benefits: standardisation, portability, resource efficiency.  
+
+### Example Architecture
+- **Frontend container** (UI)  
+- **Backend container** (API logic)  
+- **Data container** (DB or cache)  
+
+### Key Concepts
+- **Scheduling** → finds optimal nodes for pods.  
+- **Pods** → smallest deployable unit (1+ containers).  
+- **Self-repair** → automatically restarts failed pods.  
+- **Autoscaling** → scales pods vertically/horizontally by thresholds (e.g., CPU > 50%).  
+- **Services** → stable networking between pods, built-in load balancing.  
+- **Control loop** → Kubernetes constantly enforces desired vs actual state.  
+
+---
+
+# Database Fundamentals
+
+### Relational Databases (SQL)
+- Structured, tabular rows & columns.  
+- Good for transactional workloads.  
+- Examples: Amazon RDS, Aurora.  
+
+### Non-Relational Databases (NoSQL)
+- Semi/unstructured data.  
+- Subtypes:  
+  - **Key-value store** → associative array/hash map (e.g., DynamoDB).  
+  - **Document store** → JSON/XML documents, subclass of key-value but more structured.  
+
+### Data Warehouses
+- Relational DB optimised for **analytics**.  
+- Column-oriented storage = fast aggregations.  
+- Always “hot” for query performance.  
+- Example: Amazon Redshift.  
+
+---
+
+# Key Takeaways
+- **ARNs** = unique resource identifiers.  
+- **CloudShell** = browser-based CLI, per region, preloaded tools.  
+- **IaC** = infra defined as code → CloudFormation (declarative) vs CDK (imperative).  
+- **Kubernetes** = container orchestration → pods, scaling, self-healing, services.  
+- **Databases**:  
+  - Relational (SQL) = structured, transactions.  
+  - Non-relational (NoSQL) = flexible, key-value, docs.  
+  - Data warehouse = columnar, optimized for analytics.  

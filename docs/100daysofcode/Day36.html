@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-15">
+<meta name="dcterms.date" content="2025-09-19">
 
-<title>Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility – Zack’s Bioinformatics</title>
+<title>Day 35: Networking &amp; Single-Cell Atlas Explorer – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,19 +117,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aws-accounts-account-id" id="toc-aws-accounts-account-id" class="nav-link active" data-scroll-target="#aws-accounts-account-id">AWS Accounts &amp; Account ID</a></li>
-  <li><a href="#aws-tools-for-powershell" id="toc-aws-tools-for-powershell" class="nav-link" data-scroll-target="#aws-tools-for-powershell">AWS Tools for PowerShell</a></li>
-  <li><a href="#amazon-resource-names-arns" id="toc-amazon-resource-names-arns" class="nav-link" data-scroll-target="#amazon-resource-names-arns">Amazon Resource Names (ARNs)</a></li>
-  <li><a href="#aws-cloudshell" id="toc-aws-cloudshell" class="nav-link" data-scroll-target="#aws-cloudshell">AWS CloudShell</a></li>
-  <li><a href="#infrastructure-as-code-iac" id="toc-infrastructure-as-code-iac" class="nav-link" data-scroll-target="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a>
+  <li><a href="#aws-networking-basics" id="toc-aws-networking-basics" class="nav-link active" data-scroll-target="#aws-networking-basics">AWS Networking Basics</a>
   <ul class="collapse">
-  <li><a href="#two-main-iac-options-on-aws" id="toc-two-main-iac-options-on-aws" class="nav-link" data-scroll-target="#two-main-iac-options-on-aws">Two main IaC options on AWS</a>
+  <li><a href="#aws-direct-connect" id="toc-aws-direct-connect" class="nav-link" data-scroll-target="#aws-direct-connect">AWS Direct Connect</a></li>
+  <li><a href="#aws-virtual-private-network-vpn" id="toc-aws-virtual-private-network-vpn" class="nav-link" data-scroll-target="#aws-virtual-private-network-vpn">AWS Virtual Private Network (VPN)</a></li>
+  </ul></li>
+  <li><a href="#virtual-private-cloud-vpc-subnets" id="toc-virtual-private-cloud-vpc-subnets" class="nav-link" data-scroll-target="#virtual-private-cloud-vpc-subnets">Virtual Private Cloud (VPC) &amp; Subnets</a>
   <ul class="collapse">
-  <li><a href="#aws-cloudformation" id="toc-aws-cloudformation" class="nav-link" data-scroll-target="#aws-cloudformation">AWS CloudFormation</a></li>
-  <li><a href="#aws-cloud-development-kit-cdk" id="toc-aws-cloud-development-kit-cdk" class="nav-link" data-scroll-target="#aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</a></li>
+  <li><a href="#virtual-private-cloud-vpc" id="toc-virtual-private-cloud-vpc" class="nav-link" data-scroll-target="#virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</a></li>
+  <li><a href="#subnets" id="toc-subnets" class="nav-link" data-scroll-target="#subnets">Subnets</a></li>
   </ul></li>
+  <li><a href="#security-groups-vs-nacls" id="toc-security-groups-vs-nacls" class="nav-link" data-scroll-target="#security-groups-vs-nacls">Security Groups vs NACLs</a>
+  <ul class="collapse">
+  <li><a href="#network-access-control-lists-nacls" id="toc-network-access-control-lists-nacls" class="nav-link" data-scroll-target="#network-access-control-lists-nacls">Network Access Control Lists (NACLs)</a></li>
+  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups">Security Groups</a></li>
   </ul></li>
-  <li><a href="#shared-responsibility-model" id="toc-shared-responsibility-model" class="nav-link" data-scroll-target="#shared-responsibility-model">Shared Responsibility Model</a></li>
+  <li><a href="#mini-project-idea-cloud-atlas-explorer" id="toc-mini-project-idea-cloud-atlas-explorer" class="nav-link" data-scroll-target="#mini-project-idea-cloud-atlas-explorer">Mini Project Idea – <em>Cloud Atlas Explorer</em></a></li>
   </ul>
 </nav>
     </div>
@@ -138,12 +141,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility</h1>
-<p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
+<h1 class="title">Day 35: Networking &amp; Single-Cell Atlas Explorer</h1>
+<p class="subtitle lead">AWS Cloud Practitioner Exam Prep + Bioinformatics Project</p>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
     <div class="quarto-category">Cloud</div>
-    <div class="quarto-category">Certification</div>
+    <div class="quarto-category">Bioinformatics</div>
     <div class="quarto-category">Study Log</div>
   </div>
   </div>
@@ -156,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 15, 2025</p>
+      <p class="date">September 19, 2025</p>
     </div>
   </div>
   
@@ -168,116 +171,105 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Day 6 of learning AWS for my Cloud Practitioner exam.<br>
+<p>Day 7 of learning AWS for my Cloud Practitioner exam.<br>
 Today I covered:<br>
-- ✅ AWS account IDs and where to find them<br>
-- ✅ AWS Tools for PowerShell<br>
-- ✅ Amazon Resource Names (ARNs)<br>
-- ✅ AWS CloudShell<br>
-- ✅ Infrastructure as Code (IaC): CloudFormation vs CDK<br>
-- ✅ Shared Responsibility Model</p>
+- ✅ Direct Connect vs VPN<br>
+- ✅ VPCs, Subnets, and CIDR ranges<br>
+- ✅ Security Groups vs NACLs<br>
+- ✅ Drafted a Mini Project (Single-cell Atlas Explorer on AWS)</p>
 <hr>
-<section id="aws-accounts-account-id" class="level1">
-<h1>AWS Accounts &amp; Account ID</h1>
+<section id="aws-networking-basics" class="level1">
+<h1>AWS Networking Basics</h1>
+<section id="aws-direct-connect" class="level3">
+<h3 class="anchored" data-anchor-id="aws-direct-connect">AWS Direct Connect</h3>
 <ul>
-<li>Every AWS account has a <strong>unique 12-digit Account ID</strong>.<br>
+<li>Dedicated <strong>gigabit connection</strong> from an <strong>on-premise data center</strong> to AWS.<br>
 </li>
-<li>You can find it in the <strong>AWS Management Console</strong> (top-right account menu → “Account ID”), or in <strong>Support Center / My Account</strong>.</li>
+<li>Provides low latency, private connectivity.<br>
+</li>
+<li>Use cases: finance, healthcare, large data transfers.</li>
+</ul>
+</section>
+<section id="aws-virtual-private-network-vpn" class="level3">
+<h3 class="anchored" data-anchor-id="aws-virtual-private-network-vpn">AWS Virtual Private Network (VPN)</h3>
+<ul>
+<li>Secure, encrypted connection between <strong>on-premise networks</strong> and AWS.<br>
+</li>
+<li>Runs over the public internet (unlike Direct Connect).<br>
+</li>
+<li>Cheaper, but higher latency.</li>
 </ul>
 <hr>
 </section>
-<section id="aws-tools-for-powershell" class="level1">
-<h1>AWS Tools for PowerShell</h1>
+</section>
+<section id="virtual-private-cloud-vpc-subnets" class="level1">
+<h1>Virtual Private Cloud (VPC) &amp; Subnets</h1>
+<section id="virtual-private-cloud-vpc" class="level3">
+<h3 class="anchored" data-anchor-id="virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</h3>
 <ul>
-<li><strong>AWS Tools for PowerShell</strong> exposes AWS APIs as <strong>PowerShell cmdlets</strong>.<br>
+<li>A <strong>logically isolated section</strong> of the AWS network.<br>
 </li>
-<li>Because PowerShell runs on <strong>.NET</strong>, you can script AWS operations (create S3 buckets, manage EC2, IAM, etc.) using familiar cmdlet patterns:
+<li>You choose a <strong>CIDR IP range</strong> for your VPC.<br>
+</li>
+<li>Launch AWS resources (EC2, RDS, etc.) inside.</li>
+</ul>
+</section>
+<section id="subnets" class="level3">
+<h3 class="anchored" data-anchor-id="subnets">Subnets</h3>
 <ul>
-<li><code>Get-</code>, <code>New-</code>, <code>Remove-</code>, <code>Set-</code>, <code>Write-</code> against AWS services.</li>
+<li>Partition of the VPC IP range into <strong>smaller segments</strong>.<br>
+</li>
+<li>Each subnet has a <strong>smaller CIDR range</strong> than the parent VPC.<br>
+</li>
+<li>Route traffic to the appropriate subnet (e.g., public vs private).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="security-groups-vs-nacls" class="level1">
+<h1>Security Groups vs NACLs</h1>
+<section id="network-access-control-lists-nacls" class="level3">
+<h3 class="anchored" data-anchor-id="network-access-control-lists-nacls">Network Access Control Lists (NACLs)</h3>
+<ul>
+<li>Firewall at the <strong>subnet level</strong>.<br>
+</li>
+<li>Can create <strong>allow and deny rules</strong> (e.g., block IP ranges).</li>
+</ul>
+</section>
+<section id="security-groups" class="level3">
+<h3 class="anchored" data-anchor-id="security-groups">Security Groups</h3>
+<ul>
+<li>Firewall at the <strong>instance level</strong>.<br>
+</li>
+<li><strong>Allow-only rules</strong> (cannot block IPs).<br>
+</li>
+<li>Default deny all, then explicitly allow traffic.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="mini-project-idea-cloud-atlas-explorer" class="level1">
+<h1>Mini Project Idea – <em>Cloud Atlas Explorer</em></h1>
+<p><strong>Description:</strong><br>
+A containerized <strong>Streamlit + Scanpy</strong> app deployed on AWS that serves <strong>precomputed single-cell embeddings</strong> (UMAP/t-SNE).</p>
+<ul>
+<li><strong>Functionality:</strong>
+<ul>
+<li>Users can type a <strong>gene symbol</strong>.<br>
+</li>
+<li>The embedding recolors to show <strong>expression across tissues/clusters</strong>.</li>
+</ul></li>
+<li><strong>Extension (future):</strong>
+<ul>
+<li>Build an <strong>ML model</strong> to analyze expression maps.<br>
+</li>
+<li>Detect <strong>patterns in colors/locations</strong> (gene modules, trajectories).</li>
 </ul></li>
 </ul>
-<hr>
-</section>
-<section id="amazon-resource-names-arns" class="level1">
-<h1>Amazon Resource Names (ARNs)</h1>
-<ul>
-<li><strong>ARNs uniquely identify AWS resources</strong> across all regions and accounts.<br>
-</li>
-<li>Format: <code>arn:partition:service:region:account-id:resourcetype/resource</code> (varies by service).<br>
-</li>
-<li>You use ARNs in <strong>IAM policies</strong>, <strong>resource references</strong>, <strong>EventBridge rules</strong>, etc., to unambiguously specify the exact target.</li>
-</ul>
-<hr>
-</section>
-<section id="aws-cloudshell" class="level1">
-<h1>AWS CloudShell</h1>
-<ul>
-<li><strong>Browser-based shell</strong> inside the <strong>AWS Management Console</strong>.<br>
-</li>
-<li>Uses your <strong>current console credentials</strong> and is <strong>scoped per region</strong>.<br>
-</li>
-<li>Persists files in your <strong>home directory</strong> across sessions (per region).<br>
-</li>
-<li>Preinstalled with common tools (AWS CLI, Python, Git) for quick admin and scripting.</li>
-</ul>
-<hr>
-</section>
-<section id="infrastructure-as-code-iac" class="level1">
-<h1>Infrastructure as Code (IaC)</h1>
-<ul>
-<li>IaC = <strong>define infrastructure in code</strong> to <strong>create/update/delete</strong> cloud resources repeatably.<br>
-</li>
-<li>Benefits: version control, review, sharing, drift detection, reproducible environments, faster automation.<br>
-</li>
-<li>Think of it as a <strong>blueprint</strong> of your cloud architecture.</li>
-</ul>
-<hr>
-<section id="two-main-iac-options-on-aws" class="level2">
-<h2 class="anchored" data-anchor-id="two-main-iac-options-on-aws">Two main IaC options on AWS</h2>
-<section id="aws-cloudformation" class="level3">
-<h3 class="anchored" data-anchor-id="aws-cloudformation">AWS CloudFormation</h3>
-<ul>
-<li><strong>Declarative templates</strong> in <strong>JSON or YAML</strong> (no XML).<br>
-</li>
-<li>“What you declare is what gets built.”<br>
-</li>
-<li>Great for <strong>explicit</strong>, auditable infrastructure definitions.</li>
-</ul>
-</section>
-<section id="aws-cloud-development-kit-cdk" class="level3">
-<h3 class="anchored" data-anchor-id="aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</h3>
-<ul>
-<li><strong>Imperative</strong> code in familiar languages (TypeScript/JavaScript, <strong>Python</strong>, <strong>Java</strong>, <strong>C#/.NET</strong>, <strong>Go</strong>) that <strong>synthesizes</strong> to CloudFormation templates.<br>
-</li>
-<li>Less verbose than raw templates; higher-level constructs can reduce boilerplate.<br>
-</li>
-<li>Because logic is code, <strong>be mindful</strong> of implicit defaults and ensure reviews to avoid misconfiguration.</li>
-</ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="shared-responsibility-model" class="level1">
-<h1>Shared Responsibility Model</h1>
-<p><strong>AWS (Security <em>of</em> the Cloud):</strong><br>
-- <strong>Global infrastructure &amp; hardware</strong><br>
-- Physical datacenters, <strong>Regions</strong>, <strong>AZs</strong>, edge locations<br>
-- Physical security, power, networking<br>
-- <strong>Managed software layers</strong> (for managed services)<br>
-- Underlying <strong>compute</strong>, <strong>storage</strong>, <strong>databases</strong>, <strong>networking</strong> fabric</p>
-<p><strong>Customer (Security <em>in</em> the Cloud):</strong><br>
-- <strong>Configuration of services</strong> (service controls, settings)<br>
-- <strong>Platforms &amp; applications</strong> you run<br>
-- <strong>Identity &amp; Access Management (IAM)</strong> (users, roles, policies, MFA)<br>
-- <strong>OS configuration</strong> (for EC2/self-managed)<br>
-- <strong>Network controls</strong> (Security Groups, NACLs, firewalls)<br>
-- <strong>Data protection</strong><br>
-- Client-side encryption, <strong>server-side encryption options</strong>,<br>
-- <strong>In-transit</strong> protection (TLS), <strong>key management</strong>, data classification and lifecycle</p>
-<p><strong>TL;DR</strong><br>
-- <strong>Customer</strong> is responsible for <strong>security <em>in</em> the cloud</strong> (your data, identity, configs).<br>
-- <strong>AWS</strong> is responsible for <strong>security <em>of</em> the cloud</strong> (the infrastructure and managed service underpinnings).</p>
-<hr>
+<p><strong>Why it’s valuable:</strong><br>
+- Shows <strong>bioinformatics + cloud integration</strong>.<br>
+- SaaS-style interface for exploring scRNA-seq without coding.<br>
+- Proof of <strong>AWS deployment, security, and cost management</strong>.</p>
 
 
 </section>

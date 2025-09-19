@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-15">
+<meta name="dcterms.date" content="2025-09-17">
 
-<title>Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility – Zack’s Bioinformatics</title>
+<title>Day 34: AWS Accounts, IaC, Security &amp; Practice Exam – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,19 +117,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aws-accounts-account-id" id="toc-aws-accounts-account-id" class="nav-link active" data-scroll-target="#aws-accounts-account-id">AWS Accounts &amp; Account ID</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#aws-account-id" id="toc-aws-account-id" class="nav-link" data-scroll-target="#aws-account-id">AWS Account ID</a></li>
   <li><a href="#aws-tools-for-powershell" id="toc-aws-tools-for-powershell" class="nav-link" data-scroll-target="#aws-tools-for-powershell">AWS Tools for PowerShell</a></li>
   <li><a href="#amazon-resource-names-arns" id="toc-amazon-resource-names-arns" class="nav-link" data-scroll-target="#amazon-resource-names-arns">Amazon Resource Names (ARNs)</a></li>
   <li><a href="#aws-cloudshell" id="toc-aws-cloudshell" class="nav-link" data-scroll-target="#aws-cloudshell">AWS CloudShell</a></li>
-  <li><a href="#infrastructure-as-code-iac" id="toc-infrastructure-as-code-iac" class="nav-link" data-scroll-target="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a>
-  <ul class="collapse">
-  <li><a href="#two-main-iac-options-on-aws" id="toc-two-main-iac-options-on-aws" class="nav-link" data-scroll-target="#two-main-iac-options-on-aws">Two main IaC options on AWS</a>
-  <ul class="collapse">
-  <li><a href="#aws-cloudformation" id="toc-aws-cloudformation" class="nav-link" data-scroll-target="#aws-cloudformation">AWS CloudFormation</a></li>
-  <li><a href="#aws-cloud-development-kit-cdk" id="toc-aws-cloud-development-kit-cdk" class="nav-link" data-scroll-target="#aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#infrastructure-as-code-iac" id="toc-infrastructure-as-code-iac" class="nav-link" data-scroll-target="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a></li>
   <li><a href="#shared-responsibility-model" id="toc-shared-responsibility-model" class="nav-link" data-scroll-target="#shared-responsibility-model">Shared Responsibility Model</a></li>
+  </ul></li>
+  <li><a href="#exam-domains-weighting" id="toc-exam-domains-weighting" class="nav-link" data-scroll-target="#exam-domains-weighting">Exam Domains (Weighting)</a></li>
+  <li><a href="#practice-exam-wrong-questions-review" id="toc-practice-exam-wrong-questions-review" class="nav-link" data-scroll-target="#practice-exam-wrong-questions-review">Practice Exam Wrong Questions – Review</a></li>
+  <li><a href="#score" id="toc-score" class="nav-link" data-scroll-target="#score">Score</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul>
 </nav>
     </div>
@@ -138,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 33: AWS Accounts, ARNs, IaC, and Shared Responsibility</h1>
+<h1 class="title">Day 34: AWS Accounts, IaC, Security &amp; Practice Exam</h1>
 <p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
@@ -156,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 15, 2025</p>
+      <p class="date">September 17, 2025</p>
     </div>
   </div>
   
@@ -168,116 +168,215 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Day 6 of learning AWS for my Cloud Practitioner exam.<br>
+<p>Day 7 of learning AWS for my Cloud Practitioner exam.<br>
 Today I covered:<br>
-- ✅ AWS account IDs and where to find them<br>
+- ✅ AWS account IDs &amp; ARNs<br>
 - ✅ AWS Tools for PowerShell<br>
-- ✅ Amazon Resource Names (ARNs)<br>
 - ✅ AWS CloudShell<br>
-- ✅ Infrastructure as Code (IaC): CloudFormation vs CDK<br>
-- ✅ Shared Responsibility Model</p>
+- ✅ Infrastructure as Code (CloudFormation vs CDK)<br>
+- ✅ Shared Responsibility Model<br>
+- ✅ Practice Exam Review (12 wrong Qs → <strong>76%</strong>)</p>
 <hr>
-<section id="aws-accounts-account-id" class="level1">
-<h1>AWS Accounts &amp; Account ID</h1>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<section id="aws-account-id" class="level3">
+<h3 class="anchored" data-anchor-id="aws-account-id">AWS Account ID</h3>
 <ul>
-<li>Every AWS account has a <strong>unique 12-digit Account ID</strong>.<br>
+<li>Every AWS account has a <strong>unique 12-digit ID</strong>.<br>
 </li>
-<li>You can find it in the <strong>AWS Management Console</strong> (top-right account menu → “Account ID”), or in <strong>Support Center / My Account</strong>.</li>
+<li>Found in the AWS Console dropdown (current user → Account ID).</li>
+</ul>
+</section>
+<section id="aws-tools-for-powershell" class="level3">
+<h3 class="anchored" data-anchor-id="aws-tools-for-powershell">AWS Tools for PowerShell</h3>
+<ul>
+<li>Built on <strong>.NET command language</strong>.<br>
+</li>
+<li>Allows AWS API interactions via PowerShell <strong>cmdlets</strong> (<code>Get-</code>, <code>New-</code>, <code>Remove-</code>).</li>
+</ul>
+</section>
+<section id="amazon-resource-names-arns" class="level3">
+<h3 class="anchored" data-anchor-id="amazon-resource-names-arns">Amazon Resource Names (ARNs)</h3>
+<ul>
+<li><strong>Unique identifiers</strong> for AWS resources.<br>
+</li>
+<li>Needed in IAM policies &amp; cross-service references.<br>
+</li>
+<li>Format: <code>arn:partition:service:region:account-id:resource</code>.</li>
+</ul>
+</section>
+<section id="aws-cloudshell" class="level3">
+<h3 class="anchored" data-anchor-id="aws-cloudshell">AWS CloudShell</h3>
+<ul>
+<li><strong>Browser-based shell</strong> built into the AWS Console.<br>
+</li>
+<li>Scoped <strong>per region</strong>, uses same credentials as console login.<br>
+</li>
+<li>Files persist in home directory per region.<br>
+</li>
+<li>Preloaded with AWS CLI, Python, Git.</li>
+</ul>
+</section>
+<section id="infrastructure-as-code-iac" class="level3">
+<h3 class="anchored" data-anchor-id="infrastructure-as-code-iac">Infrastructure as Code (IaC)</h3>
+<ul>
+<li>Define infrastructure with <strong>config scripts</strong> to create, update, or delete cloud resources.<br>
+</li>
+<li>Benefits: reproducibility, version control, collaboration.<br>
+</li>
+<li>Acts as a <strong>blueprint</strong> for infrastructure.</li>
+</ul>
+<section id="aws-cloudformation" class="level4">
+<h4 class="anchored" data-anchor-id="aws-cloudformation">AWS CloudFormation</h4>
+<ul>
+<li>Declarative templates (JSON or YAML).<br>
+</li>
+<li>“What you declare is what you get.”</li>
+</ul>
+</section>
+<section id="aws-cloud-development-kit-cdk" class="level4">
+<h4 class="anchored" data-anchor-id="aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</h4>
+<ul>
+<li>Imperative code (Python, TypeScript, Java, etc.) that compiles to CloudFormation.<br>
+</li>
+<li>Less verbose, but defaults can hide misconfigs.</li>
+</ul>
+</section>
+</section>
+<section id="shared-responsibility-model" class="level3">
+<h3 class="anchored" data-anchor-id="shared-responsibility-model">Shared Responsibility Model</h3>
+<ul>
+<li><strong>AWS is responsible for Security <em>of</em> the Cloud</strong>:
+<ul>
+<li>Global infrastructure, physical security, compute/storage/networking layers.<br>
+</li>
+</ul></li>
+<li><strong>Customer is responsible for Security <em>in</em> the Cloud</strong>:
+<ul>
+<li>Configurations, IAM, OS, apps, data encryption, traffic protection.<br>
+</li>
+</ul></li>
+<li><strong>TLDR</strong>: AWS secures the platform; customers secure their workloads on it.</li>
 </ul>
 <hr>
 </section>
-<section id="aws-tools-for-powershell" class="level1">
-<h1>AWS Tools for PowerShell</h1>
+</section>
+<section id="exam-domains-weighting" class="level1">
+<h1>Exam Domains (Weighting)</h1>
+<p><strong>bold = high frequency in exam</strong></p>
 <ul>
-<li><strong>AWS Tools for PowerShell</strong> exposes AWS APIs as <strong>PowerShell cmdlets</strong>.<br>
+<li><strong>Cloud Concepts (28%)</strong>
+<ul>
+<li>✅ AWS global infrastructure basics<br>
 </li>
-<li>Because PowerShell runs on <strong>.NET</strong>, you can script AWS operations (create S3 buckets, manage EC2, IAM, etc.) using familiar cmdlet patterns:
+<li>✅ AWS Organizations (multi-account mgmt)<br>
+</li>
+<li>✅ Serverless overview (Lambda)<br>
+</li>
+<li>⬜ Pricing models</li>
+</ul></li>
+<li><strong>Security &amp; Compliance (24%)</strong>
 <ul>
-<li><code>Get-</code>, <code>New-</code>, <code>Remove-</code>, <code>Set-</code>, <code>Write-</code> against AWS services.</li>
+<li>✅ IAM, Security Groups vs NACLs<br>
+</li>
+<li>✅ CloudTrail (auditing &amp; compliance)<br>
+</li>
+<li>✅ AWS WAF (protect web apps from SQL injection/XSS)<br>
+</li>
+<li>✅ AWS Config (config monitoring)<br>
+</li>
+<li>⬜ Encryption</li>
+</ul></li>
+<li><strong>Technology (36%)</strong>
+<ul>
+<li>✅ Databases: RDS (SQL), DynamoDB (NoSQL), Redshift (warehouse)<br>
+</li>
+<li>✅ Messaging: SQS (queues)<br>
+</li>
+<li>✅ Networking: VPC isolation, Direct Connect<br>
+</li>
+<li>✅ Monitoring: CloudWatch<br>
+</li>
+<li>✅ Big Data: EMR</li>
+</ul></li>
+<li><strong>Billing &amp; Pricing (12%)</strong>
+<ul>
+<li>⬜ Cost Explorer, Trusted Advisor<br>
+</li>
+<li>⬜ Support plans (Concierge, Health Dashboard)</li>
 </ul></li>
 </ul>
 <hr>
 </section>
-<section id="amazon-resource-names-arns" class="level1">
-<h1>Amazon Resource Names (ARNs)</h1>
+<section id="practice-exam-wrong-questions-review" class="level1">
+<h1>Practice Exam Wrong Questions – Review</h1>
+<p><strong>Q1. Which service ensures messages between software components aren’t lost if one fails?</strong><br>
+- ✅ <strong>Amazon SQS</strong> → managed message queue, durable storage until processed.</p>
+<p><strong>Q2. Which service manages all AWS accounts from one master?</strong><br>
+- ✅ <strong>AWS Organizations</strong> → centralized account mgmt, billing, policies.</p>
+<p><strong>Q3. Which service establishes a dedicated private connection between AWS and datacenter?</strong><br>
+- ✅ <strong>AWS Direct Connect</strong> → private fiber link, low latency, stable bandwidth.</p>
+<p><strong>Q4. Which feature lets you isolate resources for two projects with different networks?</strong><br>
+- ✅ <strong>VPC (Virtual Private Cloud)</strong> → create isolated virtual networks in AWS.</p>
+<p><strong>Q5. Which service protects web apps from SQL injection and XSS?</strong><br>
+- ✅ <strong>AWS WAF</strong> → Web Application Firewall.</p>
+<p><strong>Q6. Which service is best for analyzing/processing large datasets?</strong><br>
+- ✅ <strong>Amazon EMR</strong> → big data framework (Spark/Hadoop).</p>
+<p><strong>Q7. Which service provides the highest control over virtual infrastructure?</strong><br>
+- ✅ <strong>Amazon EC2</strong> → full OS, networking, storage control.</p>
+<p><strong>Q8. Which feature is used to create a copy of an EC2 instance config?</strong><br>
+- ✅ <strong>AMI (Amazon Machine Image)</strong> → reusable template for new EC2s.</p>
+<p><strong>Q9. Which tools help audit and monitor all resource changes? (TWO)</strong><br>
+- ✅ <strong>CloudTrail</strong> (API activity logs)<br>
+- ✅ <strong>AWS Config</strong> (monitors resource configuration).</p>
+<p><strong>Q10. Which service helps businesses ensure compliance?</strong><br>
+- ✅ <strong>CloudTrail</strong> → audit logs, compliance evidence.</p>
+<p><strong>Q11. Which security feature is associated with EC2 and filters incoming requests?</strong><br>
+- ✅ <strong>Security Groups</strong> → instance-level firewalls.</p>
+<p><strong>Q12. Which serverless service runs code without admin overhead?</strong><br>
+- ✅ <strong>AWS Lambda</strong> → serverless compute, scales automatically.</p>
+<hr>
+</section>
+<section id="score" class="level1">
+<h1>Score</h1>
 <ul>
-<li><strong>ARNs uniquely identify AWS resources</strong> across all regions and accounts.<br>
+<li>Total questions = 50<br>
 </li>
-<li>Format: <code>arn:partition:service:region:account-id:resourcetype/resource</code> (varies by service).<br>
+<li>Wrong = 12<br>
 </li>
-<li>You use ARNs in <strong>IAM policies</strong>, <strong>resource references</strong>, <strong>EventBridge rules</strong>, etc., to unambiguously specify the exact target.</li>
+<li>Correct = 38<br>
+</li>
+<li><strong>Score = 76%</strong></li>
 </ul>
 <hr>
 </section>
-<section id="aws-cloudshell" class="level1">
-<h1>AWS CloudShell</h1>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
 <ul>
-<li><strong>Browser-based shell</strong> inside the <strong>AWS Management Console</strong>.<br>
+<li><strong>SQS</strong> = durable message queue for decoupling.<br>
 </li>
-<li>Uses your <strong>current console credentials</strong> and is <strong>scoped per region</strong>.<br>
+<li><strong>Organizations</strong> = manage multiple AWS accounts centrally.<br>
 </li>
-<li>Persists files in your <strong>home directory</strong> across sessions (per region).<br>
+<li><strong>Direct Connect</strong> = private AWS ↔︎ datacenter link.<br>
 </li>
-<li>Preinstalled with common tools (AWS CLI, Python, Git) for quick admin and scripting.</li>
+<li><strong>VPC</strong> = full network isolation per project.<br>
+</li>
+<li><strong>WAF</strong> = protects web apps from SQL injection/XSS.<br>
+</li>
+<li><strong>EMR</strong> = big data analysis (Spark, Hadoop).<br>
+</li>
+<li><strong>EC2</strong> = highest infra control.<br>
+</li>
+<li><strong>AMI</strong> = reusable instance blueprint.<br>
+</li>
+<li><strong>CloudTrail + Config</strong> = compliance &amp; change management.<br>
+</li>
+<li><strong>Security Groups</strong> = EC2 firewalls.<br>
+</li>
+<li><strong>Lambda</strong> = serverless compute, zero admin.<br>
+</li>
+<li>Focus for next round: <strong>Pricing, Support Plans, Shared Responsibility nuances</strong>.</li>
 </ul>
-<hr>
-</section>
-<section id="infrastructure-as-code-iac" class="level1">
-<h1>Infrastructure as Code (IaC)</h1>
-<ul>
-<li>IaC = <strong>define infrastructure in code</strong> to <strong>create/update/delete</strong> cloud resources repeatably.<br>
-</li>
-<li>Benefits: version control, review, sharing, drift detection, reproducible environments, faster automation.<br>
-</li>
-<li>Think of it as a <strong>blueprint</strong> of your cloud architecture.</li>
-</ul>
-<hr>
-<section id="two-main-iac-options-on-aws" class="level2">
-<h2 class="anchored" data-anchor-id="two-main-iac-options-on-aws">Two main IaC options on AWS</h2>
-<section id="aws-cloudformation" class="level3">
-<h3 class="anchored" data-anchor-id="aws-cloudformation">AWS CloudFormation</h3>
-<ul>
-<li><strong>Declarative templates</strong> in <strong>JSON or YAML</strong> (no XML).<br>
-</li>
-<li>“What you declare is what gets built.”<br>
-</li>
-<li>Great for <strong>explicit</strong>, auditable infrastructure definitions.</li>
-</ul>
-</section>
-<section id="aws-cloud-development-kit-cdk" class="level3">
-<h3 class="anchored" data-anchor-id="aws-cloud-development-kit-cdk">AWS Cloud Development Kit (CDK)</h3>
-<ul>
-<li><strong>Imperative</strong> code in familiar languages (TypeScript/JavaScript, <strong>Python</strong>, <strong>Java</strong>, <strong>C#/.NET</strong>, <strong>Go</strong>) that <strong>synthesizes</strong> to CloudFormation templates.<br>
-</li>
-<li>Less verbose than raw templates; higher-level constructs can reduce boilerplate.<br>
-</li>
-<li>Because logic is code, <strong>be mindful</strong> of implicit defaults and ensure reviews to avoid misconfiguration.</li>
-</ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="shared-responsibility-model" class="level1">
-<h1>Shared Responsibility Model</h1>
-<p><strong>AWS (Security <em>of</em> the Cloud):</strong><br>
-- <strong>Global infrastructure &amp; hardware</strong><br>
-- Physical datacenters, <strong>Regions</strong>, <strong>AZs</strong>, edge locations<br>
-- Physical security, power, networking<br>
-- <strong>Managed software layers</strong> (for managed services)<br>
-- Underlying <strong>compute</strong>, <strong>storage</strong>, <strong>databases</strong>, <strong>networking</strong> fabric</p>
-<p><strong>Customer (Security <em>in</em> the Cloud):</strong><br>
-- <strong>Configuration of services</strong> (service controls, settings)<br>
-- <strong>Platforms &amp; applications</strong> you run<br>
-- <strong>Identity &amp; Access Management (IAM)</strong> (users, roles, policies, MFA)<br>
-- <strong>OS configuration</strong> (for EC2/self-managed)<br>
-- <strong>Network controls</strong> (Security Groups, NACLs, firewalls)<br>
-- <strong>Data protection</strong><br>
-- Client-side encryption, <strong>server-side encryption options</strong>,<br>
-- <strong>In-transit</strong> protection (TLS), <strong>key management</strong>, data classification and lifecycle</p>
-<p><strong>TL;DR</strong><br>
-- <strong>Customer</strong> is responsible for <strong>security <em>in</em> the cloud</strong> (your data, identity, configs).<br>
-- <strong>AWS</strong> is responsible for <strong>security <em>of</em> the cloud</strong> (the infrastructure and managed service underpinnings).</p>
-<hr>
 
 
 </section>

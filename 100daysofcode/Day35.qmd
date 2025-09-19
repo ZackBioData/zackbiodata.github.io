@@ -1,0 +1,158 @@
+---
+title: "Day 34: AWS Accounts, IaC, Security & Practice Exam"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-17"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 7 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ AWS account IDs & ARNs  
+  - ✅ AWS Tools for PowerShell  
+  - ✅ AWS CloudShell  
+  - ✅ Infrastructure as Code (CloudFormation vs CDK)  
+  - ✅ Shared Responsibility Model  
+  - ✅ Practice Exam Review (12 wrong Qs → **76%**)  
+
+---
+
+# Notes  
+
+### AWS Account ID
+- Every AWS account has a **unique 12-digit ID**.  
+- Found in the AWS Console dropdown (current user → Account ID).  
+
+### AWS Tools for PowerShell
+- Built on **.NET command language**.  
+- Allows AWS API interactions via PowerShell **cmdlets** (`Get-`, `New-`, `Remove-`).  
+
+### Amazon Resource Names (ARNs)
+- **Unique identifiers** for AWS resources.  
+- Needed in IAM policies & cross-service references.  
+- Format: `arn:partition:service:region:account-id:resource`.  
+
+### AWS CloudShell
+- **Browser-based shell** built into the AWS Console.  
+- Scoped **per region**, uses same credentials as console login.  
+- Files persist in home directory per region.  
+- Preloaded with AWS CLI, Python, Git.  
+
+### Infrastructure as Code (IaC)
+- Define infrastructure with **config scripts** to create, update, or delete cloud resources.  
+- Benefits: reproducibility, version control, collaboration.  
+- Acts as a **blueprint** for infrastructure.  
+
+#### AWS CloudFormation
+- Declarative templates (JSON or YAML).  
+- “What you declare is what you get.”  
+
+#### AWS Cloud Development Kit (CDK)
+- Imperative code (Python, TypeScript, Java, etc.) that compiles to CloudFormation.  
+- Less verbose, but defaults can hide misconfigs.  
+
+### Shared Responsibility Model
+- **AWS is responsible for Security *of* the Cloud**:  
+  - Global infrastructure, physical security, compute/storage/networking layers.  
+- **Customer is responsible for Security *in* the Cloud**:  
+  - Configurations, IAM, OS, apps, data encryption, traffic protection.  
+- **TLDR**: AWS secures the platform; customers secure their workloads on it.  
+
+---
+
+# Exam Domains (Weighting)  
+**bold = high frequency in exam**  
+
+- **Cloud Concepts (28%)**  
+  - ✅ AWS global infrastructure basics  
+  - ✅ AWS Organizations (multi-account mgmt)  
+  - ✅ Serverless overview (Lambda)  
+  - ⬜ Pricing models  
+
+- **Security & Compliance (24%)**  
+  - ✅ IAM, Security Groups vs NACLs  
+  - ✅ CloudTrail (auditing & compliance)  
+  - ✅ AWS WAF (protect web apps from SQL injection/XSS)  
+  - ✅ AWS Config (config monitoring)  
+  - ⬜ Encryption  
+
+- **Technology (36%)**  
+  - ✅ Databases: RDS (SQL), DynamoDB (NoSQL), Redshift (warehouse)  
+  - ✅ Messaging: SQS (queues)  
+  - ✅ Networking: VPC isolation, Direct Connect  
+  - ✅ Monitoring: CloudWatch  
+  - ✅ Big Data: EMR  
+
+- **Billing & Pricing (12%)**  
+  - ⬜ Cost Explorer, Trusted Advisor  
+  - ⬜ Support plans (Concierge, Health Dashboard)  
+
+---
+
+#  Practice Exam Wrong Questions – Review  
+
+**Q1. Which service ensures messages between software components aren’t lost if one fails?**  
+- ✅ **Amazon SQS** → managed message queue, durable storage until processed.  
+
+**Q2. Which service manages all AWS accounts from one master?**  
+- ✅ **AWS Organizations** → centralized account mgmt, billing, policies.  
+
+**Q3. Which service establishes a dedicated private connection between AWS and datacenter?**  
+- ✅ **AWS Direct Connect** → private fiber link, low latency, stable bandwidth.  
+
+**Q4. Which feature lets you isolate resources for two projects with different networks?**  
+- ✅ **VPC (Virtual Private Cloud)** → create isolated virtual networks in AWS.  
+
+**Q5. Which service protects web apps from SQL injection and XSS?**  
+- ✅ **AWS WAF** → Web Application Firewall.  
+
+**Q6. Which service is best for analyzing/processing large datasets?**  
+- ✅ **Amazon EMR** → big data framework (Spark/Hadoop).  
+
+**Q7. Which service provides the highest control over virtual infrastructure?**  
+- ✅ **Amazon EC2** → full OS, networking, storage control.  
+
+**Q8. Which feature is used to create a copy of an EC2 instance config?**  
+- ✅ **AMI (Amazon Machine Image)** → reusable template for new EC2s.  
+
+**Q9. Which tools help audit and monitor all resource changes? (TWO)**  
+- ✅ **CloudTrail** (API activity logs)  
+- ✅ **AWS Config** (monitors resource configuration).  
+
+**Q10. Which service helps businesses ensure compliance?**  
+- ✅ **CloudTrail** → audit logs, compliance evidence.  
+
+**Q11. Which security feature is associated with EC2 and filters incoming requests?**  
+- ✅ **Security Groups** → instance-level firewalls.  
+
+**Q12. Which serverless service runs code without admin overhead?**  
+- ✅ **AWS Lambda** → serverless compute, scales automatically.  
+
+---
+
+#  Score  
+
+- Total questions = 50  
+- Wrong = 12  
+- Correct = 38  
+- **Score = 76%**  
+
+---
+
+# Key Takeaways
+- **SQS** = durable message queue for decoupling.  
+- **Organizations** = manage multiple AWS accounts centrally.  
+- **Direct Connect** = private AWS ↔ datacenter link.  
+- **VPC** = full network isolation per project.  
+- **WAF** = protects web apps from SQL injection/XSS.  
+- **EMR** = big data analysis (Spark, Hadoop).  
+- **EC2** = highest infra control.  
+- **AMI** = reusable instance blueprint.  
+- **CloudTrail + Config** = compliance & change management.  
+- **Security Groups** = EC2 firewalls.  
+- **Lambda** = serverless compute, zero admin.  
+- Focus for next round: **Pricing, Support Plans, Shared Responsibility nuances**.  
