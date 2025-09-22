@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-19">
+<meta name="dcterms.date" content="2025-09-21">
 
-<title>Day 36: Networking &amp; Single-Cell visual Explorer – Zack’s Bioinformatics</title>
+<title>Day 37: Introduction to EC2 – Zack’s Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,22 +117,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aws-networking-basics" id="toc-aws-networking-basics" class="nav-link active" data-scroll-target="#aws-networking-basics">AWS Networking Basics</a>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#aws-direct-connect" id="toc-aws-direct-connect" class="nav-link" data-scroll-target="#aws-direct-connect">AWS Direct Connect</a></li>
-  <li><a href="#aws-virtual-private-network-vpn" id="toc-aws-virtual-private-network-vpn" class="nav-link" data-scroll-target="#aws-virtual-private-network-vpn">AWS Virtual Private Network (VPN)</a></li>
+  <li><a href="#what-is-ec2" id="toc-what-is-ec2" class="nav-link" data-scroll-target="#what-is-ec2">What is EC2?</a></li>
+  <li><a href="#ec2-instance-families" id="toc-ec2-instance-families" class="nav-link" data-scroll-target="#ec2-instance-families">EC2 Instance Families</a></li>
+  <li><a href="#ec2-tenancy-options" id="toc-ec2-tenancy-options" class="nav-link" data-scroll-target="#ec2-tenancy-options">EC2 Tenancy Options</a></li>
+  <li><a href="#ec2-pricing-models" id="toc-ec2-pricing-models" class="nav-link" data-scroll-target="#ec2-pricing-models">EC2 Pricing Models</a></li>
   </ul></li>
-  <li><a href="#virtual-private-cloud-vpc-subnets" id="toc-virtual-private-cloud-vpc-subnets" class="nav-link" data-scroll-target="#virtual-private-cloud-vpc-subnets">Virtual Private Cloud (VPC) &amp; Subnets</a>
-  <ul class="collapse">
-  <li><a href="#virtual-private-cloud-vpc" id="toc-virtual-private-cloud-vpc" class="nav-link" data-scroll-target="#virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</a></li>
-  <li><a href="#subnets" id="toc-subnets" class="nav-link" data-scroll-target="#subnets">Subnets</a></li>
-  </ul></li>
-  <li><a href="#security-groups-vs-nacls" id="toc-security-groups-vs-nacls" class="nav-link" data-scroll-target="#security-groups-vs-nacls">Security Groups vs NACLs</a>
-  <ul class="collapse">
-  <li><a href="#network-access-control-lists-nacls" id="toc-network-access-control-lists-nacls" class="nav-link" data-scroll-target="#network-access-control-lists-nacls">Network Access Control Lists (NACLs)</a></li>
-  <li><a href="#security-groups" id="toc-security-groups" class="nav-link" data-scroll-target="#security-groups">Security Groups</a></li>
-  </ul></li>
-  <li><a href="#mini-project-idea-cloud-single-cell-visual-explorer" id="toc-mini-project-idea-cloud-single-cell-visual-explorer" class="nav-link" data-scroll-target="#mini-project-idea-cloud-single-cell-visual-explorer">Mini Project Idea – <em>Cloud Single-Cell visual Explorer</em></a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul>
 </nav>
     </div>
@@ -141,12 +133,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 36: Networking &amp; Single-Cell visual Explorer</h1>
-<p class="subtitle lead">AWS Cloud Practitioner Exam Prep + Bioinformatics Project</p>
+<h1 class="title">Day 37: Introduction to EC2</h1>
+<p class="subtitle lead">AWS Cloud Practitioner Exam Prep</p>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
     <div class="quarto-category">Cloud</div>
-    <div class="quarto-category">Bioinformatics</div>
+    <div class="quarto-category">Certification</div>
     <div class="quarto-category">Study Log</div>
   </div>
   </div>
@@ -159,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2025</p>
+      <p class="date">September 21, 2025</p>
     </div>
   </div>
   
@@ -171,105 +163,90 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Day 7 of learning AWS for my Cloud Practitioner exam.<br>
+<p>Day 9 of learning AWS for my Cloud Practitioner exam.<br>
 Today I covered:<br>
-- ✅ Direct Connect vs VPN<br>
-- ✅ VPCs, Subnets, and CIDR ranges<br>
-- ✅ Security Groups vs NACLs<br>
-- ✅ Drafted a Mini Project (Single-cell Atlas Explorer on AWS)</p>
-<hr>
-<section id="aws-networking-basics" class="level1">
-<h1>AWS Networking Basics</h1>
-<section id="aws-direct-connect" class="level3">
-<h3 class="anchored" data-anchor-id="aws-direct-connect">AWS Direct Connect</h3>
+- ✅ EC2 basics<br>
+- ✅ Instance families &amp; types<br>
+- ✅ Tenancy (default, dedicated instance, dedicated host)<br>
+- ✅ Pricing models (On-Demand, Spot, Reserved, Dedicated)</p>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<section id="what-is-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-ec2">What is EC2?</h3>
 <ul>
-<li>Dedicated <strong>gigabit connection</strong> from an <strong>on-premise data center</strong> to AWS.<br>
+<li><strong>Elastic Compute Cloud (EC2)</strong> = highly configurable <strong>virtual machine</strong> service.<br>
 </li>
-<li>Provides low latency, private connectivity.<br>
+<li>Provides <strong>resizable compute capacity</strong> in minutes.<br>
 </li>
-<li>Use cases: finance, healthcare, large data transfers.</li>
-</ul>
-</section>
-<section id="aws-virtual-private-network-vpn" class="level3">
-<h3 class="anchored" data-anchor-id="aws-virtual-private-network-vpn">AWS Virtual Private Network (VPN)</h3>
-<ul>
-<li>Secure, encrypted connection between <strong>on-premise networks</strong> and AWS.<br>
-</li>
-<li>Runs over the public internet (unlike Direct Connect).<br>
-</li>
-<li>Cheaper, but higher latency.</li>
+<li>Backbone of many AWS services (everything ultimately runs on EC2).</li>
 </ul>
 <hr>
 </section>
-</section>
-<section id="virtual-private-cloud-vpc-subnets" class="level1">
-<h1>Virtual Private Cloud (VPC) &amp; Subnets</h1>
-<section id="virtual-private-cloud-vpc" class="level3">
-<h3 class="anchored" data-anchor-id="virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</h3>
+<section id="ec2-instance-families" class="level3">
+<h3 class="anchored" data-anchor-id="ec2-instance-families">EC2 Instance Families</h3>
 <ul>
-<li>A <strong>logically isolated section</strong> of the AWS network.<br>
+<li>Families = different combinations of <strong>CPU, memory, storage, networking capacity</strong>.<br>
 </li>
-<li>You choose a <strong>CIDR IP range</strong> for your VPC.<br>
+<li>Lets you match the right instance to your workload (e.g.&nbsp;compute-optimized, memory-optimized).<br>
 </li>
-<li>Launch AWS resources (EC2, RDS, etc.) inside.</li>
+<li>Differences come from underlying <strong>hardware</strong>.</li>
 </ul>
+<p><strong>Instance type</strong> = a specific <strong>size</strong> inside an instance <strong>family</strong>.</p>
+<hr>
 </section>
-<section id="subnets" class="level3">
-<h3 class="anchored" data-anchor-id="subnets">Subnets</h3>
-<ul>
-<li>Partition of the VPC IP range into <strong>smaller segments</strong>.<br>
-</li>
-<li>Each subnet has a <strong>smaller CIDR range</strong> than the parent VPC.<br>
-</li>
-<li>Route traffic to the appropriate subnet (e.g., public vs private).</li>
-</ul>
+<section id="ec2-tenancy-options" class="level3">
+<h3 class="anchored" data-anchor-id="ec2-tenancy-options">EC2 Tenancy Options</h3>
+<p><strong>Default (Shared)</strong><br>
+- Multi-tenant environment.<br>
+- Server frame may change with each reboot (within the same rack).</p>
+<p><strong>Dedicated Instance</strong><br>
+- Instance isolation.<br>
+- Per-instance billing.<br>
+- No hardware visibility, no affinity to the same host.</p>
+<p><strong>Dedicated Host</strong><br>
+- Full physical server isolation.<br>
+- Per-host billing.<br>
+- Visibility into sockets, cores, host ID.<br>
+- Consistency: can deploy workloads to the same physical server repeatedly.</p>
+<hr>
+</section>
+<section id="ec2-pricing-models" class="level3">
+<h3 class="anchored" data-anchor-id="ec2-pricing-models">EC2 Pricing Models</h3>
+<p><strong>On-Demand</strong><br>
+- <em>Least commitment</em>.<br>
+- Pay per second or per hour.<br>
+- Flexible, cannot be interrupted.<br>
+- Great for first-time apps or unpredictable workloads.</p>
+<p><strong>Spot</strong><br>
+- <em>Up to 90% cheaper</em>.<br>
+- Uses spare AWS capacity.<br>
+- Flexible start/end times.<br>
+- Can be interrupted.<br>
+- Best for non-critical, fault-tolerant jobs.</p>
+<p><strong>Reserved</strong><br>
+- <em>Up to 75% cheaper</em>.<br>
+- Commit for <strong>1 or 3 years</strong>.<br>
+- Ideal for steady, predictable usage.<br>
+- Option to resell unused reservations.</p>
+<p><strong>Dedicated</strong><br>
+- <em>Most expensive</em>.<br>
+- Runs on isolated hardware.<br>
+- Can also be On-Demand, Reserved, or Spot.<br>
+- Required when strict compliance or licensing demands physical isolation.</p>
 <hr>
 </section>
 </section>
-<section id="security-groups-vs-nacls" class="level1">
-<h1>Security Groups vs NACLs</h1>
-<section id="network-access-control-lists-nacls" class="level3">
-<h3 class="anchored" data-anchor-id="network-access-control-lists-nacls">Network Access Control Lists (NACLs)</h3>
+<section id="key-takeaways" class="level1">
+<h1>Key Takeaways</h1>
 <ul>
-<li>Firewall at the <strong>subnet level</strong>.<br>
+<li>EC2 = core compute service, flexible and resizable.<br>
 </li>
-<li>Can create <strong>allow and deny rules</strong> (e.g., block IP ranges).</li>
+<li>Instance families = choose based on CPU, memory, storage, networking.<br>
+</li>
+<li>Tenancy: shared (default), dedicated instance, or full dedicated host.<br>
+</li>
+<li>Pricing: On-Demand (flexible), Spot (cheap, interruptible), Reserved (predictable savings), Dedicated (isolation).</li>
 </ul>
-</section>
-<section id="security-groups" class="level3">
-<h3 class="anchored" data-anchor-id="security-groups">Security Groups</h3>
-<ul>
-<li>Firewall at the <strong>instance level</strong>.<br>
-</li>
-<li><strong>Allow-only rules</strong> (cannot block IPs).<br>
-</li>
-<li>Default deny all, then explicitly allow traffic.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="mini-project-idea-cloud-single-cell-visual-explorer" class="level1">
-<h1>Mini Project Idea – <em>Cloud Single-Cell visual Explorer</em></h1>
-<p><strong>Description:</strong><br>
-A containerized <strong>Streamlit + Scanpy</strong> app deployed on AWS that serves <strong>precomputed single-cell embeddings</strong> (UMAP/t-SNE).</p>
-<ul>
-<li><strong>Functionality:</strong>
-<ul>
-<li>Users can type a <strong>gene symbol</strong>.<br>
-</li>
-<li>The embedding recolors to show <strong>expression across tissues/clusters</strong>.</li>
-</ul></li>
-<li><strong>Extension (future):</strong>
-<ul>
-<li>Build an <strong>ML model</strong> to analyze expression maps.<br>
-</li>
-<li>Detect <strong>patterns in colors/locations</strong> (gene modules, trajectories).</li>
-</ul></li>
-</ul>
-<p><strong>Why it’s valuable:</strong><br>
-- Shows <strong>bioinformatics + cloud integration</strong>.<br>
-- SaaS-style interface for exploring scRNA-seq without coding.<br>
-- Proof of <strong>AWS deployment, security, and cost management</strong>.</p>
 
 
 </section>

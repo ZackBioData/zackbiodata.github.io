@@ -1,0 +1,92 @@
+---
+title: "Day 37: Introduction to EC2"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-21"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+Day 9 of learning AWS for my Cloud Practitioner exam.  
+Today I covered:  
+  - ✅ EC2 basics  
+  - ✅ Instance families & types  
+  - ✅ Tenancy (default, dedicated instance, dedicated host)  
+  - ✅ Pricing models (On-Demand, Spot, Reserved, Dedicated)  
+
+
+
+# Notes  
+
+### What is EC2?  
+- **Elastic Compute Cloud (EC2)** = highly configurable **virtual machine** service.  
+- Provides **resizable compute capacity** in minutes.  
+- Backbone of many AWS services (everything ultimately runs on EC2).  
+
+---
+
+### EC2 Instance Families  
+- Families = different combinations of **CPU, memory, storage, networking capacity**.  
+- Lets you match the right instance to your workload (e.g. compute-optimized, memory-optimized).  
+- Differences come from underlying **hardware**.  
+
+**Instance type** = a specific **size** inside an instance **family**.  
+
+---
+
+### EC2 Tenancy Options  
+
+**Default (Shared)**  
+- Multi-tenant environment.  
+- Server frame may change with each reboot (within the same rack).  
+
+**Dedicated Instance**  
+- Instance isolation.  
+- Per-instance billing.  
+- No hardware visibility, no affinity to the same host.  
+
+**Dedicated Host**  
+- Full physical server isolation.  
+- Per-host billing.  
+- Visibility into sockets, cores, host ID.  
+- Consistency: can deploy workloads to the same physical server repeatedly.  
+
+---
+
+### EC2 Pricing Models  
+
+**On-Demand**  
+- *Least commitment*.  
+- Pay per second or per hour.  
+- Flexible, cannot be interrupted.  
+- Great for first-time apps or unpredictable workloads.  
+
+**Spot**  
+- *Up to 90% cheaper*.  
+- Uses spare AWS capacity.  
+- Flexible start/end times.  
+- Can be interrupted.  
+- Best for non-critical, fault-tolerant jobs.  
+
+**Reserved**  
+- *Up to 75% cheaper*.  
+- Commit for **1 or 3 years**.  
+- Ideal for steady, predictable usage.  
+- Option to resell unused reservations.  
+
+**Dedicated**  
+- *Most expensive*.  
+- Runs on isolated hardware.  
+- Can also be On-Demand, Reserved, or Spot.  
+- Required when strict compliance or licensing demands physical isolation.  
+
+---
+
+# Key Takeaways  
+- EC2 = core compute service, flexible and resizable.  
+- Instance families = choose based on CPU, memory, storage, networking.  
+- Tenancy: shared (default), dedicated instance, or full dedicated host.  
+- Pricing: On-Demand (flexible), Spot (cheap, interruptible), Reserved (predictable savings), Dedicated (isolation).  

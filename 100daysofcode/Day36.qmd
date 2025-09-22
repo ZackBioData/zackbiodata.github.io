@@ -1,5 +1,5 @@
 ---
-title: "Day 35: Networking & Single-Cell visual Explorer"
+title: "Day 36: Networking & Single-Cell visual Explorer"
 subtitle: "AWS Cloud Practitioner Exam Prep + Bioinformatics Project"
 date: "2025-09-19"
 categories: ["AWS", "Cloud", "Bioinformatics", "Study Log"]
