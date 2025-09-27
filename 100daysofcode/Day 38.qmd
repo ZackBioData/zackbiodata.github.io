@@ -1,0 +1,69 @@
+---
+title: "Day 38: AWS Reserved Instances"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-27"
+categories: ["AWS", "Cloud", "Certification", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# Reserved Instances (RIs)  
+
+**Definition:**  
+Reserved Instances are designed for applications that have **steady-state, predictable usage** or require **reserved capacity**.  
+Reduced pricing depends on:  
+- Term  
+- Class offering  
+- RI attributes  
+- Payment option  
+
+---
+
+## RI Attributes  
+- **Instance**: e.g. `m4.large` (family = `m4`, size = `large`)  
+- **Region**: the AWS region in which the RI is purchased  
+- **Tenancy**: shared (default) vs. single-tenant hardware  
+- **Platform**: operating system (Linux, Windows, etc.)  
+
+---
+
+## RI Limits  
+- **20 regional RIs per region (per tiering)**  
+- **20 zonal RIs per Availability Zone (AZ)**  
+- For **regional RIs**, you cannot exceed your running On-Demand instance count by purchasing additional RIs.  
+
+---
+
+## Capacity Reservation  
+- Different EC2 instance types are backed by different physical hardware.  
+- There is a **finite amount of capacity per AZ per instance type**.  
+
+---
+
+## Standard vs Convertible RIs  
+
+**Standard RIs**  
+- Can modify AZ (within the same region)  
+- Can change scope (Zonal → Regional)  
+- Offer deeper discounts  
+
+**Convertible RIs**  
+- Cannot be modified, only **exchanged**  
+- Cannot be sold  
+
+---
+
+## Spot Instances (contrast)  
+- AWS uses Spot Instances to maximize **unused compute capacity**.  
+- Provide discounts of up to **90% compared to On-Demand**.  
+
+---
+
+# Key Takeaways  
+- Use **Reserved Instances** for predictable, long-term workloads.  
+- Know the difference between **Standard** (flexible scope, cheaper) and **Convertible** (exchangeable).  
+- Be aware of **limits** (20 regional, 20 zonal).  
+- **Spot Instances** are separate: extreme savings but only when capacity is available.  
