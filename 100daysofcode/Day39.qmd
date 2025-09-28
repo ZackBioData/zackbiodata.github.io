@@ -1,0 +1,55 @@
+---
+title: "Day 39: Zero Trust Model"
+subtitle: "AWS Cloud Practitioner Exam Prep"
+date: "2025-09-28"
+categories: ["AWS", "Cloud", "Security", "Study Log"]
+image: "../images/100daysofcode/aws.png"
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+# Zero Trust Model  
+
+**Definition:**  
+A security model that runs on the principle of **“trust no one and verify everything.”**  
+- **Identity** becomes the primary security perimeter.  
+- Common in **Bring Your Own Device (BYOD)** contexts.  
+- Relies on **identity-based MFA authentication**.  
+
+---
+
+## Identity Security Controls in AWS  
+
+- **IAM policies**  
+- **Permission boundaries**  
+- **Service Control Policies (SCPs)**  
+- **IAM policy conditions**  
+
+---
+
+## AWS Zero Trust Approach  
+
+- **AWS CloudTrail** – tracks all API activity.  
+- **Amazon GuardDuty** – detects suspicious or malicious activity (built on CloudTrail logs).  
+- **Amazon Detective** – investigates and analyzes security issues.  
+
+AWS can provide a **makeshift Zero Trust approach**, but traditionally **3rd-party solutions** are used for complete implementations.  
+
+---
+
+## 3rd Party Example (Azure AD)  
+
+- **Azure Active Directory**  
+  - Provides **real-time calculated risk detection**.  
+  - Uses **more datapoints than AWS** for adaptive access control.  
+
+---
+
+# Key Takeaways  
+
+- **Zero Trust = trust no one, verify everything.**  
+- **Identity is the new perimeter** → IAM, SCPs, and MFA are central.  
+- AWS offers partial Zero Trust with **CloudTrail, GuardDuty, Detective**.  
+- **Azure AD** has more advanced risk-based identity detection.  
